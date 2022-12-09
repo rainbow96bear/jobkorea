@@ -7,13 +7,15 @@ export default function Components() {
   return (
     <div>
       <Routes>
-        <Route path="/main/*" element={<Main></Main>}></Route>
+        <Route path="/*" element={<Main></Main>}></Route>
         <Route
           path="/companyMain/*"
-          element={<CompanyMain></CompanyMain>}></Route>
+          element={<CompanyMain></CompanyMain>}
+        ></Route>
         <Route
           path="/registAccount/*"
-          element={<RegistAccount></RegistAccount>}></Route>
+          element={<RegistAccount></RegistAccount>}
+        ></Route>
       </Routes>
     </div>
   );
