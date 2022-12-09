@@ -3,10 +3,14 @@ import ApplyContainer from "./apply/ApplyContainer";
 import MainContainer from "./main/MainContainer";
 import RecruitContainer from "./recruit/RecruitContainer";
 import SearchContainer from "./search/SearchContainer";
+import HeaderContainer from "./header/HeaderContainer";
+import FooterContainer from "./footer/FooterContainer";
+import styled from "styled-components";
 
 export default function Main() {
   return (
-    <div>
+    <Box>
+      <HeaderContainer></HeaderContainer>
       <Routes>
         <Route path="/" element={<MainContainer></MainContainer>}></Route>
         <Route
@@ -19,6 +23,11 @@ export default function Main() {
           path="/apply"
           element={<ApplyContainer></ApplyContainer>}></Route>
       </Routes>
-    </div>
+      <FooterContainer></FooterContainer>
+    </Box>
   );
 }
+
+const Box = styled.div`
+  min-width: 1697px;
+`;
