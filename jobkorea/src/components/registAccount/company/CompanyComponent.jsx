@@ -3,19 +3,31 @@ import banner from "./img/Jobbanner.png";
 import backimg from "./img/backcolor.png";
 import React from "react";
 import Select from "react-select";
+import { useState } from "react";
 // import circlecheck from "circle-check-regular.svg";
 // import magni from "./img/magnifying-glass-solid.svg";
-import { VscSearch } from "react-icons/vsc";
+// import { VscSearch } from "react-icons/vsc";
 const COLOR = " #3399ff";
 
-export default function CompanyComponent() {
+export default function CompanyComponent({ onClick }) {
   const options = [
     { value: "", label: "" },
-    { value: "1", label: "기업형태" },
-    { value: "2", label: "중소기업" },
-    { value: "3", label: "외국계" },
-    { value: "4", label: "중견기업" },
+    { value: "기업형태", label: "기업형태" },
+    { value: "중소기업", label: "중소기업" },
+    { value: "외국계", label: "외국계" },
+    { value: "중견기업", label: "중견기업" },
   ];
+
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [companyNumber, setCompnayNumber] = useState("");
+  const [companyName, setCompnayName] = useState("");
+  const [companyHeader, setCompanyHeader] = useState("");
+  const [companyAdress, setCompanyAdress] = useState("");
+  const [companyId, setCompanyId] = useState("");
+  const [companyPw, setCompanyPw] = useState("");
+  const [companyIdname, setCompanyIdname] = useState("");
+  const [companyIdnumber, setCompanyIdnumber] = useState("");
+  const [companyIdemail, setCompanyIdemail] = useState("");
 
   return (
     <JoinBox>
@@ -33,6 +45,10 @@ export default function CompanyComponent() {
           </Joindetail>
 
           <Select
+            // defaultValue={selectedOption}
+            onChange={(e) => {
+              setSelectedOption(e.value);
+            }}
             styles={{
               control: (baseStyles, state) => ({
                 ...baseStyles,
@@ -43,14 +59,27 @@ export default function CompanyComponent() {
             className="selectone"
             placeholder="기업형태＊"
             options={options}
+            //value값
           />
           <Companynumber
+            onInput={(e) => {
+              setCompnayNumber(e.target.value);
+            }}
             type={"number"}
             placeholder="사업자등록번호 *"
           ></Companynumber>
           <Companytitle>
-            <Companyname type={"text"} placeholder="회사명 *"></Companyname>
+            <Companyname
+              onInput={(e) => {
+                setCompnayName(e.target.value);
+              }}
+              type={"text"}
+              placeholder="회사명 *"
+            ></Companyname>
             <Companyheader
+              onInput={(e) => {
+                setCompanyHeader(e.target.value);
+              }}
               type={"text"}
               placeholder="대표자명*"
             ></Companyheader>
@@ -61,24 +90,72 @@ export default function CompanyComponent() {
           </div>
           <div>
             <Companyadress
+              onInput={(e) => {
+                setCompanyAdress(e.target.value);
+              }}
               type={"text"}
               placeholder="회사주소 * "
             ></Companyadress>{" "}
             {/* <img src={magni} alt="" /> */}
           </div>
           <Companytitle>
-            <Companyid type={"text"} placeholder="아이디 *"></Companyid>
-            <Companypw type={"text"} placeholder="비밀번호*"></Companypw>
+            <Companyid
+              onInput={(e) => {
+                setCompanyId(e.target.value);
+              }}
+              type={"text"}
+              placeholder="아이디 *"
+            ></Companyid>
+            <Companypw
+              onInput={(e) => {
+                setCompanyPw(e.target.value);
+              }}
+              type={"text"}
+              placeholder="비밀번호*"
+            ></Companypw>
             <Companycheck>표시</Companycheck>
           </Companytitle>
-          <Companyidname type={"text"} placeholder="가입자명 *"></Companyidname>
           <Companyidname
+            onInput={(e) => {
+              setCompanyIdname(e.target.value);
+            }}
+            type={"text"}
+            placeholder="가입자명 *"
+          ></Companyidname>
+          <Companyidname
+            onInput={(e) => {
+              setCompanyIdnumber(e.target.value);
+            }}
             type={"number"}
             placeholder="전화번호 *"
           ></Companyidname>
-          <Companyidname type={"email"} placeholder="이메일 *"></Companyidname>
+          <Companyidname
+            onInput={(e) => {
+              setCompanyIdemail(e.target.value);
+            }}
+            type={"email"}
+            placeholder="이메일 *"
+          ></Companyidname>
           <Join>
-            <div className="companymember">가입하기</div>
+            <div
+              onClick={() => {
+                onClick(
+                  selectedOption,
+                  companyNumber,
+                  companyName,
+                  companyHeader,
+                  companyAdress,
+                  companyId,
+                  companyPw,
+                  companyIdname,
+                  companyIdnumber,
+                  companyIdemail
+                );
+              }}
+              className="companymember"
+            >
+              가입하기
+            </div>
           </Join>
         </Joindetailbackground>
       </Join>
