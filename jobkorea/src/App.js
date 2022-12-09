@@ -5,7 +5,7 @@ import Components from "./components/index";
 function App() {
   return (
     <BrowserRouter>
-      <Components></Components>;
+      <Components></Components>
     </BrowserRouter>
   );
 }

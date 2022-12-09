@@ -7,7 +7,7 @@ export default function Components() {
   return (
     <div>
       <Routes>
-        <Route path="/main/*" element={<Main></Main>}></Route>
+        <Route path="/*" element={<Main></Main>}></Route>
         <Route
           path="/companyMain/*"
           element={<CompanyMain></CompanyMain>}></Route>
