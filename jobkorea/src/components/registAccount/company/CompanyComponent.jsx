@@ -4,6 +4,7 @@ import backimg from "./img/backcolor.png";
 import React from "react";
 import Select from "react-select";
 import { useState } from "react";
+import "./Company.css";
 
 // import circlecheck from "circle-check-regular.svg";
 // import magni from "./img/magnifying-glass-solid.svg";
@@ -29,6 +30,8 @@ export default function CompanyComponent({ onClick }) {
   const [companyIdname, setCompanyIdname] = useState("");
   const [companyIdnumber, setCompanyIdnumber] = useState("");
   const [companyIdemail, setCompanyIdemail] = useState("");
+
+  const [idMessage, setIdMessage] = useState(null);
 
   return (
     <JoinBox>
@@ -104,6 +107,9 @@ export default function CompanyComponent({ onClick }) {
               onInput={(e) => {
                 setCompanyId(e.target.value);
                 if (e.target.value.length < 6) {
+                  setIdMessage("아이디는 6글자이상 13글자미만");
+                } else if (e.target.value.length > 6) {
+                  setIdMessage(null);
                 }
               }}
               type={"text"}
@@ -119,9 +125,8 @@ export default function CompanyComponent({ onClick }) {
             ></Companypw>
             <Companycheck>표시</Companycheck>
           </Companytitle>
-          <Idconfirm>
-            <span className="idconfirm">아이디는 6글자 이상 입니다</span>
-          </Idconfirm>
+
+          <div className="idmessage">{idMessage}</div>
           <Companyidname
             onInput={(e) => {
               setCompanyIdname(e.target.value);
@@ -342,10 +347,4 @@ const Companyidname = styled.input`
   border-style: solid;
   border-color: lightgrey;
   padding: 1%;
-`;
-
-const Idconfirm = styled.div`
-  & span {
-    color: red;
-  }
 `;
