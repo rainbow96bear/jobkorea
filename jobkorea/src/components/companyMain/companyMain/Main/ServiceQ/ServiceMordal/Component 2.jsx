@@ -75,3 +75,82 @@ const ServiceModalBox = styled.div`
     margin: auto;
   }
 `;
+
+// import styled from "styled-components";
+
+// const ServiceModalComponent2 = ({ onClick, data }) => {
+//   console.log(data);
+//   return (
+//     <ServiceModalBox>
+//       <div className="background"></div>
+//       <div className="mordal">
+//         <div className="title">
+//           {data.title}
+//           <img src="img/x-button.svg" onClick={onClick}></img>
+//         </div>
+//         <div className="text">
+//           {data.text.map((item, index) => {
+//             if (typeof item === "string")
+//               return <div key={`item-${index}`}>{item}</div>;
+//             else if (typeof item === "object") {
+//               if (Object.keys(item)[0] === "numList") {
+//                 return (
+//                   <ol key={`item-${index}`}>
+//                     {item["numList"].map((item2, index2) => (
+//                       <li key={`item-${index}-${index2}`}>{item2}</li>
+//                     ))}
+//                   </ol>
+//                 );
+//               }
+//             }
+//           })}
+//         </div>
+//       </div>
+//     </ServiceModalBox>
+//   );
+// };
+
+// export default ServiceModalComponent2;
+
+// const ServiceModalBox = styled.div`
+//   .background {
+//     position: fixed;
+//     width: 100%;
+//     height: 100%;
+//     background: rgba(0, 0, 0, 0.5);
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//   }
+//   .mordal {
+//     width: 800px;
+//     height: 420px;
+//     background-color: white;
+//     position: fixed;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     margin: auto;
+//     border-radius: 20px;
+//   }
+//   .title {
+//     display: flex;
+//     width: 90%;
+//     justify-content: space-between;
+//     font-size: 20px;
+//     padding: 30px 0;
+//     margin: auto;
+//     font-weight: 700;
+//   }
+
+//   .title img {
+//     width: 18px;
+//   }
+
+//   .text {
+//     width: 90%;
+//     margin: auto;
+//   }
+// `;
