@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
-const ServiceModalComponent1 = ({ onClick }) => {
+const ServiceModalComponent1 = (props) => {
+  console.log(props.mdIndex);
   return (
     <ServiceModalBox>
       <div className="background"></div>
       <div className="mordal">
         <div className="title">
           1. 채용공고를 내고 싶은데 절차가 어떻게 되나요?
-          <img src="img/x-button.svg" onClick={onClick}></img>
+          <img src="img/x-button.svg" onClick={props.onClick}></img>
         </div>
         <div className="text">
           <div>
@@ -15,13 +16,13 @@ const ServiceModalComponent1 = ({ onClick }) => {
             해주세요.
           </div>
           <div className="graph">
-            <div>기업 회원가입</div>
-            <div> &lt; </div>
-            <div>로그인</div>
-            <div> &lt; </div>
-            <div>채용공고 등록양식 작성</div>
-            <div> &lt; </div>
-            <div>등록 완료</div>
+            <div className="boader-box">기업 회원가입</div>
+            <div> &gt; </div>
+            <div className="boader-box">로그인</div>
+            <div> &gt; </div>
+            <BoarderBox>채용공고 등록양식 작성</BoarderBox>
+            <div> &gt; </div>
+            <BoarderBox width={1}>등록 완료</BoarderBox>
           </div>
           <div>
             ID가 없으시면 먼저 회원가입부터 진행하여 주세요. 회원가입은
@@ -99,11 +100,20 @@ const ServiceModalBox = styled.div`
 
   .graph > div {
     height: 43px;
-    border: 1px solid #ebebeb;
-    border-radius: 5px;
     font-weight: 600;
     display: flex;
     padding: 0 10px;
     align-items: center;
+
+    &.boader-box {
+      border: 1px solid #ebebeb;
+      border-radius: 5px;
+    }
   }
+`;
+
+const BoarderBox = styled.div`
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  ${(props) => (props.width ? " width:" + props.width * 100 + "px" : "")};
 `;
