@@ -4,6 +4,7 @@ import backimg from "./img/backcolor.png";
 import React from "react";
 import Select from "react-select";
 import { useState } from "react";
+
 // import circlecheck from "circle-check-regular.svg";
 // import magni from "./img/magnifying-glass-solid.svg";
 // import { VscSearch } from "react-icons/vsc";
@@ -102,10 +103,13 @@ export default function CompanyComponent({ onClick }) {
             <Companyid
               onInput={(e) => {
                 setCompanyId(e.target.value);
+                if (e.target.value.length < 6) {
+                }
               }}
               type={"text"}
               placeholder="아이디 *"
             ></Companyid>
+
             <Companypw
               onInput={(e) => {
                 setCompanyPw(e.target.value);
@@ -115,6 +119,9 @@ export default function CompanyComponent({ onClick }) {
             ></Companypw>
             <Companycheck>표시</Companycheck>
           </Companytitle>
+          <Idconfirm>
+            <span className="idconfirm">아이디는 6글자 이상 입니다</span>
+          </Idconfirm>
           <Companyidname
             onInput={(e) => {
               setCompanyIdname(e.target.value);
@@ -326,7 +333,7 @@ const Companyheader = styled.input`
 `;
 
 const Companyidname = styled.input`
-  margin-top: 2%;
+  margin-top: 1%;
   width: 90%;
   height: 4%;
   margin-left: 4%;
@@ -335,4 +342,10 @@ const Companyidname = styled.input`
   border-style: solid;
   border-color: lightgrey;
   padding: 1%;
+`;
+
+const Idconfirm = styled.div`
+  & span {
+    color: red;
+  }
 `;

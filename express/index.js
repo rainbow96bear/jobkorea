@@ -1,11 +1,14 @@
-import express from "express";
-import session from "express-session";
-import dotenv from "dotenv";
-import morgan from "morgan";
-import cookieParser from "cookie-parser";
-import cors from "cors";
+const express = require("express");
+const session = require("express-session");
+const dotenv = require("dotenv");
+const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
-import routes from "./routes/index.js";
+const db = require("./models/index.js");
+const { sequelize } = require("./models/index.js");
+
+const routes = require("./routes/index.js");
 
 dotenv.config();
 
@@ -33,6 +36,15 @@ app.use(
     name: "session",
   })
 );
+
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("db connected");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 app.use("/api", routes);
 
