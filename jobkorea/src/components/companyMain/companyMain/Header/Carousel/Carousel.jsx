@@ -54,4 +54,8 @@ const CarouselBox = styled.div`
   .temp {
     height: 14px;
   }
+
+  div {
+    cursor: pointer;
+  }
 `;

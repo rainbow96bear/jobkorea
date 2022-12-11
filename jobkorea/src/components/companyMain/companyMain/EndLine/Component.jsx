@@ -114,6 +114,7 @@ const EndLineBox = styled.div`
     color: #666666;
     font-size: 13px;
     font-weight: 500;
+    cursor: pointer;
   }
 
   .section {
@@ -168,6 +169,7 @@ const EndLineBox = styled.div`
 
   li {
     margin: 10px 0;
+    cursor: pointer;
   }
 
   li:last-child {
