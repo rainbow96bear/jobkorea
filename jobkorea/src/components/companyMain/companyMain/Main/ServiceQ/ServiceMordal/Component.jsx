@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const ServiceModalComponent = ({
 <<<<<<< HEAD
+<<<<<<< HEAD
   closeOnClick,
   data,
   prevClick,
@@ -10,19 +11,26 @@ const ServiceModalComponent = ({
 }) => {
 =======
   onClick,
+=======
+  closeOnClick,
+>>>>>>> 29afe89 (1212 jobkorea)
   data,
   prevClick,
   nextClick,
-  mdIndex,
+  mordalIndex,
 }) => {
+<<<<<<< HEAD
   console.log(data);
 >>>>>>> b46ead6 (1211 Company Mainpage UI)
+=======
+>>>>>>> 29afe89 (1212 jobkorea)
   return (
     <ServiceModalBox>
       <div className="background"></div>
       <div className="button">
         <div className="flex">
           <img
+<<<<<<< HEAD
 <<<<<<< HEAD
             className={mordalIndex == 1 ? "buttonStop" : ""}
             src="./img/prev.svg"
@@ -32,12 +40,19 @@ const ServiceModalComponent = ({
             className={mordalIndex == 8 ? "buttonStop" : ""}
 =======
             className={mdIndex == 1 ? "buttonStop" : ""}
+=======
+            className={mordalIndex == 1 ? "buttonStop" : ""}
+>>>>>>> 29afe89 (1212 jobkorea)
             src="img/prev.svg"
             onClick={prevClick}
           ></img>
           <img
+<<<<<<< HEAD
             className={mdIndex == 8 ? "buttonStop" : ""}
 >>>>>>> b46ead6 (1211 Company Mainpage UI)
+=======
+            className={mordalIndex == 8 ? "buttonStop" : ""}
+>>>>>>> 29afe89 (1212 jobkorea)
             src="img/next.svg"
             onClick={nextClick}
           ></img>
@@ -47,14 +62,19 @@ const ServiceModalComponent = ({
         <div className="title">
           {data.title}
 <<<<<<< HEAD
+<<<<<<< HEAD
           <img src="img/x-button.svg" onClick={closeOnClick}></img>
 =======
           <img src="img/x-button.svg" onClick={onClick}></img>
 >>>>>>> b46ead6 (1211 Company Mainpage UI)
+=======
+          <img src="img/x-button.svg" onClick={closeOnClick}></img>
+>>>>>>> 29afe89 (1212 jobkorea)
         </div>
         <div className="text">
           {data.text.map((item, index) => {
             if (typeof item === "string")
+<<<<<<< HEAD
 <<<<<<< HEAD
               return <div key={`string-${index}`}>{item}</div>;
             else if (typeof item === "object") {
@@ -65,18 +85,26 @@ const ServiceModalComponent = ({
                       <li key={`num-li-${index}-${index2}`}>{item2}</li>
 =======
               return <div key={`item-${index}`}>{item}</div>;
+=======
+              return <div key={`string-${index}`}>{item}</div>;
+>>>>>>> 29afe89 (1212 jobkorea)
             else if (typeof item === "object") {
               if (Object.keys(item)[0] === "numList") {
                 return (
-                  <ol key={`item-${index}`}>
+                  <ol key={`num-ol-${index}`}>
                     {item["numList"].map((item2, index2) => (
+<<<<<<< HEAD
                       <li key={`item-${index}-${index2}`}>{item2}</li>
 >>>>>>> b46ead6 (1211 Company Mainpage UI)
+=======
+                      <li key={`num-li-${index}-${index2}`}>{item2}</li>
+>>>>>>> 29afe89 (1212 jobkorea)
                     ))}
                   </ol>
                 );
               } else if (Object.keys(item)[0] === "starList") {
                 return (
+<<<<<<< HEAD
 <<<<<<< HEAD
                   <ul key={`star-ul-${index}`}>
                     {item["starList"].map((item3, index3) => (
@@ -86,11 +114,17 @@ const ServiceModalComponent = ({
                     {item["starList"].map((item3, index3) => (
                       <li key={`item-${index}-${index3}`}>{item3}</li>
 >>>>>>> b46ead6 (1211 Company Mainpage UI)
+=======
+                  <ul key={`star-ul-${index}`}>
+                    {item["starList"].map((item3, index3) => (
+                      <li key={`star-li-${index}-${index3}`}>{item3}</li>
+>>>>>>> 29afe89 (1212 jobkorea)
                     ))}
                   </ul>
                 );
               } else if (Object.keys(item)[0] === "divList") {
                 return (
+<<<<<<< HEAD
 <<<<<<< HEAD
                   <div key={`div-${index}`} className="graph">
                     {item["divList"].map((item4, index4) => (
@@ -100,9 +134,12 @@ const ServiceModalComponent = ({
                       </div>
 =======
                   <div key={`item-${index}`} className="graph">
+=======
+                  <div key={`div-${index}`} className="graph">
+>>>>>>> 29afe89 (1212 jobkorea)
                     {item["divList"].map((item4, index4) => (
                       <>
-                        <div key={`item-${index}-${index4}`}>{item4}</div>
+                        <div key={`div-div-${index}-${index4}`}>{item4}</div>
                         <div> &gt; </div>
                       </>
 >>>>>>> b46ead6 (1211 Company Mainpage UI)
@@ -191,9 +228,12 @@ const ServiceModalBox = styled.div`
     margin: auto;
     font-size: 13px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     /* font-family: Malgun Gothic; */
 >>>>>>> b46ead6 (1211 Company Mainpage UI)
+=======
+>>>>>>> 29afe89 (1212 jobkorea)
 
     & > div {
       padding-bottom: 5px;

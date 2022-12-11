@@ -160,27 +160,32 @@ const data = [
   },
 ];
 
-const ServiceModalContainer = ({ setMordalC, mdIndex, setMdIndex }) => {
-  const onClick = () => {
-    setMordalC(false);
+const ServiceModalContainer = ({
+  setServiceMordalIsClick,
+  mordalIndex,
+  setMordalIndex,
+}) => {
+  const closeOnClick = () => {
+    setServiceMordalIsClick(false);
   };
   const prevClick = () => {
-    if (mdIndex == 1) return;
-    setMdIndex(mdIndex - 1);
+    if (mordalIndex == 1) return;
+    setMordalIndex(mordalIndex - 1);
   };
   const nextClick = () => {
-    if (mdIndex == 8) return;
-    setMdIndex(mdIndex + 1);
+    if (mordalIndex == 8) return;
+    setMordalIndex(mordalIndex + 1);
   };
   return (
     <ServiceModalComponent
-      mdIndex={mdIndex}
-      onClick={onClick}
+      mordalIndex={mordalIndex}
+      closeOnClick={closeOnClick}
       prevClick={prevClick}
       nextClick={nextClick}
-      data={data[mdIndex - 1]}
+      data={data[mordalIndex - 1]}
     ></ServiceModalComponent>
   );
+<<<<<<< HEAD
   // switch (mdIndex) {
   //   case 1:
   //     return (
@@ -222,6 +227,8 @@ const ServiceModalContainer = ({ setMordalC, mdIndex, setMdIndex }) => {
   //     );
   // }
 >>>>>>> b46ead6 (1211 Company Mainpage UI)
+=======
+>>>>>>> 29afe89 (1212 jobkorea)
 };
 
 export default ServiceModalContainer;
