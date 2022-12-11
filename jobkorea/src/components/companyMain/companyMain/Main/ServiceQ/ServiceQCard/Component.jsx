@@ -3,23 +3,18 @@ import styled from "styled-components";
 const ServiceQCardComponent = ({
   item,
   index,
-  onClick,
-  setMdIndex,
-  mordalC,
-  setMordalC,
-  mdIndex,
+  setMordalIndex,
+  serviceMordalIsClick,
+  setServiceMordalIsClick,
 }) => {
   return (
     <ServiceQCardBox
       onClick={() => {
-        setMordalC(!mordalC);
-        setMdIndex(index + 1);
-        console.log(mordalC);
-        console.log(mdIndex);
+        setServiceMordalIsClick(!serviceMordalIsClick);
+        setMordalIndex(index + 1);
       }}
     >
       <div>{index + 1}</div>
-      {/* <div>{item}</div> */}
       <div>{item.text1}</div>
       <div>{item.text2}</div>
     </ServiceQCardBox>
