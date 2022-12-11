@@ -12,7 +12,7 @@ router.post("/regist", async (req, res) => {
       })
     ) {
       console.log("이미 있는아이디");
-      res.send({ status: 401 });
+      res.send("이미 있는아이디");
     } else {
       await Companyuser_Info.create({
         selectedOption: req.body.selectedOption,
