@@ -22,7 +22,8 @@ const ServiceModalComponent1 = (props) => {
             <div> &gt; </div>
             <BoarderBox>채용공고 등록양식 작성</BoarderBox>
             <div> &gt; </div>
-            <BoarderBox width={1}>등록 완료</BoarderBox>
+            <BoarderBox>등록 완료</BoarderBox>
+            {/* <BoarderBox width={1}>등록 완료</BoarderBox> */}
           </div>
           <div>
             ID가 없으시면 먼저 회원가입부터 진행하여 주세요. 회원가입은

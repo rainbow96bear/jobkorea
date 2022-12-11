@@ -21,6 +21,7 @@ const MainComponent = ({ isClick, setIsClick }) => {
       {mordalC ? (
         <ServiceModalContainer
           setMordalC={setMordalC}
+          setMdIndex={setMdIndex}
           mdIndex={mdIndex}
         ></ServiceModalContainer>
       ) : (
