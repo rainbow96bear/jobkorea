@@ -32,9 +32,9 @@ export default function CompanyContainer() {
     );
     console.log(data.data);
     if (data.data.status == 200) {
-      alert("회원가입 성공");
-    } else if (data.data.status == 401) {
-      alert("이미 가입된 아이디");
+      alert("회원가입을 축하합니다");
+    } else if (data.data == "이미 있는아이디") {
+      alert("이미 가입된 아이디 입니다");
     }
   };
 

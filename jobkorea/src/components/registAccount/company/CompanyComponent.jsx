@@ -20,7 +20,7 @@ export default function CompanyComponent({ onClick }) {
     { value: "중견기업", label: "중견기업" },
   ];
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("");
   const [companyNumber, setCompnayNumber] = useState("");
   const [companyName, setCompnayName] = useState("");
   const [companyHeader, setCompanyHeader] = useState("");
@@ -32,6 +32,12 @@ export default function CompanyComponent({ onClick }) {
   const [companyIdemail, setCompanyIdemail] = useState("");
 
   const [idMessage, setIdMessage] = useState(null);
+  const [pwMessage, setPwMessage] = useState(null);
+  const [emailMessage, setEmailMessage] = useState(null);
+
+  const [isId, setIsId] = useState(false);
+  const [isPw, setIsPw] = useState(false);
+  const [isEmail, setIsEmail] = useState(false);
 
   return (
     <JoinBox>
@@ -104,12 +110,23 @@ export default function CompanyComponent({ onClick }) {
           </div>
           <Companytitle>
             <Companyid
+              // onFocus={(e) => {
+              //   if (companyId == "") setIdMessage("필수정보입니다");
+              // }}
+              // onChange={onChangeId}
+              onBlur={(e) => {
+                setIdMessage(null);
+              }}
               onInput={(e) => {
                 setCompanyId(e.target.value);
-                if (e.target.value.length < 6) {
-                  setIdMessage("아이디는 6글자이상 13글자미만");
-                } else if (e.target.value.length > 6) {
-                  setIdMessage(null);
+
+                const idRegExp = /^[a-zA-Z0-9]{6,13}$/;
+                if (!idRegExp.test(e.target.value)) {
+                  setIdMessage("6-13사이 대소문자 또는 숫자만 입력해주세요");
+                  setIsId(false);
+                } else {
+                  setIdMessage("사용가능한 아이디 입니다.");
+                  setIsId(true);
                 }
               }}
               type={"text"}
@@ -117,8 +134,22 @@ export default function CompanyComponent({ onClick }) {
             ></Companyid>
 
             <Companypw
+              onBlur={(e) => {
+                setPwMessage(null);
+              }}
               onInput={(e) => {
                 setCompanyPw(e.target.value);
+                const pwRegExp =
+                  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+                if (!pwRegExp.test(e.target.value)) {
+                  setPwMessage(
+                    "숫자+영문자+특수문자 조합으로 8자리이상 25자리 미만으로 입력해주세요"
+                  );
+                  setIsPw(false);
+                } else {
+                  setPwMessage("안전한 비밀번호 입니다");
+                  setIsPw(true);
+                }
               }}
               type={"text"}
               placeholder="비밀번호*"
@@ -126,7 +157,11 @@ export default function CompanyComponent({ onClick }) {
             <Companycheck>표시</Companycheck>
           </Companytitle>
 
-          <div className="idmessage">{idMessage}</div>
+          <div className="idmessage">
+            {idMessage}
+            {pwMessage}
+          </div>
+          {/* <div className="pwmessage">{pwMessage}</div> */}
           <Companyidname
             onInput={(e) => {
               setCompanyIdname(e.target.value);
@@ -142,27 +177,60 @@ export default function CompanyComponent({ onClick }) {
             placeholder="전화번호 *"
           ></Companyidname>
           <Companyidname
+            onBlur={(e) => {
+              setEmailMessage(null);
+            }}
             onInput={(e) => {
               setCompanyIdemail(e.target.value);
+              const emailRegExp =
+                /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+              if (!emailRegExp.test(e.target.value)) {
+                setEmailMessage("이메일 형식을 다시 확인해주세요");
+                setIsEmail(false);
+              } else {
+                setEmailMessage("사용 가능한 이메일 입니다.");
+                setIsEmail(true);
+              }
             }}
             type={"email"}
             placeholder="이메일 *"
           ></Companyidname>
+          <div className="idmessage">{emailMessage}</div>
           <Join>
             <div
               onClick={() => {
-                onClick(
-                  selectedOption,
-                  companyNumber,
-                  companyName,
-                  companyHeader,
-                  companyAdress,
-                  companyId,
-                  companyPw,
-                  companyIdname,
-                  companyIdnumber,
-                  companyIdemail
-                );
+                if (
+                  !(
+                    selectedOption &&
+                    companyNumber &&
+                    companyName &&
+                    companyHeader &&
+                    companyAdress &&
+                    companyId &&
+                    companyPw &&
+                    companyIdname &&
+                    companyIdnumber &&
+                    companyIdemail
+                  ) == "" &&
+                  isId === true &&
+                  isPw === true &&
+                  isEmail === true
+                )
+                  onClick(
+                    selectedOption,
+                    companyNumber,
+                    companyName,
+                    companyHeader,
+                    companyAdress,
+                    companyId,
+                    companyPw,
+                    companyIdname,
+                    companyIdnumber,
+                    companyIdemail
+                  );
+                else {
+                  alert("모든정보를 제대로 입력해주세요");
+                }
               }}
               className="companymember"
             >
