@@ -23,8 +23,9 @@ const MainComponent = ({ loginIsClick, setLoginIsClick }) => {
       <SolutionComponent></SolutionComponent>
       {serviceMordalIsClick ? (
         <ServiceModalContainer
-          setMordalC={setMordalC}
-          mdIndex={mdIndex}></ServiceModalContainer>
+          setServiceMordalIsClick={setServiceMordalIsClick}
+          mordalIndex={mordalIndex}
+          setMordalIndex={setMordalIndex}></ServiceModalContainer>
       ) : (
         <></>
       )}
