@@ -102,6 +102,7 @@ const DropdownBox = styled.div`
 
   .telent {
     list-style: disc;
+    padding-left: 15px;
   }
   li::marker {
     font-size: 1px;
@@ -114,14 +115,16 @@ const DropdownBox = styled.div`
   }
 
   .flex > div {
-    width: 14%;
+    width: 13%;
+    margin-right: 20px;
   }
 
   .flex > div > div:first-child {
     font-size: 15px;
     font-weight: 600;
     border-bottom: 1px solid #f0f0f0;
-    padding: 20px 0;
+    padding: 25px 0 10px 0;
+    cursor: pointer;
   }
 
   ul {
@@ -132,6 +135,11 @@ const DropdownBox = styled.div`
 
   li {
     padding: 5px 0;
+    cursor: pointer;
+  }
+
+  li:hover {
+    color: #3399ff;
   }
 
   .addButton {
@@ -144,5 +152,9 @@ const DropdownBox = styled.div`
     border-radius: 10px;
     width: 160px;
     height: 45px;
+  }
+
+  .addButton:hover {
+    background-color: #1e79d3;
   }
 `;
