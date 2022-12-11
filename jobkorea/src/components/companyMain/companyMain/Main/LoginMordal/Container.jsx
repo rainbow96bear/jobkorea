@@ -1,10 +1,20 @@
 import MordalComponent from "./Component";
+import { useNavigate } from "react-router-dom";
 
-const MordalContainer = ({ setIsClick }) => {
-  const onClick = () => {
-    setIsClick(false);
+const LoginMordalContainer = ({ setLoginIsClick }) => {
+  const loginOnClick = () => {
+    setLoginIsClick(false);
   };
-  return <MordalComponent onClick={onClick}></MordalComponent>;
+  const navigate = useNavigate();
+  const moveTo = (where) => {
+    navigate(`/${where}`);
+  };
+  return (
+    <MordalComponent
+      loginOnClick={loginOnClick}
+      moveTo={moveTo}
+    ></MordalComponent>
+  );
 };
 
-export default MordalContainer;
+export default LoginMordalContainer;
