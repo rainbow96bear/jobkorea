@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 const ServiceQCardContainer = ({
   onClick,
-  setMdIndex,
-  mordalC,
-  setMordalC,
-  mdIndex,
+  serviceMordalIsClick,
+  setServiceMordalIsClick,
+  mordalIndex,
+  setMordalIndex,
 }) => {
   const list = [
     {
@@ -43,17 +43,6 @@ const ServiceQCardContainer = ({
     },
   ];
 
-  // const list = [
-  //   "채용공고를 내고 싶은데 \n 절차가 어떻게 되나요?",
-  //   "온라인 채용시스템이 \n 무엇인가요?",
-  //   "온라인 입사자들은 \n 어디서 확인하나요?",
-  //   "입사제의 서비스는 \n 무엇인가요?",
-  //   "관심있는 이력서를 \n 스크랩할 수 있나요?",
-  //   "스크랩한 인재는 \n 어디에서 확인이 가능한가요?",
-  //   "마감된 채용공고를 다시 진행하고 싶은데 \n 어떻게 하나요?",
-  //   "채용공고를 \n 대신 등록해 줄 수 있나요?",
-  // ];
-
   return (
     <ServiceQCardContainerBox>
       {list.map((item, index) => {
@@ -63,10 +52,10 @@ const ServiceQCardContainer = ({
             item={item}
             index={index}
             onClick={onClick}
-            setMdIndex={setMdIndex}
-            mordalC={mordalC}
-            setMordalC={setMordalC}
-            mdIndex={mdIndex}
+            mordalIndex={mordalIndex}
+            setMordalIndex={setMordalIndex}
+            serviceMordalIsClick={serviceMordalIsClick}
+            setServiceMordalIsClick={setServiceMordalIsClick}
           ></ServiceQCardComponent>
         );
       })}

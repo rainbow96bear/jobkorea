@@ -107,67 +107,31 @@ const data = [
   },
 ];
 
-const ServiceModalContainer = ({ setMordalC, mdIndex, setMdIndex }) => {
-  const onClick = () => {
-    setMordalC(false);
+const ServiceModalContainer = ({
+  setServiceMordalIsClick,
+  mordalIndex,
+  setMordalIndex,
+}) => {
+  const closeOnClick = () => {
+    setServiceMordalIsClick(false);
   };
   const prevClick = () => {
-    if (mdIndex == 1) return;
-    setMdIndex(mdIndex - 1);
+    if (mordalIndex == 1) return;
+    setMordalIndex(mordalIndex - 1);
   };
   const nextClick = () => {
-    if (mdIndex == 8) return;
-    setMdIndex(mdIndex + 1);
+    if (mordalIndex == 8) return;
+    setMordalIndex(mordalIndex + 1);
   };
   return (
     <ServiceModalComponent
-      mdIndex={mdIndex}
-      onClick={onClick}
+      mordalIndex={mordalIndex}
+      closeOnClick={closeOnClick}
       prevClick={prevClick}
       nextClick={nextClick}
-      data={data[mdIndex - 1]}
+      data={data[mordalIndex - 1]}
     ></ServiceModalComponent>
   );
-  // switch (mdIndex) {
-  //   case 1:
-  //     return (
-  //       <ServiceModalComponent1 onClick={onClick}></ServiceModalComponent1>
-  //     );
-  //   case 2:
-  //     return (
-  //       <ServiceModalComponent2
-  //         onClick={onClick}
-  //         data={imsiData[1]}
-  //       ></ServiceModalComponent2>
-  //     );
-  //   case 3:
-  //     return (
-  //       <ServiceModalComponent3
-  //         onClick={onClick}
-  //         data={imsiData[2]}
-  //       ></ServiceModalComponent3>
-  //     );
-  //   case 4:
-  //     return (
-  //       <ServiceModalComponent4 onClick={onClick}></ServiceModalComponent4>
-  //     );
-  //   case 5:
-  //     return (
-  //       <ServiceModalComponent5 onClick={onClick}></ServiceModalComponent5>
-  //     );
-  //   case 6:
-  //     return (
-  //       <ServiceModalComponent6 onClick={onClick}></ServiceModalComponent6>
-  //     );
-  //   case 7:
-  //     return (
-  //       <ServiceModalComponent7 onClick={onClick}></ServiceModalComponent7>
-  //     );
-  //   case 8:
-  //     return (
-  //       <ServiceModalComponent8 onClick={onClick}></ServiceModalComponent8>
-  //     );
-  // }
 };
 
 export default ServiceModalContainer;

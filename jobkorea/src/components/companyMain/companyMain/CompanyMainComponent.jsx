@@ -1,21 +1,24 @@
 import { useState } from "react";
-import EndLineComponent from "./EndLine/Component";
-import FooterComponent from "./Footer/Component";
 import HeaderContainer from "./Header/Container";
 import MainComponent from "./Main";
+import EndLineContainer from "./EndLine/Container";
+import FooterContainer from "./Footer/Container";
 
 export default function CompanyMainComponent() {
-  const [isClick, setIsClick] = useState(false);
+  const [loginIsClick, setLoginIsClick] = useState(false);
 
   return (
     <>
       <HeaderContainer
-        isClick={isClick}
-        setIsClick={setIsClick}
+        loginIsClick={loginIsClick}
+        setLoginIsClick={setLoginIsClick}
       ></HeaderContainer>
-      <MainComponent isClick={isClick} setIsClick={setIsClick}></MainComponent>
-      <EndLineComponent></EndLineComponent>
-      <FooterComponent></FooterComponent>
+      <MainComponent
+        loginIsClick={loginIsClick}
+        setLoginIsClick={setLoginIsClick}
+      ></MainComponent>
+      <EndLineContainer></EndLineContainer>
+      <FooterContainer></FooterContainer>
     </>
   );
 }
