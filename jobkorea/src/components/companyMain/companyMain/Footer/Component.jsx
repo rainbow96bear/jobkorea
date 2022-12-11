@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-const FooterComponent = () => {
+const FooterComponent = ({ moveTo }) => {
   return (
     <FooterBox>
       <div>
         <div>
-          <img src="/img/joblogo.png" />
+          <img
+            src="/img/joblogo.png"
+            onClick={() => {
+              moveTo("");
+            }}
+          />
         </div>
         <div>
           <div>
