@@ -1,25 +1,24 @@
 import styled from "styled-components";
 
 const ServiceModalComponent = ({
-  onClick,
+  closeOnClick,
   data,
   prevClick,
   nextClick,
-  mdIndex,
+  mordalIndex,
 }) => {
-  console.log(data);
   return (
     <ServiceModalBox>
       <div className="background"></div>
       <div className="button">
         <div className="flex">
           <img
-            className={mdIndex == 1 ? "buttonStop" : ""}
+            className={mordalIndex == 1 ? "buttonStop" : ""}
             src="img/prev.svg"
             onClick={prevClick}
           ></img>
           <img
-            className={mdIndex == 8 ? "buttonStop" : ""}
+            className={mordalIndex == 8 ? "buttonStop" : ""}
             src="img/next.svg"
             onClick={nextClick}
           ></img>
@@ -28,35 +27,35 @@ const ServiceModalComponent = ({
       <div className="mordal">
         <div className="title">
           {data.title}
-          <img src="img/x-button.svg" onClick={onClick}></img>
+          <img src="img/x-button.svg" onClick={closeOnClick}></img>
         </div>
         <div className="text">
           {data.text.map((item, index) => {
             if (typeof item === "string")
-              return <div key={`item-${index}`}>{item}</div>;
+              return <div key={`string-${index}`}>{item}</div>;
             else if (typeof item === "object") {
               if (Object.keys(item)[0] === "numList") {
                 return (
-                  <ol key={`item-${index}`}>
+                  <ol key={`num-ol-${index}`}>
                     {item["numList"].map((item2, index2) => (
-                      <li key={`item-${index}-${index2}`}>{item2}</li>
+                      <li key={`num-li-${index}-${index2}`}>{item2}</li>
                     ))}
                   </ol>
                 );
               } else if (Object.keys(item)[0] === "starList") {
                 return (
-                  <ul key={`item-${index}`}>
+                  <ul key={`star-ul-${index}`}>
                     {item["starList"].map((item3, index3) => (
-                      <li key={`item-${index}-${index3}`}>{item3}</li>
+                      <li key={`star-li-${index}-${index3}`}>{item3}</li>
                     ))}
                   </ul>
                 );
               } else if (Object.keys(item)[0] === "divList") {
                 return (
-                  <div key={`item-${index}`} className="graph">
+                  <div key={`div-${index}`} className="graph">
                     {item["divList"].map((item4, index4) => (
                       <>
-                        <div key={`item-${index}-${index4}`}>{item4}</div>
+                        <div key={`div-div-${index}-${index4}`}>{item4}</div>
                         <div> &gt; </div>
                       </>
                     ))}
@@ -143,7 +142,6 @@ const ServiceModalBox = styled.div`
     width: 94%;
     margin: auto;
     font-size: 13px;
-    /* font-family: Malgun Gothic; */
 
     & > div {
       padding-bottom: 5px;

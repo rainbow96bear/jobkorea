@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const MordalComponent = ({ onClick }) => {
+const MordalComponent = ({ loginOnClick, moveTo }) => {
   return (
     <MordalBox>
       <div>
         <div>기업 로그인이 필요한 서비스입니다.</div>
-        <div onClick={onClick}>
+        <div onClick={loginOnClick}>
           <img src="/img/x-button.svg"></img>
         </div>
       </div>
@@ -20,7 +20,12 @@ const MordalComponent = ({ onClick }) => {
         </div>
         <button className="login">로그인</button>
       </div>
-      <div className="regist">
+      <div
+        className="regist"
+        onClick={() => {
+          moveTo("registAccount/company");
+        }}
+      >
         <div>회원가입</div>
         <div>신규가입 3종 쿠폰 제공!</div>
       </div>
@@ -97,6 +102,6 @@ const MordalBox = styled.div`
 
   .flex {
     display: flex;
-    padding: 60px 0 0 70px;
+    padding: 40px 0 0 70px;
   }
 `;

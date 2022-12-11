@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MainLoginBoardComponent = ({ setIsClick, isClick }) => {
+const MainLoginBoardComponent = ({ loginOnClick, moveTo }) => {
   return (
     <MainLoginBoardBox>
       <div className="temp"></div>
@@ -14,14 +14,14 @@ const MainLoginBoardComponent = ({ setIsClick, isClick }) => {
             시작해 보세요
           </div>
           <div className="flex button-box">
+            <div onClick={loginOnClick}>로그인</div>
             <div
               onClick={() => {
-                setIsClick(!isClick);
+                moveTo("registAccount/company");
               }}
             >
-              로그인
+              회원가입
             </div>
-            <div>회원가입</div>
           </div>
         </div>
         <div>
@@ -84,6 +84,15 @@ const MainLoginBoardBox = styled.div`
   .button-box > div:first-child {
     color: white;
     background-color: #3399ff;
+
+    &:hover {
+      background-color: #1e79d3;
+    }
+  }
+
+  .button-box > div:last-child:hover {
+    color: #3399ff;
+    border: 1px solid #3399ff;
   }
 
   .button-box > div {
