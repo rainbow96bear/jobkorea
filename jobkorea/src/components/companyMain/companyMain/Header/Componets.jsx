@@ -3,60 +3,62 @@ import styled from "styled-components";
 import VerticalMode from "./Carousel/Carousel";
 import DropDown from "./Dropdown/Components";
 
-const HeaderComponent = ({ onClick }) => {
-  const [isOver, setIsOver] = useState(false);
-  const [isDropdown, setIsDropdown] = useState(false);
+const HeaderComponent = ({
+  loginOnClick,
+  dropdownOnClick,
+  dropdownIsClick,
+  menuList,
+  moveTo,
+}) => {
+  const [headerMenuIsOver, setHeaderMenuIsOver] = useState(-1);
 
   return (
     <>
       <HeaderBox>
         <div>
-          <div>JOBKOREA</div>
+          <div
+            onClick={() => {
+              moveTo("");
+            }}
+          >
+            JOBKOREA
+          </div>
           <div>
-            <div>회원가입</div>
+            <div
+              onClick={() => {
+                moveTo("registAccount/company");
+              }}
+            >
+              회원가입
+            </div>
             <div>고객센터</div>
-            <div onClick={onClick}>로그인</div>
+            <div onClick={loginOnClick}>로그인</div>
           </div>
         </div>
         <div>
           <div>
-            <div
-              onClick={() => {
-                setIsDropdown(!isDropdown);
-              }}
-            >
-              <img src="/img/3bar.svg" />
+            <div>
+              <img src="/img/3bar.svg" onClick={dropdownOnClick} />
             </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              홈
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              공고등록
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              공고지원자 관리
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              인재검색
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              헤드헌팅 의뢰
-            </div>
+            {menuList.map((item, index) => {
+              return (
+                <div
+                  key={`item-${index}`}
+                  onMouseEnter={() => {
+                    setHeaderMenuIsOver(index);
+                  }}
+                  onMouseLeave={() => setHeaderMenuIsOver(-1)}
+                  onClick={() => {
+                    if (item.routes) moveTo(`companymain/${item.routes}`);
+                  }}
+                >
+                  {item.title}
+                  <div
+                    className={headerMenuIsOver == `${index}` ? "hover" : ""}
+                  ></div>
+                </div>
+              );
+            })}
           </div>
           <div>
             <div>기업라운지</div>
@@ -64,7 +66,7 @@ const HeaderComponent = ({ onClick }) => {
           </div>
         </div>
       </HeaderBox>
-      {isDropdown ? <DropDown></DropDown> : <></>}
+      {dropdownIsClick ? <DropDown></DropDown> : <></>}
       <LowHeaderBox>
         <VerticalMode />
       </LowHeaderBox>
@@ -90,7 +92,7 @@ const HeaderBox = styled.div`
     align-items: center;
   }
 
-  & > div > div:nth-child(1) {
+  & > div > div:first-child {
     font-size: 24px;
     font-weight: 700;
   }
@@ -107,7 +109,8 @@ const HeaderBox = styled.div`
   }
   & > div:nth-child(2) > div:nth-child(1) > div {
     padding: 0 20px;
-    margin-top: 25px;
+    margin-top: 20px;
+    cursor: pointer;
   }
 
   & > div:nth-child(2) > div:nth-child(1) > div:first-child {
@@ -123,11 +126,22 @@ const HeaderBox = styled.div`
   }
 
   & > div:nth-child(2) > div:nth-child(2) {
-    margin-top: 25px;
+    margin-top: 20px;
   }
 
   & > div:nth-child(2) > div:nth-child(2) > div {
     font-size: 15px;
+  }
+
+  .hover {
+    background-color: #3399ff;
+    height: 5px;
+    position: relative;
+    top: 16px;
+  }
+
+  img {
+    cursor: pointer;
   }
 `;
 
