@@ -1,37 +1,40 @@
 import { useState } from "react";
 import styled from "styled-components";
-import MordalContainer from "./LoginMordal/Container";
-import MainLoginBoardComponent from "./MainLogin/Component";
+import LoginMordalContainer from "./LoginMordal/Container";
+import MainLoginBoardContainer from "./MainLogin/Container";
 import SolutionComponent from "./MainSolution/Component";
 import ServiceQComponent from "./ServiceQ";
 import ServiceModalContainer from "./ServiceQ/ServiceMordal/Container";
 
-const MainComponent = ({ isClick, setIsClick }) => {
-  const [mordalC, setMordalC] = useState(false);
-  const [mdIndex, setMdIndex] = useState(0);
+const MainComponent = ({ loginIsClick, setLoginIsClick }) => {
+  const [serviceMordalIsClick, setServiceMordalIsClick] = useState(false);
+  const [mordalIndex, setMordalIndex] = useState(0);
 
   return (
     <MainBox>
-      <MainLoginBoardComponent
-        setIsClick={setIsClick}
-        isClick={isClick}
-      ></MainLoginBoardComponent>
-      {isClick ? <MordalContainer setIsClick={setIsClick} /> : <></>}
+      <MainLoginBoardContainer
+        loginIsClick={loginIsClick}
+        setLoginIsClick={setLoginIsClick}
+      ></MainLoginBoardContainer>
+      {loginIsClick ? (
+        <LoginMordalContainer setLoginIsClick={setLoginIsClick} />
+      ) : (
+        <></>
+      )}
       <SolutionComponent></SolutionComponent>
-      {mordalC ? (
+      {serviceMordalIsClick ? (
         <ServiceModalContainer
-          setMordalC={setMordalC}
-          setMdIndex={setMdIndex}
-          mdIndex={mdIndex}
+          setServiceMordalIsClick={setServiceMordalIsClick}
+          mordalIndex={mordalIndex}
+          setMordalIndex={setMordalIndex}
         ></ServiceModalContainer>
       ) : (
         <></>
       )}
       <ServiceQComponent
-        mordalC={mordalC}
-        setMordalC={setMordalC}
-        mdIndex={mdIndex}
-        setMdIndex={setMdIndex}
+        serviceMordalIsClick={serviceMordalIsClick}
+        setServiceMordalIsClick={setServiceMordalIsClick}
+        setMordalIndex={setMordalIndex}
       ></ServiceQComponent>
     </MainBox>
   );
