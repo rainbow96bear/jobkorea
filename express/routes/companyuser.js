@@ -25,14 +25,14 @@ router.post("/login", async (req, res) => {
         })
       ) {
         // res.clearCookie("jobkorea_login");
-        res.cookie(
-          "jobkorea_login",
-          jwt.sign(
-            { companyId: req.body.idConfirm },
-            process.env.COOKIE_SECRET
-          ),
-          { expires: new Date(Date.now() + 6000 * 30) }
-        );
+        // res.cookie(
+        //   "jobkorea_login",
+        //   jwt.sign(
+        //     { companyId: req.body.idConfirm },
+        //     process.env.COOKIE_SECRET
+        //   ),
+        //   { expires: new Date(Date.now() + 6000 * 30) }
+        // );
         // cookies.set(
         //   "cookie",
         //   { companyId: req.body.idConfirm },
