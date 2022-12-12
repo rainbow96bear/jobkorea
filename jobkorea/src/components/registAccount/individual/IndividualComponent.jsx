@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { FaStarOfLife } from "react-icons/fa";
+// import { FaStarOfLife } from "react-icons/fa";
 import { useState } from "react";
+import jobKoreaTitle from "../individual/images/title1.png";
 
 const COLOR = "#3399ff";
 
@@ -18,15 +19,20 @@ const IndividualComponent = ({ registClick }) => {
 
   return (
     <IndividualRegistBox>
-      <div className="joinLogo">JOBKOREA</div>
-      <div className="memberRegist">개인회원</div>
+      <div>
+        <img src={jobKoreaTitle} alt="" />
+      </div>
+      <div className="whoRegist">
+        <div className="memberRegist">개인회원</div>
+        <div className="companyRegist">기업회원</div>
+      </div>
       <div className="memberRegistdiv1">
         <div className="registMessage">
           회원가입하고 다양한 혜택을 누리세요!
-          <div className="noticeMessage">
+          {/* <div className="noticeMessage">
             <FaStarOfLife />
             필수 입력 정보입니다.
-          </div>{" "}
+          </div> */}
         </div>
       </div>
       <input
@@ -76,7 +82,7 @@ const IndividualComponent = ({ registClick }) => {
       />
       <div className="radio">
         개인정보 유효기간 선택
-        <FaStarOfLife />
+        {/* <FaStarOfLife /> */}
         <input
           type="radio"
           name="infoValid"
@@ -121,7 +127,6 @@ const IndividualComponent = ({ registClick }) => {
 export default IndividualComponent;
 
 const IndividualRegistBox = styled.div`
-  margin-top: 5%;
   width: 33%;
   height: 100%;
   background-color: aliceblue;
@@ -129,36 +134,51 @@ const IndividualRegistBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url(./join_logo.png);
-  background-repeat: no-repeat;
-  & .joinLogo {
-    font-size: 50px;
-    font-weight: 700;
+  margin: 5% auto 0;
+  & .whoRegist {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    background-color: white;
     color: ${COLOR};
-    background-size: 20%;
+    font-size: 25px;
+    font-weight: 700;
   }
   & .memberRegistDiv1 {
     display: flex;
-    justify-content: space-evenly;
+    width: 100%;
   }
   & .registMessage {
     font-size: 1.1em;
+    display: flex;
+    text-align: center;
+    width: 100%;
     margin: 5%;
-  }
-  & .noticeMessage {
-    font-size: 12px;
-    color: gray;
   }
   & .memberRegist {
     display: flex;
     justify-content: center;
-    width: 96%;
+    width: 70%;
     height: 10%;
     background-color: ${COLOR};
     color: white;
     font-size: 25px;
     font-weight: 700;
     padding: 2%;
+    border-bottom: 1px solid ${COLOR};
+  }
+  & .companyRegist {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    height: 10%;
+    background-color: white;
+    color: ${COLOR};
+    font-size: 25px;
+    font-weight: 700;
+    padding: 2%;
+    border-bottom: 1px solid ${COLOR};
   }
   & .memberRegistBtn {
     border: none;

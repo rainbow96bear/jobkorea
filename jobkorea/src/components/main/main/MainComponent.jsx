@@ -7,12 +7,13 @@ import NoticeCarouselContainer from "./NoticeCarousel/NoticeCarouselContainer";
 import OpenRecruitContainer from "./OpenRecruit/OpenRecruitContainer";
 import RankingContainer from "./Ranking/RankingContainer";
 import QuickMenuContainer from "./QuickMenu/QuickMenuContainer";
+import FirstVVIPContainer from "./FirstVVIP/FirstVVIPContainer";
 import styled from "styled-components";
 
 export default function MainComponent() {
   return (
     <MainBox>
-      <div>
+      <MainFirstItem>
         <div className="firstRow">
           <BigCarouselContainer></BigCarouselContainer>
           <SmallCarouselContainer></SmallCarouselContainer>
@@ -31,53 +32,65 @@ export default function MainComponent() {
             <MiniCarouselContainer></MiniCarouselContainer>
           </div>
         </div>
-        <hr />
-        <hr />
-        <hr />
-        <h3>First VVIP 채용관</h3>
-        <hr />
-        <h3>채용 로고 컴포넌트 4x4</h3>
-        <hr />
-        <h3>VVIP 채용관</h3>
-        <hr />
-        <h3>채용 로고 컴포넌트 4x4</h3>
-        <AfterLogInContainer></AfterLogInContainer>
-      </div>
+      </MainFirstItem>
+      <MainSecondItem>
+        <div>
+          <h3>First VVIP 채용관</h3>
+          <FirstVVIPContainer></FirstVVIPContainer>
+          <hr />
+          <AfterLogInContainer></AfterLogInContainer>
+        </div>
+      </MainSecondItem>
     </MainBox>
   );
 }
 
 const MainBox = styled.div`
-  * {
-    padding: 0;
-  }
+  background-color: #e8ecef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   & .firstRow {
     display: flex;
     justify-content: center;
-    background-color: #e8ecef;
+    margin: 8px 0 0 0;
   }
   & .secondRow {
     display: flex;
     flex-direction: row;
-    background-color: #e8ecef;
+    margin: 8px 0 0 0;
   }
   & .secondRowCol1 {
     display: flex;
     flex-direction: column;
-    background-color: #e8ecef;
-    margin: 0 10% 0 16%;
+    width: 64%;
   }
   & .secondRowCol2 {
     display: flex;
     flex-direction: column;
-    background-color: #e8ecef;
-    margin: 0 0% 0 2%;
+    width: 20%;
+    margin-left: 8px;
   }
   & .secondRowCol3 {
     display: flex;
     flex-direction: column;
-    background-color: #e8ecef;
-    margin: 0 0% 0 2%;
+    width: 20%;
+    margin-left: 8px;
+  }
+`;
+
+const MainFirstItem = styled.div`
+  width: 60%;
+`;
+
+const MainSecondItem = styled.div`
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  div {
+    width: 60%;
   }
 `;

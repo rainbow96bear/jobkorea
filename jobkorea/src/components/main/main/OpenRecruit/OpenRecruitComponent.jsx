@@ -14,69 +14,86 @@ const COLOR = "#3399ff";
 
 const OpenRecruitComponent = () => {
   return (
-    <>
+    <ItemBox>
       <OpenRecruitBox>
-        <ul>
-          <li className="boxTitle1">공채속보</li>
-          <li className="boxTitle2">기업분석</li>
-          <li className="boxTitle3">직무분석</li>
-          <li className="boxTitle4">전문채용관</li>
-          <li className="boxTitle5">합격스펙</li>
-          <li className="boxTitle6">합격자소서</li>
-          <li className="boxTitle7">인적성/면접</li>
-          <li className="boxTitle8">잡코리아 TV</li>
-        </ul>
-        <ul className="boxJrSrUl">
-          <li className="boxJuniorTitle">신입</li>
-          <li className="boxSeniorTitle">경력</li>
-        </ul>
+        <div>
+          <div className="boxTitle1">공채속보</div>
+          <div className="boxTitle2">기업분석</div>
+          <div className="boxTitle3">직무분석</div>
+          <div className="boxTitle4">전문채용관</div>
+          <div className="boxTitle5">합격스펙</div>
+          <div className="boxTitle6">합격자소서</div>
+          <div className="boxTitle7">인적성/면접</div>
+          <div className="boxTitle8">잡코리아 TV</div>
+        </div>
+        <div className="boxJrSrUl">
+          <div className="boxJuniorTitle">신입</div>
+          <div className="boxSeniorTitle">경력</div>
+        </div>
       </OpenRecruitBox>
       <RecruitNewsBox>
         <div className="RecruitDiv1">
-          <div className="Recruitbox1">
-            <img src={recruitLogo1} alt="" />
+          <div>
+            <img src={recruitLogo1} alt="" />각 부분 신입/경력 채용
+            <br />
+            소노소노
           </div>
-          <div className="Recruitbox2">
-            <img src={recruitLogo2} alt="" />
+          <div>
+            <img src={recruitLogo2} alt="" />각 부분 신입/경력 채용 <br />
+            소노소노
           </div>
-          <div className="Recruitbox3">
-            <img src={recruitLogo3} alt="" />
+          <div>
+            <img src={recruitLogo3} alt="" />각 부분 신입/경력 채용 <br />
+            소노소노
           </div>
-          <div className="Recruitbox4">
-            <img src={recruitLogo4} alt="" />
+          <div>
+            <img src={recruitLogo4} alt="" />각 부분 신입/경력 채용 <br />
+            소노소노
           </div>
         </div>
         <div className="RecruitDiv2">
-          <div className="Recruitbox5">
-            <img src={recruitLogo5} alt="" />
+          <div>
+            <img src={recruitLogo5} alt="" />각 부분 신입/경력 채용 <br />
+            소노소노
           </div>
-          <div className="Recruitbox6">
-            <img src={recruitLogo6} alt="" />
+          <div>
+            <img src={recruitLogo6} alt="" />각 부분 신입/경력 채용 <br />
+            소노소노
           </div>
-          <div className="Recruitbox7">
-            <img src={recruitLogo7} alt="" />
+          <div>
+            <img src={recruitLogo7} alt="" />각 부분 신입/경력 채용 <br />
+            소노소노
           </div>
-          <div className="Recruitbox8">
-            <img src={recruitLogo8} alt="" />
+          <div>
+            <img src={recruitLogo8} alt="" />각 부분 신입/경력 채용 <br />
+            소노소노
           </div>
         </div>
+        <div className="RecruitDiv3">
+          <div className="1000bigtech">#1000대기업 공채 </div>
+          <div className="intern">#인턴채용 </div>
+          <div className="openrecruit">#공채달력 </div>
+          <div className="livenews">#Live공채소식 </div>
+          <div className="expecteddays">#공채예상일정 </div>
+          <div className="top100">#TOP100</div>
+        </div>
       </RecruitNewsBox>
-    </>
+    </ItemBox>
   );
 };
 
 export default OpenRecruitComponent;
 
+const ItemBox = styled.div``;
+
 const OpenRecruitBox = styled.div`
   font-size: 0.85em;
   font-weight: 700;
-  width: 600px;
+  width: 100%;
   border: 1px solid #dadada;
   border-bottom: none;
-  margin: 0 0 0 -38px;
-  padding: 0 140px 7px 10px;
   background-color: white;
-
+  padding: 8px 0;
   & .boxTitle1 {
     color: ${COLOR};
     list-style: none;
@@ -168,54 +185,61 @@ const RecruitNewsBox = styled.div`
   align-items: center;
   font-size: 0.85em;
   font-weight: 700;
-  width: 750px;
+  width: 100%;
   border: 1px solid #dadada;
-  margin: 0 0 0 -38px;
-  padding: 0 140px 7px 10px;
   background-color: white;
 
   & .RecruitDiv1 {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  & .Recruitbox1 {
-    border-right: 1px solid #dadada;
-    border-bottom: 1px solid #dadada;
-    padding: 5%;
-  }
-  & .Recruitbox2 {
-    border-right: 1px solid #dadada;
-    border-bottom: 1px solid #dadada;
-    padding: 5%;
-  }
-  & .Recruitbox3 {
-    border-right: 1px solid #dadada;
-    border-bottom: 1px solid #dadada;
-    padding: 5%;
-  }
-  & .Recruitbox4 {
-    border-bottom: 1px solid #dadada;
-    padding: 5%;
+    width: 100%;
+    & div {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      border-right: 1px solid #dadada;
+      border-bottom: 1px solid #dadada;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+      background-color: white;
+      padding: 25px 0;
+      &:last-child {
+        border-right: none;
+      }
+    }
   }
   & .RecruitDiv2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    & div {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      font-size: 12px;
+      font-weight: 500;
+      border-right: 1px solid #dadada;
+      text-align: center;
+      background-color: white;
+      padding: 25px 0;
+      &:last-child {
+        border-right: none;
+      }
+    }
   }
-  & .Recruitbox5 {
-    border-right: 1px solid #dadada;
-    padding: 5%;
-  }
-  & .Recruitbox6 {
-    border-right: 1px solid #dadada;
-    padding: 5%;
-  }
-  & .Recruitbox7 {
-    border-right: 1px solid #dadada;
-    padding: 5%;
-  }
-  & .Recruitbox8 {
-    padding: 5%;
+  & .RecruitDiv3 {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px;
+    color: #514f4f;
+    background-color: #dadada3f;
+    display: flex;
+    float: left;
+    & div {
+      padding: 6px;
+    }
   }
 `;

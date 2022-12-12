@@ -26,21 +26,15 @@ const SmallCarouselComponent = () => {
     <SmallCarouselBox>
       <div className="carousel">
         <Slider {...settings}>
-          <div>
-            <img src={banner1} alt="" />
-          </div>
-          <div>
-            <img src={banner2} alt="" />
-          </div>
-          <div>
-            <img src={banner3} alt="" />
-          </div>
-          <div>
-            <img src={banner4} alt="" />
-          </div>
-          <div>
-            <img src={banner5} alt="" />
-          </div>
+          <img src={banner1} alt="" />
+
+          <img src={banner2} alt="" />
+
+          <img src={banner3} alt="" />
+
+          <img src={banner4} alt="" />
+
+          <img src={banner5} alt="" />
         </Slider>
       </div>
     </SmallCarouselBox>
@@ -50,9 +44,10 @@ const SmallCarouselComponent = () => {
 export default SmallCarouselComponent;
 
 const SmallCarouselBox = styled.div`
-  width: 230px;
-  height: 115px;
+  width: 20%;
   background-color: #e8ecef;
-  margin-top: 8px;
-  padding-right: 8px;
+  margin: 0 8px 0 8px;
+  img {
+    height: 120px;
+  }
 `;
