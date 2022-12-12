@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-const MordalComponent = ({ loginOnClick, moveTo }) => {
+const MordalComponent = ({ loginOnClick, moveTo, onClick }) => {
+  const [idConfirm, setIdconfirm] = useState("");
+  const [pwConfirm, setPwconfirm] = useState("");
+
   return (
     <MordalBox>
       <div>
@@ -12,13 +16,36 @@ const MordalComponent = ({ loginOnClick, moveTo }) => {
       <div className="flex">
         <div>
           <div>
-            <input type={"text"} placeholder={"아이디"} />
+            <input
+              onInput={(e) => {
+                setIdconfirm(e.target.value);
+              }}
+              type={"text"}
+              placeholder={"아이디"}
+            />
           </div>
           <div>
-            <input type={"password"} placeholder={"비밀번호"} />
+            <input
+              onInput={(e) => {
+                setPwconfirm(e.target.value);
+              }}
+              type={"password"}
+              placeholder={"비밀번호"}
+            />
           </div>
         </div>
-        <button className="login">로그인</button>
+        <button
+          onClick={() => {
+            if ((idConfirm && pwConfirm) == "") {
+              alert("아이디와 비밀번호를 입력해주세요");
+            } else {
+              onClick(idConfirm, pwConfirm);
+            }
+          }}
+          className="login"
+        >
+          로그인
+        </button>
       </div>
       <div
         className="regist"
