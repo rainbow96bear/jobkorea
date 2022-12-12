@@ -14,7 +14,7 @@ const ServiceModalComponent = ({
         <div className="flex">
           <img
             className={mordalIndex == 1 ? "buttonStop" : ""}
-            src="img/prev.svg"
+            src="./img/prev.svg"
             onClick={prevClick}
           ></img>
           <img

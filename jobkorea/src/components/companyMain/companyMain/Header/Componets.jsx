@@ -26,7 +26,7 @@ const HeaderComponent = ({
           <div>
             <div
               onClick={() => {
-                moveTo("registAccount/company");
+                moveTo("registAccount/company/");
               }}
             >
               회원가입
@@ -49,7 +49,8 @@ const HeaderComponent = ({
                   }}
                   onMouseLeave={() => setHeaderMenuIsOver(-1)}
                   onClick={() => {
-                    if (item.routes) moveTo(`companymain/${item.routes}`);
+                    moveTo(`companymain/${item.routes}`);
+                    // else moveTo(`companymain`);
                   }}
                 >
                   {item.title}
@@ -95,6 +96,7 @@ const HeaderBox = styled.div`
   & > div > div:first-child {
     font-size: 24px;
     font-weight: 700;
+    cursor: pointer;
   }
 
   & > div > div:nth-child(2) > div {

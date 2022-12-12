@@ -1,5 +1,13 @@
 import CompanyMainComponent from "./CompanyMainComponent";
 
-export default function CompanyMainContainer() {
-  return <CompanyMainComponent></CompanyMainComponent>;
+export default function CompanyMainContainer({
+  loginIsClick,
+  setLoginIsClick,
+}) {
+  return (
+    <CompanyMainComponent
+      loginIsClick={loginIsClick}
+      setLoginIsClick={setLoginIsClick}
+    ></CompanyMainComponent>
+  );
 }
