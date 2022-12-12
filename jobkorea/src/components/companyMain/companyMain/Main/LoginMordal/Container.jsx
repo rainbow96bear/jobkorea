@@ -1,11 +1,17 @@
 import MordalComponent from "./Component";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
+import { useState } from "react";
+// import Cookies from "universal-cookie";
+// import jwt from "jsonwebtoken";
+// cookies.remove('cookies');//로그아웃시
+// const cookies = new Cookies();
+import { useEffect } from "react";
 
 const LoginMordalContainer = ({ setLoginIsClick }) => {
+  // const [cookietest, setCookietest] = useState("");
+  // const [cookietesttwo, setCookietesttwo] = useState("");
+
   const loginOnClick = () => {
     setLoginIsClick(false);
   };
@@ -24,22 +30,22 @@ const LoginMordalContainer = ({ setLoginIsClick }) => {
       alert("없는 아이디 입니다");
     } else if (data.data == "비밀번호가 일치하지 않습니다") {
       alert("비밀번호가 일치하지 않습니다");
-    } else if (data.data == "로그인완료") {
+    } else if (data.data.companyId == idConfirm) {
       alert("로그인 완료");
-      console.log(data.data);
-      // cookies.set(
-      //   "cookie",
-      //   { companyId: req.body.idConfirm },
-      //   {
-      //     path: "/",
-      //     expires: Date.now() / 1000 + 60 * 60,
-      //   }
-      // );
+      // setCookietest("test");
+
+      // cookies.set("cookie", idConfirm, {
+      //   path: "/",
+      //   expires: new Date(Date.now() + 6000 * 30),
+      // });
+      // console.log(cookies.get("cookies"));
     }
   };
 
   return (
     <MordalComponent
+      // cookietesttwo={cookietesttwo}
+      // cookietest={cookietest}
       loginOnClick={loginOnClick}
       moveTo={moveTo}
       onClick={onClick}
