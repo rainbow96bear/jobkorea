@@ -25,7 +25,7 @@ const HeaderComponent = ({
           <div>
             <div
               onClick={() => {
-                setIsDropdown(!isDropdown);
+                moveTo("registAccount/company/");
               }}>
               회원가입
             </div>
@@ -38,16 +38,26 @@ const HeaderComponent = ({
             <div>
               <img src="/img/3bar.svg" onClick={dropdownOnClick} />
             </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}>
-              인재검색
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}>
-              헤드헌팅 의뢰
-            </div>
+            {menuList.map((item, index) => {
+              return (
+                <div
+                  key={`item-${index}`}
+                  onMouseEnter={() => {
+                    setHeaderMenuIsOver(index);
+                  }}
+                  onMouseLeave={() => setHeaderMenuIsOver(-1)}
+                  onClick={() => {
+                    moveTo(`companymain/${item.routes}`);
+                    // else moveTo(`companymain`);
+                  }}>
+                  {item.title}
+                  <div
+                    className={
+                      headerMenuIsOver == `${index}` ? "hover" : ""
+                    }></div>
+                </div>
+              );
+            })}
           </div>
           <div>
             <div>기업라운지</div>
