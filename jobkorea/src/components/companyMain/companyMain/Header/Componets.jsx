@@ -49,13 +49,13 @@ const HeaderComponent = ({
                   }}
                   onMouseLeave={() => setHeaderMenuIsOver(-1)}
                   onClick={() => {
-                    moveTo(`companymain/${item.routes}`);
-                    // else moveTo(`companymain`);
+                    if (item.routes) moveTo(`companymain/${item.routes}`);
+                    else moveTo(`companymain`);
                   }}
                 >
                   {item.title}
                   <div
-                    className={headerMenuIsOver == `${index}` ? "hover" : ""}
+                    className={headerMenuIsOver == index ? "hover" : ""}
                   ></div>
                 </div>
               );

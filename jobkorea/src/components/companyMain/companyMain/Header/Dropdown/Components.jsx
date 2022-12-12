@@ -12,7 +12,7 @@ function DropDown() {
             <li>차단내역</li>
             <li>
               <div className="addButton">
-                <img src="img/icon_add.png"></img>
+                <img src="/img/icon_add.png"></img>
                 공고등록
               </div>
             </li>
