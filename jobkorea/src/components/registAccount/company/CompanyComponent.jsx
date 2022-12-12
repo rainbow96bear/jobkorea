@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import banner from "./img/Jobbanner.png";
 import backimg from "./img/backcolor.png";
-import React from "react";
+import React, { useEffect } from "react";
 import Select from "react-select";
 import { useState } from "react";
 import "./Company.css";
@@ -34,10 +34,53 @@ export default function CompanyComponent({ onClick }) {
   const [idMessage, setIdMessage] = useState(null);
   const [pwMessage, setPwMessage] = useState(null);
   const [emailMessage, setEmailMessage] = useState(null);
+  const [numberMessage, setNumberMessage] = useState(null);
+  const [idNumberMessage, setIdnumberMessage] = useState(null);
 
   const [isId, setIsId] = useState(false);
   const [isPw, setIsPw] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
+  // const [isNumber, setIsnumber] = useState(false);
+  const [isIdNumber, setIsIdnumber] = useState(false);
+
+  const onInputphone = (getNumber) => {
+    const currentPhone = getNumber;
+    setCompanyIdnumber(currentPhone);
+    const phoneRegExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    if (!phoneRegExp.test(currentPhone)) {
+      setIdnumberMessage("올바른 형식이 아닙니다");
+      setIsIdnumber(false);
+    } else {
+      setIdnumberMessage("사용 가능한 번호입니다");
+      setIsIdnumber(true);
+    }
+  };
+
+  // useEffect(() => {
+  //   if (currentNumber.length === 10) {
+  //     setCompanyIdnumber(
+  //       currentNumber.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
+  //     );
+  //     if (currentNumber.length === 13) {
+  //       currentNumber.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
+  //     }
+  //   }
+  // }, [currentNumber]);
+
+  // useEffect(() => {
+  //   if (companyIdnumber.length === 10) {
+  //     setCompanyIdnumber(
+  //       companyIdnumber.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
+  //     );
+  //   }
+  //   if (companyIdnumber.length === 13) {
+  //     setCompanyIdnumber(
+  //       companyIdnumber
+  //         .replace(/-/g, "")
+  //         .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+  //     );
+  //   }
+  // }, [companyIdnumber]);
 
   return (
     <JoinBox>
@@ -72,12 +115,20 @@ export default function CompanyComponent({ onClick }) {
             //value값
           />
           <Companynumber
+            onBlur={(e) => {
+              setNumberMessage(null);
+            }}
             onInput={(e) => {
               setCompnayNumber(e.target.value);
+              if (e.target.value.length > 9) {
+                e.target.value = e.target.value.slice(0, 9);
+                setNumberMessage("10자미만만 입력가능합니다");
+              }
             }}
             type={"number"}
             placeholder="사업자등록번호 *"
           ></Companynumber>
+          <div className="idmessage">{numberMessage}</div>
           <Companytitle>
             <Companyname
               onInput={(e) => {
@@ -170,14 +221,44 @@ export default function CompanyComponent({ onClick }) {
             placeholder="가입자명 *"
           ></Companyidname>
           <Companyidname
+            onBlur={(e) => {
+              setIdnumberMessage(null);
+            }}
             onInput={(e) => {
               setCompanyIdnumber(e.target.value);
+
               const phoneRegExp =
                 /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+              if (!phoneRegExp.test(e.target.value)) {
+                setIdnumberMessage("올바른 형식이 아닙니다");
+                setIsIdnumber(false);
+              } else {
+                setIdnumberMessage("사용 가능한 번호입니다");
+                setIsIdnumber(true);
+              }
+              const currentNumber = e.target.value;
+              setCompanyIdnumber(currentNumber);
+              if (currentNumber.length == 3 || currentNumber.length == 8) {
+                setCompanyIdnumber(currentNumber + "-");
+                onInputphone(currentNumber + "-");
+              } else {
+                onInputphone(currentNumber);
+              }
+
+              // if (e.target.value.length == 3 || e.target.value.length == 7) {
+              //   setCompanyIdnumber(e.target.value + "-");
+              // }
+
+              // const regex = /^[0-9\b -]{0,13}$/;
+              // if (regex.test(e.target.value)) {
+              //   setCompanyIdnumber(e.target.value);
+              // }
             }}
-            type={"number"}
+            type={"text"}
             placeholder="전화번호 *"
+            value={companyIdnumber}
           ></Companyidname>
+          <div className="idmessage">{idNumberMessage}</div>
           <Companyidname
             onBlur={(e) => {
               setEmailMessage(null);
@@ -216,7 +297,8 @@ export default function CompanyComponent({ onClick }) {
                   ) == "" &&
                   isId === true &&
                   isPw === true &&
-                  isEmail === true
+                  isEmail === true &&
+                  isIdNumber === true
                 )
                   onClick(
                     selectedOption,
