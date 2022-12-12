@@ -16,49 +16,29 @@ const HeaderComponent = ({
     <>
       <HeaderBox>
         <div>
-          <div>JOBKOREA</div>
-          <div>
-            <div>회원가입</div>
-            <div>고객센터</div>
-            <div onClick={onClick}>로그인</div>
+          <div
+            onClick={() => {
+              moveTo("");
+            }}
+          >
+            JOBKOREA
           </div>
           <div>
             <div
               onClick={() => {
-                setIsDropdown(!isDropdown);
+                moveTo("registAccount/company");
               }}
             >
-              <img src="/img/3bar.svg" />
+              회원가입
             </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              홈
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              공고등록
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              공고지원자 관리
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              인재검색
-            </div>
-            <div
-              onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}
-            >
-              헤드헌팅 의뢰
+            <div>고객센터</div>
+            <div onClick={loginOnClick}>로그인</div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div>
+              <img src="/img/3bar.svg" onClick={dropdownOnClick} />
             </div>
             {menuList.map((item, index) => {
               return (
@@ -70,12 +50,11 @@ const HeaderComponent = ({
                   onMouseLeave={() => setHeaderMenuIsOver(-1)}
                   onClick={() => {
                     if (item.routes) moveTo(`companymain/${item.routes}`);
-                    else moveTo(`companymain`);
                   }}
                 >
                   {item.title}
                   <div
-                    className={headerMenuIsOver == index ? "hover" : ""}
+                    className={headerMenuIsOver == `${index}` ? "hover" : ""}
                   ></div>
                 </div>
               );
@@ -116,7 +95,6 @@ const HeaderBox = styled.div`
   & > div > div:first-child {
     font-size: 24px;
     font-weight: 700;
-    cursor: pointer;
   }
 
   & > div > div:nth-child(2) > div {
