@@ -15,21 +15,18 @@ export default function CompanyContainer() {
     companyIdnumber,
     companyIdemail
   ) => {
-    const data = await axios.post(
-      "http://localhost:8080/api/companyuser/regist",
-      {
-        selectedOption,
-        companyNumber,
-        companyName,
-        companyHeader,
-        companyAdress,
-        companyId,
-        companyPw,
-        companyIdname,
-        companyIdnumber,
-        companyIdemail,
-      }
-    );
+    const data = await axios.post("http://localhost:8080/api/recruit/regist", {
+      selectedOption,
+      companyNumber,
+      companyName,
+      companyHeader,
+      companyAdress,
+      companyId,
+      companyPw,
+      companyIdname,
+      companyIdnumber,
+      companyIdemail,
+    });
     console.log(data.data);
     if (data.data.status == 200) {
       alert("회원가입을 축하합니다");

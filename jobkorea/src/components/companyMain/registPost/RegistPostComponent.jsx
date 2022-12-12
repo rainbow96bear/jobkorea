@@ -1,8 +1,16 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 
-export default function RegistPostComponent() {
+export default function RegistPostComponent({ onClick }) {
+  const [recruitArea, setRecruitArea] = useState("");
+  const [recruitNum, setRecruitNum] = useState("0");
+  const [isExp, setIsExp] = useState("1");
+  const [myTask, setMyTask] = useState("1");
+  const [workDepartment, setWorkDepartment] = useState("1");
+  const [workRank, setWorkRank] = useState("1");
+  const [condition, setCondition] = useState("1");
+
   const options = [
     { value: "rank1", label: "사원" },
     { value: "rank2", label: "주임" },
@@ -29,37 +37,60 @@ export default function RegistPostComponent() {
     { value: "language5", label: "외국어 : HSK" },
   ];
 
-  // <LineBox>
-  //   <Select options={options} />
-  // </LineBox>;
-
   return (
-    <>
+    <BackgroundBox>
       <HeadBox>모집분야</HeadBox>
       <RegistPostBox>
         <div className="line">
           <div>모집분야명</div>
-          <input type="text" className="mo1" />
-          <input type="text" className="mo2" />
+          <input
+            type="text"
+            className="mo1"
+            onInput={(e) => {
+              setRecruitArea(e.target.value);
+            }}
+          />
+          <input
+            type="number"
+            className="mo2"
+            onInput={(e) => {
+              if (e.target.value.length > e.target.maxLength)
+                e.target.value = e.target.value.slice(0, e.target.maxLength);
+              setRecruitNum(e.target.value);
+            }}
+            maxLength={2}
+          />
           <div>명 모집</div>
         </div>
         <div className="line">
           <div>경력여부</div>
-          <input type="radio" value={"noexp"} />
+          <input type="checkbox" value={"noexp"} />
           경력무관
-          <input type="radio" value={"new"} />
+          <input type="checkbox" value={"new"} />
           신입
-          <input type="radio" value={"veteran"} />
+          <input type="checkbox" value={"veteran"} />
           경력
         </div>
         <div className="line">
           <div>담당업무</div>
-          <input type="text" className="mo1"></input>
+          <input
+            type="text"
+            className="mo1"
+            onInput={(e) => {
+              setMyTask(e.target.value);
+            }}
+          ></input>
         </div>
 
         <div className="line">
           <div>근무부서</div>
-          <input type="text" className="mo1" />
+          <input
+            type="text"
+            className="mo1"
+            onInput={(e) => {
+              setWorkDepartment(e.target.value);
+            }}
+          />
         </div>
         <div className="line">
           <div>직급직책</div>
@@ -83,24 +114,47 @@ export default function RegistPostComponent() {
             />
           </LineBox>
         </div>
-        <div className="nextBtn">다음</div>
       </RegistPostBox>
-    </>
+      <div className="nextBtn" onClick={onClick}>
+        다음
+      </div>
+    </BackgroundBox>
   );
 }
 
+const BackgroundBox = styled.div`
+  background-color: #f2f6f9;
+  padding-bottom: 50px;
+
+  .nextBtn {
+    width: 200px;
+    height: 50px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: skyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+`;
+
 const HeadBox = styled.div`
-  width: 66%;
+  width: 65%;
   margin: auto;
   color: #323743;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 800;
+  padding: 30px;
 `;
 
 const RegistPostBox = styled.div`
   width: 66%;
   margin: auto;
-  background-color: red;
+  border-radius: 20px;
+  background-color: white;
+  padding: 30px 0;
 
   & > div > div:first-child {
     width: 15%;
@@ -118,25 +172,18 @@ const RegistPostBox = styled.div`
 
   .mo1 {
     width: 500px;
+    padding-left: 10px;
   }
 
   .mo2 {
-    width: 100px;
-    margin-left: 20px;
+    width: 35px;
+    margin: 0 5px 0 20px;
+    padding-left: 10px;
   }
   input {
     height: 40px;
     border-radius: 10px;
     border: 1px solid #e1e3e5;
-  }
-
-  .nextBtn {
-    width: 200px;
-    height: 80px;
-    border: 1px solid blue;
-    margin: auto;
-    margin-top: 20px;
-    background-color: skyblue;
   }
 `;
 
