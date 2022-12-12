@@ -32,34 +32,34 @@ const MiniCarouselComponent = () => {
       <div className="carousel">
         <Slider {...settings}>
           <div>
-            <img src={banner1} />
+            <img src={banner1} alt="" />
           </div>
           <div>
-            <img src={banner2} />
+            <img src={banner2} alt="" />
           </div>
           <div>
-            <img src={banner3} />
+            <img src={banner3} alt="" />
           </div>
           <div>
-            <img src={banner4} />
+            <img src={banner4} alt="" />
           </div>
           <div>
-            <img src={banner5} />
+            <img src={banner5} alt="" />
           </div>
           <div>
-            <img src={banner6} />
+            <img src={banner6} alt="" />
           </div>
           <div>
-            <img src={banner7} />
+            <img src={banner7} alt="" />
           </div>
           <div>
-            <img src={banner8} />
+            <img src={banner8} alt="" />
           </div>
           <div>
-            <img src={banner9} />
+            <img src={banner9} alt="" />
           </div>{" "}
           <div>
-            <img src={banner10} />
+            <img src={banner10} alt="" />
           </div>
         </Slider>
       </div>
@@ -71,7 +71,8 @@ export default MiniCarouselComponent;
 
 const MiniCarouselBox = styled.div`
   width: 262px;
-  height: 100px;
-  background-color: #e8ecef;
-  padding-left: 3px;
+  height: 78px;
+  margin-top: 8px;
+  padding-right: 8px;
+  margin-left: -26px;
 `;

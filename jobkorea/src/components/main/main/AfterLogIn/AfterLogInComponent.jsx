@@ -27,9 +27,14 @@ const AfterLogInComponent = () => {
 export default AfterLogInComponent;
 
 const AfterLogInBox = styled.div`
-  margin-top: 50px;
   width: 14%;
+  height: 108px;
+  margin-top: 0.5%;
+  margin-left: 8px;
+  text-align: center;
+  padding-top: 0.3%;
   background-color: #fafafa;
+  border: 1px solid #dadada;
 
   & .afterLogInDiv1 {
     display: flex;
@@ -62,18 +67,21 @@ const AfterLogInBox = styled.div`
   }
   & .afterLogInDiv3 {
     display: flex;
-
+    flex: 1;
     justify-content: space-between;
-    margin: 5px 0;
+    width: 100%;
     div {
-      flex: 1;
       text-align: center;
-      border: 1px solid #dadada;
+      border-top: 1px solid #dadada;
+      border-right: 1px solid #dadada;
       background-color: #f2f2f2;
       color: #424242;
       font-size: 12px;
       cursor: pointer;
-      padding: 5px;
+      padding: 11px 8.5px;
+      &:last-child {
+        border-right: none;
+      }
     }
   }
   & .logOutBtn {
@@ -81,5 +89,6 @@ const AfterLogInBox = styled.div`
     border: 1px solid #dadada;
     font-size: 12px;
     color: #424242;
+    cursor: pointer;
   }
 `;

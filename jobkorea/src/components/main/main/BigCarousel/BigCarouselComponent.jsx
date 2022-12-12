@@ -9,7 +9,7 @@ import banner3 from "./images/banner3.png";
 import banner4 from "./images/banner4.jpeg";
 import banner5 from "./images/banner5.png";
 import banner6 from "./images/banner6.jpeg";
-import banner7 from "./images/banner7.jpeg";
+import banner7 from "./images/banner7.png";
 import banner8 from "./images/banner8.png";
 import banner9 from "./images/banner9.png";
 import banner10 from "./images/banner10.png";
@@ -33,34 +33,34 @@ const BigCarouselComponent = () => {
         <div className="carousel">
           <Slider {...settings}>
             <div>
-              <img src={banner1} />
+              <img src={banner1} alt="" />
             </div>
             <div>
-              <img src={banner2} />
+              <img src={banner2} alt="" />
             </div>
             <div>
-              <img src={banner3} />
+              <img src={banner3} alt="" />
             </div>
             <div>
-              <img src={banner4} />
+              <img src={banner4} alt="" />
             </div>
             <div>
-              <img src={banner5} />
+              <img src={banner5} alt="" />
             </div>
             <div>
-              <img src={banner6} />
+              <img src={banner6} alt="" />
             </div>
             <div>
-              <img src={banner7} />
+              <img src={banner7} alt="" />
             </div>
             <div>
-              <img src={banner8} />
+              <img src={banner8} alt="" />
             </div>
             <div>
-              <img src={banner9} />
+              <img src={banner9} alt="" />
             </div>{" "}
             <div>
-              <img src={banner10} />
+              <img src={banner10} alt="" />
             </div>
           </Slider>
         </div>
@@ -75,5 +75,5 @@ const BigCarouselBox = styled.div`
   width: 752px;
   height: 110px;
   background-color: #e8ecef;
-  margin: 5px;
+  margin: 8px;
 `;

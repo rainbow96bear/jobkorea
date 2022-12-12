@@ -8,6 +8,10 @@ const BeforeLogInComponent = ({ logInClick }) => {
   return (
     <BeforeLogInBox>
       <div className="logInFrame">개인회원 로그인</div>
+      <div className="beforLogInDiv">
+        <div className="registBtn">회원가입</div>
+        <div className="findInfoBtn">ID/PW 찾기</div>
+      </div>
       <div className="logInDiv">
         <div className="logInInput">
           <input
@@ -38,10 +42,6 @@ const BeforeLogInComponent = ({ logInClick }) => {
           로그인
         </button>
       </div>
-      <div className="beforLogInDiv">
-        <div className="registBtn">회원가입</div>
-        <div className="findInfoBtn">ID/PW 찾기</div>
-      </div>
     </BeforeLogInBox>
   );
 };
@@ -50,12 +50,17 @@ export default BeforeLogInComponent;
 
 const BeforeLogInBox = styled.div`
   width: 14%;
-  background-color: aliceblue;
+  height: 108px;
+  background-color: white;
+  margin-top: 0.5%;
+  margin-left: 8px;
+  text-align: center;
+  padding-top: 0.3%;
+  border: 1px solid #dadada;
 
   & .logInDiv {
     display: flex;
     justify-content: center;
-    margin-top: 2%;
     width: 100%;
   }
   & .logInInput {
@@ -84,23 +89,24 @@ const BeforeLogInBox = styled.div`
   }
   & .logInBtn {
     border: none;
-    background-color: skyblue;
+    background-color: #3399ff;
     color: white;
     font-size: 1px;
     padding: 5px 16px;
   }
   & .beforLogInDiv {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   & .registBtn {
-    font-size: 12px;
-    margin: 5px;
-    color: gray;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 1px 5px;
+    color: #494949;
   }
   & .findInfoBtn {
-    font-size: 12px;
-    margin: 5px;
-    color: gray;
+    font-size: 11px;
+    margin: 1px 5px;
+    color: #494949;
   }
 `;
