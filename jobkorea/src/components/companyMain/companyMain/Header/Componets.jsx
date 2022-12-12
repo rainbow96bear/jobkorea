@@ -26,34 +26,60 @@ const HeaderComponent = ({
             <div
               onClick={() => {
                 setIsDropdown(!isDropdown);
-              }}>
+              }}
+            >
               <img src="/img/3bar.svg" />
             </div>
             <div
               onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}>
+              onMouseLeave={() => setIsOver(false)}
+            >
               홈
             </div>
             <div
               onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}>
+              onMouseLeave={() => setIsOver(false)}
+            >
               공고등록
             </div>
             <div
               onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}>
+              onMouseLeave={() => setIsOver(false)}
+            >
               공고지원자 관리
             </div>
             <div
               onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}>
+              onMouseLeave={() => setIsOver(false)}
+            >
               인재검색
             </div>
             <div
               onMouseEnter={() => setIsOver(true)}
-              onMouseLeave={() => setIsOver(false)}>
+              onMouseLeave={() => setIsOver(false)}
+            >
               헤드헌팅 의뢰
             </div>
+            {menuList.map((item, index) => {
+              return (
+                <div
+                  key={`item-${index}`}
+                  onMouseEnter={() => {
+                    setHeaderMenuIsOver(index);
+                  }}
+                  onMouseLeave={() => setHeaderMenuIsOver(-1)}
+                  onClick={() => {
+                    if (item.routes) moveTo(`companymain/${item.routes}`);
+                    else moveTo(`companymain`);
+                  }}
+                >
+                  {item.title}
+                  <div
+                    className={headerMenuIsOver == index ? "hover" : ""}
+                  ></div>
+                </div>
+              );
+            })}
           </div>
           <div>
             <div>기업라운지</div>
