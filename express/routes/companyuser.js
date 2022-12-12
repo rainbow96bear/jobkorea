@@ -1,7 +1,58 @@
 const router = require("express").Router();
 const crypto = require("crypto-js");
+const jwt = require("jsonwebtoken");
+// const { default: Cookies } = require("universal-cookie");
+// const Cookies = require("universal-cookie");
 
 const { Companyuser_Info } = require("../models/index.js");
+
+// const cookies = new Cookies();
+
+router.post("/login", async (req, res) => {
+  console.log(req.body.pwConfirm);
+  try {
+    if (
+      await Companyuser_Info.findOne({
+        where: { companyId: req.body.idConfirm },
+      })
+    ) {
+      if (
+        await Companyuser_Info.findOne({
+          where: {
+            // companyId: req.body.idConfirm,
+            companyPw: crypto.SHA256(req.body.pwConfirm).toString(),
+          },
+        })
+      ) {
+        // res.clearCookie("jobkorea_login");
+        // res.cookie(
+        //   "jobkorea_login",
+        //   jwt.sign(
+        //     { companyId: req.body.idConfirm },
+        //     process.env.COOKIE_SECRET
+        //   ),
+        //   { expires: new Date(Date.now() + 6000 * 30) }
+        // // );
+        // cookies.set(
+        //   "cookie",
+        //   { companyId: req.body.idConfirm },
+        //   {
+        //     path: "/",
+        //     expires: Date.now() / 1000 + 60 * 60,
+        //   }
+        // );
+        res.send({ companyId: req.body.idConfirm });
+      } else {
+        res.send("비밀번호가 일치하지 않습니다");
+      }
+    } else {
+      res.send("없는 아이디 입니다");
+    }
+  } catch (err) {
+    console.error(err);
+    res.send("실패");
+  }
+});
 
 router.post("/regist", async (req, res) => {
   console.log(req.body);
