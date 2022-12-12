@@ -31,36 +31,25 @@ const MiniCarouselComponent = () => {
     <MiniCarouselBox>
       <div className="carousel">
         <Slider {...settings}>
-          <div>
-            <img src={banner1} alt="" />
-          </div>
-          <div>
-            <img src={banner2} alt="" />
-          </div>
-          <div>
-            <img src={banner3} alt="" />
-          </div>
-          <div>
-            <img src={banner4} alt="" />
-          </div>
-          <div>
-            <img src={banner5} alt="" />
-          </div>
-          <div>
-            <img src={banner6} alt="" />
-          </div>
-          <div>
-            <img src={banner7} alt="" />
-          </div>
-          <div>
-            <img src={banner8} alt="" />
-          </div>
-          <div>
-            <img src={banner9} alt="" />
-          </div>{" "}
-          <div>
-            <img src={banner10} alt="" />
-          </div>
+          <img src={banner1} alt="" />
+
+          <img src={banner2} alt="" />
+
+          <img src={banner3} alt="" />
+
+          <img src={banner4} alt="" />
+
+          <img src={banner5} alt="" />
+
+          <img src={banner6} alt="" />
+
+          <img src={banner7} alt="" />
+
+          <img src={banner8} alt="" />
+
+          <img src={banner9} alt="" />
+
+          <img src={banner10} alt="" />
         </Slider>
       </div>
     </MiniCarouselBox>
@@ -70,9 +59,8 @@ const MiniCarouselComponent = () => {
 export default MiniCarouselComponent;
 
 const MiniCarouselBox = styled.div`
-  width: 262px;
+  width: 100%;
   height: 78px;
   margin-top: 8px;
   padding-right: 8px;
-  margin-left: -26px;
 `;

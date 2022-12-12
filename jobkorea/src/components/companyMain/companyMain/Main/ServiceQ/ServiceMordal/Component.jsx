@@ -15,13 +15,11 @@ const ServiceModalComponent = ({
           <img
             className={mordalIndex == 1 ? "buttonStop" : ""}
             src="./img/prev.svg"
-            onClick={prevClick}
-          ></img>
+            onClick={prevClick}></img>
           <img
             className={mordalIndex == 8 ? "buttonStop" : ""}
             src="img/next.svg"
-            onClick={nextClick}
-          ></img>
+            onClick={nextClick}></img>
         </div>
       </div>
       <div className="mordal">
@@ -94,13 +92,11 @@ const ServiceModalBox = styled.div`
       filter: invert(100%) sepia(5%) saturate(0%) hue-rotate(324deg)
         brightness(105%) contrast(107%);
     }
-
     & > .buttonStop {
       filter: invert(98%) sepia(0%) saturate(1753%) hue-rotate(271deg)
         brightness(72%) contrast(84%);
     }
   }
-
   .background {
     position: fixed;
     width: 100%;
@@ -131,18 +127,15 @@ const ServiceModalBox = styled.div`
     padding: 30px 0;
     margin: auto;
     font-weight: 700;
-
     & > img {
       width: 18px;
       cursor: pointer;
     }
   }
-
   .text {
     width: 94%;
     margin: auto;
     font-size: 13px;
-
     & > div {
       padding-bottom: 5px;
     }
@@ -170,7 +163,6 @@ const ServiceModalBox = styled.div`
         display: none;
       }
     }
-
     & > div > div {
       height: 43px;
       font-weight: 600;
@@ -180,7 +172,6 @@ const ServiceModalBox = styled.div`
       border: 1px solid #ebebeb;
       border-radius: 5px;
       margin: 15px 0;
-
       &:nth-child(2n) {
         border: none;
       }

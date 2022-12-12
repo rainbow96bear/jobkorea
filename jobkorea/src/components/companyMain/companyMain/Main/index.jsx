@@ -14,8 +14,7 @@ const MainComponent = ({ loginIsClick, setLoginIsClick }) => {
     <MainBox>
       <MainLoginBoardContainer
         loginIsClick={loginIsClick}
-        setLoginIsClick={setLoginIsClick}
-      ></MainLoginBoardContainer>
+        setLoginIsClick={setLoginIsClick}></MainLoginBoardContainer>
       {loginIsClick ? (
         <LoginMordalContainer setLoginIsClick={setLoginIsClick} />
       ) : (
@@ -26,16 +25,14 @@ const MainComponent = ({ loginIsClick, setLoginIsClick }) => {
         <ServiceModalContainer
           setServiceMordalIsClick={setServiceMordalIsClick}
           mordalIndex={mordalIndex}
-          setMordalIndex={setMordalIndex}
-        ></ServiceModalContainer>
+          setMordalIndex={setMordalIndex}></ServiceModalContainer>
       ) : (
         <></>
       )}
       <ServiceQComponent
         serviceMordalIsClick={serviceMordalIsClick}
         setServiceMordalIsClick={setServiceMordalIsClick}
-        setMordalIndex={setMordalIndex}
-      ></ServiceQComponent>
+        setMordalIndex={setMordalIndex}></ServiceQComponent>
     </MainBox>
   );
 };

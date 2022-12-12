@@ -62,69 +62,95 @@ const QuickMenuComponent = () => {
 export default QuickMenuComponent;
 
 const QuickMenuBox = styled.div`
-  width: 237px;
+  width: 100%;
   height: 254px;
   background-color: white;
-  margin-left: -26px;
   border: 1px solid #dadada;
+  text-align: center;
 
   & .QuickMenuRow1 {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     font-size: 12px;
+    flex: 1;
+
     & img {
-      width: 50px;
+      width: 60px;
     }
   }
   & .job {
+    padding: 5px;
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
   }
   & .area {
     display: flex;
+    padding: 5px;
     flex-direction: column;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
   }
   & .detailSearch {
+    padding: 5px;
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid #dadada;
   }
   & .QuickMenuRow2 {
     display: flex;
     flex-direction: row;
     font-size: 12px;
+    justify-content: center;
     & img {
-      width: 50px;
+      width: 60px;
     }
   }
   & .bigtech {
+    padding: 5px;
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
   }
   & .govern {
+    padding: 5px;
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
   }
   & .abroad {
+    padding: 5px;
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid #dadada;
   }
   & .QuickMenuRow3 {
     display: flex;
     flex-direction: row;
     font-size: 12px;
+    justify-content: center;
     & img {
-      width: 50px;
+      width: 60px;
     }
   }
   & .industry {
+    padding: 5px;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid #dadada;
   }
   & .special {
+    padding: 5px;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid #dadada;
   }
   & .top100 {
+    padding: 5px;
     display: flex;
     flex-direction: column;
   }

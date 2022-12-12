@@ -9,8 +9,7 @@ export default function CompanyMainComponent({
     <>
       <MainComponent
         loginIsClick={loginIsClick}
-        setLoginIsClick={setLoginIsClick}
-      ></MainComponent>
+        setLoginIsClick={setLoginIsClick}></MainComponent>
       <EndLineContainer></EndLineContainer>
     </>
   );

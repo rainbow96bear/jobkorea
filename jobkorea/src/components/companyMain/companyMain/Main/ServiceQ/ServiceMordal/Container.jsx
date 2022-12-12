@@ -129,8 +129,7 @@ const ServiceModalContainer = ({
       closeOnClick={closeOnClick}
       prevClick={prevClick}
       nextClick={nextClick}
-      data={data[mordalIndex - 1]}
-    ></ServiceModalComponent>
+      data={data[mordalIndex - 1]}></ServiceModalComponent>
   );
 };
 

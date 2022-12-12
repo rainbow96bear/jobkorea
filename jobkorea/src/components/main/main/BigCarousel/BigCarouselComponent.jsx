@@ -32,36 +32,16 @@ const BigCarouselComponent = () => {
       <BigCarouselBox>
         <div className="carousel">
           <Slider {...settings}>
-            <div>
-              <img src={banner1} alt="" />
-            </div>
-            <div>
-              <img src={banner2} alt="" />
-            </div>
-            <div>
-              <img src={banner3} alt="" />
-            </div>
-            <div>
-              <img src={banner4} alt="" />
-            </div>
-            <div>
-              <img src={banner5} alt="" />
-            </div>
-            <div>
-              <img src={banner6} alt="" />
-            </div>
-            <div>
-              <img src={banner7} alt="" />
-            </div>
-            <div>
-              <img src={banner8} alt="" />
-            </div>
-            <div>
-              <img src={banner9} alt="" />
-            </div>{" "}
-            <div>
-              <img src={banner10} alt="" />
-            </div>
+            <img src={banner1} alt="" />
+            <img src={banner2} alt="" />
+            <img src={banner3} alt="" />
+            <img src={banner4} alt="" />
+            <img src={banner5} alt="" />
+            <img src={banner6} alt="" />
+            <img src={banner7} alt="" />
+            <img src={banner8} alt="" />
+            <img src={banner9} alt="" />
+            <img src={banner10} alt="" />
           </Slider>
         </div>
       </BigCarouselBox>
@@ -72,8 +52,9 @@ const BigCarouselComponent = () => {
 export default BigCarouselComponent;
 
 const BigCarouselBox = styled.div`
-  width: 752px;
-  height: 110px;
+  width: 60%;
   background-color: #e8ecef;
-  margin: 8px;
+  img {
+    height: 120px;
+  }
 `;
