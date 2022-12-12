@@ -54,10 +54,10 @@ const ServiceModalComponent = ({
                 return (
                   <div key={`div-${index}`} className="graph">
                     {item["divList"].map((item4, index4) => (
-                      <>
-                        <div key={`div-div-${index}-${index4}`}>{item4}</div>
+                      <div key={`div-div-${index}-${index4}`}>
+                        <div>{item4}</div>
                         <div> &gt; </div>
-                      </>
+                      </div>
                     ))}
                   </div>
                 );
@@ -164,6 +164,14 @@ const ServiceModalBox = styled.div`
     display: flex;
 
     & > div {
+      display: flex;
+
+      &:last-child > div:last-child {
+        display: none;
+      }
+    }
+
+    & > div > div {
       height: 43px;
       font-weight: 600;
       display: flex;
@@ -172,10 +180,6 @@ const ServiceModalBox = styled.div`
       border: 1px solid #ebebeb;
       border-radius: 5px;
       margin: 15px 0;
-
-      &:last-child {
-        display: none;
-      }
 
       &:nth-child(2n) {
         border: none;
