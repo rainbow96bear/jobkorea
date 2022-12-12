@@ -81,9 +81,11 @@ const ServiceModalBox = styled.div`
     width: 900px;
     height: 50px;
   }
+
   .flex {
     display: flex;
     justify-content: space-between;
+
     & > img {
       width: 20px;
       cursor: pointer;
@@ -138,19 +140,25 @@ const ServiceModalBox = styled.div`
       padding-bottom: 5px;
     }
   }
+
   ol {
     padding-left: 15px;
   }
+
   li {
     padding-bottom: 10px;
   }
+
   ul > li::marker {
     font-size: 1px;
   }
+
   .graph {
     display: flex;
+
     & > div {
       display: flex;
+
       &:last-child > div:last-child {
         display: none;
       }

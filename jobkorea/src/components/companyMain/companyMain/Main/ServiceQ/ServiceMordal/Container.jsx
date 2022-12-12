@@ -1,58 +1,5 @@
 import ServiceModalComponent from "./Component";
 
-<<<<<<< HEAD
-const ServiceModalContainer = ({
-  setServiceMordalIsClick,
-  mordalIndex,
-  setMordalIndex,
-}) => {
-  const closeOnClick = () => {
-    setServiceMordalIsClick(false);
-  };
-  const prevClick = () => {
-    if (mordalIndex == 1) return;
-    setMordalIndex(mordalIndex - 1);
-  };
-  const nextClick = () => {
-    if (mordalIndex == 8) return;
-    setMordalIndex(mordalIndex + 1);
-  };
-  // return <ServiceModalComponent onClick={onClick}></ServiceModalComponent>;
-  switch (mdIndex) {
-    case 1:
-      return (
-        <ServiceModalComponent1 onClick={onClick}></ServiceModalComponent1>
-      );
-    case 2:
-      return (
-        <ServiceModalComponent2 onClick={onClick}></ServiceModalComponent2>
-      );
-    case 3:
-      return (
-        <ServiceModalComponent3 onClick={onClick}></ServiceModalComponent3>
-      );
-    case 4:
-      return (
-        <ServiceModalComponent4 onClick={onClick}></ServiceModalComponent4>
-      );
-    case 5:
-      return (
-        <ServiceModalComponent5 onClick={onClick}></ServiceModalComponent5>
-      );
-    case 6:
-      return (
-        <ServiceModalComponent6 onClick={onClick}></ServiceModalComponent6>
-      );
-    case 7:
-      return (
-        <ServiceModalComponent7 onClick={onClick}></ServiceModalComponent7>
-      );
-    case 8:
-      return (
-        <ServiceModalComponent8 onClick={onClick}></ServiceModalComponent8>
-      );
-  }
-=======
 const data = [
   {
     title: "1. 채용공고를 내고 싶은데 절차가 어떻게 되나요?",
@@ -182,53 +129,8 @@ const ServiceModalContainer = ({
       closeOnClick={closeOnClick}
       prevClick={prevClick}
       nextClick={nextClick}
-      data={data[mordalIndex - 1]}
-    ></ServiceModalComponent>
+      data={data[mordalIndex - 1]}></ServiceModalComponent>
   );
-<<<<<<< HEAD
-  // switch (mdIndex) {
-  //   case 1:
-  //     return (
-  //       <ServiceModalComponent1 onClick={onClick}></ServiceModalComponent1>
-  //     );
-  //   case 2:
-  //     return (
-  //       <ServiceModalComponent2
-  //         onClick={onClick}
-  //         data={imsiData[1]}
-  //       ></ServiceModalComponent2>
-  //     );
-  //   case 3:
-  //     return (
-  //       <ServiceModalComponent3
-  //         onClick={onClick}
-  //         data={imsiData[2]}
-  //       ></ServiceModalComponent3>
-  //     );
-  //   case 4:
-  //     return (
-  //       <ServiceModalComponent4 onClick={onClick}></ServiceModalComponent4>
-  //     );
-  //   case 5:
-  //     return (
-  //       <ServiceModalComponent5 onClick={onClick}></ServiceModalComponent5>
-  //     );
-  //   case 6:
-  //     return (
-  //       <ServiceModalComponent6 onClick={onClick}></ServiceModalComponent6>
-  //     );
-  //   case 7:
-  //     return (
-  //       <ServiceModalComponent7 onClick={onClick}></ServiceModalComponent7>
-  //     );
-  //   case 8:
-  //     return (
-  //       <ServiceModalComponent8 onClick={onClick}></ServiceModalComponent8>
-  //     );
-  // }
->>>>>>> b46ead6 (1211 Company Mainpage UI)
-=======
->>>>>>> 29afe89 (1212 jobkorea)
 };
 
 export default ServiceModalContainer;
