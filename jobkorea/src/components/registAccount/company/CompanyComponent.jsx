@@ -172,10 +172,8 @@ export default function CompanyComponent({ onClick }) {
           <Companyidname
             onInput={(e) => {
               setCompanyIdnumber(e.target.value);
-              const phoneRegExp=/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-
-              if(!)
-
+              const phoneRegExp =
+                /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
             }}
             type={"number"}
             placeholder="전화번호 *"
