@@ -50,6 +50,7 @@ const HeaderComponent = ({
                   onMouseLeave={() => setHeaderMenuIsOver(-1)}
                   onClick={() => {
                     if (item.routes) moveTo(`companymain/${item.routes}`);
+                    else moveTo("companymain");
                   }}
                 >
                   {item.title}
@@ -85,6 +86,10 @@ const HeaderBox = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 12px;
+  }
+
+  & > div:first-child > div:first-child {
+    cursor: pointer;
   }
 
   & > div > div {

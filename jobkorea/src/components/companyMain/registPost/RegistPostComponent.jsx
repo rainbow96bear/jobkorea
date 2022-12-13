@@ -2,39 +2,45 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import Select from "react-select";
 
-export default function RegistPostComponent({ onClick }) {
-  const [recruitArea, setRecruitArea] = useState("");
-  const [recruitNum, setRecruitNum] = useState("0");
-  const [isExp, setIsExp] = useState("1");
-  const [myTask, setMyTask] = useState("1");
-  const [workDepartment, setWorkDepartment] = useState("1");
-  const [workRank, setWorkRank] = useState("1");
-  const [condition, setCondition] = useState("1");
-
+export default function RegistPostComponent({
+  saveHandler,
+  recruitAreaHandler,
+  recruitNumHandler,
+  isExp,
+  myTaskHandler,
+  workDepartmentHandler,
+  workRankHandler,
+  conditionHandler,
+  expList,
+  onChecked,
+}) {
   const options = [
-    { value: "rank1", label: "사원" },
-    { value: "rank2", label: "주임" },
-    { value: "rank3", label: "대리" },
-    { value: "rank4", label: "과장" },
-    { value: "rank5", label: "차장" },
-    { value: "rank6", label: "부장" },
+    { value: "사원", label: "사원" },
+    { value: "주임", label: "주임" },
+    { value: "대리", label: "대리" },
+    { value: "과장", label: "과장" },
+    { value: "차장", label: "차장" },
+    { value: "부장", label: "부장" },
   ];
 
   const options2 = [
-    { value: "department1", label: "전공/학과 : 인문계열" },
-    { value: "department2", label: "전공/학과 : 사회계열" },
-    { value: "department3", label: "전공/학과 : 교육계열" },
-    { value: "department4", label: "전공/학과 : 자연계열" },
-    { value: "department5", label: "전공/학과 : 공학계열" },
-    { value: "department6", label: "전공/학과 : 의약계열" },
-    { value: "department7", label: "전공/학과 : 예체능계열" },
-    { value: "ability1", label: "보유역량 : 해당직무 근무경험" },
-    { value: "ability2", label: "보유역량 : 은근거주자" },
-    { value: "language1", label: "외국어 : TOEIC" },
-    { value: "language2", label: "외국어 : TOEFL" },
-    { value: "language3", label: "외국어 : OPIc" },
-    { value: "language4", label: "외국어 : JLPT" },
-    { value: "language5", label: "외국어 : HSK" },
+    { value: "전공/학과 : 인문계열", label: "전공/학과 : 인문계열" },
+    { value: "전공/학과 : 사회계열", label: "전공/학과 : 사회계열" },
+    { value: "전공/학과 : 교육계열", label: "전공/학과 : 교육계열" },
+    { value: "전공/학과 : 자연계열", label: "전공/학과 : 자연계열" },
+    { value: "전공/학과 : 공학계열", label: "전공/학과 : 공학계열" },
+    { value: "전공/학과 : 의약계열", label: "전공/학과 : 의약계열" },
+    { value: "전공/학과 : 예체능계열", label: "전공/학과 : 예체능계열" },
+    {
+      value: "보유역량 : 해당직무 근무경험",
+      label: "보유역량 : 해당직무 근무경험",
+    },
+    { value: "보유역량 : 인근거주자", label: "보유역량 : 인근거주자" },
+    { value: "외국어 : TOEIC", label: "외국어 : TOEIC" },
+    { value: "외국어 : TOEFL", label: "외국어 : TOEFL" },
+    { value: "외국어 : OPIc", label: "외국어 : OPIc" },
+    { value: "외국어 : JLPT", label: "외국어 : JLPT" },
+    { value: "외국어 : HSK", label: "외국어 : HSK" },
   ];
 
   return (
@@ -43,63 +49,60 @@ export default function RegistPostComponent({ onClick }) {
       <RegistPostBox>
         <div className="line">
           <div>모집분야명</div>
-          <input
-            type="text"
-            className="mo1"
-            onInput={(e) => {
-              setRecruitArea(e.target.value);
-            }}
-          />
+          <input type="text" className="mo1" onChange={recruitAreaHandler} />
           <input
             type="number"
             className="mo2"
+            min={1}
             onInput={(e) => {
               if (e.target.value.length > e.target.maxLength)
                 e.target.value = e.target.value.slice(0, e.target.maxLength);
-              setRecruitNum(e.target.value);
+              e.target.value = e.target.value
+                .replace(/[^0-9.]/g, "")
+                .replace(/(\..*)\./g, "$1");
             }}
             maxLength={2}
+            onChange={recruitNumHandler}
           />
           <div>명 모집</div>
         </div>
         <div className="line">
           <div>경력여부</div>
-          <input type="checkbox" value={"noexp"} />
-          경력무관
-          <input type="checkbox" value={"new"} />
-          신입
-          <input type="checkbox" value={"veteran"} />
-          경력
+
+          {expList.map((item, index) => {
+            return (
+              <CheckBox key={`check-${index}`}>
+                <input
+                  type="checkbox"
+                  value={item.data}
+                  checked={isExp.includes(item.data) ? true : false}
+                  onChange={(e) => {
+                    onChecked(e.target.checked, e.target.value);
+                  }}
+                />
+                <div>{item.name}</div>
+              </CheckBox>
+            );
+          })}
         </div>
         <div className="line">
           <div>담당업무</div>
-          <input
-            type="text"
-            className="mo1"
-            onInput={(e) => {
-              setMyTask(e.target.value);
-            }}
-          ></input>
+          <input type="text" className="mo1" onChange={myTaskHandler}></input>
         </div>
 
         <div className="line">
           <div>근무부서</div>
-          <input
-            type="text"
-            className="mo1"
-            onInput={(e) => {
-              setWorkDepartment(e.target.value);
-            }}
-          />
+          <input type="text" className="mo1" onChange={workDepartmentHandler} />
         </div>
         <div className="line">
           <div>직급직책</div>
           <LineBox>
             <Select
-              options={options}
               isMulti
               className="basic-multi-select"
               classNamePrefix="select"
+              options={options}
+              onChange={workRankHandler}
             />
           </LineBox>
         </div>
@@ -111,11 +114,16 @@ export default function RegistPostComponent({ onClick }) {
               className="basic-multi-select"
               classNamePrefix="select"
               options={options2}
+              onChange={conditionHandler}
+              // onChange={(choice) => {
+              //   setUserChoice(choice);
+              //   console.log(userChoice[0].value);
+              // }}
             />
           </LineBox>
         </div>
       </RegistPostBox>
-      <div className="nextBtn" onClick={onClick}>
+      <div className="nextBtn" onClick={saveHandler}>
         다음
       </div>
     </BackgroundBox>
@@ -163,6 +171,7 @@ const RegistPostBox = styled.div`
   .line {
     display: flex;
     align-items: center;
+
     & > div:first-child {
       font-size: 20px;
       font-weight: 700;
@@ -189,6 +198,19 @@ const RegistPostBox = styled.div`
 
 const LineBox = styled.div`
   width: 80%;
+`;
+
+const CheckBox = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > input {
+    margin-right: 10px;
+  }
+
+  & > div {
+    margin-right: 20px;
+  }
 `;
 
 {
