@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import Select from "react-select";
 import { useState } from "react";
 import "./Company.css";
+import { useNavigate } from "react-router-dom";
 
 // import circlecheck from "circle-check-regular.svg";
 // import magni from "./img/magnifying-glass-solid.svg";
@@ -19,6 +20,7 @@ export default function CompanyComponent({ onClick }) {
     { value: "외국계", label: "외국계" },
     { value: "중견기업", label: "중견기업" },
   ];
+  const navigate = useNavigate();
 
   const [selectedOption, setSelectedOption] = useState("");
   const [companyNumber, setCompnayNumber] = useState("");
@@ -88,7 +90,14 @@ export default function CompanyComponent({ onClick }) {
         <img src={banner} alt="" />
       </Join>
       <Join>
-        <div className="personal">개인회원</div>
+        <div
+          className="personal"
+          onClick={() => {
+            navigate("/registAccount/individual");
+          }}
+        >
+          개인회원
+        </div>
         <div className="company">기업회원</div>
       </Join>
       <Join>
@@ -300,6 +309,7 @@ export default function CompanyComponent({ onClick }) {
                   isEmail === true &&
                   isIdNumber === true
                 )
+                  //이거 다시 생각해보기 ! ""필요없음 ""은 false임
                   onClick(
                     selectedOption,
                     companyNumber,

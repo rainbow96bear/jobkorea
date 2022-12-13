@@ -1,16 +1,19 @@
 import MordalComponent from "./Component";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
-// import Cookies from "universal-cookie";
-// import jwt from "jsonwebtoken";
+
+import { useDispatch } from "react-redux";
+import { action } from "../../../../../modules/userInfo.js";
+
+// import Cookies from "universal-cookie"
 // cookies.remove('cookies');//로그아웃시
-// const cookies = new Cookies();
-import { useEffect } from "react";
+
+// const { decodedToken, isExpired } = useJwt(token);
 
 const LoginMordalContainer = ({ setLoginIsClick }) => {
   // const [cookietest, setCookietest] = useState("");
   // const [cookietesttwo, setCookietesttwo] = useState("");
+  const dispatch = useDispatch();
 
   const loginOnClick = () => {
     setLoginIsClick(false);
@@ -30,15 +33,19 @@ const LoginMordalContainer = ({ setLoginIsClick }) => {
       alert("없는 아이디 입니다");
     } else if (data.data == "비밀번호가 일치하지 않습니다") {
       alert("비밀번호가 일치하지 않습니다");
-    } else if (data.data.companyId == idConfirm) {
+    } else if (data.data == "로그인완료") {
       alert("로그인 완료");
+      setLoginIsClick(false);
+      dispatch(action.getuserInfo({ id: idConfirm }));
+
+      // console.log(data.data.decoded);
       // setCookietest("test");
 
       // cookies.set("cookie", idConfirm, {
       //   path: "/",
       //   expires: new Date(Date.now() + 6000 * 30),
       // });
-      // console.log(cookies.get("cookies"));
+      // const token = idConfirm;
     }
   };
 

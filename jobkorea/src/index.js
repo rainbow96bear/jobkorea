@@ -4,17 +4,24 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
+import { Provider } from "react-redux";
+import store from "./modules/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+
+export let persistor = persistStore(store);
+
 axios.defaults.withCredentials = true;
-// import { Provider } from "react-redux";
-// import store from "./modules/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <Provider store={store}>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  // </Provider>
+  <Provider store={store}>
+    {/* <React.StrictMode> */}
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+    {/* </React.StrictMode> */}
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

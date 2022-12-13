@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const MainLoginBoardComponent = ({ loginOnClick, moveTo }) => {
+  const companyUser = useSelector((state) => state.companyUser.value);
+  console.log(companyUser);
   return (
     <MainLoginBoardBox>
       <div className="temp"></div>
@@ -13,15 +16,30 @@ const MainLoginBoardComponent = ({ loginOnClick, moveTo }) => {
             </div>
             시작해 보세요
           </div>
-          <div className="flex button-box">
-            <div onClick={loginOnClick}>로그인</div>
-            <div
-              onClick={() => {
-                moveTo("registAccount/company");
-              }}
-            >
-              회원가입
-            </div>
+          <div>
+            {companyUser == 0 ? (
+              <div className="flex button-box">
+                <div onClick={loginOnClick}>로그인</div>
+                <div
+                  onClick={() => {
+                    moveTo("registAccount/company");
+                  }}
+                >
+                  회원가입
+                </div>
+              </div>
+            ) : (
+              <div className="flex button-box">
+                <div onClick={loginOnClick}>로그아웃</div>
+                <div
+                  onClick={() => {
+                    moveTo("registAccount/company");
+                  }}
+                >
+                  회원가입
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div>
