@@ -12,20 +12,22 @@ export default function HeaderComponent({ moveTo, dropDown, setDropDown }) {
           <HomeBtn
             onClick={() => {
               moveTo("");
-            }}>
+            }}
+          >
             JOBKOREA
           </HomeBtn>
           <InputBox>
             <input></input>
             <div>
-              <img src={searchImg}></img>
+              <img src={searchImg} alt=""></img>
             </div>
           </InputBox>
           <FuncBtn>직무•지역 찾기</FuncBtn>
           <DetailSearchBtn
             onClick={() => {
               moveTo("search");
-            }}>
+            }}
+          >
             상세검색
           </DetailSearchBtn>
         </SearchBox>
@@ -57,7 +59,8 @@ export default function HeaderComponent({ moveTo, dropDown, setDropDown }) {
                 className="colorText"
                 onClick={() => {
                   moveTo("search");
-                }}>
+                }}
+              >
                 채용정보
               </div>
               <div className="colorText">공채</div>
@@ -76,7 +79,8 @@ export default function HeaderComponent({ moveTo, dropDown, setDropDown }) {
               className="border borderRight"
               onClick={() => {
                 moveTo("companymain");
-              }}>
+              }}
+            >
               기업 회원 홈
             </div>
           </RightFunc>
