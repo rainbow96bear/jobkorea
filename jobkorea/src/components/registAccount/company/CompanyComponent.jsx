@@ -194,6 +194,7 @@ export default function CompanyComponent({ onClick }) {
             ></Companyid>
 
             <Companypw
+              companyPw={companyPw}
               onBlur={(e) => {
                 setPwMessage(null);
               }}
@@ -478,6 +479,7 @@ const Companypw = styled.input`
   border-color: lightgrey;
   padding: 3%;
   margin-top: 2%;
+  ${(props) => (props.companyPw.length > 0 ? "background-color:red" : "")}
 `;
 
 const Companycheck = styled.div`

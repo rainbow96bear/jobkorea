@@ -14,6 +14,7 @@ const MainLoginBoardContainer = ({ loginIsClick, setLoginIsClick }) => {
     <MainLoginBoardComponent
       moveTo={moveTo}
       loginOnClick={loginOnClick}
+      setLoginIsClick={setLoginIsClick}
     ></MainLoginBoardComponent>
   );
 };

@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { action } from "../../../../../modules/userInfo";
 
-const MainLoginBoardComponent = ({ loginOnClick, moveTo }) => {
+const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
+  const dispatch = useDispatch();
+
   const companyUser = useSelector((state) => state.companyUser.value);
-  console.log(companyUser);
+
   return (
     <MainLoginBoardBox>
       <div className="temp"></div>
@@ -30,13 +34,13 @@ const MainLoginBoardComponent = ({ loginOnClick, moveTo }) => {
               </div>
             ) : (
               <div className="flex button-box">
-                <div onClick={loginOnClick}>로그아웃</div>
                 <div
                   onClick={() => {
-                    moveTo("registAccount/company");
+                    dispatch(action.logoutCompany());
+                    setLoginIsClick(false);
                   }}
                 >
-                  회원가입
+                  로그아웃
                 </div>
               </div>
             )}
