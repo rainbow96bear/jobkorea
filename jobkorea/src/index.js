@@ -6,10 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { Provider } from "react-redux";
 import store from "./modules/store";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
-
-export let persistor = persistStore(store);
 
 axios.defaults.withCredentials = true;
 
@@ -17,9 +13,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     {/* <React.StrictMode> */}
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
+
+    <App />
+
     {/* </React.StrictMode> */}
   </Provider>
 );
