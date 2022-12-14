@@ -10,8 +10,7 @@ export default function RegistPostContainer() {
   const [workDepartment, setWorkDepartment] = useState("");
   const [workRank, setWorkRank] = useState([]);
   const [condition, setCondition] = useState([]);
-
-  const [checkedList, setCheckedList] = useState([]);
+  const [edu, setEdu] = useState("");
 
   const onChecked = (checked, item) => {
     if (checked) {
@@ -52,11 +51,14 @@ export default function RegistPostContainer() {
   };
   const workRankHandler = (value) => {
     setWorkRank(value.map((item) => item.value));
-    console.log(workRank);
   };
   const conditionHandler = (value) => {
     setCondition(value.map((item) => item.value));
-    console.log(condition);
+  };
+
+  const eduHandler = (value) => {
+    console.log(value);
+    setEdu(value.value);
   };
 
   const saveHandler = (e) => {
@@ -69,6 +71,7 @@ export default function RegistPostContainer() {
       workDepartment: workDepartment,
       workRank: workRank,
       condition: condition,
+      edu: edu,
     };
     axios
       .post("http://localhost:8080/api/recruit/add", body)
@@ -81,15 +84,13 @@ export default function RegistPostContainer() {
       recruitAreaHandler={recruitAreaHandler}
       recruitNumHandler={recruitNumHandler}
       myTaskHandler={myTaskHandler}
+      isExp={isExp}
       workDepartmentHandler={workDepartmentHandler}
       workRankHandler={workRankHandler}
       conditionHandler={conditionHandler}
       expList={expList}
       onChecked={onChecked}
-      checkedList={checkedList}
-      condition={condition}
-      workRank={workRank}
-      isExp={isExp}
+      eduHandler={eduHandler}
     ></RegistPostComponent>
   );
 }

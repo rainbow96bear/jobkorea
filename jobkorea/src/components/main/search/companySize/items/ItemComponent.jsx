@@ -1,33 +1,37 @@
 import styled from "styled-components";
-export default function ItemComponent() {
+export default function ItemComponent({ data }) {
   return (
-    <ItemBox>
-      <ItemFrame>
-        <CompanyName>회사이름</CompanyName>
-        <RecruitContentBox>
-          <ContentBox>
-            <span>
-              (주)창의와탐구 본사 공개 채용 - 사업기획팀원, 수학연구원
-            </span>
-            <Qualification>
-              <div>경력</div>
-              <div>학력</div>
-              <div>지역</div>
-              <div>고용형태</div>
-              <div>직급</div>
-            </Qualification>
-            <OtherPreferential>
-              병역특례, 교재관리, 교재개발, 수학교재 개발, 교사, 교수설계,
-              교재제작, 마케팅, 마케팅기획
-            </OtherPreferential>
-          </ContentBox>
-          <div>
-            <ApplyBtn>즉시지원</ApplyBtn>
-            <div></div>
-          </div>
-        </RecruitContentBox>
-      </ItemFrame>
-    </ItemBox>
+    <>
+      {data.map((data) =>
+        data.map((data2, index) => (
+          <ItemBox>
+            <ItemFrame>
+              <CompanyName>회사이름</CompanyName>
+              <RecruitContentBox>
+                <ContentBox>
+                  <span>{data2.Area}</span>
+                  <Qualification>
+                    <div>{data2.Exp}</div>
+                    <div>학력</div>
+                    <div>지역</div>
+                    <div>고용형태</div>
+                    <div>{data2.Rank}</div>
+                  </Qualification>
+                  <OtherPreferential>
+                    병역특례, 교재관리, 교재개발, 수학교재 개발, 교사, 교수설계,
+                    교재제작, 마케팅, 마케팅기획
+                  </OtherPreferential>
+                </ContentBox>
+                <div>
+                  <ApplyBtn>즉시지원</ApplyBtn>
+                  <div></div>
+                </div>
+              </RecruitContentBox>
+            </ItemFrame>
+          </ItemBox>
+        ))
+      )}
+    </>
   );
 }
 const ItemBox = styled.div`

@@ -4,14 +4,14 @@ import ListComponent from "./SolutionLIst/Component";
 const SolutionComponent = () => {
   const onList = [
     {
-      img: "img/icon_start_1.png",
+      img: "/img/icon_start_1.png",
       title: "간편한 ",
       titlebold: "채용공고 등록",
       text1: "쉽고 빠른 채용공고 등록하기 ",
       text2: "다양한 직군, 인턴/신입 경력까지 폭넓은 채용",
     },
     {
-      img: "img/icon_start_2.png",
+      img: "/img/icon_start_2.png",
       title: "쉽고 정확한 ",
       titlebold: "지원자 관리",
       text1: "한눈에 보는 지원자 현황 ",
@@ -20,14 +20,14 @@ const SolutionComponent = () => {
     {},
     {},
     {
-      img: "img/icon_start_3.png",
+      img: "/img/icon_start_3.png",
       title: "인턴/신입부터 경력까지 ",
       titlebold: "인재검색",
       text1: "우리기업과 잘 맞는 인재추천 ",
       text2: "원하는 인재 찾기 / 입사제의 포지션 제안",
     },
     {
-      img: "img/icon_start_4.png",
+      img: "/img/icon_start_4.png",
       title: "믿고 맡기는 ",
       titlebold: "헤드헌팅",
       text1: "엄선된 헤드헌팅을 통한 인재추천 ",
@@ -48,51 +48,6 @@ const SolutionComponent = () => {
           {onList.map((item, index) => (
             <ListComponent key={`onList-${index}`} item={item}></ListComponent>
           ))}
-
-          {/* <div className="solutionList">
-            <img src="img/icon_start_1.png" />
-            <div className="imgtitle">
-              간편한
-              <br /> <span>채용공고 등록</span>
-            </div>
-            <div className="imgtext">
-              쉽고 빠른 채용공고 등록하기
-              <br /> 다양한 직군, 인턴/신입, 경력까지 폭넓은 채용
-            </div>
-          </div>
-          <div className="solutionList">
-            <img src="img/icon_start_2.png" />
-            <div className="imgtitle">
-              쉽고 정확한
-              <br /> <span>지원자 관리</span>
-            </div>
-            <div className="imgtext">
-              한눈에 보는 지원자 현황
-              <br /> 서류합격, 면접제의 관리하기
-            </div>
-          </div>
-          <div className="solutionList">3</div>
-          <div className="solutionList">4</div>
-          <div className="solutionList">
-            <img src="img/icon_start_3.png" />
-            <div className="imgtitle">
-              인턴/신입부터 경력까지
-              <br /> <span>인재검색</span>
-            </div>
-            <div className="imgtext">
-              우리기업과 잘 맞는 인재추천
-              <br /> 원하는 인재 찾기
-              <br /> 입사제의 포지션제안
-            </div>
-          </div>
-          <div className="solutionList">
-            <img src="img/icon_start_4.png" />
-            <div className="imgtitle">
-              믿고 맡기는
-              <br /> <span>헤드헌팅</span>
-            </div>
-            <div className="imgtext">엄선된 헤드헌팅을 통한 인재추천</div>
-          </div> */}
         </div>
       </div>
     </SolutionBox>

@@ -5,15 +5,6 @@ import { useEffect, useState } from "react";
 export default function ManagePostContainer() {
   const [inputData, setInputData] = useState([]);
 
-  // const click = async () => {
-  //   console.log("ㅁ");
-  //   const res = await axios.post("http://localhost:8080/api/recruit/call", {
-  //     z: 1,
-  //   });
-
-  //   console.log(res.data);
-  // };
-  // click();
   useEffect(() => {
     try {
       axios.post("http://localhost:8080/api/recruit/call").then((data) => {
@@ -25,6 +16,7 @@ export default function ManagePostContainer() {
           Department: rowData.workDepartment,
           Rank: rowData.workRank,
           Condition: rowData.condition,
+          Edu: rowData.edu,
         }));
         setInputData([...inputData, _inputData]);
         console.log(data.data);

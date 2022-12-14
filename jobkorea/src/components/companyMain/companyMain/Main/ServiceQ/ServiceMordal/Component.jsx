@@ -14,18 +14,20 @@ const ServiceModalComponent = ({
         <div className="flex">
           <img
             className={mordalIndex == 1 ? "buttonStop" : ""}
-            src="./img/prev.svg"
-            onClick={prevClick}></img>
+            src="/img/prev.svg"
+            onClick={prevClick}
+          ></img>
           <img
             className={mordalIndex == 8 ? "buttonStop" : ""}
-            src="img/next.svg"
-            onClick={nextClick}></img>
+            src="/img/next.svg"
+            onClick={nextClick}
+          ></img>
         </div>
       </div>
       <div className="mordal">
         <div className="title">
           {data.title}
-          <img src="img/x-button.svg" onClick={closeOnClick}></img>
+          <img src="/img/x-button.svg" onClick={closeOnClick}></img>
         </div>
         <div className="text">
           {data.text.map((item, index) => {

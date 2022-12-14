@@ -6,21 +6,23 @@ export default function RegistPostComponent({
   saveHandler,
   recruitAreaHandler,
   recruitNumHandler,
-  isExp,
   myTaskHandler,
+  isExp,
   workDepartmentHandler,
   workRankHandler,
   conditionHandler,
   expList,
   onChecked,
+  eduHandler,
 }) {
   const options = [
-    { value: "사원", label: "사원" },
-    { value: "주임", label: "주임" },
-    { value: "대리", label: "대리" },
-    { value: "과장", label: "과장" },
-    { value: "차장", label: "차장" },
-    { value: "부장", label: "부장" },
+    { value: "인턴", label: "인턴" },
+    { value: "사원급", label: "사원" },
+    { value: "주임급", label: "주임" },
+    { value: "대리급", label: "대리" },
+    { value: "과장급", label: "과장" },
+    { value: "차장급", label: "차장" },
+    { value: "부장급", label: "부장" },
   ];
 
   const options2 = [
@@ -43,12 +45,19 @@ export default function RegistPostComponent({
     { value: "외국어 : HSK", label: "외국어 : HSK" },
   ];
 
+  const options3 = [
+    { value: "학력무관", label: "학력무관" },
+    { value: "고졸↑", label: "고졸이상" },
+    { value: "초대졸↑", label: "초대졸이상" },
+    { value: "대졸↑", label: "대졸이상" },
+  ];
+
   return (
     <BackgroundBox>
       <HeadBox>모집분야</HeadBox>
       <RegistPostBox>
         <div className="line">
-          <div>모집분야명</div>
+          <div>모집공고명</div>
           <input type="text" className="mo1" onChange={recruitAreaHandler} />
           <input
             type="number"
@@ -115,10 +124,17 @@ export default function RegistPostComponent({
               classNamePrefix="select"
               options={options2}
               onChange={conditionHandler}
-              // onChange={(choice) => {
-              //   setUserChoice(choice);
-              //   console.log(userChoice[0].value);
-              // }}
+            />
+          </LineBox>
+        </div>
+        <div className="line">
+          <div>학력조건</div>
+          <LineBox>
+            <Select
+              className="basic-multi-select"
+              classNamePrefix="select"
+              options={options3}
+              onChange={eduHandler}
             />
           </LineBox>
         </div>
