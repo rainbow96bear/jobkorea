@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const crypto = require("crypto-js");
 const jwt = require("jsonwebtoken");
-// const { default: Cookies } = require("universal-cookie");
+
 // const Cookies = require("universal-cookie");
 
 const { Companyuser_Info } = require("../models/index.js");
@@ -9,44 +9,63 @@ const { Companyuser_Info } = require("../models/index.js");
 // const cookies = new Cookies();
 
 router.post("/login", async (req, res) => {
-  console.log(req.body.pwConfirm);
+  console.log("-------------------");
+  console.log(req.body.idConfirm);
+  // const tempcookiename = "jobkorea_login"; //1
+  // console.log(req.cookies[tempcookiename]); //1
+  // console.log(req.cookies["jobkorea_login"]); //2
+  // console.log(req.cookies.jobkorea_login); //3
+  // console.log(req.cookies);
+  console.log("-------------------");
+
   try {
-    if (
-      await Companyuser_Info.findOne({
-        where: { companyId: req.body.idConfirm },
-      })
-    ) {
+    if (req.cookies["jobkorea_login"]) {
+      const temp = jwt.verify(
+        req.cookies["jobkorea_login"],
+        process.env.COOKIE_SECRET
+      );
+      console.log("++++++++++++++");
+      console.log(temp["companyId"]);
+      res.send({ companyId: req.body.idConfirm });
+    } else {
       if (
         await Companyuser_Info.findOne({
-          where: {
-            // companyId: req.body.idConfirm,
-            companyPw: crypto.SHA256(req.body.pwConfirm).toString(),
-          },
+          where: { companyId: req.body.idConfirm },
         })
       ) {
-        // res.clearCookie("jobkorea_login");
-        // res.cookie(
-        //   "jobkorea_login",
-        //   jwt.sign(
-        //     { companyId: req.body.idConfirm },
-        //     process.env.COOKIE_SECRET
-        //   ),
-        //   { expires: new Date(Date.now() + 6000 * 30) }
-        // // );
-        // cookies.set(
-        //   "cookie",
-        //   { companyId: req.body.idConfirm },
-        //   {
-        //     path: "/",
-        //     expires: Date.now() / 1000 + 60 * 60,
-        //   }
-        // );
-        res.send({ companyId: req.body.idConfirm });
+        if (
+          await Companyuser_Info.findOne({
+            where: {
+              // companyId: req.body.idConfirm,
+              companyPw: crypto.SHA256(req.body.pwConfirm).toString(),
+            },
+          })
+        ) {
+          // res.clearCookie("jobkorea_login");
+          res.cookie(
+            "jobkorea_login",
+            jwt.sign(
+              { companyId: req.body.idConfirm },
+              process.env.COOKIE_SECRET
+            ),
+            { expires: new Date(Date.now() + 6000 * 30) }
+          );
+          // cookies.set(
+          //   "cookie",
+          //   { companyId: req.body.idConfirm },
+          //   {
+          //     path: "/",
+          //     expires: Date.now() / 1000 + 60 * 60,
+          //   }
+          // );
+
+          res.send("로그인완료");
+        } else {
+          res.send("비밀번호가 일치하지 않습니다");
+        }
       } else {
-        res.send("비밀번호가 일치하지 않습니다");
+        res.send("없는 아이디 입니다");
       }
-    } else {
-      res.send("없는 아이디 입니다");
     }
   } catch (err) {
     console.error(err);

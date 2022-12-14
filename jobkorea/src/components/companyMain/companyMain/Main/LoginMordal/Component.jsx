@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const MordalComponent = ({ loginOnClick, moveTo, onClick }) => {
   const [idConfirm, setIdconfirm] = useState("");
   const [pwConfirm, setPwconfirm] = useState("");
+
+  // useEffect(() => {
+  //   setCookietesttwo(JSON.parse(window.atob(document.cookie)));
+  // }, [cookietest]);
 
   return (
     <MordalBox>

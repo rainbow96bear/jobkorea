@@ -1,11 +1,20 @@
 import MordalComponent from "./Component";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Cookies from "universal-cookie";
 
-const cookies = new Cookies();
+import { useDispatch } from "react-redux";
+import { action } from "../../../../../modules/userInfo.js";
+
+// import Cookies from "universal-cookie"
+// cookies.remove('cookies');//로그아웃시
+
+// const { decodedToken, isExpired } = useJwt(token);
 
 const LoginMordalContainer = ({ setLoginIsClick }) => {
+  // const [cookietest, setCookietest] = useState("");
+  // const [cookietesttwo, setCookietesttwo] = useState("");
+  const dispatch = useDispatch();
+
   const loginOnClick = () => {
     setLoginIsClick(false);
   };
@@ -26,20 +35,24 @@ const LoginMordalContainer = ({ setLoginIsClick }) => {
       alert("비밀번호가 일치하지 않습니다");
     } else if (data.data == "로그인완료") {
       alert("로그인 완료");
-      console.log(data.data);
-      // cookies.set(
-      //   "cookie",
-      //   { companyId: req.body.idConfirm },
-      //   {
-      //     path: "/",
-      //     expires: Date.now() / 1000 + 60 * 60,
-      //   }
-      // );
+      setLoginIsClick(false);
+      dispatch(action.getuserInfo({ id: idConfirm }));
+
+      // console.log(data.data.decoded);
+      // setCookietest("test");
+
+      // cookies.set("cookie", idConfirm, {
+      //   path: "/",
+      //   expires: new Date(Date.now() + 6000 * 30),
+      // });
+      // const token = idConfirm;
     }
   };
 
   return (
     <MordalComponent
+      // cookietesttwo={cookietesttwo}
+      // cookietest={cookietest}
       loginOnClick={loginOnClick}
       moveTo={moveTo}
       onClick={onClick}
