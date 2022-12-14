@@ -311,6 +311,7 @@ export default function CompanyComponent({ onClick }) {
                   isIdNumber === true
                 )
                   //이거 다시 생각해보기 ! ""필요없음 ""은 false임
+
                   onClick(
                     selectedOption,
                     companyNumber,
