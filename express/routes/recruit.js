@@ -13,6 +13,7 @@ router.post("/add", async (req, res) => {
     workDepartment: req.body.workDepartment,
     workRank: req.body.workRank.join(),
     condition: req.body.condition.join(),
+    edu: req.body.edu,
   });
 });
 
@@ -25,6 +26,16 @@ router.post("/call", async (req, res) => {
     res.send(error);
   }
   // res.send("전화해요");
+});
+
+router.post("/search/call", async (req, res) => {
+  console.log(req.body);
+  try {
+    const rowData = await Recruit.findAll();
+    res.send(rowData);
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 module.exports = router;

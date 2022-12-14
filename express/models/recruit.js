@@ -25,6 +25,9 @@ module.exports = class Recruit extends Sequelize.Model {
         condition: {
           type: Sequelize.STRING(255),
         },
+        edu: {
+          type: Sequelize.STRING(255),
+        },
       },
       {
         sequelize,
