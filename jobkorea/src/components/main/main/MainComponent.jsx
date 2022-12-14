@@ -9,15 +9,23 @@ import RankingContainer from "./Ranking/RankingContainer";
 import QuickMenuContainer from "./QuickMenu/QuickMenuContainer";
 import FirstVVIPContainer from "./FirstVVIP/FirstVVIPContainer";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function MainComponent() {
+  const [test, setTest] = useState(false);
   return (
     <MainBox>
       <MainFirstItem>
         <div className="firstRow">
           <BigCarouselContainer></BigCarouselContainer>
           <SmallCarouselContainer></SmallCarouselContainer>
-          <BeforeLogInContainer></BeforeLogInContainer>
+          {test ? (
+            <AfterLogInContainer setTest={setTest} />
+          ) : (
+            <BeforeLogInContainer setTest={setTest} />
+          )}
+          {/* <BeforeLogInContainer></BeforeLogInContainer> */}
+          {/* <AfterLogInContainer></AfterLogInContainer> */}
         </div>
         <div className="secondRow">
           <div className="secondRowCol1">
@@ -37,8 +45,6 @@ export default function MainComponent() {
         <div>
           <h3>First VVIP 채용관</h3>
           <FirstVVIPContainer></FirstVVIPContainer>
-          <hr />
-          <AfterLogInContainer></AfterLogInContainer>
         </div>
       </MainSecondItem>
     </MainBox>
@@ -70,13 +76,13 @@ const MainBox = styled.div`
   & .secondRowCol2 {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 21.45%;
     margin-left: 8px;
   }
   & .secondRowCol3 {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 18.55%;
     margin-left: 8px;
   }
 `;

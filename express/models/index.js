@@ -8,6 +8,9 @@ const Companyuser_Info = require("./join.js");
 const Recruit = require("./recruit.js");
 
 const db = { Companyuser_Info, Recruit };
+const Individualuser_Info = require("./userJoin.js");
+
+const db = { Companyuser_Info, Individualuser_Info };
 
 let sequelize = new Sequelize(
   config.database,
@@ -18,6 +21,7 @@ let sequelize = new Sequelize(
 
 Companyuser_Info.init(sequelize);
 Recruit.init(sequelize);
+Individualuser_Info.init(sequelize);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

@@ -1,16 +1,26 @@
 import styled from "styled-components";
-import chevronright from "./chevron-right-solid.svg";
+import { IoIosArrowForward } from "react-icons/io";
 
-const AfterLogInComponent = () => {
+const AfterLogInComponent = ({ setTest }) => {
   return (
     <>
       <AfterLogInBox>
         <div className="afterLogInDiv1">
           <div className="goInfo">염예나님</div>
-          <button className="logOutBtn">로그아웃</button>
+          <button
+            className="logOutBtn"
+            onClick={() => {
+              setTest(false);
+            }}
+          >
+            로그아웃
+          </button>
         </div>
         <div className="afterLogInDiv2">
-          <div className="goResume">이력서 관리</div>
+          <div className="goResume">
+            이력서 관리
+            <IoIosArrowForward />
+          </div>
           <div className="modifiedDate">최종 수정일 (2022.07.18)</div>
         </div>
         <div className="afterLogInDiv3">
@@ -27,10 +37,8 @@ const AfterLogInComponent = () => {
 export default AfterLogInComponent;
 
 const AfterLogInBox = styled.div`
-  width: 14%;
-  height: 108px;
-  margin-top: 0.5%;
-  margin-left: 8px;
+  width: 20%;
+  height: 115px;
   text-align: center;
   padding-top: 0.3%;
   background-color: #fafafa;
@@ -39,8 +47,7 @@ const AfterLogInBox = styled.div`
   & .afterLogInDiv1 {
     display: flex;
     justify-content: space-between;
-    margin: 5px 0;
-    padding: 10px;
+    padding: 2px;
   }
   & .goInfo {
     font-weight: 700;
@@ -56,10 +63,6 @@ const AfterLogInBox = styled.div`
     width: 100px;
     font-size: 12px;
     color: #2e9afe;
-    background-image: url(${chevronright});
-    background-repeat: no-repeat;
-    background-size: 6px;
-    background-position: right 10px bottom 13px;
   }
   & .modifiedDate {
     font-size: 6px;

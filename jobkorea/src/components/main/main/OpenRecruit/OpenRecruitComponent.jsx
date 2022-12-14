@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import recruitLogo1 from "./images/logo1.gif";
@@ -13,9 +13,12 @@ import recruitLogo8 from "./images/logo8.gif";
 const COLOR = "#3399ff";
 
 const OpenRecruitComponent = () => {
+  const [juniorTitle, setJuniorTitle] = useState(true);
+  // CSS를 주고 싶은 div 상태 변경하기
   return (
     <ItemBox>
-      <OpenRecruitBox>
+      <OpenRecruitBox juniorTitle={juniorTitle}>
+        {/* div 상태 변경을 위해 styled component를 준 박스 div에 props 넣기  */}
         <div>
           <div className="boxTitle1">공채속보</div>
           <div className="boxTitle2">기업분석</div>
@@ -27,8 +30,24 @@ const OpenRecruitComponent = () => {
           <div className="boxTitle8">잡코리아 TV</div>
         </div>
         <div className="boxJrSrUl">
-          <div className="boxJuniorTitle">신입</div>
-          <div className="boxSeniorTitle">경력</div>
+          <div
+            className="boxJuniorTitle"
+            onClick={() => {
+              setJuniorTitle(true);
+              // 상태 변경 함수 사용
+            }}
+          >
+            신입
+          </div>
+          <div
+            className="boxSeniorTitle"
+            onClick={() => {
+              setJuniorTitle(false);
+              // 상태 변경 함수 사용
+            }}
+          >
+            경력
+          </div>
         </div>
       </OpenRecruitBox>
       <RecruitNewsBox>
@@ -165,6 +184,10 @@ const OpenRecruitBox = styled.div`
     color: #a1a0a0;
     font-size: 11px;
     cursor: pointer;
+    ${(props) =>
+      props.juniorTitle
+        ? `background-color:${COLOR}; color: white`
+        : ""}/* 삼항연산자로 CSS 상태 변경 */
   }
   & .boxSeniorTitle {
     list-style: none;
@@ -175,6 +198,8 @@ const OpenRecruitBox = styled.div`
     color: #a1a0a0;
     font-size: 11px;
     cursor: pointer;
+    ${(props) =>
+      props.juniorTitle ? "" : `background-color:${COLOR}; color: white`}
   }
 `;
 

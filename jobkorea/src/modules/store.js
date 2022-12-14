@@ -1,4 +1,13 @@
-// import { createStore, combindeReducers } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extenstion";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-// export default store;
+import BeforeLogInContainer from "../components/main/main/BeforeLogIn/BeforeLogInContainer";
+
+const rootReducer = combineReducers({
+  loggedState: BeforeLogInContainer,
+});
+
+const store = configureStore({
+  reducer: rootReducer,
+});
+
+export default store;
