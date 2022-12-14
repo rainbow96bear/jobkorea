@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useRef } from "react";
 
 const BeforeLogInComponent = ({ logInClick }) => {
-  const [userId, setUserId] = useState("");
-  const [userPw, setUserPw] = useState("");
+  const [individualId, setIndividualId] = useState("");
+  const [individualPw, setIndividualPw] = useState("");
+  const idRef = useRef();
+  const pwRef = useRef();
   const navigate = useNavigate();
   const goToRegist = () => {
     navigate("/registAccount/individual");
@@ -23,18 +26,20 @@ const BeforeLogInComponent = ({ logInClick }) => {
         <div className="logInInput">
           <input
             type="text"
-            value={userId}
+            value={individualId}
+            ref={idRef}
             onInput={(e) => {
-              setUserId(e.target.value);
+              setIndividualId(e.target.value);
             }}
             className="logInID"
             placeholder="잡코리아ID"
           />
           <input
             type="password"
-            value={userPw}
+            value={individualPw}
+            ref={pwRef}
             onInput={(e) => {
-              setUserPw(e.target.value);
+              setIndividualPw(e.target.value);
             }}
             className="logInPW"
             placeholder="비밀번호"
@@ -43,7 +48,7 @@ const BeforeLogInComponent = ({ logInClick }) => {
         <button
           className="logInBtn"
           onClick={() => {
-            logInClick(userId, userPw);
+            logInClick(individualId, individualPw);
           }}
         >
           로그인

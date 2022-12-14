@@ -1,7 +1,7 @@
 import AfterLogInComponent from "./AfterLogInComponent";
 
-const AfterLogInContainer = () => {
-  return <AfterLogInComponent></AfterLogInComponent>;
+const AfterLogInContainer = ({ setTest }) => {
+  return <AfterLogInComponent setTest={setTest}></AfterLogInComponent>;
 };
 
 export default AfterLogInContainer;
