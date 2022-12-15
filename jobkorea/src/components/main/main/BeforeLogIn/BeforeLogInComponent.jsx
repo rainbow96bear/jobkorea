@@ -1,12 +1,20 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // import { useCookies } from "react-cookie";
 
-const BeforeLogInComponent = ({ logInClick }) => {
-  const [individualId, setIndividualId] = useState("");
-  const [individualPw, setIndividualPw] = useState("");
+const BeforeLogInComponent = ({
+  logInClick,
+  individualName,
+  individualId,
+  individualPw,
+  setIndividualId,
+  setIndividualPw,
+  setIndividualName,
+}) => {
+  // const [individualId, setIndividualId] = useState("");
+  // const [individualPw, setIndividualPw] = useState("");
 
   // const [cookies, setCookie] = useCookies(["jobkorea_cookie"]);
 

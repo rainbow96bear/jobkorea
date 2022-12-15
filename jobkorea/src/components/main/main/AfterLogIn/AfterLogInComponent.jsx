@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const AfterLogInComponent = ({ onClick, setTest, individualName }) => {
+const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
   return (
     <>
       <AfterLogInBox>
         <div className="afterLogInDiv1">
-          <div className="goInfo">{individualName}님</div>
+          <div className="goInfo" onClick={onClick}>
+            {individualId}님
+          </div>
           <button
             className="logOutBtn"
             onClick={() => {
