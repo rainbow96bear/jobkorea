@@ -59,7 +59,7 @@ export default SolutionComponent;
 const SolutionBox = styled.div`
   width: 67%;
   margin: auto;
-  background: url("img/background_solution.png") no-repeat 120px 61px;
+  background: url("/img/background_solution.png") no-repeat 120px 61px;
 
   .title {
     width: 450px;

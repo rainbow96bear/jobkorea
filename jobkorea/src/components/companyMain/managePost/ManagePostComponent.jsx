@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export default function ManagePostComponent({ inputData }) {
-  console.log(inputData);
   return (
     <>
       {inputData.map((data) =>
@@ -19,7 +18,7 @@ export default function ManagePostComponent({ inputData }) {
                     <div>{data2.Shape}</div>
                     <div>{data2.Rank}</div>
                     <div>
-                      {data2.isPay == "회사내규에 따름" ? (
+                      {data2.IsPay == "회사내규에 따름" ? (
                         <>{data2.IsPay}</>
                       ) : (
                         <>
@@ -34,8 +33,8 @@ export default function ManagePostComponent({ inputData }) {
                   </OtherPreferential>
                 </ContentBox>
                 <div>
-                  <ApplyBtn>즉시지원</ApplyBtn>
-                  <div></div>
+                  <ApplyBtn>현재지원자 수</ApplyBtn>
+                  {data2.Num == -1 ? <></> : <div>모집인원 {data2.Num}명</div>}
                 </div>
               </RecruitContentBox>
             </ItemFrame>

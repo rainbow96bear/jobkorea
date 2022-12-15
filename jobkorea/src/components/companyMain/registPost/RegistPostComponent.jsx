@@ -21,6 +21,9 @@ export default function RegistPostComponent({
   isPay,
   minPayHandler,
   maxPayHandler,
+  isLimit,
+  limitList,
+  limitChecked,
 }) {
   const options = [
     { value: "인턴", label: "인턴" },
@@ -103,21 +106,48 @@ export default function RegistPostComponent({
         <div className="line">
           <div>모집공고명</div>
           <input type="text" className="mo1" onChange={nameHandler} />
-          <input
-            type="number"
-            className="mo2"
-            min={1}
-            onInput={(e) => {
-              if (e.target.value.length > e.target.maxLength)
-                e.target.value = e.target.value.slice(0, e.target.maxLength);
-              e.target.value = e.target.value
-                .replace(/[^0-9.]/g, "")
-                .replace(/(\..*)\./g, "$1");
-            }}
-            maxLength={2}
-            onChange={recruitNumHandler}
-          />
-          <div>명 모집</div>
+
+          {limitList.map((item, index) => {
+            return (
+              <CheckBox key={`limitList-${index}`}>
+                <input
+                  key={`limitList-input-${index}`}
+                  type="checkbox"
+                  value={item.data}
+                  onChange={(e) => {
+                    limitChecked(e.target.checked, e.target.value);
+                    console.log(isLimit);
+                  }}
+                />
+                <div key={`expList-div-${index}`}>{item.name}</div>
+              </CheckBox>
+            );
+          })}
+
+          {isLimit ? (
+            <>
+              <input
+                type="number"
+                className="mo2"
+                min={1}
+                onInput={(e) => {
+                  if (e.target.value.length > e.target.maxLength)
+                    e.target.value = e.target.value.slice(
+                      0,
+                      e.target.maxLength
+                    );
+                  e.target.value = e.target.value
+                    .replace(/[^0-9.]/g, "")
+                    .replace(/(\..*)\./g, "$1");
+                }}
+                maxLength={2}
+                onChange={recruitNumHandler}
+              />
+              <div>명 모집</div>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="line">
           <div>경력여부</div>
@@ -126,7 +156,7 @@ export default function RegistPostComponent({
             return (
               <CheckBox key={`expList-${index}`}>
                 <input
-                  key={`payList-input-${index}`}
+                  key={`expList-input-${index}`}
                   type="checkbox"
                   value={item.data}
                   checked={isExp.includes(item.data) ? true : false}

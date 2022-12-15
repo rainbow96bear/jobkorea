@@ -59,7 +59,7 @@ module.exports = class Recruit extends Sequelize.Model {
   static associate(db) {
     db.Recruit.belongsTo(db.Companyuser_Info, {
       // as: "RecruitMaker",
-      targetKey: "id",
+      targetKey: "companyId",
       foreignKey: "company",
     });
   }

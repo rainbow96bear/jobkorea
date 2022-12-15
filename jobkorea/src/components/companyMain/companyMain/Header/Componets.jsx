@@ -153,6 +153,7 @@ const HeaderBox = styled.div`
 const LowHeaderBox = styled.div`
   height: 52px;
   overflow: hidden;
+  border-bottom: 1px solid gray;
 `;
 
 export default HeaderComponent;
