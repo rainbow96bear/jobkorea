@@ -17,7 +17,6 @@ const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
             }}
           >
             로그아웃
-            {/* 로그인한 사람의 이름이 안 뜨는 거 해결 */}
           </button>
         </div>
         <div className="afterLogInDiv2">
