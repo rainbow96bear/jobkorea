@@ -63,7 +63,7 @@ export default QuickMenuComponent;
 
 const QuickMenuBox = styled.div`
   width: 100%;
-  height: 254px;
+  height: 236px;
   background-color: white;
   border: 1px solid #dadada;
   text-align: center;

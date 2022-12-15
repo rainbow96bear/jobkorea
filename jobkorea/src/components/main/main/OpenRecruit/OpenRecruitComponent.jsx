@@ -229,7 +229,7 @@ const RecruitNewsBox = styled.div`
       font-weight: 500;
       text-align: center;
       background-color: white;
-      padding: 25px 0;
+      padding: 19px 0;
       &:last-child {
         border-right: none;
       }
@@ -249,7 +249,7 @@ const RecruitNewsBox = styled.div`
       border-right: 1px solid #dadada;
       text-align: center;
       background-color: white;
-      padding: 25px 0;
+      padding: 19px 0;
       &:last-child {
         border-right: none;
       }
@@ -264,7 +264,7 @@ const RecruitNewsBox = styled.div`
     display: flex;
     float: left;
     & div {
-      padding: 6px;
+      padding: 4px;
     }
   }
 `;

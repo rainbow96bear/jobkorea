@@ -38,7 +38,7 @@ export default SmallCarouselComponent;
 
 const NoticeCarouselBox = styled.div`
   width: 100%;
-  height: 24px;
+  height: 28px;
   font-size: 0.7em;
   border: 1px solid #dadada;
   background-color: #f8f9fb;

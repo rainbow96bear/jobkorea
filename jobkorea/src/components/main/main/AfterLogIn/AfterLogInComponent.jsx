@@ -56,7 +56,7 @@ const AfterLogInBox = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 5px 0;
-    padding: 0 10px;
+    padding: 6.5px 10px;
   }
   & .goResume {
     cursor: pointer;
@@ -71,6 +71,7 @@ const AfterLogInBox = styled.div`
   & .afterLogInDiv3 {
     display: flex;
     flex: 1;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     div {
@@ -81,7 +82,7 @@ const AfterLogInBox = styled.div`
       color: #424242;
       font-size: 12px;
       cursor: pointer;
-      padding: 11px 8.5px;
+      padding: 13px 5px;
       &:last-child {
         border-right: none;
       }
