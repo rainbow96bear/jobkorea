@@ -13,7 +13,7 @@ router.post("/regist", async (req, res) => {
   try {
     if (
       await Individualuser_Info.findOne({
-        where: { individualId: req.body.individualId },
+        where: { individualId: req.body.id },
       })
     ) {
       console.log("이미 있는 아이디");
@@ -97,9 +97,16 @@ router.post("/login", async (req, res) => {
 // }
 
 router.post("/logout", (req, res) => {
-  res.clearCookie("individual_login");
-  res.send();
-  // res.send() 매우 중요!!
+  const logOutData = Individualuser_Info.findOne({
+    where: { individualId: req.body.individualId },
+  });
+  if (logOutData) {
+    res.clearCookie("individual_login");
+    res.send();
+    // res.send() 매우 중요!!
+  } else {
+    res.send();
+  }
 });
 
 module.exports = router;

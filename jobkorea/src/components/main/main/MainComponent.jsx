@@ -12,6 +12,10 @@ import styled from "styled-components";
 import { useState } from "react";
 
 export default function MainComponent() {
+  const [individualId, setIndividualId] = useState("");
+  const [individualPw, setIndividualPw] = useState("");
+  const [individualName, setIndividualName] = useState("");
+
   const [test, setTest] = useState(false);
   return (
     <MainBox>
@@ -20,9 +24,25 @@ export default function MainComponent() {
           <BigCarouselContainer></BigCarouselContainer>
           <SmallCarouselContainer></SmallCarouselContainer>
           {test ? (
-            <AfterLogInContainer setTest={setTest} />
+            <AfterLogInContainer
+              setTest={setTest}
+              individualName={individualName}
+              individualId={individualId}
+              individualPw={individualPw}
+              setIndividualName={setIndividualName}
+              setIndividualId={setIndividualId}
+              setIndividualPw={setIndividualPw}
+            />
           ) : (
-            <BeforeLogInContainer setTest={setTest} />
+            <BeforeLogInContainer
+              setTest={setTest}
+              individualName={individualName}
+              individualId={individualId}
+              individualPw={individualPw}
+              setIndividualName={setIndividualName}
+              setIndividualId={setIndividualId}
+              setIndividualPw={setIndividualPw}
+            />
           )}
           {/* <BeforeLogInContainer></BeforeLogInContainer> */}
           {/* <AfterLogInContainer></AfterLogInContainer> */}

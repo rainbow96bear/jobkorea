@@ -1,7 +1,15 @@
 import axios from "axios";
 import BeforeLogInComponent from "./BeforeLogInComponent";
 
-const BeforeLogInContainer = ({ setTest }) => {
+const BeforeLogInContainer = ({
+  setTest,
+  individualName,
+  individualId,
+  individualPw,
+  setIndividualId,
+  setIndividualPw,
+  setIndividualName,
+}) => {
   const onClick = async (individualId, individualPw) => {
     if (individualId === "") {
       console.log("아이디를 입력하세요.");
@@ -22,7 +30,17 @@ const BeforeLogInContainer = ({ setTest }) => {
     }
   };
 
-  return <BeforeLogInComponent logInClick={onClick}></BeforeLogInComponent>;
+  return (
+    <BeforeLogInComponent
+      logInClick={onClick}
+      individualName={individualName}
+      individualId={individualId}
+      individualPw={individualPw}
+      setIndividualName={setIndividualName}
+      setIndividualId={setIndividualId}
+      setIndividualPw={setIndividualPw}
+    ></BeforeLogInComponent>
+  );
 };
 
 export default BeforeLogInContainer;
