@@ -15,13 +15,16 @@ export default function Main() {
         <Route path="/" element={<MainContainer></MainContainer>}></Route>
         <Route
           path="/search"
-          element={<SearchContainer></SearchContainer>}></Route>
+          element={<SearchContainer></SearchContainer>}
+        ></Route>
         <Route
           path="/recruit"
-          element={<RecruitContainer></RecruitContainer>}></Route>
+          element={<RecruitContainer></RecruitContainer>}
+        ></Route>
         <Route
           path="/apply"
-          element={<ApplyContainer></ApplyContainer>}></Route>
+          element={<ApplyContainer></ApplyContainer>}
+        ></Route>
       </Routes>
       <FooterContainer></FooterContainer>
     </Box>

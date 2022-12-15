@@ -6,20 +6,32 @@ export default function ManagePostComponent({ inputData }) {
     <>
       {inputData.map((data) =>
         data.map((data2, index) => (
-          <ItemBox>
+          <ItemBox key={`itembox-${index}`}>
             <ItemFrame>
-              <CompanyName>회사이름</CompanyName>
+              <CompanyName>{data2.CompanyName}</CompanyName>
               <RecruitContentBox>
                 <ContentBox>
-                  <span>{data2.Area}</span>
+                  <span>{data2.Name}</span>
                   <Qualification>
                     <div>{data2.Exp}</div>
-                    <div>학력</div>
-                    <div>지역</div>
-                    <div>고용형태</div>
+                    <div>{data2.Edu}</div>
+                    <div>{data2.Area}</div>
+                    <div>{data2.Shape}</div>
                     <div>{data2.Rank}</div>
+                    <div>
+                      {data2.isPay == "회사내규에 따름" ? (
+                        <>{data2.IsPay}</>
+                      ) : (
+                        <>
+                          {data2.IsPay} {data2.MinPay}~{data2.MaxPay}만원
+                        </>
+                      )}
+                    </div>
                   </Qualification>
-                  <OtherPreferential>{data2.Task}</OtherPreferential>
+                  <OtherPreferential>
+                    <div>{data2.Condition}</div>
+                    <div>{data2.Task}</div>
+                  </OtherPreferential>
                 </ContentBox>
                 <div>
                   <ApplyBtn>즉시지원</ApplyBtn>
@@ -49,6 +61,7 @@ const CompanyName = styled.div`
   flex: 2;
   border-right: 1px solid #dfdfdf;
   width: 200px;
+  font-size: 17px;
 `;
 const RecruitContentBox = styled.div`
   flex: 9;
@@ -78,6 +91,7 @@ const Qualification = styled.div`
 const OtherPreferential = styled.div`
   font-size: small;
   color: #888888;
+  max-width: 800px;
 `;
 const ApplyBtn = styled.button`
   color: white;

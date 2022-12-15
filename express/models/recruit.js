@@ -4,7 +4,7 @@ module.exports = class Recruit extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        recruitArea: {
+        recruitName: {
           type: Sequelize.STRING(255),
         },
         recruitNum: {
@@ -28,6 +28,21 @@ module.exports = class Recruit extends Sequelize.Model {
         edu: {
           type: Sequelize.STRING(255),
         },
+        area: {
+          type: Sequelize.STRING(255),
+        },
+        shape: {
+          type: Sequelize.STRING(255),
+        },
+        isPay: {
+          type: Sequelize.STRING(255),
+        },
+        minPay: {
+          type: Sequelize.STRING(255),
+        },
+        maxPay: {
+          type: Sequelize.STRING(255),
+        },
       },
       {
         sequelize,
@@ -39,5 +54,13 @@ module.exports = class Recruit extends Sequelize.Model {
         collate: "utf8mb4_general_ci",
       }
     );
+  }
+
+  static associate(db) {
+    db.Recruit.belongsTo(db.Companyuser_Info, {
+      // as: "RecruitMaker",
+      targetKey: "id",
+      foreignKey: "company",
+    });
   }
 };
