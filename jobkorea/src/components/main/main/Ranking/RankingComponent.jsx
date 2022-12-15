@@ -7,7 +7,7 @@ const RankingComponent = () => {
   return (
     <RankingBox>
       <div className="rankingDiv1">
-        <span className="rankingTitle">채용 TOP 100</span>
+        <span className="rankingTitle">최근 채용 공고</span>
         <span className="rankingIconBack">
           <IoIosArrowBack />
         </span>
@@ -24,7 +24,7 @@ export default RankingComponent;
 
 const RankingBox = styled.div`
   width: 100%;
-  height: 388px;
+  height: 356px;
   background-color: white;
   border: 1px solid #dadada;
 
