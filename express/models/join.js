@@ -47,4 +47,12 @@ module.exports = class Companyuser_Info extends Sequelize.Model {
       }
     );
   }
+
+  static associate(db) {
+    db.Companyuser_Info.hasMany(db.Recruit, {
+      as: "RecruitMaker",
+      sourceKey: "id",
+      foreignKey: "company",
+    });
+  }
 };

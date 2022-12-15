@@ -9,7 +9,7 @@ export default function ManagePostContainer() {
     try {
       axios.post("http://localhost:8080/api/recruit/call").then((data) => {
         const _inputData = data.data.map((rowData) => ({
-          Area: rowData.recruitArea,
+          Name: rowData.recruitName,
           Num: rowData.recruitNum,
           Exp: rowData.isExp,
           Task: rowData.myTask,
@@ -17,9 +17,14 @@ export default function ManagePostContainer() {
           Rank: rowData.workRank,
           Condition: rowData.condition,
           Edu: rowData.edu,
+          Area: rowData.area,
+          Shape: rowData.shape,
+          IsPay: rowData.isPay,
+          MinPay: rowData.minPay,
+          MaxPay: rowData.maxPay,
+          CompanyName: rowData.Companyuser_Info.companyName,
         }));
         setInputData([...inputData, _inputData]);
-        console.log(data.data);
         console.log([...inputData, _inputData]);
       });
     } catch (e) {

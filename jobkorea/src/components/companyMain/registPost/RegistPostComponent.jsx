@@ -4,7 +4,7 @@ import Select from "react-select";
 
 export default function RegistPostComponent({
   saveHandler,
-  recruitAreaHandler,
+  nameHandler,
   recruitNumHandler,
   myTaskHandler,
   isExp,
@@ -14,6 +14,13 @@ export default function RegistPostComponent({
   expList,
   onChecked,
   eduHandler,
+  areaHandler,
+  shapeHandler,
+  payChecked,
+  payList,
+  isPay,
+  minPayHandler,
+  maxPayHandler,
 }) {
   const options = [
     { value: "인턴", label: "인턴" },
@@ -52,13 +59,50 @@ export default function RegistPostComponent({
     { value: "대졸↑", label: "대졸이상" },
   ];
 
+  const options4 = [
+    { value: "서울", label: "서울" },
+    { value: "부산", label: "부산" },
+    { value: "대구", label: "대구" },
+    { value: "인천", label: "인천" },
+    { value: "광주", label: "광주" },
+    { value: "대전", label: "대전" },
+    { value: "울산", label: "울산" },
+    { value: "경기", label: "경기" },
+    { value: "강원", label: "강원" },
+    { value: "충북", label: "충북" },
+    { value: "충남", label: "충남" },
+    { value: "전북", label: "전북" },
+    { value: "전남", label: "전남" },
+    { value: "경북", label: "경북" },
+    { value: "경남", label: "경남" },
+    { value: "제주", label: "제주" },
+    { value: "전국", label: "전국" },
+  ];
+
+  const options5 = [
+    { value: "정규직", label: "정규직" },
+    { value: "계약직", label: "계약직" },
+    { value: "파견직", label: "파견직" },
+    { value: "도급", label: "도급" },
+    { value: "프리랜서", label: "프리랜서" },
+    { value: "아르바이트", label: "아르바이트" },
+    { value: "연수생/교육생", label: "연수생/교육생" },
+    { value: "병역특례", label: "병역특례" },
+    { value: "위촉직/개인사업자", label: "위촉직/개인사업자" },
+  ];
+
+  const options6 = [
+    { value: "정규직", label: "정규직" },
+    { value: "계약직", label: "계약직" },
+  ];
+
   return (
     <BackgroundBox>
       <HeadBox>모집분야</HeadBox>
       <RegistPostBox>
         <div className="line">
           <div>모집공고명</div>
-          <input type="text" className="mo1" onChange={recruitAreaHandler} />
+          <input type="text" className="mo1" onChange={nameHandler} />
           <input
             type="number"
             className="mo2"
@@ -80,8 +124,9 @@ export default function RegistPostComponent({
 
           {expList.map((item, index) => {
             return (
-              <CheckBox key={`check-${index}`}>
+              <CheckBox key={`expList-${index}`}>
                 <input
+                  key={`payList-input-${index}`}
                   type="checkbox"
                   value={item.data}
                   checked={isExp.includes(item.data) ? true : false}
@@ -89,7 +134,7 @@ export default function RegistPostComponent({
                     onChecked(e.target.checked, e.target.value);
                   }}
                 />
-                <div>{item.name}</div>
+                <div key={`expList-div-${index}`}>{item.name}</div>
               </CheckBox>
             );
           })}
@@ -137,6 +182,57 @@ export default function RegistPostComponent({
               onChange={eduHandler}
             />
           </LineBox>
+        </div>
+        <div className="line">
+          <div>근무지역</div>
+          <LineBox>
+            <Select
+              isMulti
+              className="basic-multi-select"
+              classNamePrefix="select"
+              options={options4}
+              onChange={areaHandler}
+            />
+          </LineBox>
+        </div>
+        <div className="line">
+          <div>근무형태</div>
+          <LineBox>
+            <Select
+              className="basic-multi-select"
+              classNamePrefix="select"
+              options={options5}
+              onChange={shapeHandler}
+            />
+          </LineBox>
+        </div>
+        <div className="line">
+          <div>경력여부</div>
+          {payList.map((item, index) => {
+            return (
+              <CheckBox key={`payList-${index}`}>
+                <input
+                  key={`payList-input-${index}`}
+                  type="checkbox"
+                  value={item.data}
+                  checked={isPay.includes(item.data) ? true : false}
+                  onChange={(e) => {
+                    payChecked(e.target.checked, e.target.value);
+                  }}
+                />
+                <div key={`payList-div-${index}`}>{item.name}</div>
+              </CheckBox>
+            );
+          })}
+          {isPay[0] == "회사내규에 따름" || isPay[1] == "회사내규에 따름" ? (
+            <></>
+          ) : (
+            <>
+              <input type="number" className="mo3" onChange={minPayHandler} /> ~
+              <input type="number" className="mo4" onChange={maxPayHandler} />만
+              원
+            </>
+          )}
         </div>
       </RegistPostBox>
       <div className="nextBtn" onClick={saveHandler}>
@@ -204,6 +300,16 @@ const RegistPostBox = styled.div`
     width: 35px;
     margin: 0 5px 0 20px;
     padding-left: 10px;
+  }
+
+  .mo3 {
+    width: 70px;
+    margin: 0 5px 0 20px;
+    padding-left: 10px;
+  }
+  .mo4 {
+    width: 70px;
+    margin: 0 5px 0 5px;
   }
   input {
     height: 40px;
