@@ -1,26 +1,25 @@
+import React from "react";
 import styled from "styled-components";
-import { IoIosArrowForward } from "react-icons/io";
 
-const AfterLogInComponent = ({ setTest }) => {
+const AfterLogInComponent = ({ onClick, setTest, individualName }) => {
   return (
     <>
       <AfterLogInBox>
         <div className="afterLogInDiv1">
-          <div className="goInfo">염예나님</div>
+          <div className="goInfo">{individualName}님</div>
           <button
             className="logOutBtn"
             onClick={() => {
+              onClick();
               setTest(false);
             }}
           >
             로그아웃
+            {/* 로그인한 사람의 이름이 안 뜨는 거 해결 */}
           </button>
         </div>
         <div className="afterLogInDiv2">
-          <div className="goResume">
-            이력서 관리
-            <IoIosArrowForward />
-          </div>
+          <div className="goResume">이력서 관리 &gt;</div>
           <div className="modifiedDate">최종 수정일 (2022.07.18)</div>
         </div>
         <div className="afterLogInDiv3">
