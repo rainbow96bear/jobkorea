@@ -2,6 +2,15 @@ const router = require("express").Router();
 
 const { Recruit } = require("../models/index.js");
 
+router.post("/recruitInfo", async (req, res) => {
+  try {
+    const Recruitdata = await Recruit.findOne({ where: { id: 1 } });
+    res.send(Recruitdata);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 router.post("/add", async (req, res) => {
   console.log(req.body);
   res.send("남양주 놀러오면 풀코스로 쏜다");

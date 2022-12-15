@@ -32,6 +32,8 @@ export default function CompanyComponent({ onClick }) {
   const [companyIdname, setCompanyIdname] = useState("");
   const [companyIdnumber, setCompanyIdnumber] = useState("");
   const [companyIdemail, setCompanyIdemail] = useState("");
+  const [companyLogo, setCompanyLogo] = useState("");
+  const [companyLogoUpload, setCompanyLogoUpload] = useState("");
 
   const [idMessage, setIdMessage] = useState(null);
   const [pwMessage, setPwMessage] = useState(null);
@@ -55,6 +57,21 @@ export default function CompanyComponent({ onClick }) {
     } else {
       setIdnumberMessage("사용 가능한 번호입니다");
       setIsIdnumber(true);
+    }
+  };
+
+  const imgChanage = (imgFile) => {
+    // console.log(itemFile.files);
+    if (imgFile.files && imgFile.files[0]) {
+      const readImg = new FileReader();
+      readImg.onload = (e) => {
+        setCompanyLogo(e.target.result);
+      };
+      readImg.readAsDataURL(imgFile.files[0]);
+      setCompanyLogoUpload(imgFile.files[0]);
+      console.log(imgFile.files[0]);
+    } else if (imgFile.files.length === 0) {
+      setCompanyLogo("");
     }
   };
 
@@ -105,6 +122,20 @@ export default function CompanyComponent({ onClick }) {
           <Joindetail>
             기업정보 <span style={{ color: "gray" }}>*필수정보</span>
           </Joindetail>
+          <Multername>기업로고를 등록해주세요</Multername>
+
+          <Companylogo src={companyLogo}></Companylogo>
+          <MulterBox
+            onChange={(e) => {
+              // const multervalue = e.target.value;
+              imgChanage(e.target);
+            }}
+            type={"file"}
+            name={"companylogo"}
+            id={"companylogo"}
+            placeholder={"기업로고"}
+            autocomplete={"off"}
+          />
 
           <Select
             // defaultValue={selectedOption}
@@ -303,7 +334,8 @@ export default function CompanyComponent({ onClick }) {
                     companyPw &&
                     companyIdname &&
                     companyIdnumber &&
-                    companyIdemail
+                    companyIdemail &&
+                    companyLogo
                   ) == "" &&
                   isId === true &&
                   isPw === true &&
@@ -322,7 +354,8 @@ export default function CompanyComponent({ onClick }) {
                     companyPw,
                     companyIdname,
                     companyIdnumber,
-                    companyIdemail
+                    companyIdemail,
+                    companyLogoUpload
                   );
                 else {
                   alert("모든정보를 제대로 입력해주세요");
@@ -338,6 +371,21 @@ export default function CompanyComponent({ onClick }) {
     </JoinBox>
   );
 }
+const Companylogo = styled.img`
+  width: 15%;
+  padding-left: 20%;
+`;
+
+const Multername = styled.span`
+  color: grey;
+  padding-left: 65%;
+`;
+
+const MulterBox = styled.input`
+  margin-top: 2%;
+  padding-left: 60%;
+  margin-left: 5%;
+`;
 
 const JoinBox = styled.div`
   width: 100%;

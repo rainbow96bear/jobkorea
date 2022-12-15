@@ -35,6 +35,10 @@ module.exports = class Companyuser_Info extends Sequelize.Model {
         companyIdemail: {
           type: Sequelize.STRING(255),
         },
+        companylogo: {
+          type: Sequelize.STRING(255),
+          allowNull: true,
+        },
       },
       {
         sequelize,

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import cjimg from "./img/cj.png";
 
-export default function RecruitComponent({ applyinformation, recruitInfo }) {
+export default function RecruitComponent() {
   return (
     <div>
       <InformationBox>
-        <div style={{ fontSize: 20 }}>채용정보</div>
+        <div style={{ fontSize: 20 }}></div>
       </InformationBox>
       <Informationboxs>
         <Informationboxscontent>
@@ -20,7 +20,7 @@ export default function RecruitComponent({ applyinformation, recruitInfo }) {
               <div style={{ marginBottom: 10 }}>지원자격</div>
               <div>
                 <Texttwo>
-                  <Texttwo>경력</Texttwo> <Textcolor>test</Textcolor>
+                  <Texttwo>경력</Texttwo> <Textcolor></Textcolor>
                 </Texttwo>
                 <Texttwo>
                   <Texttwo>학력</Texttwo>
