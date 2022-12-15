@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-const ListComponent = (item) => {
+const ListComponent = ({ item }) => {
   return (
     <ListBox>
       <div className="solutionList">
-        <img src={`${item.item.img}`} />
+        {item.img && <img src={`${item.img}`} />}
         <div className="imgtitle">
-          {item.item.title}
-          <br /> <span>{item.item.titlebold}</span>
+          {item.title}
+          <br /> <span>{item.titlebold}</span>
         </div>
         <div className="imgtext">
-          {item.item.text1}
+          {item.text1}
           <br />
-          {item.item.text2}
+          {item.text2}
         </div>
       </div>
     </ListBox>
