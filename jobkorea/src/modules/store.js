@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import storage from "redux-persist/lib/storage";
+// import storage from "redux-persist/lib/storage"
 import storageSession from "redux-persist/lib/storage/session";
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
@@ -18,7 +18,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: { persistedReducer },
   middleware: middleWares,
 });
 

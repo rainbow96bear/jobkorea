@@ -47,7 +47,7 @@ const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
           </div>
         </div>
         <div>
-          <img src="/img/start.png" />
+          <img src="/img/start.png" alt="" />
         </div>
       </div>
       <div className="temp"></div>

@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useRef } from "react";
+
+// import { useCookies } from "react-cookie";
 
 const BeforeLogInComponent = ({ logInClick }) => {
   const [individualId, setIndividualId] = useState("");
   const [individualPw, setIndividualPw] = useState("");
+
+  // const [cookies, setCookie] = useCookies(["jobkorea_cookie"]);
+
   const idRef = useRef();
   const pwRef = useRef();
   const navigate = useNavigate();
@@ -49,6 +53,7 @@ const BeforeLogInComponent = ({ logInClick }) => {
           className="logInBtn"
           onClick={() => {
             logInClick(individualId, individualPw);
+            // setCookie("jobkorea_cookie", "jobcoding");
           }}
         >
           로그인

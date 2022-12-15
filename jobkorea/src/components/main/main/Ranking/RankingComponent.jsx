@@ -15,10 +15,7 @@ const RankingComponent = () => {
           <IoIosArrowForward />
         </span>
       </div>
-      <div>
-        <span>1</span>
-        <span>삼성</span>
-      </div>
+      <div></div>
     </RankingBox>
   );
 };
