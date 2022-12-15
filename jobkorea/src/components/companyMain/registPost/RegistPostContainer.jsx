@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function RegistPostContainer() {
   const [recruitName, setRecruitName] = useState("");
-  const [recruitNum, setRecruitNum] = useState(0);
+  const [recruitNum, setRecruitNum] = useState(-1);
   const [isExp, setIsExp] = useState([]);
   const [myTask, setMyTask] = useState("");
   const [workDepartment, setWorkDepartment] = useState("");
@@ -16,6 +16,7 @@ export default function RegistPostContainer() {
   const [isPay, setIsPay] = useState([]);
   const [minPay, setMinPay] = useState("");
   const [maxPay, setMaxPay] = useState("");
+  const [isLimit, setisLimit] = useState("");
 
   const onChecked = (checked, item) => {
     if (checked) {
@@ -33,6 +34,14 @@ export default function RegistPostContainer() {
     }
   };
 
+  const limitChecked = (checked) => {
+    if (checked) {
+      setisLimit(true);
+    } else if (!checked) {
+      setisLimit(false);
+    }
+  };
+
   const expList = [
     {
       id: 0,
@@ -46,6 +55,7 @@ export default function RegistPostContainer() {
     { name: "회사 내규에 따름", data: "회사내규에 따름" },
     { name: "면접 후 결정", data: "면접 후 결정" },
   ];
+  const limitList = [{ name: "제한 있음", data: "제한 있음" }];
 
   const nameHandler = (e) => {
     e.preventDefault();
@@ -91,6 +101,20 @@ export default function RegistPostContainer() {
 
   const saveHandler = (e) => {
     e.preventDefault();
+    if (
+      recruitName == "" ||
+      isExp == "" ||
+      myTask == "" ||
+      workDepartment == "" ||
+      workRank == "" ||
+      condition == "" ||
+      edu == "" ||
+      area == "" ||
+      shape == ""
+    ) {
+      alert("필요한 값을 모두 입력해주세요");
+      return;
+    }
     let body = {
       recruitName: recruitName,
       recruitNum: recruitNum,
@@ -105,6 +129,7 @@ export default function RegistPostContainer() {
       isPay: isPay,
       minPay: minPay.toLocaleString(),
       maxPay: maxPay.toLocaleString(),
+      isLimit: isLimit,
     };
     axios
       .post("http://localhost:8080/api/recruit/add", body)
@@ -131,6 +156,9 @@ export default function RegistPostContainer() {
       isPay={isPay}
       minPayHandler={minPayHandler}
       maxPayHandler={maxPayHandler}
+      isLimit={isLimit}
+      limitList={limitList}
+      limitChecked={limitChecked}
     ></RegistPostComponent>
   );
 }

@@ -1,6 +1,7 @@
 import ManagePostComponent from "./ManagePostComponent";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 export default function ManagePostContainer() {
   const [inputData, setInputData] = useState([]);
@@ -32,5 +33,13 @@ export default function ManagePostContainer() {
     }
   }, []);
 
-  return <ManagePostComponent inputData={inputData}></ManagePostComponent>;
+  return (
+    <WrapBox>
+      <ManagePostComponent inputData={inputData} />
+    </WrapBox>
+  );
 }
+
+const WrapBox = styled.div`
+  margin: 50px 0;
+`;

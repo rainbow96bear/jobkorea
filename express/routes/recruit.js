@@ -35,9 +35,13 @@ router.post("/add", async (req, res) => {
 });
 
 router.post("/call", async (req, res) => {
-  console.log(req.body);
+  const userInfo = jwt.verify(
+    req.cookies.jobkorea_login,
+    process.env.COOKIE_SECRET
+  );
   try {
     const rowData = await Recruit.findAll({
+      where: { company: userInfo.companyId },
       include: [
         {
           model: db.Companyuser_Info,
