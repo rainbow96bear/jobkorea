@@ -16,22 +16,26 @@ export default function CompanyContainer() {
     companyPw,
     companyIdname,
     companyIdnumber,
-    companyIdemail
+    companyIdemail,
+    companyLogoUpload
   ) => {
+    let formData = new FormData();
+
+    formData.append("selectedOption", selectedOption);
+    formData.append("companyNumber", companyNumber);
+    formData.append("companyName", companyName);
+    formData.append("companyHeader", companyHeader);
+    formData.append("companyAdress", companyAdress);
+    formData.append("companyId", companyId);
+    formData.append("companyPw", companyPw);
+    formData.append("companyIdname", companyIdname);
+    formData.append("companyIdnumber", companyIdnumber);
+    formData.append("companyIdemail", companyIdemail);
+    formData.append("companyLogoUpload", companyLogoUpload);
+    console.log(companyLogoUpload);
     const data = await axios.post(
       "http://localhost:8080/api/companyuser/regist",
-      {
-        selectedOption,
-        companyNumber,
-        companyName,
-        companyHeader,
-        companyAdress,
-        companyId,
-        companyPw,
-        companyIdname,
-        companyIdnumber,
-        companyIdemail,
-      }
+      formData
     );
 
     console.log(data.data);
