@@ -44,8 +44,6 @@ export default function MainComponent() {
               setIndividualPw={setIndividualPw}
             />
           )}
-          {/* <BeforeLogInContainer></BeforeLogInContainer> */}
-          {/* <AfterLogInContainer></AfterLogInContainer> */}
         </div>
         <div className="secondRow">
           <div className="secondRowCol1">
@@ -81,7 +79,7 @@ const MainBox = styled.div`
   & .firstRow {
     display: flex;
     justify-content: center;
-    margin: 8px 0 0 0;
+    margin: 10px 0 0 0;
   }
   & .secondRow {
     display: flex;
@@ -109,14 +107,17 @@ const MainBox = styled.div`
 
 const MainFirstItem = styled.div`
   width: 60%;
+  height: 40%;
 `;
 
 const MainSecondItem = styled.div`
   background-color: white;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   div {
-    width: 60%;
+    width: 55%;
+    height: 62%;
   }
 `;

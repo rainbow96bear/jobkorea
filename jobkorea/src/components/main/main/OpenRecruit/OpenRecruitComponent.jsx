@@ -89,7 +89,7 @@ const OpenRecruitComponent = () => {
           </div>
         </div>
         <div className="RecruitDiv3">
-          <div className="1000bigtech">#1000대기업 공채 </div>
+          <div className="bigtech">#1000대기업 공채 </div>
           <div className="intern">#인턴채용 </div>
           <div className="openrecruit">#공채달력 </div>
           <div className="livenews">#Live공채소식 </div>
@@ -110,7 +110,7 @@ const OpenRecruitBox = styled.div`
   font-weight: 700;
   width: 100%;
   border: 1px solid #dadada;
-  border-bottom: none;
+  /* border-bottom: none; */
   background-color: white;
   padding: 8px 0;
   & .boxTitle1 {
@@ -171,11 +171,13 @@ const OpenRecruitBox = styled.div`
   }
   & .boxJrSrUl {
     display: flex;
+    flex: 1;
     flex-direction: row;
     width: 80px;
     text-align: center;
   }
   & .boxJuniorTitle {
+    margin-left: 1px;
     list-style: none;
     float: right;
     width: 40px;
@@ -190,6 +192,7 @@ const OpenRecruitBox = styled.div`
         : ""}/* 삼항연산자로 CSS 상태 변경 */
   }
   & .boxSeniorTitle {
+    margin-right: -10px;
     list-style: none;
     float: right;
     width: 40px;
@@ -208,9 +211,10 @@ const RecruitNewsBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 0.85em;
+  font-size: 14px;
   font-weight: 700;
   width: 100%;
+  height: 84.5%;
   border: 1px solid #dadada;
   background-color: white;
 
@@ -223,13 +227,14 @@ const RecruitNewsBox = styled.div`
       display: flex;
       flex-direction: column;
       flex: 1;
-      border-right: 1px solid #dadada;
-      border-bottom: 1px solid #dadada;
+      border-top: 1px solid #dadada;
+      border-right: 1px solid #dadada9e;
+      border-bottom: 1px solid #dadada9e;
       font-size: 12px;
       font-weight: 500;
       text-align: center;
       background-color: white;
-      padding: 19px 0;
+      padding: 15px 0;
       &:last-child {
         border-right: none;
       }
@@ -246,25 +251,70 @@ const RecruitNewsBox = styled.div`
       flex: 1;
       font-size: 12px;
       font-weight: 500;
-      border-right: 1px solid #dadada;
+      border-right: 1px solid #dadada9e;
       text-align: center;
       background-color: white;
-      padding: 19px 0;
+      padding: 15px 0;
       &:last-child {
         border-right: none;
       }
     }
   }
   & .RecruitDiv3 {
+    display: flex;
+  }
+  & .bigtech {
+    padding: 4px;
+    margin: 15px 3px 15px -150px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
-    display: flex;
-    float: left;
-    & div {
-      padding: 4px;
-    }
+  }
+  & .intern {
+    padding: 4px;
+    margin: 15px 3px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px;
+    color: #514f4f;
+    background-color: #dadada3f;
+  }
+  & .openrecruit {
+    padding: 4px;
+    margin: 15px 3px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px;
+    color: #514f4f;
+    background-color: #dadada3f;
+  }
+  & .livenews {
+    padding: 4px;
+    margin: 15px 3px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px;
+    color: #514f4f;
+    background-color: #dadada3f;
+  }
+  & .expecteddays {
+    padding: 4px;
+    margin: 15px 3px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px;
+    color: #514f4f;
+    background-color: #dadada3f;
+  }
+  & .top100 {
+    padding: 4px;
+    margin: 15px 3px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px;
+    color: #514f4f;
+    background-color: #dadada3f;
   }
 `;
