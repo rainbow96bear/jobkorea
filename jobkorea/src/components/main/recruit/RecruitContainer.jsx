@@ -13,6 +13,7 @@ export default function RecruitContainer() {
           {}
         );
         const result = data.data;
+        // console.log(result);
         // const result = data.data.map((item, index) => ({
         //   Area: item.recruitArea,
         //   Num: item.recruitNum,

@@ -6,7 +6,7 @@ const { Recruit, Companyuser_Info } = require("../models/index.js");
 
 router.post("/recruitInfo", async (req, res) => {
   try {
-    const Recruitdata = await Recruit.findOne({ where: { id: 3 } });
+    const Recruitdata = await Recruit.findOne({ where: { id: 1 } });
     res.send(Recruitdata);
   } catch (err) {
     res.send(err);
@@ -80,16 +80,23 @@ router.post("/search/call", async (req, res) => {
 });
 
 router.post("/remove", async (req, res) => {
-  console.log("너란놈");
-  console.log(req.body.id);
-  console.log("너란놈");
-
   const deleteRecruit = await Recruit.destroy({
     where: {
       id: req.body.id,
     },
   });
   res.send("삭제");
+});
+
+router.post("/vvip", async (req, res) => {
+  try {
+    const rowData = await Recruit.findAll({
+      include: [{ model: db.Companyuser_Info, attributes: ["companyName"] }],
+    });
+    res.send(rowData);
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 module.exports = router;

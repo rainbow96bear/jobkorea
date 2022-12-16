@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { action } from "../../../../../modules/userInfo";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
       "http://localhost:8080/api/companyuser/loginconfirm",
       { companyUser }
     );
+
     dispatch(action.loginConfirm({ confirmid: data.data }));
   };
 

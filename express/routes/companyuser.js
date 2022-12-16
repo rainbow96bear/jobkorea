@@ -26,45 +26,9 @@ router.post("/loginconfirm", async (req, res) => {
         req.cookies["jobkorea_login"],
         process.env.COOKIE_SECRET
       );
-      console.log("++++++++++++++");
-      console.log(temp["companyId"]);
-      res.send({ companyId: req.body.idConfirm });
-    } else {
-      if (
-        await Companyuser_Info.findOne({
-          where: { companyId: req.body.idConfirm },
-        })
-      ) {
-        if (
-          await Companyuser_Info.findOne({
-            where: {
-              // companyId: req.body.idConfirm,
-              companyPw: crypto.SHA256(req.body.pwConfirm).toString(),
-            },
-          })
-        ) {
-          // res.clearCookie("jobkorea_login");
-          res.cookie(
-            "jobkorea_login",
-            jwt.sign(
-              { companyId: req.body.idConfirm },
-              process.env.COOKIE_SECRET
-            ),
-            { expires: new Date(Date.now() + 6000 * 30 * 60) }
-          );
-          // cookies.set(
-          //   "cookie",
-          //   { companyId: req.body.idConfirm },
-          //   {
-          //     path: "/",
-          //     expires: Date.now() / 1000 + 60 * 60,
-          //   }
-          // );
 
-          console.log(temp["companyId"]);
-          res.send(temp["companyId"]);
-        }
-      }
+      console.log(temp["companyId"]);
+      res.send(temp["companyId"]);
     }
   } catch (err) {
     console.error(err);

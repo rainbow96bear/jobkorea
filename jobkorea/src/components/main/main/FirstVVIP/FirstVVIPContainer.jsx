@@ -7,7 +7,7 @@ export default function FirstVVIPContainer() {
 
   useEffect(() => {
     try {
-      axios.post("/api/recruit/call").then((data) => {
+      axios.post("/api/recruit/vvip").then((data) => {
         const _inputData = data.data.map((rowData) => ({
           Area: rowData.recruitArea,
           Department: rowData.workDepartment,
