@@ -324,11 +324,12 @@ const RegistPostBox = styled.div`
   .mo1 {
     width: 500px;
     padding-left: 10px;
+    margin-right: 30px;
   }
 
   .mo2 {
     width: 35px;
-    margin: 0 5px 0 20px;
+    margin: 0 5px 0 10px;
     padding-left: 10px;
   }
 

@@ -6,10 +6,27 @@ import styled from "styled-components";
 export default function ManagePostContainer() {
   const [inputData, setInputData] = useState([]);
 
+  const removeRecruit = (idData) => {
+    try {
+      console.log(idData);
+      axios
+        .post("http://localhost:8080/api/recruit/remove", { id: idData })
+        .then((data) => {
+          console.log(data);
+        });
+      window.location.reload();
+      alert("삭제되었습니다");
+    } catch (e) {
+      console.error(e.message);
+    }
+  };
+
   useEffect(() => {
     try {
       axios.post("http://localhost:8080/api/recruit/call").then((data) => {
+        console.log(data.data);
         const _inputData = data.data.map((rowData) => ({
+          Id: rowData.id,
           Name: rowData.recruitName,
           Num: rowData.recruitNum,
           Exp: rowData.isExp,
@@ -35,7 +52,10 @@ export default function ManagePostContainer() {
 
   return (
     <WrapBox>
-      <ManagePostComponent inputData={inputData} />
+      <ManagePostComponent
+        inputData={inputData}
+        removeRecruit={removeRecruit}
+      />
     </WrapBox>
   );
 }
