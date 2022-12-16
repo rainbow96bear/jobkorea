@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function RecruitContainer() {
-  const [recruitInfo, SetrecruitInfo] = useState({});
+  const [recruitInfo, SetrecruitInfo] = useState([]);
 
   useEffect(() => {
     const newfunction = async () => {
@@ -60,5 +60,5 @@ export default function RecruitContainer() {
   //   console.error(err);
   // }
 
-  return <RecruitComponent></RecruitComponent>;
+  return <RecruitComponent recruitInfo={recruitInfo}></RecruitComponent>;
 }
