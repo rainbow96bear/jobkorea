@@ -134,6 +134,7 @@ export default function RegistPostContainer() {
     axios
       .post("http://localhost:8080/api/recruit/add", body)
       .then((res) => console.log(res));
+    alert("등록되었습니다");
   };
 
   return (

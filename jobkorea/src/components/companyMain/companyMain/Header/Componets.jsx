@@ -49,7 +49,9 @@ const HeaderComponent = ({
                   }}
                   onMouseLeave={() => setHeaderMenuIsOver(-1)}
                   onClick={() => {
-                    if (item.routes) moveTo(`companymain/${item.routes}`);
+                    if (item.login == "yes" && !document.cookie)
+                      alert("로그인 해주세요");
+                    else if (item.routes) moveTo(`companymain/${item.routes}`);
                     else moveTo("companymain");
                   }}
                 >

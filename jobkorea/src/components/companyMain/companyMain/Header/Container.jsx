@@ -10,22 +10,27 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
     {
       title: "홈",
       routes: "",
+      login: "no",
     },
     {
       title: "공고등록",
       routes: "registpost",
+      login: "yes",
     },
     {
       title: "공고지원자 관리",
       routes: "managepost",
+      login: "yes",
     },
     {
       title: "인재검색",
       routes: "",
+      login: "no",
     },
     {
       title: "헤드헌팅 의뢰",
       routes: "",
+      login: "no",
     },
   ];
 

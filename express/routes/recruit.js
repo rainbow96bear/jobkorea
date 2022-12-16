@@ -49,12 +49,15 @@ router.post("/call", async (req, res) => {
         },
       ],
     });
+    console.log("#############################");
     console.log(rowData);
+    console.log("#############################");
+
     res.send(rowData);
   } catch (error) {
     res.send(error);
   }
-  // res.send("전화해요"); << 이거 뭐냐곸ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ << 나의 흑역사 절대안지울거
+  // res.send("전화해요");
 });
 
 router.post("/search/call", async (req, res) => {
@@ -65,6 +68,19 @@ router.post("/search/call", async (req, res) => {
   } catch (error) {
     res.send(error);
   }
+});
+
+router.post("/remove", async (req, res) => {
+  console.log("너란놈");
+  console.log(req.body.id);
+  console.log("너란놈");
+
+  const deleteRecruit = await Recruit.destroy({
+    where: {
+      id: req.body.id,
+    },
+  });
+  res.send("삭제");
 });
 
 module.exports = router;
