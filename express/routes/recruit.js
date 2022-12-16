@@ -4,7 +4,7 @@ const { Recruit } = require("../models/index.js");
 
 router.post("/recruitInfo", async (req, res) => {
   try {
-    const Recruitdata = await Recruit.findOne({ where: { id: 1 } });
+    const Recruitdata = await Recruit.findOne({ where: { id: 3 } });
     res.send(Recruitdata);
   } catch (err) {
     res.send(err);

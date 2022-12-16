@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { action } from "../../../../modules/userInfo";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const HeaderComponent = ({
   loginOnClick,
@@ -17,6 +18,7 @@ const HeaderComponent = ({
   const [headerMenuIsOver, setHeaderMenuIsOver] = useState(-1);
   const dispatch = useDispatch();
   const companyUser = useSelector((state) => state.companyUser.value);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -51,6 +53,7 @@ const HeaderComponent = ({
                       {}
                     );
                     console.log(data);
+                    navigate("/companymain");
                   }}
                 >
                   로그아웃
