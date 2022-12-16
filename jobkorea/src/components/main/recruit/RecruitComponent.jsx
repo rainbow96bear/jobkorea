@@ -8,7 +8,7 @@ export default function RecruitComponent({ recruitInfo }) {
   // console.log(recruitresult.id);
   // console.log(recruitInfo);
   // console.log(recruitInfo[0].recruitArea && );
-
+  console.log(recruitInfo[0]);
   return (
     <div>
       <InformationBox>
@@ -18,8 +18,9 @@ export default function RecruitComponent({ recruitInfo }) {
         <Informationboxscontent>
           <Boxscontentone>
             <Textfour>
-              씨제이올리브네트웍스(주)<button>♡ 관심기업1</button>
-              <h2 style={{ color: "black" }}>{recruitInfo[0]?.recruitArea}</h2>
+              {/* {recruitInfo[0]?.Companyuser_Info.companyName} */}
+              <button>♡ 관심기업</button>
+              <h2 style={{ color: "black" }}>{recruitInfo[0]?.recruitName}</h2>
             </Textfour>
           </Boxscontentone>
           <Boxscontenttwo>
@@ -37,7 +38,11 @@ export default function RecruitComponent({ recruitInfo }) {
                 <Texttwo>
                   <Texttwo>우대</Texttwo>
                   <div
-                    style={{ fontSize: 10, paddingTop: 5, paddingRight: 5 }}
+                    style={{
+                      fontSize: 10,
+                      paddingTop: 5,
+                      paddingRight: 5,
+                    }}
                   ></div>
                   <div> {recruitInfo[0]?.condition}</div>
                 </Texttwo>
@@ -52,12 +57,12 @@ export default function RecruitComponent({ recruitInfo }) {
               </Texttwo>
               <Texttwo>
                 <Textthree>급여</Textthree>
-                <div>회사내규에 따름 - 면접 후 결정</div>
+                <div>{recruitInfo[0]?.isPay}</div>
               </Texttwo>
               <Texttwo>
                 <Textthree>지역</Textthree>
                 <div>
-                  서울시 용산구 <button>지도</button>
+                  {recruitInfo[0]?.area} <button>지도</button>
                 </div>
               </Texttwo>
               <Texttwo>
@@ -90,7 +95,9 @@ export default function RecruitComponent({ recruitInfo }) {
               </Texttwo>
               <Texttwo>
                 <Textfive>기업형태</Textfive>
-                <Textsix style={{ marginLeft: 8 }}>대기업(비상장)</Textsix>
+                <Textsix style={{ marginLeft: 8 }}>
+                  {recruitInfo[0]?.Companyuser_Info.selectedOption}
+                </Textsix>
               </Texttwo>
               <Texttwo>
                 <Textfive style={{ width: 90 }}>홈페이지</Textfive>

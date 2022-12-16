@@ -1,19 +1,20 @@
 import RecruitComponent from "./RecruitComponent";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function RecruitContainer() {
   const [recruitInfo, SetrecruitInfo] = useState([]);
+  const params = useParams();
 
   useEffect(() => {
     const newfunction = async () => {
       try {
         const data = await axios.post(
           "http://localhost:8080/api/recruit/recruitInfo",
-          {}
+          { id: params.id }
         );
         const result = data.data;
-        // console.log(result);
         // const result = data.data.map((item, index) => ({
         //   Area: item.recruitArea,
         //   Num: item.recruitNum,
@@ -36,7 +37,8 @@ export default function RecruitContainer() {
         //   Edu: item.edu,
         // }));
 
-        SetrecruitInfo([...recruitInfo, result]);
+        SetrecruitInfo([result]);
+        console.log(result);
       } catch (err) {
         console.error(err);
       }

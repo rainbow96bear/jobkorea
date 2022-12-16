@@ -2,39 +2,39 @@ import React from "react";
 import styled from "styled-components";
 import vviplogo1 from "../FirstVVIP/images/vvip1.gif";
 
-const FirstVVIPComponent = () => {
+const FirstVVIPComponent = ({ inputData }) => {
   // const에 배열 담아서 map 사용해서 컴포넌트 복붙하기
 
   return (
-    // <>
-    //   {inputData.map((data) =>
-    //     data.map((data2, index) => (
-    //       <FirstVVIPBox>
-    //         <ItemFrame>
-    //           <div>
-    //             <img src={vviplogo1} alt="" width="180" height="72" />
-    //           </div>
-    //           <VvipItem1>
-    //             <div>{data2.Area}</div>{" "}
-    //           </VvipItem1>
-    //           <VvipItem2>
-    //             <div>{data2.Department}</div>
-    //           </VvipItem2>
-    //         </ItemFrame>
-    //       </FirstVVIPBox>
-    //     ))
-    //   )}
-    // </>
+    <>
+      {inputData.map((data) =>
+        data.map((data2, index) => (
+          <FirstVVIPBox>
+            <ItemFrame>
+              <div>
+                <img src={vviplogo1} alt="" width="180" height="72" />
+              </div>
+              <VvipItem1>
+                <div>{data2.Area}</div>{" "}
+              </VvipItem1>
+              <VvipItem2>
+                <div>{data2.Department}</div>
+              </VvipItem2>
+            </ItemFrame>
+          </FirstVVIPBox>
+        ))
+      )}
+    </>
 
-    <FirstVVIPBox>
-      <div>
-        <div className="vviplogo1">
-          <img src={vviplogo1} alt="" width="180" height="72" />
-          <VvipItem1>(주)케이티엠오에스북부</VvipItem1>
-          <VvipItem2>2022년 kt MOS북부 신입/경력 채용</VvipItem2>
-        </div>
-      </div>
-    </FirstVVIPBox>
+    // <FirstVVIPBox>
+    //   <div>
+    //     <div className="vviplogo1">
+    //       <img src={vviplogo1} alt="" width="180" height="72" />
+    //       <VvipItem1>(주)케이티엠오에스북부</VvipItem1>
+    //       <VvipItem2>2022년 kt MOS북부 신입/경력 채용</VvipItem2>
+    //     </div>
+    //   </div>
+    // </FirstVVIPBox>
   );
 };
 
@@ -66,6 +66,6 @@ const VvipItem2 = styled.div`
   font-weight: 500;
 `;
 
-// const ItemFrame = styled.div`
-//   display: flex;
-// `;
+const ItemFrame = styled.div`
+  display: flex;
+`;
