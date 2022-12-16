@@ -18,7 +18,7 @@ export default function RecruitComponent({ recruitInfo }) {
         <Informationboxscontent>
           <Boxscontentone>
             <Textfour>
-              씨제이올리브네트웍스(주)<button>♡ 관심기업</button>
+              씨제이올리브네트웍스(주)<button>♡ 관심기업1</button>
               <h2 style={{ color: "black" }}>{recruitInfo[0]?.recruitArea}</h2>
             </Textfour>
           </Boxscontentone>
