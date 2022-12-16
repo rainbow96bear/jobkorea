@@ -12,6 +12,9 @@ const companyuserSlice = createSlice({
     logoutCompany(state) {
       state.value = 0;
     },
+    loginConfirm(state, action) {
+      state.value = action.payload.confirmid;
+    },
   },
 });
 

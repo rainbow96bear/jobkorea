@@ -4,6 +4,15 @@ const db = require("../models/index.js");
 
 const { Recruit, Companyuser_Info } = require("../models/index.js");
 
+router.post("/recruitInfo", async (req, res) => {
+  try {
+    const Recruitdata = await Recruit.findOne({ where: { id: 3 } });
+    res.send(Recruitdata);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 router.post("/add", async (req, res) => {
   const companyName = await Recruit.create({
     recruitName: req.body.recruitName,

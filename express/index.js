@@ -4,15 +4,19 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const db = require("./models/index.js");
 const { sequelize } = require("./models/index.js");
 
 const routes = require("./routes/index.js");
 
+const app = express();
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 dotenv.config();
 
-const app = express();
 app.set("port", process.env.PORT || 8080);
 
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));

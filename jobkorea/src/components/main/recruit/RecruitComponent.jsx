@@ -1,18 +1,25 @@
 import styled from "styled-components";
 import cjimg from "./img/cj.png";
+import { useEffect, useState } from "react";
 
-export default function RecruitComponent() {
+export default function RecruitComponent({ recruitInfo }) {
+  // console.log(recruitInfo.result.id);
+  // const recruitresult = recruitInfo.result;
+  // console.log(recruitresult.id);
+  // console.log(recruitInfo);
+  // console.log(recruitInfo[0].recruitArea && );
+
   return (
     <div>
       <InformationBox>
-        <div style={{ fontSize: 20 }}>채용정보</div>
+        <div style={{ fontSize: 20 }}></div>
       </InformationBox>
       <Informationboxs>
         <Informationboxscontent>
           <Boxscontentone>
             <Textfour>
               씨제이올리브네트웍스(주)<button>♡ 관심기업</button>
-              <h2 style={{ color: "black" }}>블록체인 개발자</h2>
+              <h2 style={{ color: "black" }}>{recruitInfo[0]?.recruitArea}</h2>
             </Textfour>
           </Boxscontentone>
           <Boxscontenttwo>
@@ -20,18 +27,19 @@ export default function RecruitComponent() {
               <div style={{ marginBottom: 10 }}>지원자격</div>
               <div>
                 <Texttwo>
-                  <Texttwo>경력</Texttwo> <Textcolor>경력</Textcolor>(2년이상)
+                  <Texttwo>경력</Texttwo>{" "}
+                  <Textcolor>{recruitInfo[0]?.isExp}</Textcolor>
                 </Texttwo>
                 <Texttwo>
                   <Texttwo>학력</Texttwo>
-                  <Textcolor>대졸이상</Textcolor>
+                  <Textcolor>{recruitInfo[0]?.edu}</Textcolor>
                 </Texttwo>
                 <Texttwo>
                   <Texttwo>우대</Texttwo>
-                  <div style={{ fontSize: 10, paddingTop: 5, paddingRight: 5 }}>
-                    기본우대
-                  </div>
-                  <div> 국가유공자</div>
+                  <div
+                    style={{ fontSize: 10, paddingTop: 5, paddingRight: 5 }}
+                  ></div>
+                  <div> {recruitInfo[0]?.condition}</div>
                 </Texttwo>
               </div>
             </Textone>
@@ -40,7 +48,7 @@ export default function RecruitComponent() {
               <div style={{ marginBottom: 10 }}>근무조건</div>
               <Texttwo>
                 <Textthree>고용형태</Textthree>
-                <Textcolor>정규직</Textcolor> 수습 3개월
+                <Textcolor>{recruitInfo[0]?.workRank}</Textcolor>
               </Texttwo>
               <Texttwo>
                 <Textthree>급여</Textthree>
@@ -99,12 +107,9 @@ export default function RecruitComponent() {
       <Footercontainer>
         <Home>
           <div>
-            <strong>홈페이지 지원</strong>
+            <strong>즉시 지원</strong>
           </div>
         </Home>
-        <Scrap>
-          <div>☆ 스크랩</div>
-        </Scrap>
       </Footercontainer>
     </div>
   );

@@ -2,11 +2,25 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { action } from "../../../../../modules/userInfo";
+import axios from "axios";
+import { useEffect } from "react";
 
 const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
   const dispatch = useDispatch();
 
   const companyUser = useSelector((state) => state.companyUser.value);
+
+  const companyconfirm = async () => {
+    const data = await axios.post(
+      "http://localhost:8080/api/companyuser/loginconfirm",
+      { companyUser }
+    );
+    dispatch(action.loginConfirm({ confirmid: data.data }));
+  };
+
+  useEffect(() => {
+    companyconfirm();
+  }, [companyUser]);
 
   return (
     <MainLoginBoardBox>
@@ -35,13 +49,19 @@ const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
             ) : (
               <div className="flex button-box">
                 <div
-                  onClick={() => {
+                  onClick={async () => {
                     dispatch(action.logoutCompany());
                     setLoginIsClick(false);
+                    const data = await axios.post(
+                      "http://localhost:8080/api/companyuser/logout",
+                      {}
+                    );
+                    console.log(data);
                   }}
                 >
                   로그아웃
                 </div>
+                <div>{companyUser}님 환영합니다</div>
               </div>
             )}
           </div>

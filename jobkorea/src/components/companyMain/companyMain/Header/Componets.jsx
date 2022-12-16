@@ -2,6 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import VerticalMode from "./Carousel/Carousel";
 import DropDown from "./Dropdown/Components";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { action } from "../../../../modules/userInfo";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const HeaderComponent = ({
   loginOnClick,
@@ -11,6 +16,9 @@ const HeaderComponent = ({
   moveTo,
 }) => {
   const [headerMenuIsOver, setHeaderMenuIsOver] = useState(-1);
+  const dispatch = useDispatch();
+  const companyUser = useSelector((state) => state.companyUser.value);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -32,7 +40,26 @@ const HeaderComponent = ({
               회원가입
             </div>
             <div>고객센터</div>
-            <div onClick={loginOnClick}>로그인</div>
+            <div>
+              {companyUser == 0 ? (
+                <div onClick={loginOnClick}>로그인</div>
+              ) : (
+                <div
+                  onClick={async () => {
+                    dispatch(action.logoutCompany());
+                    // setLoginIsClick(false);
+                    const data = await axios.post(
+                      "http://localhost:8080/api/companyuser/logout",
+                      {}
+                    );
+                    console.log(data);
+                    navigate("/companymain");
+                  }}
+                >
+                  로그아웃
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div>

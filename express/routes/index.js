@@ -7,7 +7,6 @@ const individualuser = require("./individualuser.js");
 router.use("/companyuser", companyuser);
 router.use("/recruit", recruit);
 
-router.use("/companyuser", companyuser);
 router.use("/individualuser", individualuser);
 
 module.exports = router;
