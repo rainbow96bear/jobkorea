@@ -11,13 +11,21 @@ export default function SearchContainer() {
         .post("http://localhost:8080/api/recruit/search/call")
         .then((data) => {
           const _inputData = data.data.map((rowData) => ({
-            Area: rowData.recruitArea,
+            id: rowData.id,
+            Name: rowData.recruitName,
             Num: rowData.recruitNum,
             Exp: rowData.isExp,
             Task: rowData.myTask,
             Department: rowData.workDepartment,
             Rank: rowData.workRank,
             Condition: rowData.condition,
+            Edu: rowData.edu,
+            Area: rowData.area,
+            Shape: rowData.shape,
+            IsPay: rowData.isPay,
+            MinPay: rowData.minPay,
+            MaxPay: rowData.maxPay,
+            CompanyName: rowData.Companyuser_Info.companyName,
           }));
           setInputData([...inputData, _inputData]);
           console.log(data.data);

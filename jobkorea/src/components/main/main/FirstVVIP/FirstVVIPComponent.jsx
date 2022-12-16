@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import vviplogo1 from "../FirstVVIP/images/vvip1.gif";
 
-const FirstVVIPComponent = () => {
+const FirstVVIPComponent = ({ inputData }) => {
   // const에 배열 담아서 map 사용해서 컴포넌트 복붙하기
 
   return (

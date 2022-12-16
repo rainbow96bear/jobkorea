@@ -34,7 +34,7 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                     <div>{data2.Task}</div>
                   </OtherPreferential>
                 </ContentBox>
-                <div>
+                <BtnBox>
                   <ApplyBtn
                     onClick={() => {
                       removeRecruit(data2.Id);
@@ -47,7 +47,7 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                   ) : (
                     <div>모집인원 {data2.Num}명</div>
                   )}
-                </div>
+                </BtnBox>
               </RecruitContentBox>
             </ItemFrame>
           </ItemBox>
@@ -71,7 +71,7 @@ const ItemFrame = styled.div`
 const CompanyName = styled.div`
   flex: 2;
   border-right: 1px solid #dfdfdf;
-  width: 200px;
+  width: 10%;
   font-size: 17px;
 `;
 const RecruitContentBox = styled.div`
@@ -104,10 +104,14 @@ const OtherPreferential = styled.div`
   color: #888888;
   max-width: 800px;
 `;
+const BtnBox = styled.div`
+  min-width: 110px;
+`;
+
 const ApplyBtn = styled.button`
   color: white;
   font-weight: 900;
-  background-color: #ff7200;
+  background-color: red;
   border: none;
   padding: 10px 15px;
 `;

@@ -2,15 +2,19 @@ import RecruitComponent from "./RecruitComponent";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import { useParams } from "react-router-dom";
+
 export default function RecruitContainer() {
   const [recruitInfo, SetrecruitInfo] = useState([]);
+  const params = useParams();
 
+  console.log(params);
   useEffect(() => {
     const newfunction = async () => {
       try {
         const data = await axios.post(
           "http://localhost:8080/api/recruit/recruitInfo",
-          {}
+          { id: params.id }
         );
         const result = data.data;
         // const result = data.data.map((item, index) => ({

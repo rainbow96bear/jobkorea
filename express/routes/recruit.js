@@ -6,7 +6,14 @@ const { Recruit, Companyuser_Info } = require("../models/index.js");
 
 router.post("/recruitInfo", async (req, res) => {
   try {
-    const Recruitdata = await Recruit.findOne({ where: { id: 3 } });
+    const Recruitdata = await Recruit.findOne({
+      where: { id: req.body.id },
+      include: [
+        {
+          model: db.Companyuser_Info,
+        },
+      ],
+    });
     res.send(Recruitdata);
   } catch (err) {
     res.send(err);
@@ -44,10 +51,13 @@ router.post("/add", async (req, res) => {
 });
 
 router.post("/call", async (req, res) => {
-  const userInfo = jwt.verify(
-    req.cookies.jobkorea_login,
-    process.env.COOKIE_SECRET
-  );
+  let userInfo;
+  if (req.cookies["jobkorea_login"]) {
+    userInfo = jwt.verify(
+      req.cookies.jobkorea_login,
+      process.env.COOKIE_SECRET
+    );
+  }
   try {
     const rowData = await Recruit.findAll({
       where: { company: userInfo.companyId },
@@ -72,7 +82,14 @@ router.post("/call", async (req, res) => {
 router.post("/search/call", async (req, res) => {
   console.log(req.body);
   try {
-    const rowData = await Recruit.findAll();
+    const rowData = await Recruit.findAll({
+      include: [
+        {
+          model: db.Companyuser_Info,
+          attributes: ["companyName"],
+        },
+      ],
+    });
     res.send(rowData);
   } catch (error) {
     res.send(error);
@@ -90,6 +107,22 @@ router.post("/remove", async (req, res) => {
     },
   });
   res.send("삭제");
+});
+
+router.post("/vvip", async (req, res) => {
+  try {
+    const rowData = await Recruit.findAll({
+      include: [
+        {
+          model: db.Companyuser_Info,
+          attributes: ["companyName"],
+        },
+      ],
+    });
+    res.send(rowData);
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 module.exports = router;
