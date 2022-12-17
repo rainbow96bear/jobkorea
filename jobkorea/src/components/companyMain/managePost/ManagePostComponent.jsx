@@ -20,7 +20,8 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                     <div>{data2.Rank}</div>
                     <div>
                       {data2.IsPay == "회사내규에 따름" ||
-                      data2.IsPay == "회사내규에 따름, 면접 후 결정" ? (
+                      data2.IsPay == "회사내규에 따름, 면접 후 결정" ||
+                      "면접 후 결정, 회사내규에 따름" ? (
                         <>{data2.IsPay}</>
                       ) : (
                         <>

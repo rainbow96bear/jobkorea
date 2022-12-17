@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RegistPostComponent from "./RegistPostComponent";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function RegistPostContainer() {
   const [recruitName, setRecruitName] = useState("");
@@ -17,6 +18,9 @@ export default function RegistPostContainer() {
   const [minPay, setMinPay] = useState("");
   const [maxPay, setMaxPay] = useState("");
   const [isLimit, setisLimit] = useState("");
+  const navigate = useNavigate();
+
+  const moveTo = (where) => {};
 
   const onChecked = (checked, item) => {
     if (checked) {
@@ -135,6 +139,7 @@ export default function RegistPostContainer() {
       .post("http://localhost:8080/api/recruit/add", body)
       .then((res) => console.log(res));
     alert("등록되었습니다");
+    navigate("/companymain/managepost");
   };
 
   return (

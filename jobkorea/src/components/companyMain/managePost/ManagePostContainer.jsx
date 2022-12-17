@@ -15,6 +15,7 @@ export default function ManagePostContainer() {
           console.log(data);
         });
       window.location.reload();
+
       alert("삭제되었습니다");
     } catch (e) {
       console.error(e.message);

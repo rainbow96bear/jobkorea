@@ -266,7 +266,7 @@ export default function RegistPostComponent({
         </div>
       </RegistPostBox>
       <div className="nextBtn" onClick={saveHandler}>
-        다음
+        공고등록
       </div>
     </BackgroundBox>
   );
