@@ -28,7 +28,7 @@ const LoginMordalContainer = ({ setLoginIsClick }) => {
       "http://localhost:8080/api/companyuser/login",
       { idConfirm, pwConfirm }
     );
-    console.log(data.data);
+    console.log();
     if (data.data == "없는 아이디 입니다") {
       alert("없는 아이디 입니다");
     } else if (data.data == "비밀번호가 일치하지 않습니다") {

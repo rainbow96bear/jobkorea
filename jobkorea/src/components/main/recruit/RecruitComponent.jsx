@@ -2,7 +2,7 @@ import styled from "styled-components";
 import cjimg from "./img/cj.png";
 import { useEffect, useState } from "react";
 
-export default function RecruitComponent({ recruitInfo }) {
+export default function RecruitComponent({ recruitInfo, applybutton }) {
   // console.log(recruitInfo.result.id);
   // const recruitresult = recruitInfo.result;
   // console.log(recruitresult.id);
@@ -96,7 +96,7 @@ export default function RecruitComponent({ recruitInfo }) {
               <Texttwo>
                 <Textfive>기업형태</Textfive>
                 <Textsix style={{ marginLeft: 8 }}>
-                  {recruitInfo[0]?.Companyuser_Info.selectedOption}
+                  {/* {recruitInfo[0]?.Companyuser_Info.selectedOption} */}
                 </Textsix>
               </Texttwo>
               <Texttwo>
@@ -113,7 +113,7 @@ export default function RecruitComponent({ recruitInfo }) {
       </Informationboxs>
       <Footercontainer>
         <Home>
-          <div>
+          <div onClick={applybutton}>
             <strong>즉시 지원</strong>
           </div>
         </Home>

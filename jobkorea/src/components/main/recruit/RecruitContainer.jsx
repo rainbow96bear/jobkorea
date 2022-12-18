@@ -46,6 +46,16 @@ export default function RecruitContainer() {
     newfunction();
   }, []);
 
+  const applybutton = async () => {
+    try {
+      const data = await axios.post("http://localhost:8080/api/apply/now", {
+        recruitInfo,
+      });
+      console.log(data.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   // const data = await axios.post(
   //   "http://localhost:8080/api/recruit/recruitInfo",
   //   {}
@@ -63,5 +73,10 @@ export default function RecruitContainer() {
   //   console.error(err);
   // }
 
-  return <RecruitComponent recruitInfo={recruitInfo}></RecruitComponent>;
+  return (
+    <RecruitComponent
+      recruitInfo={recruitInfo}
+      applybutton={applybutton}
+    ></RecruitComponent>
+  );
 }
