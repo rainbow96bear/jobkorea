@@ -64,7 +64,6 @@ router.post("/call", async (req, res) => {
       include: [
         {
           model: db.Companyuser_Info,
-          attributes: ["companyName"],
         },
       ],
     });

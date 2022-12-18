@@ -42,6 +42,7 @@ export default function ManagePostContainer() {
           MinPay: rowData.minPay,
           MaxPay: rowData.maxPay,
           CompanyName: rowData.Companyuser_Info.companyName,
+          CompanyLogo: rowData.Companyuser_Info.companylogo,
         }));
         setInputData([...inputData, _inputData]);
         console.log([...inputData, _inputData]);

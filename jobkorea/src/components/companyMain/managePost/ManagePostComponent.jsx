@@ -8,7 +8,14 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
         data.map((data2, index) => (
           <ItemBox key={`itembox-${index}`}>
             <ItemFrame>
-              <CompanyName>{data2.CompanyName}</CompanyName>
+              <CompanyName>
+                {data2.CompanyName}
+                <CompanyLogo>
+                  <img
+                    src={`http://localhost:8080/uploads/${data2.CompanyLogo}`}
+                  ></img>
+                </CompanyLogo>
+              </CompanyName>
               <RecruitContentBox>
                 <ContentBox>
                   <span>{data2.Name}</span>
@@ -32,23 +39,29 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                   </Qualification>
                   <OtherPreferential>
                     <div>{data2.Condition}</div>
-                    <div>{data2.Task}</div>
                   </OtherPreferential>
+                  <TaskBox>
+                    <div>{data2.Task}</div>
+                  </TaskBox>
                 </ContentBox>
-                <BtnBox>
-                  <ApplyBtn
-                    onClick={() => {
-                      removeRecruit(data2.Id);
-                    }}
-                  >
-                    삭제
-                  </ApplyBtn>
-                  {data2.Num == -1 ? (
-                    <div>모집인원 0명</div>
-                  ) : (
-                    <div>모집인원 {data2.Num}명</div>
-                  )}
-                </BtnBox>
+                <EndBox>
+                  <BtnBox>
+                    <RemoveBtn
+                      onClick={() => {
+                        removeRecruit(data2.Id);
+                      }}
+                    >
+                      삭제
+                    </RemoveBtn>
+                  </BtnBox>
+                  <NumBox>
+                    {data2.Num == -1 ? (
+                      <div>모집인원 제한없음</div>
+                    ) : (
+                      <div>모집인원 {data2.Num}명</div>
+                    )}
+                  </NumBox>
+                </EndBox>
               </RecruitContentBox>
             </ItemFrame>
           </ItemBox>
@@ -74,6 +87,15 @@ const CompanyName = styled.div`
   border-right: 1px solid #dfdfdf;
   width: 10%;
   font-size: 17px;
+  text-align: center;
+  padding-right: 20px;
+`;
+
+const CompanyLogo = styled.div`
+  img {
+    width: 100%;
+    height: 120px;
+  }
 `;
 const RecruitContentBox = styled.div`
   flex: 9;
@@ -104,15 +126,33 @@ const OtherPreferential = styled.div`
   font-size: small;
   color: #888888;
   max-width: 800px;
-`;
-const BtnBox = styled.div`
-  min-width: 110px;
+  padding-bottom: 20px;
 `;
 
-const ApplyBtn = styled.button`
+const RemoveBtn = styled.button`
   color: white;
   font-weight: 900;
   background-color: red;
   border: none;
   padding: 10px 15px;
+`;
+const BtnBox = styled.div`
+  min-width: 110px;
+  text-align: center;
+`;
+
+const TaskBox = styled.div`
+  font-size: small;
+  color: #777777;
+  padding-right: 15px;
+`;
+
+const NumBox = styled.div`
+  text-align: center;
+`;
+
+const EndBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;

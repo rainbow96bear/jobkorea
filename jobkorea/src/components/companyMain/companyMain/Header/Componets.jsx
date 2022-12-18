@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { action } from "../../../../modules/userInfo";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import DropdownContainer from "./Dropdown/Container";
 
 const HeaderComponent = ({
   loginOnClick,
@@ -76,9 +77,11 @@ const HeaderComponent = ({
                   }}
                   onMouseLeave={() => setHeaderMenuIsOver(-1)}
                   onClick={() => {
-                    if (item.login == "yes" && !document.cookie)
+                    if (item.login == "yes" && !document.cookie) {
                       alert("로그인 해주세요");
-                    else if (item.routes) moveTo(`companymain/${item.routes}`);
+                      moveTo("companymain");
+                    } else if (item.routes)
+                      moveTo(`companymain/${item.routes}`);
                     else moveTo("companymain");
                   }}
                 >
@@ -96,7 +99,7 @@ const HeaderComponent = ({
           </div>
         </div>
       </HeaderBox>
-      {dropdownIsClick ? <DropDown></DropDown> : <></>}
+      {dropdownIsClick ? <DropdownContainer></DropdownContainer> : <></>}
       <LowHeaderBox>
         <VerticalMode />
       </LowHeaderBox>
