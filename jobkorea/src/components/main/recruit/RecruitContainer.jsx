@@ -49,7 +49,7 @@ export default function RecruitContainer() {
   const applybutton = async () => {
     try {
       const data = await axios.post("http://localhost:8080/api/apply/now", {
-        recruitInfo,
+        id: params.id,
       });
       console.log(data.data);
     } catch (err) {

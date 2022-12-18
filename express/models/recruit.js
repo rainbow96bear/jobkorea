@@ -6,6 +6,7 @@ module.exports = class Recruit extends Sequelize.Model {
       {
         recruitName: {
           type: Sequelize.STRING(255),
+          unique: true,
         },
         recruitNum: {
           type: Sequelize.STRING(255),
@@ -61,6 +62,14 @@ module.exports = class Recruit extends Sequelize.Model {
       // as: "RecruitMaker",
       targetKey: "companyId",
       foreignKey: "company",
+    });
+
+    db.Recruit.belongsToMany(db.Individual_Info, {
+      through: "personalRecruit",
+      as: "RecruitInfo",
+      foreignKey: "recruitName",
+      sourceKey: "recruitName",
+      onDelete: "cascade",
     });
   }
 };

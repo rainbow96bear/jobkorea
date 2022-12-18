@@ -72,7 +72,13 @@ router.post("/call", async (req, res) => {
 router.post("/search/call", async (req, res) => {
   console.log(req.body);
   try {
-    const rowData = await Recruit.findAll();
+    const rowData = await Recruit.findAll({
+      include: [
+        {
+          model: db.Companyuser_Info,
+        },
+      ],
+    });
     res.send(rowData);
   } catch (error) {
     res.send(error);

@@ -9,6 +9,7 @@ module.exports = class Individual_Info extends Sequelize.Model {
         },
         individualId: {
           type: Sequelize.STRING(255),
+          unique: true,
         },
         individualPw: {
           type: Sequelize.STRING(255),
@@ -34,5 +35,14 @@ module.exports = class Individual_Info extends Sequelize.Model {
         collate: "utf8mb4_general_ci",
       }
     );
+  }
+  static associate(db) {
+    db.Individual_Info.belongsToMany(db.Recruit, {
+      through: "personalRecruit",
+      as: "IndividualInfo",
+      foreignKey: "individualId",
+      sourceKey: "individualId",
+      onDelete: "cascade",
+    });
   }
 };
