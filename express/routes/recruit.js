@@ -5,8 +5,16 @@ const db = require("../models/index.js");
 const { Recruit, Companyuser_Info } = require("../models/index.js");
 
 router.post("/recruitInfo", async (req, res) => {
+  console.log(req.body);
   try {
-    const Recruitdata = await Recruit.findOne({ where: { id: 1 } });
+    const Recruitdata = await Recruit.findOne({
+      where: { id: req.body.id },
+      include: [
+        {
+          model: db.Companyuser_Info,
+        },
+      ],
+    });
     res.send(Recruitdata);
   } catch (err) {
     res.send(err);

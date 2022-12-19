@@ -8,6 +8,7 @@ export default function RecruitComponent({ recruitInfo, applybutton }) {
   // console.log(recruitresult.id);
   // console.log(recruitInfo);
   // console.log(recruitInfo[0].recruitArea && );
+  console.log(recruitInfo);
   console.log(recruitInfo[0]);
   return (
     <div>

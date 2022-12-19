@@ -37,7 +37,7 @@ module.exports = class Individual_Info extends Sequelize.Model {
     );
   }
   static associate(db) {
-    db.Individual_Info.belongsToMany(db.Recruit, {
+    db.Individualuser_Info.belongsToMany(db.Recruit, {
       through: "personalRecruit",
       as: "IndividualInfo",
       foreignKey: "individualId",

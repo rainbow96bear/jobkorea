@@ -8,6 +8,7 @@ export default function RecruitContainer() {
   const params = useParams();
 
   useEffect(() => {
+    // console.log(params.id);
     const newfunction = async () => {
       try {
         const data = await axios.post(
@@ -38,7 +39,7 @@ export default function RecruitContainer() {
         // }));
 
         SetrecruitInfo([result]);
-        console.log(result);
+        // console.log(result);
       } catch (err) {
         console.error(err);
       }
