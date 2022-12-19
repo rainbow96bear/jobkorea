@@ -93,21 +93,21 @@ const IndividualComponent = ({ registClick }) => {
           type="radio"
           name="infoValid"
           value="1year"
-          onchange={handlieClickRadio}
+          onChange={handlieClickRadio}
         />
         1년
         <input
           type="radio"
           name="infoValid"
           value="3years"
-          onchange={handlieClickRadio}
+          onChange={handlieClickRadio}
         />
         3년
         <input
           type="radio"
           name="infoValid"
           value="withdraw"
-          onchange={handlieClickRadio}
+          onChange={handlieClickRadio}
         />
         회원탈퇴시
       </div>

@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function ManagePostComponent({ inputData, removeRecruit }) {
   console.log(inputData);
+  const navigate = useNavigate();
   return (
     <>
       {inputData.map((data) =>
@@ -18,7 +20,13 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
               </CompanyName>
               <RecruitContentBox>
                 <ContentBox>
-                  <span>{data2.Name}</span>
+                  <span
+                    onClick={() => {
+                      navigate("/companymain/myPost/" + data2.Id);
+                    }}
+                  >
+                    {data2.Name}
+                  </span>
                   <Qualification>
                     <div>{data2.Exp}</div>
                     <div>{data2.Edu}</div>
@@ -28,11 +36,17 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                     <div>
                       {data2.IsPay == "회사내규에 따름" ||
                       data2.IsPay == "회사내규에 따름, 면접 후 결정" ||
-                      "면접 후 결정, 회사내규에 따름" ? (
+                      data2.IsPay == "면접 후 결정, 회사내규에 따름" ? (
                         <>{data2.IsPay}</>
                       ) : (
                         <>
-                          {data2.IsPay} {data2.MinPay}~{data2.MaxPay}만원
+                          {data2.MinPay}~{data2.MaxPay}만원
+                          {data2.PayKinds == "월급" ? (
+                            <span>(월)</span>
+                          ) : (
+                            <></>
+                          )}{" "}
+                          {data2.IsPay ? <span>- {data2.IsPay}</span> : <></>}
                         </>
                       )}
                     </div>
@@ -155,4 +169,5 @@ const EndBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 150px;
 `;

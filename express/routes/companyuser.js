@@ -75,7 +75,7 @@ router.post("/login", async (req, res) => {
             { companyId: req.body.idConfirm },
             process.env.COOKIE_SECRET
           ),
-          { expires: new Date(Date.now() + 6000 * 30) }
+          { expires: new Date(Date.now() + 1000 * 60 * 60) }
         );
         // cookies.set(
         //   "cookie",

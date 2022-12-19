@@ -21,6 +21,7 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
       title: "공고지원자 관리",
       routes: "managepost",
       login: "yes",
+      data: "yes",
     },
     {
       title: "인재검색",

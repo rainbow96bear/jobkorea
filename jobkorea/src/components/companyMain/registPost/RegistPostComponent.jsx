@@ -24,6 +24,7 @@ export default function RegistPostComponent({
   isLimit,
   limitList,
   limitChecked,
+  payKindsHandler,
 }) {
   const options = [
     { value: "인턴", label: "인턴" },
@@ -63,6 +64,7 @@ export default function RegistPostComponent({
   ];
 
   const options4 = [
+    { value: "전국", label: "전국" },
     { value: "서울", label: "서울" },
     { value: "부산", label: "부산" },
     { value: "대구", label: "대구" },
@@ -94,9 +96,10 @@ export default function RegistPostComponent({
     { value: "위촉직/개인사업자", label: "위촉직/개인사업자" },
   ];
 
-  const options6 = [
-    { value: "정규직", label: "정규직" },
-    { value: "계약직", label: "계약직" },
+  const options7 = [
+    { value: "주급", label: "주급" },
+    { value: "월급", label: "월급" },
+    { value: "연봉", label: "연봉" },
   ];
 
   return (
@@ -104,7 +107,7 @@ export default function RegistPostComponent({
       <HeadBox>모집분야</HeadBox>
       <RegistPostBox>
         <div className="line">
-          <div>모집공고명</div>
+          <div>모집공고명*</div>
           <input type="text" className="mo1" onChange={nameHandler} />
 
           {limitList.map((item, index) => {
@@ -150,7 +153,7 @@ export default function RegistPostComponent({
           )}
         </div>
         <div className="line">
-          <div>경력여부</div>
+          <div>경력여부*</div>
 
           {expList.map((item, index) => {
             return (
@@ -170,7 +173,7 @@ export default function RegistPostComponent({
           })}
         </div>
         <div className="line">
-          <div>담당업무</div>
+          <div>담당업무*</div>
           <input type="text" className="mo1" onChange={myTaskHandler}></input>
         </div>
 
@@ -203,7 +206,7 @@ export default function RegistPostComponent({
           </LineBox>
         </div>
         <div className="line">
-          <div>학력조건</div>
+          <div>학력조건*</div>
           <LineBox>
             <Select
               className="basic-multi-select"
@@ -214,7 +217,7 @@ export default function RegistPostComponent({
           </LineBox>
         </div>
         <div className="line">
-          <div>근무지역</div>
+          <div>근무지역*</div>
           <LineBox>
             <Select
               isMulti
@@ -226,7 +229,7 @@ export default function RegistPostComponent({
           </LineBox>
         </div>
         <div className="line">
-          <div>근무형태</div>
+          <div>근무형태*</div>
           <LineBox>
             <Select
               className="basic-multi-select"
@@ -237,7 +240,22 @@ export default function RegistPostComponent({
           </LineBox>
         </div>
         <div className="line">
-          <div>경력여부</div>
+          <div>급여*</div>
+          <Select
+            className="basic-multi-select"
+            classNamePrefix="select"
+            options={options7}
+            onChange={payKindsHandler}
+          />
+          {isPay[0] == "회사내규에 따름" || isPay[1] == "회사내규에 따름" ? (
+            <></>
+          ) : (
+            <>
+              <input type="number" className="mo3" onChange={minPayHandler} /> ~
+              <input type="number" className="mo4" onChange={maxPayHandler} />만
+              원 -
+            </>
+          )}
           {payList.map((item, index) => {
             return (
               <CheckBox key={`payList-${index}`}>
@@ -254,15 +272,6 @@ export default function RegistPostComponent({
               </CheckBox>
             );
           })}
-          {isPay[0] == "회사내규에 따름" || isPay[1] == "회사내규에 따름" ? (
-            <></>
-          ) : (
-            <>
-              <input type="number" className="mo3" onChange={minPayHandler} /> ~
-              <input type="number" className="mo4" onChange={maxPayHandler} />만
-              원
-            </>
-          )}
         </div>
       </RegistPostBox>
       <div className="nextBtn" onClick={saveHandler}>

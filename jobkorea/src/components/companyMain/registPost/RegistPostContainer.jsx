@@ -18,9 +18,14 @@ export default function RegistPostContainer() {
   const [minPay, setMinPay] = useState("");
   const [maxPay, setMaxPay] = useState("");
   const [isLimit, setisLimit] = useState("");
+  const [payKinds, setPayKinds] = useState("");
   const navigate = useNavigate();
 
   const moveTo = (where) => {};
+
+  const payKindsHandler = (value) => {
+    setPayKinds(value.value);
+  };
 
   const onChecked = (checked, item) => {
     if (checked) {
@@ -56,8 +61,8 @@ export default function RegistPostContainer() {
     { id: 2, name: "경력", data: "경력" },
   ];
   const payList = [
-    { name: "회사 내규에 따름", data: "회사내규에 따름" },
     { name: "면접 후 결정", data: "면접 후 결정" },
+    { name: "회사 내규에 따름", data: "회사내규에 따름" },
   ];
   const limitList = [{ name: "제한 있음", data: "제한 있음" }];
 
@@ -109,12 +114,11 @@ export default function RegistPostContainer() {
       recruitName == "" ||
       isExp == "" ||
       myTask == "" ||
-      workDepartment == "" ||
-      workRank == "" ||
-      condition == "" ||
       edu == "" ||
       area == "" ||
-      shape == ""
+      shape == "" ||
+      (payKinds !== "" && (minPay == "" || maxPay == "")) ||
+      (isPay == "" && (payKinds == "" || minPay == "" || maxPay == ""))
     ) {
       alert("필요한 값을 모두 입력해주세요");
       return;
@@ -134,6 +138,7 @@ export default function RegistPostContainer() {
       minPay: minPay.toLocaleString(),
       maxPay: maxPay.toLocaleString(),
       isLimit: isLimit,
+      payKinds: payKinds,
     };
     axios
       .post("http://localhost:8080/api/recruit/add", body)
@@ -165,6 +170,7 @@ export default function RegistPostContainer() {
       isLimit={isLimit}
       limitList={limitList}
       limitChecked={limitChecked}
+      payKindsHandler={payKindsHandler}
     ></RegistPostComponent>
   );
 }

@@ -43,6 +43,9 @@ module.exports = class Recruit extends Sequelize.Model {
         maxPay: {
           type: Sequelize.STRING(255),
         },
+        payKinds: {
+          type: Sequelize.STRING(255),
+        },
       },
       {
         sequelize,

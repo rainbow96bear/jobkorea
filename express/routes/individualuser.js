@@ -9,11 +9,11 @@ const { Individualuser_Info } = require("../models/index.js");
 // const cookies = new Cookies();
 
 router.post("/regist", async (req, res) => {
-  console.log(req.body);
+  console.log(req.body.individualId);
   try {
     if (
       await Individualuser_Info.findOne({
-        where: { individualId: req.body.id },
+        where: { individualId: req.body.individualId },
       })
     ) {
       console.log("이미 있는 아이디");

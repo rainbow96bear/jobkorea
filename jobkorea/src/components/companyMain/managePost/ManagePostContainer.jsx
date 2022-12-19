@@ -41,6 +41,7 @@ export default function ManagePostContainer() {
           IsPay: rowData.isPay,
           MinPay: rowData.minPay,
           MaxPay: rowData.maxPay,
+          PayKinds: rowData.payKinds,
           CompanyName: rowData.Companyuser_Info.companyName,
           CompanyLogo: rowData.Companyuser_Info.companylogo,
         }));

@@ -76,7 +76,19 @@ const HeaderComponent = ({
                     setHeaderMenuIsOver(index);
                   }}
                   onMouseLeave={() => setHeaderMenuIsOver(-1)}
-                  onClick={() => {
+                  onClick={async () => {
+                    if (item.data == "yes") {
+                      const data = await axios.post(
+                        "http://localhost:8080/api/recruit/isdata"
+                      );
+                      console.log(data.data.isdata);
+                      if (data.data.isdata == "false") {
+                        return alert(
+                          "등록한 공고가 없습니다. 먼저 공고를 등록해주세요."
+                        );
+                      }
+                    }
+
                     if (item.login == "yes" && !document.cookie) {
                       alert("로그인 해주세요");
                       moveTo("companymain");
