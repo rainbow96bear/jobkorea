@@ -68,12 +68,13 @@ module.exports = class Recruit extends Sequelize.Model {
       foreignKey: "company",
     });
 
-    db.Recruit.belongsToMany(db.Individualuser_Info, {
-      through: "personalRecruit",
-      as: "RecruitInfo",
-      foreignKey: "id",
-      sourceKey: "id",
-      onDelete: "cascade",
-    });
+    //   db.Recruit.belongsToMany(db.Individualuser_Info, {
+    //     through: "personalRecruit",
+    //     as: "RecruitInfo",
+    //     foreignKey: "recruitId",
+    //     sourceKey: "id",
+    //     onDelete: "cascade",
+    //   });
+    // }
   }
 };

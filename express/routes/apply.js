@@ -1,8 +1,28 @@
 const router = require("express").Router();
 
-const { Recruit, Individualuser_Info } = require("../models/index.js");
+const {
+  Recruit,
+  Individualuser_Info,
+  Personalrecruit,
+} = require("../models/index.js");
 
 const jwt = require("jsonwebtoken");
+
+router.post("/jobApplication", async (req, res) => {
+  try {
+    const jobApplicationDB = await Personalrecruit.findAll({
+      include: [
+        { model: Recruit, attributes: ["recruitName"] },
+        { model: Individualuser_Info, attributes: ["individualName"] },
+      ],
+    });
+
+    res.send(jobApplicationDB);
+  } catch (err) {
+    console.error(err);
+    res.send("실패");
+  }
+});
 
 router.post("/now", async (req, res) => {
   console.log(req.body);
@@ -30,7 +50,7 @@ router.post("/now", async (req, res) => {
     console.log("---------------");
 
     recruitId.addRecruitInfo(individualId);
-    individualId.addIndividualInfo(recruitId);
+    // individualId.addIndividualInfo(recruitId);
     res.send("테스트");
   } catch (err) {
     console.error(err);

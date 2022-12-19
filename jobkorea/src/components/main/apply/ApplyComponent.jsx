@@ -14,14 +14,14 @@ export default function ApplyComponent() {
           <h1>0</h1>
           <span>지원완료</span>
         </Subcontaineronecontent>
-        <Subcontaineronecontent>
+        {/* <Subcontaineronecontent>
           <h1>0</h1>
           <span>열람</span>
         </Subcontaineronecontent>
         <Subcontaineronecontent>
           <h1>0</h1>
           <span>미열람</span>
-        </Subcontaineronecontent>
+        </Subcontaineronecontent> */}
         <Subcontaineronecontent>
           <h1>0</h1>
           <span>지원취소</span>
@@ -80,7 +80,7 @@ export default function ApplyComponent() {
         <p style={{ color: " grey" }}>
           회원님의 구직활동 정보를 분석하여 꼭 맞는 채용정보를 추천합니다
         </p>
-        <Button>스마트매치 바로가기</Button>
+        {/* <Button>스마트매치 바로가기</Button> */}
       </Subcontainerthree>
       <Subcontainerfour></Subcontainerfour>
       <Subcontainertwo>
