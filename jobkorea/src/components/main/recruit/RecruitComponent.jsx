@@ -9,7 +9,7 @@ export default function RecruitComponent({ recruitInfo, applybutton }) {
   // console.log(recruitInfo);
   // console.log(recruitInfo[0].recruitArea && );
   console.log(recruitInfo);
-  console.log(recruitInfo[0]);
+  // console.log(recruitInfo[0]);
   return (
     <div>
       <InformationBox>
@@ -19,7 +19,7 @@ export default function RecruitComponent({ recruitInfo, applybutton }) {
         <Informationboxscontent>
           <Boxscontentone>
             <Textfour>
-              {/* {recruitInfo[0]?.Companyuser_Info.companyName} */}
+              {recruitInfo[0]?.Companyuser_Info.companyName}
               <button>♡ 관심기업</button>
               <h2 style={{ color: "black" }}>{recruitInfo[0]?.recruitName}</h2>
             </Textfour>
@@ -97,7 +97,7 @@ export default function RecruitComponent({ recruitInfo, applybutton }) {
               <Texttwo>
                 <Textfive>기업형태</Textfive>
                 <Textsix style={{ marginLeft: 8 }}>
-                  {/* {recruitInfo[0]?.Companyuser_Info.selectedOption} */}
+                  {recruitInfo[0]?.Companyuser_Info.selectedOption}
                 </Textsix>
               </Texttwo>
               <Texttwo>

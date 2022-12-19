@@ -52,10 +52,18 @@ router.post("/add", async (req, res) => {
 });
 
 router.post("/call", async (req, res) => {
-  const userInfo = jwt.verify(
-    req.cookies.jobkorea_login,
-    process.env.COOKIE_SECRET
-  );
+  // const userInfo = jwt.verify(
+  //   req.cookies.jobkorea_login,
+  //   process.env.COOKIE_SECRET
+  // );
+
+  let userInfo;
+  if (req.cookies["jobkorea_login"]) {
+    userInfo = jwt.verify(
+      req.cookies.jobkorea_login,
+      process.env.COOKIE_SECRET
+    );
+  }
   try {
     const rowData = await Recruit.findAll({
       where: { company: userInfo.companyId },

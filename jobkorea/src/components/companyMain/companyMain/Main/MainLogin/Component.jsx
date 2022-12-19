@@ -20,7 +20,7 @@ const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
           "http://localhost:8080/api/companyuser/logout",
           {}
         );
-      }, 60000);
+      }, 180000);
     }
   }, [companyUser]);
 
