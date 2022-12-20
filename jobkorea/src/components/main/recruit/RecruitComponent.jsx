@@ -2,7 +2,11 @@ import styled from "styled-components";
 import cjimg from "./img/cj.png";
 import { useEffect, useState } from "react";
 
-export default function RecruitComponent({ recruitInfo, applybutton }) {
+export default function RecruitComponent({
+  recruitInfo,
+  applybutton,
+  applycanclebutton,
+}) {
   // console.log(recruitInfo.result.id);
   // const recruitresult = recruitInfo.result;
   // console.log(recruitresult.id);
@@ -116,6 +120,11 @@ export default function RecruitComponent({ recruitInfo, applybutton }) {
         <Home>
           <div onClick={applybutton}>
             <strong>즉시 지원</strong>
+          </div>
+        </Home>
+        <Home>
+          <div onClick={applycanclebutton}>
+            <strong>지원 취소</strong>
           </div>
         </Home>
       </Footercontainer>
