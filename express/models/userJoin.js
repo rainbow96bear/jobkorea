@@ -36,13 +36,13 @@ module.exports = class Individual_Info extends Sequelize.Model {
       }
     );
   }
-  // static associate(db) {
-  //   db.Individualuser_Info.belongsToMany(db.Recruit, {
-  //     through: "personalRecruit",
-  //     as: "IndividualInfo",
-  //     foreignKey: "individualId",
-  //     sourceKey: "individualId",
-  //     onDelete: "cascade",
-  //   });
-  // }
+  static associate(db) {
+    db.Individualuser_Info.belongsToMany(db.Recruit, {
+      through: "personalRecruit",
+      as: "IndividualInfo",
+      foreignKey: "individualId",
+      sourceKey: "individualId",
+      onDelete: "cascade",
+    });
+  }
 };
