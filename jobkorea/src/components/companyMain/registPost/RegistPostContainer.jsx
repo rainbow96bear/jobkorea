@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RegistPostComponent from "./RegistPostComponent";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function RegistPostContainer() {
+export default function RegistPostContainer({ adGrade }) {
   const [recruitName, setRecruitName] = useState("");
   const [recruitNum, setRecruitNum] = useState(-1);
   const [isExp, setIsExp] = useState([]);
@@ -19,9 +19,8 @@ export default function RegistPostContainer() {
   const [maxPay, setMaxPay] = useState("");
   const [isLimit, setisLimit] = useState("");
   const [payKinds, setPayKinds] = useState("");
-  const navigate = useNavigate();
 
-  const moveTo = (where) => {};
+  const navigate = useNavigate();
 
   const payKindsHandler = (value) => {
     setPayKinds(value.value);
@@ -122,7 +121,11 @@ export default function RegistPostContainer() {
     ) {
       alert("필요한 값을 모두 입력해주세요");
       return;
+    } else if (minPay >= maxPay) {
+      alert("최소 급여는 최대 급여보다 작아야합니다");
+      return;
     }
+
     let body = {
       recruitName: recruitName,
       recruitNum: recruitNum,
@@ -139,6 +142,7 @@ export default function RegistPostContainer() {
       maxPay: maxPay.toLocaleString(),
       isLimit: isLimit,
       payKinds: payKinds,
+      adGrade: adGrade,
     };
     axios
       .post("http://localhost:8080/api/recruit/add", body)

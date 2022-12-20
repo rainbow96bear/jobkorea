@@ -101,6 +101,7 @@ router.post("/login", async (req, res) => {
 });
 
 const multer = require("multer");
+const { findOne } = require("../models/join.js");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads");
@@ -111,6 +112,23 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+router.post("/money", async (req, res) => {
+  try {
+    const temp = jwt.verify(
+      req.cookies["jobkorea_login"],
+      process.env.COOKIE_SECRET
+    );
+    console.log(temp);
+    const data = await Companyuser_Info.findOne({
+      where: { companyId: temp.companyId },
+    });
+
+    res.send(data);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 router.post("/regist", upload.single("companyLogoUpload"), async (req, res) => {
   console.log(req.body);
@@ -136,6 +154,7 @@ router.post("/regist", upload.single("companyLogoUpload"), async (req, res) => {
         companyIdname: req.body.companyIdname,
         companyIdnumber: req.body.companyIdnumber,
         companyIdemail: req.body.companyIdemail,
+        companyMoney: req.body.companyMoney,
       });
       console.log("아이디 생성");
       res.send({ status: 200 });

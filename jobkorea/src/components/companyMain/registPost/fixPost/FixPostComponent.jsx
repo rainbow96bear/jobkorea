@@ -25,7 +25,6 @@ export default function FixPostComponent({
   limitList,
   limitChecked,
   payKindsHandler,
-  recruitName,
 }) {
   const options = [
     { value: "인턴", label: "인턴" },
@@ -109,12 +108,7 @@ export default function FixPostComponent({
       <RegistPostBox>
         <div className="line">
           <div>모집공고명*</div>
-          <input
-            type="text"
-            className="mo1"
-            value={recruitName}
-            onChange={nameHandler}
-          />
+          <input type="text" className="mo1" onChange={nameHandler} />
 
           {limitList.map((item, index) => {
             return (

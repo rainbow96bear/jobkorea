@@ -33,13 +33,24 @@ const HeaderComponent = ({
             JOBKOREA
           </div>
           <div>
-            <div
-              onClick={() => {
-                moveTo("registAccount/company");
-              }}
-            >
-              회원가입
-            </div>
+            {companyUser == 0 ? (
+              <div
+                onClick={() => {
+                  moveTo("registAccount/company");
+                }}
+              >
+                회원가입
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  moveTo("registAccount/mypage");
+                }}
+              >
+                마이페이지
+              </div>
+            )}
+
             <div>고객센터</div>
             <div>
               {companyUser == 0 ? (

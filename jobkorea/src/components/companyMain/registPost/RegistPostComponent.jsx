@@ -374,23 +374,3 @@ const CheckBox = styled.div`
     margin-right: 20px;
   }
 `;
-
-{
-  /* <select name="exp">
-          <option value={"noexp"}>경력무관</option>
-          <option value={"new"}>신입</option>
-          <option value={"veteran"}>경력</option>
-        </select> */
-}
-
-{
-  /* <div>
-        <span>학력</span>
-        <select name="edu">
-          <option value={"noedu"}>학력무관</option>
-          <option value={"high"}>고졸이상</option>
-          <option value={"junior"}>초대졸이상</option>
-          <option value={"college"}>대졸이상</option>
-        </select>
-      </div> */
-}

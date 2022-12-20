@@ -39,6 +39,46 @@ router.post("/myrecruit", async (req, res) => {
   }
 });
 
+router.post("/ad", (req, res) => {
+  if (req.cookies["jobkorea_login"]) {
+    userInfo = jwt.verify(
+      req.cookies.jobkorea_login,
+      process.env.COOKIE_SECRET
+    );
+  }
+
+  Companyuser_Info.update(
+    { companyMoney: req.body.resultMoney },
+    { where: { companyId: userInfo.companyId } }
+  ).then((data) => {
+    console.log(data);
+  });
+});
+
+router.post("/fix", (req, res) => {
+  Recruit.update(
+    {
+      recruitName: req.body.recruitName,
+      recruitNum: req.body.recruitNum,
+      isExp: req.body.isExp.join(", "),
+      myTask: req.body.myTask,
+      workDepartment: req.body.workDepartment,
+      workRank: req.body.workRank.join(),
+      condition: req.body.condition.join(", "),
+      edu: req.body.edu,
+      area: req.body.area.join(", "),
+      shape: req.body.shape,
+      isPay: req.body.isPay.join(", "),
+      minPay: req.body.minPay,
+      maxPay: req.body.maxPay,
+      payKinds: req.body.payKinds,
+    },
+    { where: { id: req.body.id } }
+  ).then((data) => {
+    console.log("update", data);
+  });
+});
+
 router.post("/add", async (req, res) => {
   const companyName = await Recruit.create({
     recruitName: req.body.recruitName,
@@ -55,6 +95,7 @@ router.post("/add", async (req, res) => {
     minPay: req.body.minPay,
     maxPay: req.body.maxPay,
     payKinds: req.body.payKinds,
+    adGrade: req.body.adGrade,
   });
 
   const userInfo = jwt.verify(
@@ -70,19 +111,19 @@ router.post("/add", async (req, res) => {
   res.send("남양주 놀러오면 풀코스로 쏜다");
 });
 
-try {
-  const myRecruit = Recruit.findOne({
-    where: { id: req.body.id },
-    include: [
-      {
-        model: db.Companyuser_Info,
-      },
-    ],
-  });
-  res.send(myRecruit);
-} catch (err) {
-  console.log(err);
-}
+// try {
+//   const myRecruit = Recruit.findOne({
+//     where: { id: req.body.id },
+//     include: [
+//       {
+//         model: db.Companyuser_Info,
+//       },
+//     ],
+//   });
+//   res.send(myRecruit);
+// } catch (err) {
+//   console.log(err);
+// }
 
 router.post("/dbcall", (req, res) => {
   Recruit.findOne({

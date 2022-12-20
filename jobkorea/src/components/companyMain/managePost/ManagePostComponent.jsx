@@ -6,81 +6,79 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
   const navigate = useNavigate();
   return (
     <>
-      {inputData.map((data) =>
-        data.map((data2, index) => (
-          <ItemBox key={`itembox-${index}`}>
-            <ItemFrame>
-              <CompanyName>
-                {data2.CompanyName}
-                <CompanyLogo>
-                  <img
-                    src={`http://localhost:8080/uploads/${data2.CompanyLogo}`}
-                  ></img>
-                </CompanyLogo>
-              </CompanyName>
-              <RecruitContentBox>
-                <ContentBox>
-                  <span
+      {inputData.map((data, index) => (
+        <ItemBox key={`itembox-${index}`}>
+          <ItemFrame>
+            <CompanyName>
+              {data.CompanyName}
+              <CompanyLogo>
+                <img
+                  src={`http://localhost:8080/uploads/${data.CompanyLogo}`}
+                ></img>
+              </CompanyLogo>
+            </CompanyName>
+            <RecruitContentBox>
+              <ContentBox>
+                <span
+                  onClick={() => {
+                    navigate("/companymain/myPost/" + data.Id);
+                  }}
+                >
+                  {data.Name}
+                </span>
+                <Qualification>
+                  <div>{data.Exp}</div>
+                  <div>{data.Edu}</div>
+                  <div>{data.Area}</div>
+                  <div>{data.Shape}</div>
+                  <div>{data.Rank}</div>
+                  <div>
+                    {data.IsPay == "회사내규에 따름" ||
+                    data.IsPay == "회사내규에 따름, 면접 후 결정" ||
+                    data.IsPay == "면접 후 결정, 회사내규에 따름" ? (
+                      <>{data.IsPay}</>
+                    ) : (
+                      <>
+                        {data.MinPay}~{data.MaxPay}만원
+                        {data.PayKinds == "월급" ? (
+                          <span>(월)</span>
+                        ) : (
+                          <></>
+                        )}{" "}
+                        {data.IsPay ? <span>- {data.IsPay}</span> : <></>}
+                      </>
+                    )}
+                  </div>
+                </Qualification>
+                <OtherPreferential>
+                  <div>{data.Condition}</div>
+                </OtherPreferential>
+                <TaskBox>
+                  <div>{data.Task}</div>
+                </TaskBox>
+              </ContentBox>
+              <EndBox>
+                <BtnBox>
+                  <RemoveBtn
                     onClick={() => {
-                      navigate("/companymain/myPost/" + data2.Id);
+                      removeRecruit(data.Id);
                     }}
                   >
-                    {data2.Name}
-                  </span>
-                  <Qualification>
-                    <div>{data2.Exp}</div>
-                    <div>{data2.Edu}</div>
-                    <div>{data2.Area}</div>
-                    <div>{data2.Shape}</div>
-                    <div>{data2.Rank}</div>
-                    <div>
-                      {data2.IsPay == "회사내규에 따름" ||
-                      data2.IsPay == "회사내규에 따름, 면접 후 결정" ||
-                      data2.IsPay == "면접 후 결정, 회사내규에 따름" ? (
-                        <>{data2.IsPay}</>
-                      ) : (
-                        <>
-                          {data2.MinPay}~{data2.MaxPay}만원
-                          {data2.PayKinds == "월급" ? (
-                            <span>(월)</span>
-                          ) : (
-                            <></>
-                          )}{" "}
-                          {data2.IsPay ? <span>- {data2.IsPay}</span> : <></>}
-                        </>
-                      )}
-                    </div>
-                  </Qualification>
-                  <OtherPreferential>
-                    <div>{data2.Condition}</div>
-                  </OtherPreferential>
-                  <TaskBox>
-                    <div>{data2.Task}</div>
-                  </TaskBox>
-                </ContentBox>
-                <EndBox>
-                  <BtnBox>
-                    <RemoveBtn
-                      onClick={() => {
-                        removeRecruit(data2.Id);
-                      }}
-                    >
-                      삭제
-                    </RemoveBtn>
-                  </BtnBox>
-                  <NumBox>
-                    {data2.Num == -1 ? (
-                      <div>모집인원 제한없음</div>
-                    ) : (
-                      <div>모집인원 {data2.Num}명</div>
-                    )}
-                  </NumBox>
-                </EndBox>
-              </RecruitContentBox>
-            </ItemFrame>
-          </ItemBox>
-        ))
-      )}
+                    삭제
+                  </RemoveBtn>
+                </BtnBox>
+                <NumBox>
+                  {data.Num == -1 ? (
+                    <div>모집인원 제한없음</div>
+                  ) : (
+                    <div>모집인원 {data.Num}명</div>
+                  )}
+                </NumBox>
+              </EndBox>
+            </RecruitContentBox>
+          </ItemFrame>
+        </ItemBox>
+      ))}
     </>
   );
 }
@@ -149,6 +147,7 @@ const RemoveBtn = styled.button`
   background-color: red;
   border: none;
   padding: 10px 15px;
+  cursor: pointer;
 `;
 const BtnBox = styled.div`
   min-width: 110px;

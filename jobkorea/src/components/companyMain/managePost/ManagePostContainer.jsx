@@ -45,8 +45,8 @@ export default function ManagePostContainer() {
           CompanyName: rowData.Companyuser_Info.companyName,
           CompanyLogo: rowData.Companyuser_Info.companylogo,
         }));
-        setInputData([...inputData, _inputData]);
-        console.log([...inputData, _inputData]);
+        setInputData(_inputData);
+        console.log(_inputData);
       });
     } catch (e) {
       console.error(e.message);

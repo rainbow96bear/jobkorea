@@ -5,19 +5,16 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function FixPostContainer() {
   const params = useParams();
-  const [temp, setTemp] = useState("");
 
   useEffect(() => {
     axios
       .post("http://localhost:8080/api/recruit/dbcall", { id: params.id })
       .then((data) => {
         console.log(data);
-        setTemp(data.data.recruitName);
-        console.log(temp);
       });
   }, []);
 
-  const [recruitName, setRecruitName] = useState(temp);
+  const [recruitName, setRecruitName] = useState("");
   const [recruitNum, setRecruitNum] = useState(-1);
   const [isExp, setIsExp] = useState([]);
   const [myTask, setMyTask] = useState("");
@@ -183,7 +180,6 @@ export default function FixPostContainer() {
       limitList={limitList}
       limitChecked={limitChecked}
       payKindsHandler={payKindsHandler}
-      recruitName={recruitName}
     ></FixPostComponent>
   );
 }

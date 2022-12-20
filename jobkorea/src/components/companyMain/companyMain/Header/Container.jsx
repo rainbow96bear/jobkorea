@@ -14,7 +14,7 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
     },
     {
       title: "공고등록",
-      routes: "registpost",
+      routes: "registpostad",
       login: "yes",
     },
     {
