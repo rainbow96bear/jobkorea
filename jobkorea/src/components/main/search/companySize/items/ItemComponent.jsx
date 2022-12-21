@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 export default function ItemComponent({ data }) {
   const navigate = useNavigate();
@@ -30,8 +29,7 @@ export default function ItemComponent({ data }) {
                   <ApplyBtn
                     onClick={() => {
                       navigate("/recruit/" + data2.id);
-                    }}
-                  >
+                    }}>
                     상세 정보
                   </ApplyBtn>
                   <div></div>

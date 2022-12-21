@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { useParams } from "react-router-dom";
-
 export default function RecruitContainer() {
   const navigate = useNavigate();
   const [recruitInfo, SetrecruitInfo] = useState([]);
@@ -106,7 +104,6 @@ export default function RecruitContainer() {
     <RecruitComponent
       recruitInfo={recruitInfo}
       applybutton={applybutton}
-      applycanclebutton={applycanclebutton}
-    ></RecruitComponent>
+      applycanclebutton={applycanclebutton}></RecruitComponent>
   );
 }
