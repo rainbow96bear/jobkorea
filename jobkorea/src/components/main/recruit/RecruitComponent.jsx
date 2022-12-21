@@ -120,11 +120,11 @@ export default function RecruitComponent({
             <strong>즉시 지원</strong>
           </div>
         </Home>
-        <Home>
+        {/* <Home>
           <div onClick={applycanclebutton}>
             <strong>지원 취소</strong>
           </div>
-        </Home>
+        </Home> */}
       </Footercontainer>
     </div>
   );

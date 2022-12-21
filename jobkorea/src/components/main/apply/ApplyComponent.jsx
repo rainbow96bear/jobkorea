@@ -24,10 +24,10 @@ export default function ApplyComponent({ application }) {
           <h1>0</h1>
           <span>미열람</span>
         </Subcontaineronecontent> */}
-        <Subcontaineronecontent>
+        {/* <Subcontaineronecontent>
           <h1>0</h1>
           <span>지원취소</span>
-        </Subcontaineronecontent>
+        </Subcontaineronecontent> */}
       </Subcontainerone>
       <Subcontainertwo>
         <Subcontainertwocontentitem>
@@ -92,38 +92,42 @@ export default function ApplyComponent({ application }) {
           <div>{application[1].area}</div>
         </div> */}
 
-        {/* {application.length ? (
+        {application.length ? (
           <div>
             {application.map((item, index) => (
-              // <div key={`${index}`}>
-              //   <div>{item.recruitName}</div>
-              //   <div>{item.myTask}</div>
-              //   <div>{item.workRank}</div>
-              //   <div>{item.area}</div>
-              // </div>
-
               <Itembox key={`${index}`}>
-                <div style={{ marginBottom: 30 }}>{item.recruitName}</div>
-                <div style={{ marginBottom: 30 }}>업무:{item.myTask}</div>
-                <div style={{ marginBottom: 30 }}>직급:{item.workRank}</div>
-                <div style={{ marginBottom: 30 }}>지역:{item.area}</div>
+                <div>
+                  <RecruitName>{item.recruitName}</RecruitName>
+                </div>
+                <Thicksolid></Thicksolid>
+                <div style={{ width: 180 }}>
+                  <h2>업무: {item.myTask}</h2>
+                  <h2>직급: {item.workRank}</h2>
+                  <h2>지역: {item.area}</h2>
+                </div>
+                <Canclebutton>취소하기</Canclebutton>
               </Itembox>
             ))}
           </div>
         ) : (
           <div>지원완료 및 지원예약 내역이 없습니다.</div>
-        )} */}
+        )}
 
-        {application.length ? (
-          <Itembox>
+        {/* {application.length ? (
+        
+          {application.map((item,index)=>(
+             <Itembox>
             <div>
-              <RecruitName>블록체인개발 모집</RecruitName>
+              <RecruitName>{item.recruitName}</RecruitName>
             </div>
-            <div>1</div>
+            <Thicksolid></Thicksolid>
+           
           </Itembox>
+         
+          ))}
         ) : (
           <div>지원완료 및 지원예약 내역이 없습니다.</div>
-        )}
+        )} */}
 
         <p style={{ color: " grey" }}>
           회원님의 구직활동 정보를 분석하여 꼭 맞는 채용정보를 추천합니다
@@ -176,22 +180,52 @@ export default function ApplyComponent({ application }) {
   );
 }
 
+const Canclebutton = styled.div`
+  width: 14%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  margin-left: 15%;
+  color: red;
+  font-size: 20px;
+  border-style: solid;
+`;
+
+const Thicksolid = styled.div`
+  border-left: thin solid gray;
+  height: 20vh;
+  /* margin-left: 20%; */
+`;
+
 const RecruitName = styled.h1`
   padding-top: 18%;
+  width: 15vw;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+
+  color: black;
   /* display: inline-block; */
 `;
 
 const Itembox = styled.div`
   display: flex;
-  width: 100%;
+  width: 40vw;
   border: solid;
   border-color: lightgray;
-  height: 30vh;
+  height: 20vh;
+  color: gray;
+  margin-top: 5%;
 `;
 
 const Container = styled.div`
   width: 50%;
-  /* height: 93vh; */
+  /* height: 100%; */
   background-color: white;
   border-style: solid;
   border-color: #f8f4f4;
@@ -201,8 +235,10 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   margin: auto;
+  /* margin-left: 10%; */
   width: 80%;
   align-items: center;
+  justify-content: center;
   border-bottom: solid 1px lightgray;
 `;
 
