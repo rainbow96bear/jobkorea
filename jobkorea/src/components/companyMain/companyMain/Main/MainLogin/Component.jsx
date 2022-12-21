@@ -61,7 +61,9 @@ const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
                 >
                   로그아웃
                 </div>
-                <div>{companyUser}님 환영합니다</div>
+                <WelcomeBox>
+                  <div>{companyUser} 님</div> 환영합니다
+                </WelcomeBox>
               </div>
             )}
           </div>
@@ -179,6 +181,10 @@ const MainLoginBoardBox = styled.div`
     font-size: 18px;
     margin-top: 5px;
   }
+`;
+
+const WelcomeBox = styled.div`
+  flex-direction: column;
 `;
 
 export default MainLoginBoardComponent;

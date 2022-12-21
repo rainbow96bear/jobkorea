@@ -26,45 +26,9 @@ router.post("/loginconfirm", async (req, res) => {
         req.cookies["jobkorea_login"],
         process.env.COOKIE_SECRET
       );
-      console.log("++++++++++++++");
-      console.log(temp["companyId"]);
-      res.send({ companyId: req.body.idConfirm });
-    } else {
-      if (
-        await Companyuser_Info.findOne({
-          where: { companyId: req.body.idConfirm },
-        })
-      ) {
-        if (
-          await Companyuser_Info.findOne({
-            where: {
-              // companyId: req.body.idConfirm,
-              companyPw: crypto.SHA256(req.body.pwConfirm).toString(),
-            },
-          })
-        ) {
-          // res.clearCookie("jobkorea_login");
-          res.cookie(
-            "jobkorea_login",
-            jwt.sign(
-              { companyId: req.body.idConfirm },
-              process.env.COOKIE_SECRET
-            ),
-            { expires: new Date(Date.now() + 6000 * 30 * 60) }
-          );
-          // cookies.set(
-          //   "cookie",
-          //   { companyId: req.body.idConfirm },
-          //   {
-          //     path: "/",
-          //     expires: Date.now() / 1000 + 60 * 60,
-          //   }
-          // );
 
-          console.log(temp["companyId"]);
-          res.send(temp["companyId"]);
-        }
-      }
+      console.log(temp["companyId"]);
+      res.send(temp["companyId"]);
     }
   } catch (err) {
     console.error(err);
@@ -111,7 +75,7 @@ router.post("/login", async (req, res) => {
             { companyId: req.body.idConfirm },
             process.env.COOKIE_SECRET
           ),
-          { expires: new Date(Date.now() + 6000 * 30) }
+          { expires: new Date(Date.now() + 1000 * 60 * 60) }
         );
         // cookies.set(
         //   "cookie",
@@ -137,6 +101,7 @@ router.post("/login", async (req, res) => {
 });
 
 const multer = require("multer");
+const { findOne } = require("../models/join.js");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads");
@@ -147,6 +112,23 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+router.post("/money", async (req, res) => {
+  try {
+    const temp = jwt.verify(
+      req.cookies["jobkorea_login"],
+      process.env.COOKIE_SECRET
+    );
+    console.log(temp);
+    const data = await Companyuser_Info.findOne({
+      where: { companyId: temp.companyId },
+    });
+
+    res.send(data);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 router.post("/regist", upload.single("companyLogoUpload"), async (req, res) => {
   console.log(req.body);
@@ -172,6 +154,7 @@ router.post("/regist", upload.single("companyLogoUpload"), async (req, res) => {
         companyIdname: req.body.companyIdname,
         companyIdnumber: req.body.companyIdnumber,
         companyIdemail: req.body.companyIdemail,
+        companyMoney: req.body.companyMoney,
       });
       console.log("아이디 생성");
       res.send({ status: 200 });

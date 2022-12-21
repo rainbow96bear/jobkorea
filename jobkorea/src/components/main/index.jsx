@@ -19,7 +19,7 @@ export default function Main() {
           element={<SearchContainer></SearchContainer>}
         ></Route>
         <Route
-          path="/recruit"
+          path="/recruit/:id"
           element={<RecruitContainer></RecruitContainer>}
         ></Route>
         <Route

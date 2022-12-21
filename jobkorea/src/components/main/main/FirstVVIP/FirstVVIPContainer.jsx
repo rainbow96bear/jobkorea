@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import FirstVVIPComponent from "./FirstVVIPComponent";
 
-export default function FirstVVIPContainer() {
+export default function FirstVVIPContainer({}) {
   const [inputData, setInputData] = useState([]);
 
   useEffect(() => {

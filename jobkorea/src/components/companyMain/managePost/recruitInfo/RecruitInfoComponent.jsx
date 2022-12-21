@@ -1,0 +1,324 @@
+import styled from "styled-components";
+
+export default function RecruitInfoComponent({ myRecruit, moveTo }) {
+  console.log(myRecruit[0]?.minPay);
+  return (
+    <div>
+      <Informationboxs>
+        <Informationboxscontent>
+          <Boxscontentone>
+            <Textfour>
+              {myRecruit[0]?.Companyuser_Info.companyName}
+              <h2 style={{ color: "black" }}>{myRecruit[0]?.recruitName}</h2>
+            </Textfour>
+          </Boxscontentone>
+          <Boxscontenttwo>
+            <Textone>
+              <div style={{ marginBottom: 10 }}>지원자격</div>
+              <div>
+                <Texttwo>
+                  <TitleBox className="gray">경력</TitleBox>{" "}
+                  <Textcolor>{myRecruit[0]?.isExp}</Textcolor>
+                </Texttwo>
+                <Texttwo>
+                  <TitleBox className="gray">학력</TitleBox>
+                  <Textcolor>{myRecruit[0]?.edu}</Textcolor>
+                </Texttwo>
+                <Texttwo>
+                  <TitleBox className="gray">우대</TitleBox>
+                  <ul>
+                    {myRecruit[0]?.condition.split(",").map((item, index) => (
+                      <li key={`li-${index}`}>{item}</li>
+                    ))}
+                  </ul>
+                </Texttwo>
+              </div>
+            </Textone>
+
+            <Textone>
+              <div style={{ marginBottom: 10 }}>근무조건</div>
+              <Texttwo>
+                <Textthree>고용형태</Textthree>
+                <Textcolor>{myRecruit[0]?.shape}</Textcolor>
+              </Texttwo>
+              <Texttwo>
+                <Textthree>급여</Textthree>
+                <PayBox>
+                  {myRecruit[0]?.isPay == "회사내규에 따름" ||
+                  myRecruit[0]?.isPay == "회사내규에 따름, 면접 후 결정" ||
+                  myRecruit[0]?.isPay == "면접 후 결정, 회사내규에 따름" ? (
+                    <>{myRecruit[0]?.isPay}</>
+                  ) : (
+                    <>
+                      {myRecruit[0]?.payKinds == "주급" ? (
+                        <span>주급 </span>
+                      ) : (
+                        <></>
+                      )}
+                      {myRecruit[0]?.payKinds == "월급" ? (
+                        <span>월급 </span>
+                      ) : (
+                        <></>
+                      )}
+                      {myRecruit[0]?.payKinds == "연봉" ? (
+                        <span>연봉 </span>
+                      ) : (
+                        <></>
+                      )}
+                      {myRecruit[0]?.minPay}~{myRecruit[0]?.maxPay}만원
+                      {myRecruit[0]?.isPay ? (
+                        <span>- {myRecruit[0]?.isPay}</span>
+                      ) : (
+                        <></>
+                      )}
+                    </>
+                  )}
+                </PayBox>
+              </Texttwo>
+              <Texttwo>
+                <Textthree>지역</Textthree>
+                <div>
+                  {myRecruit[0]?.area} <button>지도</button>
+                </div>
+              </Texttwo>
+              <Texttwo>
+                <Textthree>시간</Textthree>
+                <div>주5일(월~금) | 09:00~18:00 탄력근무제</div>
+              </Texttwo>
+              <Texttwo>
+                <Textthree>직급</Textthree>
+                <div>{myRecruit[0]?.workRank}</div>
+              </Texttwo>
+              <Texttwo>
+                <Textthree>담당업무</Textthree>
+                <div>{myRecruit[0]?.myTask}</div>
+              </Texttwo>
+              <Texttwo>
+                <Textthree>근무부서</Textthree>
+                <div>{myRecruit[0]?.workDepartment}</div>
+              </Texttwo>
+            </Textone>
+          </Boxscontenttwo>
+        </Informationboxscontent>
+        <Informationboxscontenttwo>
+          <Imgbox>
+            <img
+              src={`http://localhost:8080/uploads/${myRecruit[0]?.Companyuser_Info.companylogo}`}
+            />
+          </Imgbox>
+          <div>
+            <div style={{ marginBottom: 10, marginLeft: 10 }}>기업정보</div>
+            <Textbox>
+              <Texttwo>
+                <Textfive>산업(업종)</Textfive>
+                <Textsix>솔루션.SL.CRM.ERP</Textsix>
+              </Texttwo>
+              <Texttwo>
+                <Textfive>사원수</Textfive>
+                <Textsix style={{ marginLeft: 20 }}>1,500명</Textsix>
+              </Texttwo>
+              <Texttwo>
+                <Textfive>설립년도</Textfive>
+                <Textsix style={{ marginLeft: 8 }}>1995년(28년차)</Textsix>
+              </Texttwo>
+              <Texttwo>
+                <Textfive>기업형태</Textfive>
+                <Textsix style={{ marginLeft: 8 }}>
+                  {myRecruit[0]?.Companyuser_Info.selectedOption}
+                </Textsix>
+              </Texttwo>
+              <Texttwo>
+                <Textfive style={{ width: 68 }}>홈페이지</Textfive>
+                <Textsix>https://www.cjoliven etworks.co.kr</Textsix>
+              </Texttwo>
+            </Textbox>
+          </div>
+          <Buttonbox>
+            <button>기업정보</button>
+            <button>진행중인 채용보기</button>
+          </Buttonbox>
+        </Informationboxscontenttwo>
+      </Informationboxs>
+      <Footercontainer>
+        <FixBtn>
+          <div
+            onClick={() => moveTo(`/companymain/fixpost/${myRecruit[0]?.id}`)}
+          >
+            <strong>공고 수정</strong>
+          </div>
+        </FixBtn>
+        <BackBtn>
+          <div onClick={() => moveTo("/companymain/managepost")}>
+            <strong>뒤로 가기</strong>
+          </div>
+        </BackBtn>
+      </Footercontainer>
+    </div>
+  );
+}
+
+const PayBox = styled.div`
+  span {
+    font-size: 11px;
+    color: #888888;
+  }
+`;
+
+const InformationBox = styled.div`
+  margin: auto;
+  width: 50%;
+`;
+
+const Informationboxs = styled.div`
+  display: flex;
+  margin: auto;
+  margin-top: 10px;
+  width: 70%;
+  height: 550px;
+  background-color: white;
+  border-top: solid 2px black;
+  border-left: solid 0.1px lightgray;
+  border-bottom: solid 0.1px lightgray;
+  border-right: solid 0.1px lightgray;
+`;
+
+const Boxscontentone = styled.div`
+  padding-top: 3%;
+  height: 20%;
+  width: 100%;
+  background-color: white;
+  color: gray;
+  border-bottom: solid 1px lightgray;
+  border-right: solid 1px lightgray;
+`;
+
+const Boxscontenttwo = styled.div`
+  width: 100%;
+  height: 74.2%;
+  background-color: white;
+  border-bottom: solid 1px lightgray;
+  border-right: solid 1px lightgray;
+  display: flex;
+`;
+
+const Textone = styled.div`
+  padding: 2.5%;
+  flex: 1;
+`;
+
+const Texttwo = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+
+  div:first-child {
+    padding-right: 10px;
+  }
+  ul {
+    padding-left: 0;
+    margin: 0 0 0 20px;
+  }
+`;
+
+const TitleBox = styled.div`
+  min-width: 40px;
+  color: gray;
+  margin-right: 10px;
+`;
+
+const Textcolor = styled.span`
+  color: blue;
+`;
+
+const Textthree = styled.div`
+  width: 20%;
+  display: flex;
+  align-items: center;
+  color: gray;
+`;
+
+const Textfour = styled.div`
+  width: 100%;
+  margin-left: 3%;
+`;
+
+const Informationboxscontent = styled.div`
+  flex-grow: 1;
+`;
+
+const Informationboxscontenttwo = styled.div`
+  width: 300px;
+`;
+
+const Imgbox = styled.div`
+  width: 200px;
+  margin: 20px auto;
+  img {
+    width: 200px;
+  }
+`;
+
+const Textbox = styled.div``;
+
+const Textfive = styled.div`
+  padding-left: 5%;
+  color: gray;
+  font-size: 12px;
+`;
+
+const Textsix = styled.div`
+  padding-left: 5%;
+`;
+
+const Buttonbox = styled.div`
+  display: flex;
+  width: 100%;
+  padding-top: 3%;
+  justify-content: space-around;
+`;
+
+const Footercontainer = styled.div`
+  display: flex;
+  padding-top: 1%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BackBtn = styled.div`
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  width: 6%;
+  height: 45px;
+  background-color: #888888;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const FixBtn = styled.div`
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  width: 6%;
+  height: 45px;
+  background-color: #3399ff;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Scrap = styled.div`
+  width: 6%;
+  height: 5vh;
+  border: solid 1px lightgray;
+
+  div:first-child {
+    padding-top: 10%;
+    padding-left: 10%;
+    font-size: large;
+  }
+`;

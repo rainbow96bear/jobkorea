@@ -15,6 +15,7 @@ export default function ManagePostContainer() {
           console.log(data);
         });
       window.location.reload();
+
       alert("삭제되었습니다");
     } catch (e) {
       console.error(e.message);
@@ -40,11 +41,12 @@ export default function ManagePostContainer() {
           IsPay: rowData.isPay,
           MinPay: rowData.minPay,
           MaxPay: rowData.maxPay,
+          PayKinds: rowData.payKinds,
           CompanyName: rowData.Companyuser_Info.companyName,
-          companylogo: rowData.Companyuser_Info.companylogo,
+          CompanyLogo: rowData.Companyuser_Info.companylogo,
         }));
-        setInputData([...inputData, _inputData]);
-        console.log([...inputData, _inputData]);
+        setInputData(_inputData);
+        console.log(_inputData);
       });
     } catch (e) {
       console.error(e.message);

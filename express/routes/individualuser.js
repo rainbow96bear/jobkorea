@@ -9,7 +9,7 @@ const { Individualuser_Info } = require("../models/index.js");
 // const cookies = new Cookies();
 
 router.post("/regist", async (req, res) => {
-  console.log(req.body);
+  console.log(req.body.individualId);
   try {
     if (
       await Individualuser_Info.findOne({

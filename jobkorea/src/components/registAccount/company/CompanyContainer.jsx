@@ -32,6 +32,7 @@ export default function CompanyContainer() {
     formData.append("companyIdnumber", companyIdnumber);
     formData.append("companyIdemail", companyIdemail);
     formData.append("companyLogoUpload", companyLogoUpload);
+    formData.append("companyMoney", "10000000");
     console.log(companyLogoUpload);
     const data = await axios.post(
       "http://localhost:8080/api/companyuser/regist",

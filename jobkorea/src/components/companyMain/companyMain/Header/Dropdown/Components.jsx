@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function DropDown() {
+function DropDown({ moveTo }) {
   return (
     <DropdownBox>
       <div className="flex">
@@ -11,7 +11,18 @@ function DropDown() {
             <li>지원자관리</li>
             <li>차단내역</li>
             <li>
-              <div className="addButton">
+              <div
+                className="addButton"
+                onClick={() => {
+                  if (!document.cookie) {
+                    alert("로그인 해주세요");
+                    moveTo("companymain");
+                  } else {
+                    alert("공고등록 페이지로 이동합니다.");
+                    moveTo("companymain/registpost");
+                  }
+                }}
+              >
                 <img src="/img/icon_add.png"></img>
                 공고등록
               </div>

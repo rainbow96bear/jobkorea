@@ -1,58 +1,84 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function ManagePostComponent({ inputData, removeRecruit }) {
   console.log(inputData);
+  const navigate = useNavigate();
   return (
     <>
-      {inputData.map((data) =>
-        data.map((data2, index) => (
-          <ItemBox key={`itembox-${index}`}>
-            <ItemFrame>
-              <CompanyName>{data2.CompanyName}</CompanyName>
-              <RecruitContentBox>
-                <ContentBox>
-                  <span>{data2.Name}</span>
-                  <Qualification>
-                    <div>{data2.Exp}</div>
-                    <div>{data2.Edu}</div>
-                    <div>{data2.Area}</div>
-                    <div>{data2.Shape}</div>
-                    <div>{data2.Rank}</div>
-                    <div>
-                      {data2.IsPay == "회사내규에 따름" ||
-                      data2.IsPay == "회사내규에 따름, 면접 후 결정" ? (
-                        <>{data2.IsPay}</>
-                      ) : (
-                        <>
-                          {data2.IsPay} {data2.MinPay}~{data2.MaxPay}만원
-                        </>
-                      )}
-                    </div>
-                  </Qualification>
-                  <OtherPreferential>
-                    <div>{data2.Condition}</div>
-                    <div>{data2.Task}</div>
-                  </OtherPreferential>
-                </ContentBox>
-                <div>
-                  <ApplyBtn
+      {inputData.map((data, index) => (
+        <ItemBox key={`itembox-${index}`}>
+          <ItemFrame>
+            <CompanyName>
+              {data.CompanyName}
+              <CompanyLogo>
+                <img
+                  src={`http://localhost:8080/uploads/${data.CompanyLogo}`}
+                ></img>
+              </CompanyLogo>
+            </CompanyName>
+            <RecruitContentBox>
+              <ContentBox>
+                <span
+                  onClick={() => {
+                    navigate("/companymain/myPost/" + data.Id);
+                  }}
+                >
+                  {data.Name}
+                </span>
+                <Qualification>
+                  <div>{data.Exp}</div>
+                  <div>{data.Edu}</div>
+                  <div>{data.Area}</div>
+                  <div>{data.Shape}</div>
+                  <div>{data.Rank}</div>
+                  <div>
+                    {data.IsPay == "회사내규에 따름" ||
+                    data.IsPay == "회사내규에 따름, 면접 후 결정" ||
+                    data.IsPay == "면접 후 결정, 회사내규에 따름" ? (
+                      <>{data.IsPay}</>
+                    ) : (
+                      <>
+                        {data.MinPay}~{data.MaxPay}만원
+                        {data.PayKinds == "월급" ? (
+                          <span>(월)</span>
+                        ) : (
+                          <></>
+                        )}{" "}
+                        {data.IsPay ? <span>- {data.IsPay}</span> : <></>}
+                      </>
+                    )}
+                  </div>
+                </Qualification>
+                <OtherPreferential>
+                  <div>{data.Condition}</div>
+                </OtherPreferential>
+                <TaskBox>
+                  <div>{data.Task}</div>
+                </TaskBox>
+              </ContentBox>
+              <EndBox>
+                <BtnBox>
+                  <RemoveBtn
                     onClick={() => {
-                      removeRecruit(data2.Id);
+                      removeRecruit(data.Id);
                     }}
                   >
                     삭제
-                  </ApplyBtn>
-                  {data2.Num == -1 ? (
-                    <div>모집인원 0명</div>
+                  </RemoveBtn>
+                </BtnBox>
+                <NumBox>
+                  {data.Num == -1 ? (
+                    <div>모집인원 제한없음</div>
                   ) : (
-                    <div>모집인원 {data2.Num}명</div>
+                    <div>모집인원 {data.Num}명</div>
                   )}
-                </div>
-              </RecruitContentBox>
-            </ItemFrame>
-          </ItemBox>
-        ))
-      )}
+                </NumBox>
+              </EndBox>
+            </RecruitContentBox>
+          </ItemFrame>
+        </ItemBox>
+      ))}
     </>
   );
 }
@@ -71,8 +97,17 @@ const ItemFrame = styled.div`
 const CompanyName = styled.div`
   flex: 2;
   border-right: 1px solid #dfdfdf;
-  width: 200px;
+  width: 10%;
   font-size: 17px;
+  text-align: center;
+  padding-right: 20px;
+`;
+
+const CompanyLogo = styled.div`
+  img {
+    width: 100%;
+    height: 120px;
+  }
 `;
 const RecruitContentBox = styled.div`
   flex: 9;
@@ -103,11 +138,35 @@ const OtherPreferential = styled.div`
   font-size: small;
   color: #888888;
   max-width: 800px;
+  padding-bottom: 20px;
 `;
-const ApplyBtn = styled.button`
+
+const RemoveBtn = styled.button`
   color: white;
   font-weight: 900;
-  background-color: #ff7200;
+  background-color: red;
   border: none;
   padding: 10px 15px;
+  cursor: pointer;
+`;
+const BtnBox = styled.div`
+  min-width: 110px;
+  text-align: center;
+`;
+
+const TaskBox = styled.div`
+  font-size: small;
+  color: #777777;
+  padding-right: 15px;
+`;
+
+const NumBox = styled.div`
+  text-align: center;
+`;
+
+const EndBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 150px;
 `;

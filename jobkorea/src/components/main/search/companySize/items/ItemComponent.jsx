@@ -1,29 +1,38 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
 export default function ItemComponent({ data }) {
+  const navigate = useNavigate();
   return (
     <>
       {data.map((data) =>
         data.map((data2, index) => (
-          <ItemBox>
+          <ItemBox key={`itembox-${index}`}>
             <ItemFrame>
-              <CompanyName>회사이름</CompanyName>
+              <CompanyName>{data2.CompanyName}</CompanyName>
               <RecruitContentBox>
                 <ContentBox>
-                  <span>{data2.Area}</span>
+                  <span>{data2.Name}</span>
                   <Qualification>
                     <div>{data2.Exp}</div>
-                    <div>학력</div>
-                    <div>지역</div>
-                    <div>고용형태</div>
+                    <div>{data2.Edu}</div>
+                    <div>{data2.Area}</div>
+                    <div>{data2.Shape}</div>
                     <div>{data2.Rank}</div>
                   </Qualification>
                   <OtherPreferential>
-                    병역특례, 교재관리, 교재개발, 수학교재 개발, 교사, 교수설계,
-                    교재제작, 마케팅, 마케팅기획
+                    <div>{data2.Condition}</div>
+                    <div>{data2.Task}</div>
                   </OtherPreferential>
                 </ContentBox>
                 <div>
-                  <ApplyBtn>즉시지원</ApplyBtn>
+                  <ApplyBtn
+                    onClick={() => {
+                      navigate("/recruit/" + data2.id);
+                    }}
+                  >
+                    상세 정보
+                  </ApplyBtn>
                   <div></div>
                 </div>
               </RecruitContentBox>

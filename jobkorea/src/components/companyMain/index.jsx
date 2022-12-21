@@ -6,9 +6,13 @@ import styled from "styled-components";
 import HeaderContainer from "./companyMain/Header/Container";
 import FooterContainer from "./companyMain/Footer/Container";
 import { useState } from "react";
+import RecruitInfoContainer from "./managePost/recruitInfo/RecruitInfoContainer";
+import FixPostContainer from "./registPost/fixPost/FixPostContainer";
+import AdPostContainer from "./registPost/adPost/adPostContainer";
 
 export default function CompanyMain() {
   const [loginIsClick, setLoginIsClick] = useState(false);
+  const [adGrade, setAdGrade] = useState(0);
 
   return (
     <Box>
@@ -28,11 +32,33 @@ export default function CompanyMain() {
         ></Route>
         <Route
           path="/registPost/*"
-          element={<RegistPostContainer></RegistPostContainer>}
+          element={
+            <RegistPostContainer
+              adGrade={adGrade}
+              setAdGrade={setAdGrade}
+            ></RegistPostContainer>
+          }
         ></Route>
         <Route
           path="/managePost"
           element={<ManagePostContainer></ManagePostContainer>}
+        ></Route>
+        <Route
+          path="/registPostAd"
+          element={
+            <AdPostContainer
+              adGrade={adGrade}
+              setAdGrade={setAdGrade}
+            ></AdPostContainer>
+          }
+        ></Route>
+        <Route
+          path="/myPost/:id"
+          element={<RecruitInfoContainer></RecruitInfoContainer>}
+        ></Route>
+        <Route
+          path="/fixPost/:id"
+          element={<FixPostContainer></FixPostContainer>}
         ></Route>
       </Routes>
       <FooterContainer></FooterContainer>

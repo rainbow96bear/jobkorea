@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { action } from "../../../../modules/userInfo";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import DropdownContainer from "./Dropdown/Container";
 
 const HeaderComponent = ({
   loginOnClick,
@@ -32,13 +33,24 @@ const HeaderComponent = ({
             JOBKOREA
           </div>
           <div>
-            <div
-              onClick={() => {
-                moveTo("registAccount/company");
-              }}
-            >
-              회원가입
-            </div>
+            {companyUser == 0 ? (
+              <div
+                onClick={() => {
+                  moveTo("registAccount/company");
+                }}
+              >
+                회원가입
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  moveTo("registAccount/mypage");
+                }}
+              >
+                마이페이지
+              </div>
+            )}
+
             <div>고객센터</div>
             <div>
               {companyUser == 0 ? (
@@ -75,10 +87,24 @@ const HeaderComponent = ({
                     setHeaderMenuIsOver(index);
                   }}
                   onMouseLeave={() => setHeaderMenuIsOver(-1)}
-                  onClick={() => {
-                    if (item.login == "yes" && !document.cookie)
+                  onClick={async () => {
+                    if (item.data == "yes") {
+                      const data = await axios.post(
+                        "http://localhost:8080/api/recruit/isdata"
+                      );
+                      console.log(data.data.isdata);
+                      if (data.data.isdata == "false") {
+                        return alert(
+                          "등록한 공고가 없습니다. 먼저 공고를 등록해주세요."
+                        );
+                      }
+                    }
+
+                    if (item.login == "yes" && !document.cookie) {
                       alert("로그인 해주세요");
-                    else if (item.routes) moveTo(`companymain/${item.routes}`);
+                      moveTo("companymain");
+                    } else if (item.routes)
+                      moveTo(`companymain/${item.routes}`);
                     else moveTo("companymain");
                   }}
                 >
@@ -96,7 +122,7 @@ const HeaderComponent = ({
           </div>
         </div>
       </HeaderBox>
-      {dropdownIsClick ? <DropDown></DropDown> : <></>}
+      {dropdownIsClick ? <DropdownContainer></DropdownContainer> : <></>}
       <LowHeaderBox>
         <VerticalMode />
       </LowHeaderBox>
