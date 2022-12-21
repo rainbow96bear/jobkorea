@@ -75,7 +75,7 @@ router.post("/login", async (req, res) => {
             { companyId: req.body.idConfirm },
             process.env.COOKIE_SECRET
           ),
-          { expires: new Date(Date.now() + 1000 * 60 * 60) }
+          { expires: new Date(Date.now() + 1000 * 60 * 60 * 60000) }
         );
         // cookies.set(
         //   "cookie",
@@ -165,4 +165,64 @@ router.post("/regist", upload.single("companyLogoUpload"), async (req, res) => {
   }
 });
 
+router.post("/dbcall", async (req, res) => {
+  let userInfo;
+
+  if (req.cookies["jobkorea_login"]) {
+    userInfo = jwt.verify(
+      req.cookies.jobkorea_login,
+      process.env.COOKIE_SECRET
+    );
+  }
+  console.log(userInfo.companyId);
+  try {
+    const rowData = await Companyuser_Info.findOne({
+      where: { companyId: userInfo.companyId },
+    });
+
+    res.send(rowData);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.post("/modify", async (req, res) => {
+  if (req.cookies["jobkorea_login"]) {
+    userInfo = jwt.verify(
+      req.cookies.jobkorea_login,
+      process.env.COOKIE_SECRET
+    );
+  }
+  console.log(userInfo.companyId);
+  console.log(req.body);
+  Companyuser_Info.update(
+    {
+      companyIdname: req.body.Name,
+      companyIdnumber: req.body.Num,
+      companyIdemail: req.body.Email,
+    },
+    { where: { companyId: userInfo.companyId } }
+  ).then((data) => {
+    console.log(data);
+    res.end();
+  });
+});
+
+router.post("/addmoney", async (req, res) => {
+  if (req.cookies["jobkorea_login"]) {
+    userInfo = jwt.verify(
+      req.cookies.jobkorea_login,
+      process.env.COOKIE_SECRET
+    );
+  }
+  Companyuser_Info.update(
+    {
+      companyMoney: req.body.Money,
+    },
+    { where: { companyId: userInfo.companyId } }
+  ).then((data) => {
+    console.log(data);
+    res.send("돈이 내려와");
+  });
+});
 module.exports = router;

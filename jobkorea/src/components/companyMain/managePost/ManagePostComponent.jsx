@@ -51,7 +51,11 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                   </div>
                 </Qualification>
                 <OtherPreferential>
-                  <div>{data.Condition}</div>
+                  {data.Condition == "" ? (
+                    <div>우대사항 없음</div>
+                  ) : (
+                    <div>{data.Condition}</div>
+                  )}
                 </OtherPreferential>
                 <TaskBox>
                   <div>{data.Task}</div>

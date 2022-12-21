@@ -5,6 +5,19 @@ const db = require("../models/index.js");
 const { Recruit, Companyuser_Info } = require("../models/index.js");
 const { update, findOne } = require("../models/join.js");
 
+// router.post("/whoapply", async (req, res) => {
+//   Recruit.findAll({
+//     where: { id: req.body.id },
+//     include: [
+//       {
+//         model: db.Individualuser_Info,
+//       },
+//     ],
+//   }).then((data) => {
+//     res.send(data);
+//   });
+// });
+
 router.post("/recruitInfo", async (req, res) => {
   console.log(req.body);
   try {
@@ -52,6 +65,7 @@ router.post("/ad", (req, res) => {
     { where: { companyId: userInfo.companyId } }
   ).then((data) => {
     console.log(data);
+    res.end();
   });
 });
 
@@ -76,6 +90,7 @@ router.post("/fix", (req, res) => {
     { where: { id: req.body.id } }
   ).then((data) => {
     console.log("update", data);
+    res.end();
   });
 });
 
@@ -111,20 +126,6 @@ router.post("/add", async (req, res) => {
   res.send("남양주 놀러오면 풀코스로 쏜다");
 });
 
-// try {
-//   const myRecruit = Recruit.findOne({
-//     where: { id: req.body.id },
-//     include: [
-//       {
-//         model: db.Companyuser_Info,
-//       },
-//     ],
-//   });
-//   res.send(myRecruit);
-// } catch (err) {
-//   console.log(err);
-// }
-
 router.post("/dbcall", (req, res) => {
   Recruit.findOne({
     where: { id: req.body.id },
@@ -155,6 +156,7 @@ router.post("/fix", (req, res) => {
     { where: { id: req.body.id } }
   ).then((data) => {
     console.log("update", data);
+    res.end();
   });
 });
 

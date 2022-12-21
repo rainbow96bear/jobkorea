@@ -130,6 +130,9 @@ export default function FixPostContainer() {
     ) {
       alert("필요한 값을 모두 입력해주세요");
       return;
+    } else if (minPay >= maxPay) {
+      alert("최소 급여는 최대 급여보다 작아야합니다");
+      return;
     }
     let body = {
       id: params.id,

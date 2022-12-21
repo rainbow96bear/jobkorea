@@ -13,7 +13,6 @@ export default function RecruitInfoContainer() {
     navigate(`${where}`);
   };
 
-  console.log(params);
   useEffect(() => {
     const myRecruitFunc = async () => {
       try {
@@ -22,7 +21,8 @@ export default function RecruitInfoContainer() {
           { id: params.id }
         );
         const result = data.data;
-        setMyRecruit([...myRecruit, result]);
+        setMyRecruit([result]);
+        console.log(myRecruit);
       } catch (err) {
         console.error(err);
       }
@@ -31,6 +31,7 @@ export default function RecruitInfoContainer() {
   }, []);
 
   return (
+    // <div>test</div>
     <RecruitInfoComponent
       myRecruit={myRecruit}
       moveTo={moveTo}

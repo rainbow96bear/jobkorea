@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export default function RecruitInfoComponent({ myRecruit, moveTo }) {
-  console.log(myRecruit[0]?.minPay);
   return (
     <div>
       <Informationboxs>
@@ -26,11 +25,15 @@ export default function RecruitInfoComponent({ myRecruit, moveTo }) {
                 </Texttwo>
                 <Texttwo>
                   <TitleBox className="gray">우대</TitleBox>
-                  <ul>
-                    {myRecruit[0]?.condition.split(",").map((item, index) => (
-                      <li key={`li-${index}`}>{item}</li>
-                    ))}
-                  </ul>
+                  {myRecruit[0]?.condition == "" ? (
+                    <div>우대 사항 없음</div>
+                  ) : (
+                    <ul>
+                      {myRecruit[0]?.condition.split(",").map((item, index) => (
+                        <li key={`li-${index}`}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
                 </Texttwo>
               </div>
             </Textone>
@@ -93,10 +96,16 @@ export default function RecruitInfoComponent({ myRecruit, moveTo }) {
                 <Textthree>담당업무</Textthree>
                 <div>{myRecruit[0]?.myTask}</div>
               </Texttwo>
-              <Texttwo>
-                <Textthree>근무부서</Textthree>
-                <div>{myRecruit[0]?.workDepartment}</div>
-              </Texttwo>
+
+              {myRecruit[0]?.workDepartment == "" ? (
+                <></>
+              ) : (
+                <Texttwo>
+                  <Textthree>근무부서</Textthree>
+
+                  <div>{myRecruit[0]?.workDepartment}</div>
+                </Texttwo>
+              )}
             </Textone>
           </Boxscontenttwo>
         </Informationboxscontent>
@@ -110,16 +119,22 @@ export default function RecruitInfoComponent({ myRecruit, moveTo }) {
             <div style={{ marginBottom: 10, marginLeft: 10 }}>기업정보</div>
             <Textbox>
               <Texttwo>
-                <Textfive>산업(업종)</Textfive>
-                <Textsix>솔루션.SL.CRM.ERP</Textsix>
+                <Textfive>대표 이름</Textfive>
+                <Textsix>
+                  {myRecruit[0]?.Companyuser_Info.companyHeader}
+                </Textsix>
               </Texttwo>
               <Texttwo>
-                <Textfive>사원수</Textfive>
-                <Textsix style={{ marginLeft: 20 }}>1,500명</Textsix>
+                <Textfive>담당자 명</Textfive>
+                <Textsix style={{ marginLeft: 20 }}>
+                  {myRecruit[0]?.Companyuser_Info.companyIdname}
+                </Textsix>
               </Texttwo>
               <Texttwo>
-                <Textfive>설립년도</Textfive>
-                <Textsix style={{ marginLeft: 8 }}>1995년(28년차)</Textsix>
+                <Textfive>담당자 번호</Textfive>
+                <Textsix style={{ marginLeft: 8 }}>
+                  {myRecruit[0]?.Companyuser_Info.companyIdnumber}
+                </Textsix>
               </Texttwo>
               <Texttwo>
                 <Textfive>기업형태</Textfive>
@@ -128,8 +143,10 @@ export default function RecruitInfoComponent({ myRecruit, moveTo }) {
                 </Textsix>
               </Texttwo>
               <Texttwo>
-                <Textfive style={{ width: 68 }}>홈페이지</Textfive>
-                <Textsix>https://www.cjoliven etworks.co.kr</Textsix>
+                <Textfive style={{ width: 70 }}>E-mail</Textfive>
+                <Textsix>
+                  {myRecruit[0]?.Companyuser_Info.companyIdemail}
+                </Textsix>
               </Texttwo>
             </Textbox>
           </div>
@@ -263,6 +280,8 @@ const Textfive = styled.div`
   padding-left: 5%;
   color: gray;
   font-size: 12px;
+  display: flex;
+  align-items: center;
 `;
 
 const Textsix = styled.div`

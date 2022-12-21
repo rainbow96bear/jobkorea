@@ -182,7 +182,7 @@ export default function RegistPostComponent({
           <input type="text" className="mo1" onChange={workDepartmentHandler} />
         </div>
         <div className="line">
-          <div>직급직책</div>
+          <div>직급직책*</div>
           <LineBox>
             <Select
               isMulti

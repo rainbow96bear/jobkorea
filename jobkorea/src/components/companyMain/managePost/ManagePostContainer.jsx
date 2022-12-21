@@ -22,6 +22,14 @@ export default function ManagePostContainer() {
     }
   };
 
+  // useEffect(() => {
+  //   axios
+  //     .post("http://localhost:8080/api/recruit/whoapply", { id: 2 })
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
+  // });
+
   useEffect(() => {
     try {
       axios.post("http://localhost:8080/api/recruit/call").then((data) => {

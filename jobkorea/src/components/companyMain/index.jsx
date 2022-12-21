@@ -9,6 +9,7 @@ import { useState } from "react";
 import RecruitInfoContainer from "./managePost/recruitInfo/RecruitInfoContainer";
 import FixPostContainer from "./registPost/fixPost/FixPostContainer";
 import AdPostContainer from "./registPost/adPost/adPostContainer";
+import CompanyMyPageContainer from "./companyMain/MyPage/MyPageContainer";
 
 export default function CompanyMain() {
   const [loginIsClick, setLoginIsClick] = useState(false);
@@ -59,6 +60,10 @@ export default function CompanyMain() {
         <Route
           path="/fixPost/:id"
           element={<FixPostContainer></FixPostContainer>}
+        ></Route>
+        <Route
+          path="/mypage"
+          element={<CompanyMyPageContainer></CompanyMyPageContainer>}
         ></Route>
       </Routes>
       <FooterContainer></FooterContainer>

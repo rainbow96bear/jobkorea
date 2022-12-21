@@ -116,6 +116,7 @@ export default function RegistPostContainer({ adGrade }) {
       edu == "" ||
       area == "" ||
       shape == "" ||
+      workRank == "" ||
       (payKinds !== "" && (minPay == "" || maxPay == "")) ||
       (isPay == "" && (payKinds == "" || minPay == "" || maxPay == ""))
     ) {

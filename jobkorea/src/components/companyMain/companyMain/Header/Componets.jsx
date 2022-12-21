@@ -44,7 +44,7 @@ const HeaderComponent = ({
             ) : (
               <div
                 onClick={() => {
-                  moveTo("registAccount/mypage");
+                  moveTo("companymain/mypage");
                 }}
               >
                 마이페이지
