@@ -3,19 +3,36 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { action } from "../../../../../modules/userInfo";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
   const dispatch = useDispatch();
 
   const companyUser = useSelector((state) => state.companyUser.value);
 
+  const [autoLogout, setAutologout] = useState("");
+
+  useEffect(() => {
+    if (companyUser != 0) {
+      setTimeout(async () => {
+        dispatch(action.logoutCompany());
+        const data = await axios.post(
+          "http://localhost:8080/api/companyuser/logout",
+          {}
+        );
+      }, 180000);
+    }
+  }, [companyUser]);
+
   const companyconfirm = async () => {
     const data = await axios.post(
       "http://localhost:8080/api/companyuser/loginconfirm",
       { companyUser }
     );
+
     dispatch(action.loginConfirm({ confirmid: data.data }));
+
+    setAutologout(data.data);
   };
 
   useEffect(() => {
@@ -35,6 +52,7 @@ const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
             시작해 보세요
           </div>
           <div>
+            {}
             {companyUser == 0 ? (
               <div className="flex button-box">
                 <div onClick={loginOnClick}>로그인</div>

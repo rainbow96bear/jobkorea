@@ -2,13 +2,16 @@ import styled from "styled-components";
 import cjimg from "./img/cj.png";
 import { useEffect, useState } from "react";
 
-export default function RecruitComponent({ recruitInfo }) {
+export default function RecruitComponent({
+  recruitInfo,
+  applybutton,
+  applycanclebutton,
+}) {
   // console.log(recruitInfo.result.id);
   // const recruitresult = recruitInfo.result;
   // console.log(recruitresult.id);
   // console.log(recruitInfo);
   // console.log(recruitInfo[0].recruitArea && );
-  console.log(recruitInfo[0]);
   return (
     <div>
       <InformationBox>
@@ -113,8 +116,13 @@ export default function RecruitComponent({ recruitInfo }) {
       </Informationboxs>
       <Footercontainer>
         <Home>
-          <div>
+          <div onClick={applybutton}>
             <strong>즉시 지원</strong>
+          </div>
+        </Home>
+        <Home>
+          <div onClick={applycanclebutton}>
+            <strong>지원 취소</strong>
           </div>
         </Home>
       </Footercontainer>

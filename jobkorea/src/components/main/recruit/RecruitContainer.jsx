@@ -1,15 +1,19 @@
 import RecruitComponent from "./RecruitComponent";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 
 export default function RecruitContainer() {
+  const navigate = useNavigate();
   const [recruitInfo, SetrecruitInfo] = useState([]);
   const params = useParams();
 
   console.log(params);
   useEffect(() => {
+    // console.log(params.id);
     const newfunction = async () => {
       try {
         const data = await axios.post(
@@ -39,7 +43,8 @@ export default function RecruitContainer() {
         //   Edu: item.edu,
         // }));
 
-        SetrecruitInfo([...recruitInfo, result]);
+        SetrecruitInfo([result]);
+        // console.log(result);
       } catch (err) {
         console.error(err);
       }
@@ -47,6 +52,39 @@ export default function RecruitContainer() {
     newfunction();
   }, []);
 
+  const applycanclebutton = async () => {
+    try {
+      const data = await axios.post("http://localhost:8080/api/apply/cancle", {
+        id: params.id,
+      });
+      if (data.data == "취소되었습니다") {
+        alert("취소되었습니다");
+        navigate("/apply");
+      } else {
+        alert("로그인 해주세요");
+        navigate("/");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const applybutton = async () => {
+    try {
+      const data = await axios.post("http://localhost:8080/api/apply/now", {
+        id: params.id,
+      });
+      if (data.data == "지원성공") {
+        alert("즉시지원완료");
+        navigate("/apply");
+      } else {
+        alert("로그인 해야 이용가능합니다");
+        navigate("/");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
   // const data = await axios.post(
   //   "http://localhost:8080/api/recruit/recruitInfo",
   //   {}
@@ -64,5 +102,11 @@ export default function RecruitContainer() {
   //   console.error(err);
   // }
 
-  return <RecruitComponent recruitInfo={recruitInfo}></RecruitComponent>;
+  return (
+    <RecruitComponent
+      recruitInfo={recruitInfo}
+      applybutton={applybutton}
+      applycanclebutton={applycanclebutton}
+    ></RecruitComponent>
+  );
 }

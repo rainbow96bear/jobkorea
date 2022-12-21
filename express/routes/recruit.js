@@ -189,7 +189,6 @@ router.post("/search/call", async (req, res) => {
       include: [
         {
           model: db.Companyuser_Info,
-          attributes: ["companyName"],
         },
       ],
     });
@@ -200,10 +199,6 @@ router.post("/search/call", async (req, res) => {
 });
 
 router.post("/remove", async (req, res) => {
-  console.log("너란놈");
-  console.log(req.body.id);
-  console.log("너란놈");
-
   const deleteRecruit = await Recruit.destroy({
     where: {
       id: req.body.id,

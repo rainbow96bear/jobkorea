@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export default function ApplyComponent() {
+export default function ApplyComponent({ application }) {
+  // console.log(application);
+  // console.log(application);
   return (
     <Container>
       <Header>
@@ -11,17 +13,17 @@ export default function ApplyComponent() {
       </Header>
       <Subcontainerone>
         <Subcontaineronecontent>
-          <h1>0</h1>
+          <h1>{application.length}</h1>
           <span>지원완료</span>
         </Subcontaineronecontent>
-        <Subcontaineronecontent>
+        {/* <Subcontaineronecontent>
           <h1>0</h1>
           <span>열람</span>
         </Subcontaineronecontent>
         <Subcontaineronecontent>
           <h1>0</h1>
           <span>미열람</span>
-        </Subcontaineronecontent>
+        </Subcontaineronecontent> */}
         <Subcontaineronecontent>
           <h1>0</h1>
           <span>지원취소</span>
@@ -75,12 +77,58 @@ export default function ApplyComponent() {
         </Subcontainertwocontentitems>
         <Search>검색</Search>
       </Subcontainertwo>
+
       <Subcontainerthree>
-        <div>지원완료 및 지원예약 내역이 없습니다.</div>
+        {/* <div>
+          <div>{application[0].recruitName}</div>
+          <div>{application[0].myTask}</div>
+          <div>{application[0].workRank}</div>
+          <div>{application[0].area}</div>
+        </div>
+        <div>
+          <div>{application[1].recruitName}</div>
+          <div>{application[1].myTask}</div>
+          <div>{application[1].workRank}</div>
+          <div>{application[1].area}</div>
+        </div> */}
+
+        {/* {application.length ? (
+          <div>
+            {application.map((item, index) => (
+              // <div key={`${index}`}>
+              //   <div>{item.recruitName}</div>
+              //   <div>{item.myTask}</div>
+              //   <div>{item.workRank}</div>
+              //   <div>{item.area}</div>
+              // </div>
+
+              <Itembox key={`${index}`}>
+                <div style={{ marginBottom: 30 }}>{item.recruitName}</div>
+                <div style={{ marginBottom: 30 }}>업무:{item.myTask}</div>
+                <div style={{ marginBottom: 30 }}>직급:{item.workRank}</div>
+                <div style={{ marginBottom: 30 }}>지역:{item.area}</div>
+              </Itembox>
+            ))}
+          </div>
+        ) : (
+          <div>지원완료 및 지원예약 내역이 없습니다.</div>
+        )} */}
+
+        {application.length ? (
+          <Itembox>
+            <div>
+              <RecruitName>블록체인개발 모집</RecruitName>
+            </div>
+            <div>1</div>
+          </Itembox>
+        ) : (
+          <div>지원완료 및 지원예약 내역이 없습니다.</div>
+        )}
+
         <p style={{ color: " grey" }}>
           회원님의 구직활동 정보를 분석하여 꼭 맞는 채용정보를 추천합니다
         </p>
-        <Button>스마트매치 바로가기</Button>
+        {/* <Button>스마트매치 바로가기</Button> */}
       </Subcontainerthree>
       <Subcontainerfour></Subcontainerfour>
       <Subcontainertwo>
@@ -128,9 +176,22 @@ export default function ApplyComponent() {
   );
 }
 
+const RecruitName = styled.h1`
+  padding-top: 18%;
+  /* display: inline-block; */
+`;
+
+const Itembox = styled.div`
+  display: flex;
+  width: 100%;
+  border: solid;
+  border-color: lightgray;
+  height: 30vh;
+`;
+
 const Container = styled.div`
   width: 50%;
-  height: 93vh;
+  /* height: 93vh; */
   background-color: white;
   border-style: solid;
   border-color: #f8f4f4;

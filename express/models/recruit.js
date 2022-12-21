@@ -4,8 +4,13 @@ module.exports = class Recruit extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
+        // id: {
+        //   type: Sequelize.STRING(255),
+        //   primaryKey: true,
+        // },
         recruitName: {
           type: Sequelize.STRING(255),
+          unique: true,
         },
         recruitNum: {
           type: Sequelize.STRING(255),
@@ -67,6 +72,14 @@ module.exports = class Recruit extends Sequelize.Model {
       // as: "RecruitMaker",
       targetKey: "companyId",
       foreignKey: "company",
+    });
+
+    db.Recruit.belongsToMany(db.Individualuser_Info, {
+      through: "personalRecruit",
+      as: "RecruitInfo",
+      foreignKey: "recruitId",
+      sourceKey: "id",
+      onDelete: "cascade",
     });
   }
 };
