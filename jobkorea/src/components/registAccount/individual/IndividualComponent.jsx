@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import { FaStarOfLife } from "react-icons/fa";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,15 @@ const IndividualComponent = ({ registClick }) => {
   const [individualTel, setIndividualTel] = useState("");
   const [individualInfoValid, setIndividualInfoValid] = useState([]);
   const navigate = useNavigate();
-  const handlieClickRadio = (e) => {
+  const handlieClickRadio1 = (e) => {
+    console.log(e.target.value);
+    setIndividualInfoValid(e.target.value);
+  };
+  const handlieClickRadio2 = (e) => {
+    console.log(e.target.value);
+    setIndividualInfoValid(e.target.value);
+  };
+  const handlieClickRadio3 = (e) => {
     console.log(e.target.value);
     setIndividualInfoValid(e.target.value);
   };
@@ -48,7 +55,6 @@ const IndividualComponent = ({ registClick }) => {
         placeholder="이름(실명) *"
         onInput={(e) => {
           setIndividualName(e.target.value);
-          // const nameRegExp = /^[가-힣a-zA-Z]/gi;
         }}
       />
       <input
@@ -93,21 +99,22 @@ const IndividualComponent = ({ registClick }) => {
           type="radio"
           name="infoValid"
           value="1year"
-          onchange={handlieClickRadio}
+          onchange={handlieClickRadio1}
         />
         1년
         <input
           type="radio"
           name="infoValid"
           value="3years"
-          onchange={handlieClickRadio}
+          onchange={handlieClickRadio2}
         />
         3년
         <input
           type="radio"
           name="infoValid"
           value="withdraw"
-          onchange={handlieClickRadio}
+          onchange={handlieClickRadio3}
+          checked="checked"
         />
         회원탈퇴시
       </div>
@@ -118,12 +125,17 @@ const IndividualComponent = ({ registClick }) => {
           const idRegExp = /^[a-zA-Z0-9]{6,13}$/;
           const pwRegExp =
             /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,17}$/;
+          const emailRegExp =
+            /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
           const telRegExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+          // const infoValidRegExp =
           const name = nameRegExp.test(individualName);
           const id = idRegExp.test(individualId);
           const pw = pwRegExp.test(individualPw);
+          const email = emailRegExp.test(individualEmail);
           const tel = telRegExp.test(individualTel);
-          if (name && id && pw && tel) {
+          // const infoValid = infoValidRegExp.test(individualInfoValid);
+          if (name && id && pw && email && tel) {
             registClick(
               individualName,
               individualId,
@@ -144,6 +156,8 @@ const IndividualComponent = ({ registClick }) => {
             alert(
               "비밀번호를 8자리 이상 ~ 16자리 이하의 영문 대/소문자, 숫자, 특수기호(!@#$%^*+=-)만 입력하세요."
             );
+          } else if (!email) {
+            alert("알맞은 이메일 형식을 입력하세요.");
           } else if (!tel) {
             alert("휴대폰번호를 숫자와 하이픈을 이용하여 입력하세요.");
           }

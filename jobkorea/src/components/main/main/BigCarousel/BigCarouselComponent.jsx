@@ -54,6 +54,7 @@ export default BigCarouselComponent;
 const BigCarouselBox = styled.div`
   width: 60%;
   background-color: #e8ecef;
+  cursor: pointer;
   img {
     height: 120px;
   }

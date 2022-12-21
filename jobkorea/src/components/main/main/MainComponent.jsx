@@ -8,6 +8,7 @@ import OpenRecruitContainer from "./OpenRecruit/OpenRecruitContainer";
 import RankingContainer from "./Ranking/RankingContainer";
 import QuickMenuContainer from "./QuickMenu/QuickMenuContainer";
 import FirstVVIPContainer from "./FirstVVIP/FirstVVIPContainer";
+import VVIPContainer from "./VVIP/VVIPContainer";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -60,11 +61,17 @@ export default function MainComponent() {
         </div>
       </MainFirstItem>
       <MainSecondItem>
+        <h3>First VVIP 채용관</h3>
         <div>
-          <h3>First VVIP 채용관</h3>
           <FirstVVIPContainer></FirstVVIPContainer>
         </div>
       </MainSecondItem>
+      <MainThirdItem>
+        <h3>VVIP 채용관</h3>
+        <div>
+          <VVIPContainer></VVIPContainer>
+        </div>
+      </MainThirdItem>
     </MainBox>
   );
 }
@@ -113,11 +120,37 @@ const MainFirstItem = styled.div`
 const MainSecondItem = styled.div`
   background-color: white;
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
-  div {
-    width: 55%;
-    height: 62%;
+  flex-wrap: wrap;
+  padding-bottom: 50px;
+  & > h3 {
+    width: 60%;
+  }
+  > div {
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+`;
+
+const MainThirdItem = styled.div`
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 50px;
+  & > h3 {
+    width: 60%;
+  }
+  > div {
+    width: 59%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
   }
 `;

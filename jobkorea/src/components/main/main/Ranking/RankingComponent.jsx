@@ -3,19 +3,23 @@ import styled from "styled-components";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
-const RankingComponent = () => {
+const RankingComponent = ({ inputData }) => {
   return (
     <RankingBox>
       <div className="rankingDiv1">
         <span className="rankingTitle">최근 시작 공채</span>
         <span className="rankingIconBack">
-          <IoIosArrowBack />
+          <IoIosArrowBack style={{ cursor: "pointer" }} />
         </span>
         <span className="rankingIconForward">
-          <IoIosArrowForward />
+          <IoIosArrowForward style={{ cursor: "pointer" }} />
         </span>
       </div>
-      <div></div>
+      {inputData.map((data) => (
+        <div className="ranking1">
+          <div>{data.CompanyName}</div>
+        </div>
+      ))}
     </RankingBox>
   );
 };
@@ -29,9 +33,8 @@ const RankingBox = styled.div`
   border: 1px solid #dadada;
 
   & div {
-    padding: 10px;
+    padding: 5px 0;
   }
-
   & .rankingDiv1 {
     display: flex;
     flex-direction: row;
@@ -52,5 +55,11 @@ const RankingBox = styled.div`
     color: #c1c0c0;
     border: 1px solid #dadada99;
     padding: 1px 2px;
+  }
+  & .ranking1 {
+    margin: 0;
+    padding: 3% 0 0 7%;
+    font-size: 13px;
+    cursor: pointer;
   }
 `;

@@ -6,12 +6,10 @@ import styled from "styled-components";
 
 const BeforeLogInComponent = ({
   logInClick,
-  individualName,
   individualId,
   individualPw,
   setIndividualId,
   setIndividualPw,
-  setIndividualName,
 }) => {
   // const [individualId, setIndividualId] = useState("");
   // const [individualPw, setIndividualPw] = useState("");
@@ -115,6 +113,7 @@ const BeforeLogInBox = styled.div`
     color: white;
     font-size: 1px;
     padding: 5px 16px;
+    cursor: pointer;
   }
   & .beforLogInDiv {
     display: flex;
@@ -129,5 +128,6 @@ const BeforeLogInBox = styled.div`
   & .findInfoBtn {
     font-size: 11px;
     color: #494949;
+    cursor: pointer;
   }
 `;

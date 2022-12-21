@@ -51,6 +51,7 @@ const AfterLogInBox = styled.div`
   }
   & .goInfo {
     font-weight: 700;
+    cursor: pointer;
   }
   & .afterLogInDiv2 {
     display: flex;

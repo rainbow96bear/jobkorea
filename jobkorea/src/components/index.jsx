@@ -16,6 +16,10 @@ export default function Components() {
           path="/registAccount/*"
           element={<RegistAccount></RegistAccount>}
         ></Route>
+        <Route
+          path="/registAccount/*"
+          element={<RegistAccount></RegistAccount>}
+        ></Route>
       </Routes>
     </div>
   );

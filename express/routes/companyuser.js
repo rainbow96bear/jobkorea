@@ -156,8 +156,8 @@ router.post("/regist", upload.single("companyLogoUpload"), async (req, res) => {
         where: { companyId: req.body.companyId },
       })
     ) {
-      console.log("이미 있는아이디");
-      res.send("이미 있는아이디");
+      console.log("이미 있는 아이디");
+      res.send("이미 있는 아이디");
     } else {
       console.log(req.file.originalname);
       await Companyuser_Info.create({

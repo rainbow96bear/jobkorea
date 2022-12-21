@@ -1,5 +1,5 @@
 const DdayTimer = () => {
-  const setDate = new Date('2022-01-01T09:00:00+0900')
+  const setDate = new Date('2023-01-01T09:00:00+0900')
   const now = new Date()
 
   const dis = setDate.getTime() - now.getTime()

@@ -110,6 +110,7 @@ const OpenRecruitBox = styled.div`
   font-weight: 700;
   width: 100%;
   border: 1px solid #dadada;
+  border-bottom: none;
   /* border-bottom: none; */
   background-color: white;
   padding: 8px 0;
@@ -214,7 +215,6 @@ const RecruitNewsBox = styled.div`
   font-size: 14px;
   font-weight: 700;
   width: 100%;
-  height: 84.5%;
   border: 1px solid #dadada;
   background-color: white;
 
@@ -222,12 +222,12 @@ const RecruitNewsBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    & div {
+    width: 95%;
+    padding: 0 15px;
+    & > div {
       display: flex;
       flex-direction: column;
       flex: 1;
-      border-top: 1px solid #dadada;
       border-right: 1px solid #dadada9e;
       border-bottom: 1px solid #dadada9e;
       font-size: 12px;
@@ -235,6 +235,7 @@ const RecruitNewsBox = styled.div`
       text-align: center;
       background-color: white;
       padding: 15px 0;
+      cursor: pointer;
       &:last-child {
         border-right: none;
       }
@@ -244,7 +245,7 @@ const RecruitNewsBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 95%;
     & div {
       display: flex;
       flex-direction: column;
@@ -262,59 +263,90 @@ const RecruitNewsBox = styled.div`
   }
   & .RecruitDiv3 {
     display: flex;
+    padding: 15px;
+    width: 95%;
   }
   & .bigtech {
     padding: 4px;
-    margin: 15px 3px 15px -150px;
+    margin-right: 10px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
+    cursor: pointer;
+    &:hover {
+      background-color: blue;
+      color: white;
+    }
   }
   & .intern {
     padding: 4px;
-    margin: 15px 3px;
+    margin-right: 10px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
+    cursor: pointer;
+    &:hover {
+      background-color: blue;
+      color: white;
+    }
   }
   & .openrecruit {
     padding: 4px;
-    margin: 15px 3px;
+    margin-right: 10px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
+    cursor: pointer;
+    &:hover {
+      background-color: blue;
+      color: white;
+    }
   }
   & .livenews {
     padding: 4px;
-    margin: 15px 3px;
     font-size: 12px;
+    margin-right: 10px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
+    cursor: pointer;
+    &:hover {
+      background-color: blue;
+      color: white;
+    }
   }
   & .expecteddays {
     padding: 4px;
-    margin: 15px 3px;
+    margin-right: 10px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
+    cursor: pointer;
+    &:hover {
+      background-color: blue;
+      color: white;
+    }
   }
   & .top100 {
     padding: 4px;
-    margin: 15px 3px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
+    cursor: pointer;
+    &:hover {
+      background-color: blue;
+      color: white;
+    }
   }
 `;

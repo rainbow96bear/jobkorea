@@ -63,4 +63,5 @@ const MiniCarouselBox = styled.div`
   height: 78px;
   margin-top: 8px;
   padding-right: 8px;
+  cursor: pointer;
 `;

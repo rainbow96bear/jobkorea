@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import FirstVVIPComponent from "./FirstVVIPComponent";
+import VVIPComponent from "./VVIPComponent";
 
-export default function FirstVVIPContainer() {
+export default function VVIPContainer() {
   const [inputData, setInputData] = useState([]);
 
   useEffect(() => {
     try {
-      axios.post("/api/recruit/firstvvip").then((data) => {
+      axios.post("/api/recruit/vvip").then((data) => {
         const _inputData = data.data.map((rowData) => ({
           companylogo: rowData.Companyuser_Info.companylogo,
           CompanyName: rowData.Companyuser_Info.companyName,
@@ -22,5 +22,5 @@ export default function FirstVVIPContainer() {
     }
   }, []);
 
-  return <FirstVVIPComponent inputData={inputData}></FirstVVIPComponent>;
+  return <VVIPComponent inputData={inputData}></VVIPComponent>;
 }

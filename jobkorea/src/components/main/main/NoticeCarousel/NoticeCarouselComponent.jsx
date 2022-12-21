@@ -42,6 +42,7 @@ const NoticeCarouselBox = styled.div`
   font-size: 0.7em;
   border: 1px solid #dadada;
   background-color: #f8f9fb;
+  cursor: pointer;
   & .carousel {
     padding: 1px 2px;
   }

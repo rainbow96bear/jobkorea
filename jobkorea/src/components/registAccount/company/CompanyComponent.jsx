@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import banner from "./img/Jobbanner.png";
 import backimg from "./img/backcolor.png";
-import React, { useEffect } from "react";
+import React from "react";
 import Select from "react-select";
 import { useState } from "react";
 import "./Company.css";

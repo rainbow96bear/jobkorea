@@ -13,7 +13,7 @@ router.post("/regist", async (req, res) => {
   try {
     if (
       await Individualuser_Info.findOne({
-        where: { individualId: req.body.id },
+        where: { individualId: req.body.individualId },
       })
     ) {
       console.log("이미 있는 아이디");

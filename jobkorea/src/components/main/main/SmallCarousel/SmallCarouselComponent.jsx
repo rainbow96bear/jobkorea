@@ -47,6 +47,7 @@ const SmallCarouselBox = styled.div`
   width: 20%;
   background-color: #e8ecef;
   margin: 0 8px 0 8px;
+  cursor: pointer;
   img {
     height: 120px;
   }

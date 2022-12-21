@@ -76,7 +76,7 @@ const QuickMenuBox = styled.div`
     flex: 1;
 
     & img {
-      width: 60px;
+      width: 100%;
     }
   }
   & .job {
@@ -85,6 +85,7 @@ const QuickMenuBox = styled.div`
     flex-direction: column;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
+    cursor: pointer;
   }
   & .area {
     display: flex;
@@ -92,12 +93,14 @@ const QuickMenuBox = styled.div`
     flex-direction: column;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
+    cursor: pointer;
   }
   & .detailSearch {
     padding: 5px;
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid #dadada;
+    cursor: pointer;
   }
   & .QuickMenuRow2 {
     display: flex;
@@ -105,7 +108,7 @@ const QuickMenuBox = styled.div`
     font-size: 12px;
     justify-content: center;
     & img {
-      width: 60px;
+      width: 100%;
     }
   }
   & .bigtech {
@@ -114,6 +117,7 @@ const QuickMenuBox = styled.div`
     flex-direction: column;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
+    cursor: pointer;
   }
   & .govern {
     padding: 5px;
@@ -121,12 +125,14 @@ const QuickMenuBox = styled.div`
     flex-direction: column;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
+    cursor: pointer;
   }
   & .abroad {
     padding: 5px;
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid #dadada;
+    cursor: pointer;
   }
   & .QuickMenuRow3 {
     display: flex;
@@ -134,7 +140,7 @@ const QuickMenuBox = styled.div`
     font-size: 12px;
     justify-content: center;
     & img {
-      width: 60px;
+      width: 100%;
     }
   }
   & .industry {
@@ -142,16 +148,19 @@ const QuickMenuBox = styled.div`
     display: flex;
     flex-direction: column;
     border-right: 1px solid #dadada;
+    cursor: pointer;
   }
   & .special {
     padding: 5px;
     display: flex;
     flex-direction: column;
     border-right: 1px solid #dadada;
+    cursor: pointer;
   }
   & .top100 {
     padding: 5px;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
 `;

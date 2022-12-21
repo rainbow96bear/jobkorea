@@ -92,4 +92,53 @@ router.post("/remove", async (req, res) => {
   res.send("삭제");
 });
 
+router.post("/firstvvip", async (req, res) => {
+  try {
+    const rowData = await Recruit.findAll({
+      // where: { adGrade: req.body.companyAdGrade },
+      include: [
+        {
+          model: db.Companyuser_Info,
+          attributes: ["companylogo", "companyName"],
+        },
+      ],
+    });
+    res.send(rowData);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.post("/vvip", async (req, res) => {
+  try {
+    const rowData = await Recruit.findAll({
+      include: [
+        {
+          model: db.Companyuser_Info,
+          attributes: ["companylogo", "companyName"],
+        },
+      ],
+    });
+    res.send(rowData);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.post("/ranking", async (req, res) => {
+  try {
+    const rowData = await Recruit.findAll({
+      include: [
+        {
+          model: db.Companyuser_Info,
+          attributes: ["companyName"],
+        },
+      ],
+    });
+    res.send(rowData);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 module.exports = router;
