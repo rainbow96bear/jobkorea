@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 // useEffect : 사용하면 렌더링 될 때마다 실행됨
 // useContext : 컴포넌트 재사용 어려움, prop drilling을 피하는 게 목적이라면 컴포넌트 컴포지션(합성)을 고려할 것
