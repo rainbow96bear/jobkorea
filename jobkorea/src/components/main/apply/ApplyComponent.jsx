@@ -13,7 +13,7 @@ export default function ApplyComponent({ application }) {
       </Header>
       <Subcontainerone>
         <Subcontaineronecontent>
-          <h1>0</h1>
+          <h1>{application.length}</h1>
           <span>지원완료</span>
         </Subcontaineronecontent>
         {/* <Subcontaineronecontent>
@@ -92,7 +92,7 @@ export default function ApplyComponent({ application }) {
           <div>{application[1].area}</div>
         </div> */}
 
-        {application.length ? (
+        {/* {application.length ? (
           <div>
             {application.map((item, index) => (
               // <div key={`${index}`}>
@@ -112,14 +112,18 @@ export default function ApplyComponent({ application }) {
           </div>
         ) : (
           <div>지원완료 및 지원예약 내역이 없습니다.</div>
-        )}
+        )} */}
 
-        {/* <Itembox key={`${index}`}>
-          <div style={{ marginBottom: 30 }}>{item.recruitName}</div>
-          <div style={{ marginBottom: 30 }}>업무:{item.myTask}</div>
-          <div style={{ marginBottom: 30 }}>직급:{item.workRank}</div>
-          <div style={{ marginBottom: 30 }}>지역:{item.area}</div>
-        </Itembox> */}
+        {application.length ? (
+          <Itembox>
+            <div>
+              <RecruitName>블록체인개발 모집</RecruitName>
+            </div>
+            <div>1</div>
+          </Itembox>
+        ) : (
+          <div>지원완료 및 지원예약 내역이 없습니다.</div>
+        )}
 
         <p style={{ color: " grey" }}>
           회원님의 구직활동 정보를 분석하여 꼭 맞는 채용정보를 추천합니다
@@ -172,10 +176,16 @@ export default function ApplyComponent({ application }) {
   );
 }
 
+const RecruitName = styled.h1`
+  padding-top: 18%;
+  /* display: inline-block; */
+`;
+
 const Itembox = styled.div`
+  display: flex;
   width: 100%;
   border: solid;
-  border-color: grey;
+  border-color: lightgray;
   height: 30vh;
 `;
 
