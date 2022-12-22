@@ -3,13 +3,13 @@ import styled from "styled-components";
 import ItemComponent from "./companySize/items/ItemComponent";
 import SimpleSortContainer from "./companySize/SimpleSortContainer";
 
-export default function SearchComponent({ data }) {
+export default function SearchComponent({ data, midScreen }) {
   return (
     <SearchBox>
       <SearchFrame>
         <SimpleSortContainer></SimpleSortContainer>
 
-        <ItemComponent data={data}></ItemComponent>
+        <ItemComponent data={data} midScreen={midScreen}></ItemComponent>
       </SearchFrame>
     </SearchBox>
   );

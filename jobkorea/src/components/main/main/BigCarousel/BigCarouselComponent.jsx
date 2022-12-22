@@ -32,16 +32,16 @@ const BigCarouselComponent = () => {
       <BigCarouselBox>
         <div className="carousel">
           <Slider {...settings}>
-            <img src={banner1} alt="" />
-            <img src={banner2} alt="" />
-            <img src={banner3} alt="" />
-            <img src={banner4} alt="" />
-            <img src={banner5} alt="" />
-            <img src={banner6} alt="" />
-            <img src={banner7} alt="" />
-            <img src={banner8} alt="" />
-            <img src={banner9} alt="" />
-            <img src={banner10} alt="" />
+            <img src={banner1} alt="" className="banner" />
+            <img src={banner2} alt="" className="banner" />
+            <img src={banner3} alt="" className="banner" />
+            <img src={banner4} alt="" className="banner" />
+            <img src={banner5} alt="" className="banner" />
+            <img src={banner6} alt="" className="banner" />
+            <img src={banner7} alt="" className="banner" />
+            <img src={banner8} alt="" className="banner" />
+            <img src={banner9} alt="" className="banner" />
+            <img src={banner10} alt="" className="banner" />
           </Slider>
         </div>
       </BigCarouselBox>
@@ -55,7 +55,8 @@ const BigCarouselBox = styled.div`
   width: 60%;
   background-color: #e8ecef;
   cursor: pointer;
-  img {
-    height: 120px;
+  height: 7em;
+  & .banner {
+    height: 7.4em;
   }
 `;

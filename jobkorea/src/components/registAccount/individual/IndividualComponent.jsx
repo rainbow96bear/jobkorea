@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import jobKoreaTitle from "../individual/images/title1.png";
+import { useMediaQuery } from "react-responsive";
 
 const COLOR = "#3399ff";
 
@@ -14,6 +14,10 @@ const IndividualComponent = ({ registClick }) => {
   const [individualTel, setIndividualTel] = useState("");
   const [individualInfoValid, setIndividualInfoValid] = useState([]);
   const navigate = useNavigate();
+  const midScreen = useMediaQuery({ minWidth: 1200 });
+  const smallScreen = useMediaQuery({ minWidth: 800 });
+  const smallScreenReverse = useMediaQuery({ maxWidth: 799 });
+
   const handlieClickRadio1 = (e) => {
     console.log(e.target.value);
     setIndividualInfoValid(e.target.value);
@@ -29,25 +33,31 @@ const IndividualComponent = ({ registClick }) => {
 
   return (
     <IndividualRegistBox>
-      <div>
-        <img src={jobKoreaTitle} alt="" />
-      </div>
+      {smallScreen && <div className="title">JOBKOREA</div>}
+      {smallScreenReverse && <div className="titleMid">JOBKOREA</div>}
+
       <div className="whoRegist">
-        <div className="memberRegist">개인회원</div>
-        <div
-          className="companyRegist"
-          onClick={() => {
-            navigate("/registAccount/company");
-          }}
-        >
-          기업회원
-        </div>
+        {midScreen && (
+          <>
+            <div className="memberRegist">개인회원</div>
+            <div
+              className="companyRegist"
+              onClick={() => {
+                navigate("/registAccount/company");
+              }}
+            >
+              기업회원
+            </div>{" "}
+          </>
+        )}
       </div>
-      <div className="memberRegistdiv1">
-        <div className="registMessage">
-          회원가입하고 다양한 혜택을 누리세요!
+      {midScreen && (
+        <div className="memberRegistdiv1">
+          <div className="registMessage">
+            회원가입하고 다양한 혜택을 누리세요!
+          </div>
         </div>
-      </div>
+      )}
       <input
         type="text"
         className="input"
@@ -93,31 +103,35 @@ const IndividualComponent = ({ registClick }) => {
           setIndividualTel(e.target.value);
         }}
       />
-      <div className="radio">
-        개인정보 유효기간 선택 *
-        <input
-          type="radio"
-          name="infoValid"
-          value="1year"
-          onChange={handlieClickRadio1}
-        />
-        1년
-        <input
-          type="radio"
-          name="infoValid"
-          value="3years"
-          onChange={handlieClickRadio2}
-        />
-        3년
-        <input
-          type="radio"
-          name="infoValid"
-          value="withdraw"
-          onChange={handlieClickRadio3}
-          checked="checked"
-        />
-        회원탈퇴시
-      </div>
+      {midScreen && (
+        <>
+          <div className="radio">
+            개인정보 유효기간 선택 *
+            <input
+              type="radio"
+              name="infoValid"
+              value="1year"
+              onChange={handlieClickRadio1}
+            />
+            1년
+            <input
+              type="radio"
+              name="infoValid"
+              value="3years"
+              onChange={handlieClickRadio2}
+            />
+            3년
+            <input
+              type="radio"
+              name="infoValid"
+              value="withdraw"
+              onChange={handlieClickRadio3}
+              checked="checked"
+            />
+            회원탈퇴시
+          </div>
+        </>
+      )}
       <button
         className="memberRegistBtn"
         onClick={() => {
@@ -144,7 +158,6 @@ const IndividualComponent = ({ registClick }) => {
               individualTel,
               individualInfoValid
             );
-            alert("회원가원을 축하합니다~");
             navigate("/");
           } else if (!name) {
             alert("이름을 한글 또는 영문으로 입력하세요.");
@@ -157,9 +170,9 @@ const IndividualComponent = ({ registClick }) => {
               "비밀번호를 8자리 이상 ~ 16자리 이하의 영문 대/소문자, 숫자, 특수기호(!@#$%^*+=-)만 입력하세요."
             );
           } else if (!email) {
-            alert("알맞은 이메일 형식을 입력하세요.");
+            alert("이메일 형식이 올바르지 않습니다");
           } else if (!tel) {
-            alert("휴대폰번호를 숫자와 하이픈을 이용하여 입력하세요.");
+            alert("휴대폰번호 형식이 올바르지 않습니다.");
           }
         }}
       >
@@ -180,26 +193,38 @@ const IndividualRegistBox = styled.div`
   justify-content: center;
   align-items: center;
   margin: 5% auto 0;
+  & .title {
+    font-size: 3em;
+    font-weight: 700;
+    color: ${COLOR};
+    padding: 2%;
+  }
+  & .titleMid {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: ${COLOR};
+    padding: 2%;
+  }
   & .whoRegist {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 10%;
     background-color: white;
     color: ${COLOR};
-    font-size: 25px;
+    font-size: 2em;
     font-weight: 700;
   }
   & .memberRegistDiv1 {
     display: flex;
+    justify-content: center;
     width: 100%;
   }
   & .registMessage {
-    font-size: 1.1em;
+    font-size: 1.2em;
     display: flex;
-    text-align: center;
+    justify-content: center;
     width: 100%;
-    margin: 5%;
+    margin: 3%;
   }
   & .memberRegist {
     display: flex;

@@ -5,7 +5,6 @@ import RecruitContainer from "./recruit/RecruitContainer";
 import SearchContainer from "./search/SearchContainer";
 import HeaderContainer from "./header/HeaderContainer";
 import FooterContainer from "./footer/FooterContainer";
-import MypageContainer from "./mypage/MypageContainer";
 import styled from "styled-components";
 
 export default function Main() {
@@ -26,17 +25,10 @@ export default function Main() {
           path="/apply"
           element={<ApplyContainer></ApplyContainer>}
         ></Route>
-        <Route
-          path="/mypage"
-          element={<MypageContainer></MypageContainer>}
-        ></Route>
-        {/* ㄴ개인회원 마이페이지 */}
       </Routes>
       <FooterContainer></FooterContainer>
     </Box>
   );
 }
 
-const Box = styled.div`
-  min-width: 1697px;
-`;
+const Box = styled.div``;

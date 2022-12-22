@@ -12,7 +12,7 @@ import recruitLogo8 from "./images/logo8.gif";
 
 const COLOR = "#3399ff";
 
-const OpenRecruitComponent = () => {
+const OpenRecruitComponent = ({ midScreen }) => {
   const [juniorTitle, setJuniorTitle] = useState(true);
   // CSS를 주고 싶은 div 상태 변경하기
   return (
@@ -27,26 +27,25 @@ const OpenRecruitComponent = () => {
           <div className="boxTitle5">합격스펙</div>
           <div className="boxTitle6">합격자소서</div>
           <div className="boxTitle7">인적성/면접</div>
-          <div className="boxTitle8">잡코리아 TV</div>
-        </div>
-        <div className="boxJrSrUl">
-          <div
-            className="boxJuniorTitle"
-            onClick={() => {
-              setJuniorTitle(true);
-              // 상태 변경 함수 사용
-            }}
-          >
-            신입
-          </div>
-          <div
-            className="boxSeniorTitle"
-            onClick={() => {
-              setJuniorTitle(false);
-              // 상태 변경 함수 사용
-            }}
-          >
-            경력
+          <div className="boxJrSrUl">
+            <div
+              className="boxJuniorTitle"
+              onClick={() => {
+                setJuniorTitle(true);
+                // 상태 변경 함수 사용
+              }}
+            >
+              신입
+            </div>
+            <div
+              className="boxSeniorTitle"
+              onClick={() => {
+                setJuniorTitle(false);
+                // 상태 변경 함수 사용
+              }}
+            >
+              경력
+            </div>
           </div>
         </div>
       </OpenRecruitBox>
@@ -88,14 +87,16 @@ const OpenRecruitComponent = () => {
             소노소노
           </div>
         </div>
-        <div className="RecruitDiv3">
-          <div className="bigtech">#1000대기업 공채 </div>
-          <div className="intern">#인턴채용 </div>
-          <div className="openrecruit">#공채달력 </div>
-          <div className="livenews">#Live공채소식 </div>
-          <div className="expecteddays">#공채예상일정 </div>
-          <div className="top100">#TOP100</div>
-        </div>
+        {midScreen && (
+          <div className="RecruitDiv3">
+            <div className="bigtech">#1000대기업 공채 </div>
+            <div className="intern">#인턴채용 </div>
+            <div className="openrecruit">#공채달력 </div>
+            <div className="livenews">#Live공채소식 </div>
+            <div className="expecteddays">#공채예상일정 </div>
+            <div className="top100">#TOP100</div>
+          </div>
+        )}
       </RecruitNewsBox>
     </ItemBox>
   );
@@ -103,17 +104,17 @@ const OpenRecruitComponent = () => {
 
 export default OpenRecruitComponent;
 
-const ItemBox = styled.div``;
+const ItemBox = styled.div`
+  flex: 3;
+`;
 
 const OpenRecruitBox = styled.div`
-  font-size: 0.85em;
+  font-size: 14px;
   font-weight: 700;
-  width: 100%;
   border: 1px solid #dadada;
   border-bottom: none;
-  /* border-bottom: none; */
   background-color: white;
-  padding: 8px 0;
+  padding-bottom: 4px;
   & .boxTitle1 {
     color: ${COLOR};
     list-style: none;
@@ -157,13 +158,6 @@ const OpenRecruitBox = styled.div`
     cursor: pointer;
   }
   & .boxTitle7 {
-    color: #494949;
-    list-style: none;
-    float: left;
-    padding: 1%;
-    cursor: pointer;
-  }
-  & .boxTitle8 {
     color: #494949;
     list-style: none;
     float: left;
@@ -222,12 +216,12 @@ const RecruitNewsBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 95%;
-    padding: 0 15px;
-    & > div {
+    width: 100%;
+    & div {
       display: flex;
       flex-direction: column;
       flex: 1;
+      border-top: 1px solid #dadada;
       border-right: 1px solid #dadada9e;
       border-bottom: 1px solid #dadada9e;
       font-size: 12px;
@@ -235,7 +229,6 @@ const RecruitNewsBox = styled.div`
       text-align: center;
       background-color: white;
       padding: 15px 0;
-      cursor: pointer;
       &:last-child {
         border-right: none;
       }
@@ -245,7 +238,7 @@ const RecruitNewsBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 95%;
+    width: 100%;
     & div {
       display: flex;
       flex-direction: column;
@@ -263,90 +256,59 @@ const RecruitNewsBox = styled.div`
   }
   & .RecruitDiv3 {
     display: flex;
-    padding: 15px;
-    width: 95%;
   }
   & .bigtech {
     padding: 4px;
-    margin-right: 10px;
+    margin: 15px 3px 15px -150px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
-    cursor: pointer;
-    &:hover {
-      background-color: blue;
-      color: white;
-    }
   }
   & .intern {
     padding: 4px;
-    margin-right: 10px;
+    margin: 15px 3px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
-    cursor: pointer;
-    &:hover {
-      background-color: blue;
-      color: white;
-    }
   }
   & .openrecruit {
     padding: 4px;
-    margin-right: 10px;
+    margin: 15px 3px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
-    cursor: pointer;
-    &:hover {
-      background-color: blue;
-      color: white;
-    }
   }
   & .livenews {
     padding: 4px;
+    margin: 15px 3px;
     font-size: 12px;
-    margin-right: 10px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
-    cursor: pointer;
-    &:hover {
-      background-color: blue;
-      color: white;
-    }
   }
   & .expecteddays {
     padding: 4px;
-    margin-right: 10px;
+    margin: 15px 3px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
-    cursor: pointer;
-    &:hover {
-      background-color: blue;
-      color: white;
-    }
   }
   & .top100 {
     padding: 4px;
+    margin: 15px 3px;
     font-size: 12px;
     font-weight: 500;
     padding: 6px;
     color: #514f4f;
     background-color: #dadada3f;
-    cursor: pointer;
-    &:hover {
-      background-color: blue;
-      color: white;
-    }
   }
 `;

@@ -2,8 +2,8 @@ import BeforeLogInContainer from "./BeforeLogIn/BeforeLogInContainer";
 import AfterLogInContainer from "./AfterLogIn/AfterLogInContainer";
 import BigCarouselContainer from "../main/BigCarousel/BigCarouselContainer";
 import SmallCarouselContainer from "./SmallCarousel/SmallCarouselContainer";
-import MiniCarouselContainer from "./MiniCarousel/MiniCarouselContainer";
-import NoticeCarouselContainer from "./NoticeCarousel/NoticeCarouselContainer";
+// import MiniCarouselContainer from "./MiniCarousel/MiniCarouselContainer";
+// import NoticeCarouselContainer from "./NoticeCarousel/NoticeCarouselContainer";
 import OpenRecruitContainer from "./OpenRecruit/OpenRecruitContainer";
 import RankingContainer from "./Ranking/RankingContainer";
 import QuickMenuContainer from "./QuickMenu/QuickMenuContainer";
@@ -12,7 +12,7 @@ import VVIPContainer from "./VVIP/VVIPContainer";
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function MainComponent() {
+export default function MainComponent({ smallScreen, midScreen }) {
   const [individualId, setIndividualId] = useState("");
   const [individualPw, setIndividualPw] = useState("");
   const [individualName, setIndividualName] = useState("");
@@ -22,8 +22,8 @@ export default function MainComponent() {
     <MainBox>
       <MainFirstItem>
         <div className="firstRow">
-          <BigCarouselContainer></BigCarouselContainer>
-          <SmallCarouselContainer></SmallCarouselContainer>
+          {smallScreen && <BigCarouselContainer></BigCarouselContainer>}
+          {midScreen && <SmallCarouselContainer></SmallCarouselContainer>}
           {test ? (
             <AfterLogInContainer
               setTest={setTest}
@@ -33,6 +33,7 @@ export default function MainComponent() {
               setIndividualName={setIndividualName}
               setIndividualId={setIndividualId}
               setIndividualPw={setIndividualPw}
+              smallScreen={smallScreen}
             />
           ) : (
             <BeforeLogInContainer
@@ -43,21 +44,16 @@ export default function MainComponent() {
               setIndividualName={setIndividualName}
               setIndividualId={setIndividualId}
               setIndividualPw={setIndividualPw}
+              smallScreen={smallScreen}
             />
           )}
         </div>
         <div className="secondRow">
-          <div className="secondRowCol1">
-            <OpenRecruitContainer></OpenRecruitContainer>
-          </div>
-          <div className="secondRowCol2">
-            <RankingContainer></RankingContainer>
-          </div>
-          <div className="secondRowCol3">
-            <QuickMenuContainer></QuickMenuContainer>
-            <NoticeCarouselContainer></NoticeCarouselContainer>
-            <MiniCarouselContainer></MiniCarouselContainer>
-          </div>
+          {smallScreen && (
+            <OpenRecruitContainer midScreen={midScreen}></OpenRecruitContainer>
+          )}
+          <RankingContainer></RankingContainer>
+          {midScreen && <QuickMenuContainer></QuickMenuContainer>}
         </div>
       </MainFirstItem>
       <MainSecondItem>
@@ -90,29 +86,13 @@ const MainBox = styled.div`
   }
   & .secondRow {
     display: flex;
-    flex-direction: row;
-    margin: 8px 0 0 0;
-  }
-  & .secondRowCol1 {
-    display: flex;
-    flex-direction: column;
-    width: 64%;
-  }
-  & .secondRowCol2 {
-    display: flex;
-    flex-direction: column;
-    width: 21.45%;
-    margin-left: 8px;
-  }
-  & .secondRowCol3 {
-    display: flex;
-    flex-direction: column;
-    width: 18.55%;
-    margin-left: 8px;
+    justify-content: space-between;
+    margin: 6px 0 0 0;
   }
 `;
 
 const MainFirstItem = styled.div`
+  min-width: 360px;
   width: 60%;
   height: 40%;
 `;
@@ -130,7 +110,7 @@ const MainSecondItem = styled.div`
   > div {
     width: 60%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
   }
@@ -147,9 +127,9 @@ const MainThirdItem = styled.div`
     width: 60%;
   }
   > div {
-    width: 59%;
+    width: 60%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
   }
