@@ -3,11 +3,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 export default function RecruitContainer() {
   const navigate = useNavigate();
   const [recruitInfo, SetrecruitInfo] = useState([]);
   const params = useParams();
+  const midScreen = useMediaQuery({ maxWidth: 800 });
+  const bottomScreen = useMediaQuery({ maxWidth: 600 });
 
   console.log(params);
   useEffect(() => {
@@ -110,6 +113,8 @@ export default function RecruitContainer() {
       recruitInfo={recruitInfo}
       applybutton={applybutton}
       applycanclebutton={applycanclebutton}
+      midScreen={midScreen}
+      bottomScreen={bottomScreen}
     ></RecruitComponent>
   );
 }

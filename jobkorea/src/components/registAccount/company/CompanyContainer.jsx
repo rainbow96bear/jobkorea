@@ -1,10 +1,12 @@
 import CompanyComponent from "./CompanyComponent";
+import { useMediaQuery } from "react-responsive";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function CompanyContainer() {
   const navigate = useNavigate();
+  const midScreen = useMediaQuery({ minWidth: 600 });
 
   const onClick = async (
     selectedOption,
@@ -48,5 +50,5 @@ export default function CompanyContainer() {
     }
   };
 
-  return <CompanyComponent onClick={onClick} />;
+  return <CompanyComponent onClick={onClick} midScreen={midScreen} />;
 }

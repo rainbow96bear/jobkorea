@@ -11,7 +11,7 @@ import styled from "styled-components";
 export default function Main() {
   return (
     <Box>
-      <HeaderContainer></HeaderContainer>
+      {/* <HeaderContainer></HeaderContainer> */}
       <Routes>
         <Route path="/" element={<MainContainer></MainContainer>}></Route>
         <Route
@@ -32,11 +32,9 @@ export default function Main() {
         ></Route>
         {/* ㄴ개인회원 마이페이지 */}
       </Routes>
-      <FooterContainer></FooterContainer>
+      {/* <FooterContainer></FooterContainer> */}
     </Box>
   );
 }
 
-const Box = styled.div`
-  min-width: 1697px;
-`;
+const Box = styled.div``;
