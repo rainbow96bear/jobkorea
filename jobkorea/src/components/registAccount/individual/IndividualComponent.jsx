@@ -33,31 +33,27 @@ const IndividualComponent = ({ registClick }) => {
 
   return (
     <IndividualRegistBox>
-      {smallScreen && <div className="title">JOBKOREA</div>}
-      {smallScreenReverse && <div className="titleMid">JOBKOREA</div>}
+      <div className="header">
+        <div className="title">JOBKOREA</div>
 
-      <div className="whoRegist">
-        {midScreen && (
-          <>
-            <div className="memberRegist">개인회원</div>
-            <div
-              className="companyRegist"
-              onClick={() => {
-                navigate("/registAccount/company");
-              }}
-            >
-              기업회원
-            </div>{" "}
-          </>
-        )}
-      </div>
-      {midScreen && (
-        <div className="memberRegistdiv1">
-          <div className="registMessage">
-            회원가입하고 다양한 혜택을 누리세요!
+        <div className="whoRegist">
+          <div className="memberRegist">개인회원</div>
+          <div
+            className="companyRegist"
+            onClick={() => {
+              navigate("/registAccount/company");
+            }}>
+            기업회원
           </div>
         </div>
-      )}
+      </div>
+
+      <div className="memberRegistdiv1">
+        <div className="registMessage">
+          회원가입하고 다양한 혜택을 누리세요!
+        </div>
+      </div>
+
       <input
         type="text"
         className="input"
@@ -103,38 +99,36 @@ const IndividualComponent = ({ registClick }) => {
           setIndividualTel(e.target.value);
         }}
       />
-      {midScreen && (
-        <>
-          <div className="radio">개인정보 유효기간 선택 *</div>
-          <div>
-            <input
-              type="radio"
-              name="infoValid"
-              className="radio"
-              value="1year"
-              onChange={handlieClickRadio1}
-            />
-            1년
-            <input
-              type="radio"
-              name="infoValid"
-              className="radio"
-              value="3years"
-              onChange={handlieClickRadio2}
-            />
-            3년
-            <input
-              type="radio"
-              name="infoValid"
-              className="radio"
-              value="withdraw"
-              onChange={handlieClickRadio3}
-              checked="checked"
-            />
-            회원탈퇴시
-          </div>
-        </>
-      )}
+
+      <div className="radio">개인정보 유효기간 선택 *</div>
+      <div>
+        <input
+          type="radio"
+          name="infoValid"
+          className="radio"
+          value="1year"
+          onChange={handlieClickRadio1}
+        />
+        1년
+        <input
+          type="radio"
+          name="infoValid"
+          className="radio"
+          value="3years"
+          onChange={handlieClickRadio2}
+        />
+        3년
+        <input
+          type="radio"
+          name="infoValid"
+          className="radio"
+          value="withdraw"
+          onChange={handlieClickRadio3}
+          checked="checked"
+        />
+        회원탈퇴시
+      </div>
+
       <button
         className="memberRegistBtn"
         onClick={() => {
@@ -177,8 +171,7 @@ const IndividualComponent = ({ registClick }) => {
           } else if (!tel) {
             alert("휴대폰번호 형식이 올바르지 않습니다.");
           }
-        }}
-      >
+        }}>
         가입하기
       </button>
     </IndividualRegistBox>
@@ -188,13 +181,21 @@ const IndividualComponent = ({ registClick }) => {
 export default IndividualComponent;
 
 const IndividualRegistBox = styled.div`
-  /* width: 45%; */
   flex: 1;
+  height: 100vh;
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  & .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
   & .title {
     font-size: 3em;
     font-weight: 700;
@@ -252,6 +253,8 @@ const IndividualRegistBox = styled.div`
     border: none;
     display: flex;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     background-color: ${COLOR};
     color: white;
