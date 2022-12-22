@@ -5,6 +5,7 @@ import RecruitInfoComponent from "./RecruitInfoComponent";
 
 export default function RecruitInfoContainer() {
   const [myRecruit, setMyRecruit] = useState([]);
+  const [applyUserInfo, setApplyUserInfo] = useState([]);
   const params = useParams();
 
   const navigate = useNavigate();
@@ -12,6 +13,15 @@ export default function RecruitInfoContainer() {
   const moveTo = (where) => {
     navigate(`${where}`);
   };
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/api/recruit/whoapply", { id: params.id })
+      .then((data) => {
+        console.log(data.data[0].RecruitInfo);
+        setApplyUserInfo(data.data[0].RecruitInfo);
+      });
+  }, []);
 
   useEffect(() => {
     const myRecruitFunc = async () => {
@@ -22,7 +32,6 @@ export default function RecruitInfoContainer() {
         );
         const result = data.data;
         setMyRecruit([result]);
-        console.log(myRecruit);
       } catch (err) {
         console.error(err);
       }
@@ -31,10 +40,10 @@ export default function RecruitInfoContainer() {
   }, []);
 
   return (
-    // <div>test</div>
     <RecruitInfoComponent
       myRecruit={myRecruit}
       moveTo={moveTo}
+      applyUserInfo={applyUserInfo}
     ></RecruitInfoComponent>
   );
 }

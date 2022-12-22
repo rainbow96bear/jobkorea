@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export default function RecruitInfoComponent({ myRecruit, moveTo }) {
+export default function RecruitInfoComponent({
+  myRecruit,
+  moveTo,
+  applyUserInfo,
+}) {
   return (
     <div>
       <Informationboxs>
@@ -170,9 +174,81 @@ export default function RecruitInfoComponent({ myRecruit, moveTo }) {
           </div>
         </BackBtn>
       </Footercontainer>
+      <ApplyUserBox>
+        {applyUserInfo.map((item, index) => (
+          <UserInfo key={`div-${index}`}>
+            <UserFlex>
+              <UserTitle>지원자 명</UserTitle>
+              <UserContent>{item.individualName}</UserContent>
+            </UserFlex>
+
+            <UserFlex>
+              <UserTitle>지원자 E-mail</UserTitle>
+              <UserContent>{item.individualEmail}</UserContent>
+              <UserBtn>
+                <div>합격</div>
+                <div>불합격</div>
+              </UserBtn>
+            </UserFlex>
+            <UserFlex>
+              <UserTitle>지원자 전화번호</UserTitle>
+              <UserContent>{item.individualTel}</UserContent>
+            </UserFlex>
+          </UserInfo>
+        ))}
+      </ApplyUserBox>
     </div>
   );
 }
+
+const UserBtn = styled.div`
+  display: flex;
+  align-items: center;
+
+  div {
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3399ff;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  div:last-child {
+    background-color: red;
+  }
+`;
+
+const UserContent = styled.div`
+  display: flex;
+  align-items: center;
+  width: 50%;
+`;
+
+const UserTitle = styled.div`
+  font-size: 20px;
+  font-weight: 800;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+`;
+const UserFlex = styled.div`
+  display: flex;
+`;
+
+const ApplyUserBox = styled.div`
+  width: 60%;
+  margin: auto;
+`;
+
+const UserInfo = styled.div`
+  border: 1px solid #d3d3d3;
+`;
 
 const PayBox = styled.div`
   span {

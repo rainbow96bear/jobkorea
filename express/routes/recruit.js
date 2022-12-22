@@ -2,21 +2,27 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const db = require("../models/index.js");
 
-const { Recruit, Companyuser_Info } = require("../models/index.js");
+const {
+  Recruit,
+  Companyuser_Info,
+  Individualuser_Info,
+} = require("../models/index.js");
 const { update, findOne } = require("../models/join.js");
 
-// router.post("/whoapply", async (req, res) => {
-//   Recruit.findAll({
-//     where: { id: req.body.id },
-//     include: [
-//       {
-//         model: db.Individualuser_Info,
-//       },
-//     ],
-//   }).then((data) => {
-//     res.send(data);
-//   });
-// });
+router.post("/whoapply", async (req, res) => {
+  console.log(req.body);
+  Recruit.findAll({
+    where: { id: req.body.id },
+    include: [
+      {
+        model: Individualuser_Info,
+        as: "RecruitInfo",
+      },
+    ],
+  }).then((data) => {
+    res.send(data);
+  });
+});
 
 router.post("/recruitInfo", async (req, res) => {
   console.log(req.body);
