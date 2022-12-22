@@ -105,11 +105,12 @@ const IndividualComponent = ({ registClick }) => {
       />
       {midScreen && (
         <>
-          <div className="radio">
-            개인정보 유효기간 선택 *
+          <div className="radio">개인정보 유효기간 선택 *</div>
+          <div>
             <input
               type="radio"
               name="infoValid"
+              className="radio"
               value="1year"
               onChange={handlieClickRadio1}
             />
@@ -117,6 +118,7 @@ const IndividualComponent = ({ registClick }) => {
             <input
               type="radio"
               name="infoValid"
+              className="radio"
               value="3years"
               onChange={handlieClickRadio2}
             />
@@ -124,6 +126,7 @@ const IndividualComponent = ({ registClick }) => {
             <input
               type="radio"
               name="infoValid"
+              className="radio"
               value="withdraw"
               onChange={handlieClickRadio3}
               checked="checked"
@@ -185,25 +188,22 @@ const IndividualComponent = ({ registClick }) => {
 export default IndividualComponent;
 
 const IndividualRegistBox = styled.div`
-  width: 33%;
-  height: 100%;
+  /* width: 45%; */
+  flex: 1;
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5% auto 0;
   & .title {
     font-size: 3em;
     font-weight: 700;
     color: ${COLOR};
-    padding: 2%;
   }
   & .titleMid {
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-weight: 700;
     color: ${COLOR};
-    padding: 2%;
   }
   & .whoRegist {
     display: flex;
@@ -224,30 +224,27 @@ const IndividualRegistBox = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    margin: 3%;
   }
   & .memberRegist {
     display: flex;
     justify-content: center;
     width: 70%;
-    height: 10%;
+    /* height: 20%; */
     background-color: ${COLOR};
     color: white;
     font-size: 25px;
     font-weight: 700;
-    padding: 2%;
     border-bottom: 1px solid ${COLOR};
   }
   & .companyRegist {
     display: flex;
     justify-content: center;
     width: 30%;
-    height: 10%;
+    /* height: 20%; */
     background-color: white;
     color: ${COLOR};
     font-size: 25px;
     font-weight: 700;
-    padding: 2%;
     border-bottom: 1px solid ${COLOR};
     cursor: pointer;
   }
@@ -256,20 +253,18 @@ const IndividualRegistBox = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 10%;
     background-color: ${COLOR};
     color: white;
-    font-size: 25px;
+    font-size: 2em;
     font-weight: 700;
-    padding: 2%;
   }
   & .input {
-    padding: 3%;
+    padding: 20px;
     margin: 5px;
     width: 70%;
     border: 1px solid #dadada;
   }
   & .radio {
-    margin: 5%;
+    margin: 3% auto;
   }
 `;
