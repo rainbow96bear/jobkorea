@@ -10,23 +10,20 @@ import styled from "styled-components";
 export default function Main() {
   return (
     <Box>
-      {/* <HeaderContainer></HeaderContainer> */}
+      <HeaderContainer></HeaderContainer>
       <Routes>
         <Route path="/" element={<MainContainer></MainContainer>}></Route>
         <Route
           path="/search"
-          element={<SearchContainer></SearchContainer>}
-        ></Route>
+          element={<SearchContainer></SearchContainer>}></Route>
         <Route
           path="/recruit/:id"
-          element={<RecruitContainer></RecruitContainer>}
-        ></Route>
+          element={<RecruitContainer></RecruitContainer>}></Route>
         <Route
           path="/apply"
-          element={<ApplyContainer></ApplyContainer>}
-        ></Route>
+          element={<ApplyContainer></ApplyContainer>}></Route>
       </Routes>
-      {/* <FooterContainer></FooterContainer> */}
+      <FooterContainer></FooterContainer>
     </Box>
   );
 }
