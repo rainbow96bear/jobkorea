@@ -7,8 +7,16 @@ const MainLoginBoardContainer = ({ loginIsClick, setLoginIsClick }) => {
   const loginOnClick = () => {
     setLoginIsClick(!loginIsClick);
   };
-  const midScreen = useMediaQuery({
-    minWidth: 100,
+  const oneScreen = useMediaQuery({
+    minWidth: 1300,
+  });
+
+  const twoScreen = useMediaQuery({
+    minWidth: 720,
+  });
+
+  const threeScreen = useMediaQuery({
+    minWidth: 640,
   });
 
   const moveTo = (where) => {
@@ -19,7 +27,8 @@ const MainLoginBoardContainer = ({ loginIsClick, setLoginIsClick }) => {
       moveTo={moveTo}
       loginOnClick={loginOnClick}
       setLoginIsClick={setLoginIsClick}
-      midScreen={midScreen}
+      oneScreen={oneScreen}
+      twoScreen={twoScreen}
     ></MainLoginBoardComponent>
   );
 };

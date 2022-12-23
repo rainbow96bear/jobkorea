@@ -9,7 +9,9 @@ const MainLoginBoardComponent = ({
   loginOnClick,
   moveTo,
   setLoginIsClick,
-  midScreen,
+  oneScreen,
+  twoScreen,
+  threeScreen,
 }) => {
   const dispatch = useDispatch();
 
@@ -48,16 +50,51 @@ const MainLoginBoardComponent = ({
     <MainLoginBoardBox>
       <div className="temp"></div>
       <div className="MainBoard">
-        <div>
-          <div className="text-box">
-            지금,
-            <div>
-              <span className="our">우리기업의 채용</span>을
-            </div>
-            시작해 보세요
-          </div>
+        {twoScreen ? (
           <div>
-            {}
+            <div className="text-box">
+              지금,
+              <div>
+                <span className="our">우리기업의 채용</span>을
+              </div>
+              시작해 보세요
+            </div>
+            <div>
+              {companyUser == 0 ? (
+                <div className="flex button-box">
+                  <div onClick={loginOnClick}>로그인</div>
+                  <div
+                    onClick={() => {
+                      moveTo("registAccount/company");
+                    }}
+                  >
+                    회원가입
+                  </div>
+                </div>
+              ) : (
+                <div className="flex button-box">
+                  <div
+                    onClick={async () => {
+                      dispatch(action.logoutCompany());
+                      setLoginIsClick(false);
+                      const data = await axios.post(
+                        "http://localhost:8080/api/companyuser/logout",
+                        {}
+                      );
+                      console.log(data);
+                    }}
+                  >
+                    로그아웃
+                  </div>
+                  <WelcomeBox>
+                    <div>{companyUser} 님</div> 환영합니다
+                  </WelcomeBox>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div>
             {companyUser == 0 ? (
               <div className="flex button-box">
                 <div onClick={loginOnClick}>로그인</div>
@@ -90,14 +127,19 @@ const MainLoginBoardComponent = ({
               </div>
             )}
           </div>
-        </div>
-        <div>
-          <img src="/img/start.png" alt="" />
-        </div>
+        )}
+
+        {oneScreen ? (
+          <ImgBox>
+            <img src="/img/start.png" alt="" />
+          </ImgBox>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className="temp"></div>
-      <div className="flex">
-        <div className="whiteDiv"></div>
+      <div className="flex whiteline">
+        {oneScreen ? <div className="whiteDiv"></div> : <></>}
         <div className="companyLearn">
           <div>기업전용 필수 법정교육, 직무학습</div>
           <div>잡코리아 기업러닝 &gt;</div>
@@ -108,13 +150,23 @@ const MainLoginBoardComponent = ({
   );
 };
 
+const ImgBox = styled.div`
+  width: 50%;
+
+  img {
+    width: 100%;
+    height: 360px;
+  }
+`;
+
 const MainLoginBoardBox = styled.div`
-  width: 1260px;
+  width: 67%;
   margin: auto;
 
   .MainBoard {
     overflow: hidden;
     display: flex;
+    justify-content: center;
     border-radius: 10px;
     background-color: #ffffff;
   }
@@ -145,9 +197,12 @@ const MainLoginBoardBox = styled.div`
   .button-box {
     font-size: 20px;
     font-weight: 700;
-    padding: 0 50px 40px 50px;
+    padding: 30px 50px;
   }
-
+  .whiteline {
+    display: flex;
+    justify-content: space-between;
+  }
   .button-box > div:first-child {
     color: white;
     background-color: #3399ff;
@@ -176,7 +231,7 @@ const MainLoginBoardBox = styled.div`
   }
 
   .whiteDiv {
-    width: 940px;
+    width: 60%;
     height: 80px;
     background-color: white;
     border-radius: 10px;
