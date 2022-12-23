@@ -1,9 +1,12 @@
 import SearchComponent from "./SearchComponent";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export default function SearchContainer() {
   const [inputData, setInputData] = useState([]);
+  const midScreen = useMediaQuery({ minWidth: 1200 });
+  const smallScreen = useMediaQuery({ minWidth: 1070 });
 
   useEffect(() => {
     try {
@@ -35,5 +38,11 @@ export default function SearchContainer() {
       console.error(e.message);
     }
   }, []);
-  return <SearchComponent data={inputData}></SearchComponent>;
+  return (
+    <SearchComponent
+      data={inputData}
+      midScreen={midScreen}
+      smallScreen={smallScreen}
+    ></SearchComponent>
+  );
 }

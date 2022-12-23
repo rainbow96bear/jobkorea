@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 const FooterComponent = ({ moveTo }) => {
+  const midScreen = useMediaQuery({ minWidth: 1200 });
   return (
     <FooterBox>
       <div>
@@ -15,34 +17,45 @@ const FooterComponent = ({ moveTo }) => {
         <div>
           <div>
             <div className="upflex">
-              <div>회사소개</div>
-              <div>광고문의</div>
-              <div>제휴문의</div>
-              <div>이용약관</div>
-              <div>개인정보처리방침</div>
-              <div>위치기반서비스이용약관</div>
+              {midScreen && (
+                <>
+                  <div>회사소개</div>
+                  <div>광고문의</div>
+                  <div>제휴문의</div>
+                  <div>이용약관</div>
+                  <div>개인정보처리방침</div>
+                  <div>위치기반서비스이용약관</div>{" "}
+                </>
+              )}
             </div>
+
             <div className="upflex2">
               <div>공지사항</div>
               <div>[이벤트]12월 전체회원 이벤트, 이직준비 가...</div>
               <div>22.12.01</div>
             </div>
           </div>
+
           <div>
-            <div className="downfooter">
-              <div>
-                고객센터 : 1588-9350 (평일 09:00 ~ 19:00 토요일 09:00 ~ 15:00)
-              </div>
-              <div></div>
-              <div>FAX : 02-565-9351</div>
-              <div></div>
-              <div className="email">
-                Email :<div>helpdesk@jobkorea.co.kr</div>
-              </div>
-            </div>
-            <div className="copyright">
-              Copyright ⓒ <span>JOBKOREA</span> Corp. All Right Reserved.
-            </div>
+            {midScreen && (
+              <>
+                <div className="downfooter">
+                  <div>
+                    고객센터 : 1588-9350 (평일 09:00 ~ 19:00 토요일 09:00 ~
+                    15:00)
+                  </div>
+                  <div></div>
+                  <div>FAX : 02-565-9351</div>
+                  <div></div>
+                  <div className="email">
+                    Email :<div>helpdesk@jobkorea.co.kr</div>
+                  </div>
+                </div>
+                <div className="copyright">
+                  Copyright ⓒ <span>JOBKOREA</span> Corp. All Right Reserved.
+                </div>{" "}
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -60,17 +73,16 @@ const FooterBox = styled.div`
     margin: auto;
     display: flex;
     padding: 30px;
-    justify-content: space-between;
   }
 
   & > div > div > div {
     display: flex;
     padding: 0 0 25px 20px;
-    justify-content: space-between;
   }
 
   & > div > div > div > div {
     display: flex;
+    flex-wrap: wrap;
   }
 
   & > div > div > div:first-child {
@@ -99,6 +111,8 @@ const FooterBox = styled.div`
   .upflex > div {
     margin-right: 20px;
     cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .upflex > div:nth-child(5),
@@ -107,7 +121,7 @@ const FooterBox = styled.div`
   }
 
   .upflex2 {
-    margin-left: 20px;
+    /* margin-left: 20px;  */
   }
 
   .upflex2 > div {
@@ -125,7 +139,7 @@ const FooterBox = styled.div`
     cursor: auto;
   }
   img {
-    margin-right: 80px;
+    margin-right: 10px;
   }
   .email {
     display: flex;

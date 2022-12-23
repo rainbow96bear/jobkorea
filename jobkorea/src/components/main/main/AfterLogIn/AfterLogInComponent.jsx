@@ -24,10 +24,10 @@ const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
           <div className="modifiedDate">최종 수정일 (2022.07.18)</div>
         </div>
         <div className="afterLogInDiv3">
-          <div>지원현황</div>
-          <div>열람기업</div>
-          <div>스크랩</div>
-          <div>스마트매치</div>
+          <button>지원현황</button>
+          <button>열람기업</button>
+          <button>스크랩</button>
+          <button>스마트매치</button>
         </div>
       </AfterLogInBox>
     </>
@@ -37,17 +37,15 @@ const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
 export default AfterLogInComponent;
 
 const AfterLogInBox = styled.div`
-  width: 20%;
-  height: 115px;
+  width: 100%;
+  height: 100%;
   text-align: center;
-  padding-top: 0.3%;
   background-color: #fafafa;
   border: 1px solid #dadada;
-
   & .afterLogInDiv1 {
     display: flex;
     justify-content: space-between;
-    padding: 2px;
+    padding: 3%;
   }
   & .goInfo {
     font-weight: 700;
@@ -56,8 +54,8 @@ const AfterLogInBox = styled.div`
   & .afterLogInDiv2 {
     display: flex;
     justify-content: space-between;
-    margin: 5px 0;
-    padding: 6.5px 10px;
+    margin: 1% 0;
+    padding: 1%;
   }
   & .goResume {
     cursor: pointer;
@@ -71,22 +69,19 @@ const AfterLogInBox = styled.div`
   }
   & .afterLogInDiv3 {
     display: flex;
-    flex: 1;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
-    div {
+    button {
       text-align: center;
-      border-top: 1px solid #dadada;
-      border-right: 1px solid #dadada;
+      border: 1px solid #dadada;
       background-color: #f2f2f2;
       color: #424242;
-      font-size: 12px;
+      font-size: 0.7em;
       cursor: pointer;
-      padding: 13px 5px;
-      &:last-child {
-        border-right: none;
-      }
+      padding: 2em 0.71em;
+      display: flex;
+      flex-wrap: wrap;
     }
   }
   & .logOutBtn {

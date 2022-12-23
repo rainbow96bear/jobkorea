@@ -9,6 +9,7 @@ const BeforeLogInContainer = ({
   setIndividualId,
   setIndividualPw,
   setIndividualName,
+  smallScreen,
 }) => {
   const onClick = async (individualId, individualPw) => {
     if (individualId === "") {
@@ -39,6 +40,7 @@ const BeforeLogInContainer = ({
       setIndividualName={setIndividualName}
       setIndividualId={setIndividualId}
       setIndividualPw={setIndividualPw}
+      smallScreen={smallScreen}
     ></BeforeLogInComponent>
   );
 };

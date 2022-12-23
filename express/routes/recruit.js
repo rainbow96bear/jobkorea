@@ -218,7 +218,7 @@ router.post("/remove", async (req, res) => {
 router.post("/firstvvip", async (req, res) => {
   try {
     const rowData = await Recruit.findAll({
-      // where: { adGrade: req.body.companyAdGrade },
+      where: { adGrade: 1 },
       include: [
         {
           model: db.Companyuser_Info,
@@ -235,6 +235,8 @@ router.post("/firstvvip", async (req, res) => {
 router.post("/ranking", async (req, res) => {
   try {
     const rowData = await Recruit.findAll({
+      limit: 10,
+      order: [["createdAt", "DESC"]],
       include: [
         {
           model: db.Companyuser_Info,
@@ -251,6 +253,7 @@ router.post("/ranking", async (req, res) => {
 router.post("/vvip", async (req, res) => {
   try {
     const rowData = await Recruit.findAll({
+      where: { adGrade: 2 },
       include: [
         {
           model: db.Companyuser_Info,

@@ -15,8 +15,8 @@ const RankingComponent = ({ inputData }) => {
           <IoIosArrowForward style={{ cursor: "pointer" }} />
         </span>
       </div>
-      {inputData.map((data) => (
-        <div className="ranking1">
+      {inputData.map((data, index) => (
+        <div className="ranking1" key={`rankingBox-${index}`}>
           <div>{data.CompanyName}</div>
         </div>
       ))}
@@ -27,8 +27,7 @@ const RankingComponent = ({ inputData }) => {
 export default RankingComponent;
 
 const RankingBox = styled.div`
-  width: 99%;
-  height: 356px;
+  flex: 1;
   background-color: white;
   border: 1px solid #dadada;
 
@@ -57,8 +56,8 @@ const RankingBox = styled.div`
     padding: 1px 2px;
   }
   & .ranking1 {
-    margin: 0;
-    padding: 3% 0 0 7%;
+    padding-top: 0;
+    text-align: center;
     font-size: 13px;
     cursor: pointer;
   }

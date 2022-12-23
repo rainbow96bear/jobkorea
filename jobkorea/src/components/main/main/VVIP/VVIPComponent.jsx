@@ -6,7 +6,7 @@ const VVIPComponent = ({ inputData }) => {
     <>
       {inputData.map((data) =>
         data.map((data2, index) => (
-          <GroupItemBox>
+          <GroupItemBox key={`groupItemBox-${index}`}>
             <div>
               <img src={`http://localhost:8080/uploads/2615s00.gif`} alt="" />
             </div>
@@ -26,21 +26,21 @@ const VVIPComponent = ({ inputData }) => {
 export default VVIPComponent;
 
 const GroupItemBox = styled.div`
-  width: 25%;
-  margin: 0 0.2px;
+  min-width: 300px;
+  width: 23.5%;
+  margin: 7px;
   border: 1px solid #3399ff;
-  border-left: none;
   & > div {
     width: 100%;
     display: flex;
     justify-content: center;
     &.companyName {
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 500;
     }
     &.recruitTitle {
       font-size: 19px;
-      font-weight: 500;
+      font-weight: 700;
       margin-bottom: 20px;
     }
     & > img {

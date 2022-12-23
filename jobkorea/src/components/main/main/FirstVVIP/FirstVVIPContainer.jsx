@@ -12,6 +12,7 @@ export default function FirstVVIPContainer({}) {
           companylogo: rowData.Companyuser_Info.companylogo,
           CompanyName: rowData.Companyuser_Info.companyName,
           recruitName: rowData.recruitName,
+          adGrade: rowData.adGrade,
         }));
         setInputData([...inputData, _inputData]);
         console.log(data.data);

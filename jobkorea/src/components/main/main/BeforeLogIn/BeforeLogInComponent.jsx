@@ -72,7 +72,7 @@ const BeforeLogInComponent = ({
 export default BeforeLogInComponent;
 
 const BeforeLogInBox = styled.div`
-  width: 20%;
+  width: 100%;
   height: 118px;
   background-color: white;
   text-align: center;

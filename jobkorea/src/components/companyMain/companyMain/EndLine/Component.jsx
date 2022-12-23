@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 const EndLineComponent = () => {
+  const midScreen = useMediaQuery({ width: 900 });
+
   return (
     <EndLineBox>
       <div className="section">

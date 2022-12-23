@@ -8,6 +8,7 @@ import { action } from "../../../../modules/userInfo";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import DropdownContainer from "./Dropdown/Container";
+import { useMediaQuery } from "react-responsive";
 
 const HeaderComponent = ({
   loginOnClick,
@@ -20,6 +21,9 @@ const HeaderComponent = ({
   const dispatch = useDispatch();
   const companyUser = useSelector((state) => state.companyUser.value);
   const navigate = useNavigate();
+  const midScreen = useMediaQuery({ minWidth: 1200 });
+  const smallScreen = useMediaQuery({ minWidth: 900 });
+  const miniScreen = useMediaQuery({ minWidth: 530 });
 
   return (
     <>
@@ -29,11 +33,13 @@ const HeaderComponent = ({
             onClick={() => {
               moveTo("");
             }}
+            className="title"
           >
             JOBKOREA
           </div>
-          <div>
-            {companyUser == 0 ? (
+
+          <div className="topMenu">
+            {companyUser === 0 ? (
               <div
                 onClick={() => {
                   moveTo("registAccount/company");
@@ -53,7 +59,7 @@ const HeaderComponent = ({
 
             <div>고객센터</div>
             <div>
-              {companyUser == 0 ? (
+              {companyUser === 0 ? (
                 <div onClick={loginOnClick}>로그인</div>
               ) : (
                 <div
@@ -76,50 +82,57 @@ const HeaderComponent = ({
         </div>
         <div>
           <div>
-            <div>
-              <img src="/img/3bar.svg" onClick={dropdownOnClick} />
-            </div>
-            {menuList.map((item, index) => {
-              return (
-                <div
-                  key={`item-${index}`}
-                  onMouseEnter={() => {
-                    setHeaderMenuIsOver(index);
-                  }}
-                  onMouseLeave={() => setHeaderMenuIsOver(-1)}
-                  onClick={async () => {
-                    if (item.data == "yes") {
-                      const data = await axios.post(
-                        "http://localhost:8080/api/recruit/isdata"
-                      );
-                      console.log(data.data.isdata);
-                      if (data.data.isdata == "false") {
-                        return alert(
-                          "등록한 공고가 없습니다. 먼저 공고를 등록해주세요."
-                        );
-                      }
-                    }
-
-                    if (item.login == "yes" && !document.cookie) {
-                      alert("로그인 해주세요");
-                      moveTo("companymain");
-                    } else if (item.routes)
-                      moveTo(`companymain/${item.routes}`);
-                    else moveTo("companymain");
-                  }}
-                >
-                  {item.title}
+            {miniScreen && (
+              <div>
+                <img src="/img/3bar.svg" onClick={dropdownOnClick} />
+              </div>
+            )}
+            {(smallScreen ? menuList : menuList.slice(0, 3)).map(
+              (item, index) => {
+                return (
                   <div
-                    className={headerMenuIsOver == `${index}` ? "hover" : ""}
-                  ></div>
-                </div>
-              );
-            })}
+                    key={`item-${index}`}
+                    onMouseEnter={() => {
+                      setHeaderMenuIsOver(index);
+                    }}
+                    onMouseLeave={() => setHeaderMenuIsOver(-1)}
+                    onClick={async () => {
+                      if (item.data === "yes") {
+                        const data = await axios.post(
+                          "http://localhost:8080/api/recruit/isdata"
+                        );
+                        console.log(data.data.isdata);
+                        if (data.data.isdata === "false") {
+                          return alert(
+                            "등록한 공고가 없습니다. 먼저 공고를 등록해주세요."
+                          );
+                        }
+                      }
+
+                      if (item.login === "yes" && !document.cookie) {
+                        alert("로그인 해주세요");
+                        moveTo("companymain");
+                      } else if (item.routes)
+                        moveTo(`companymain/${item.routes}`);
+                      else moveTo("companymain");
+                    }}
+                    className={miniScreen ? "" : "smallerFont"}
+                  >
+                    {item.title}
+                    <div
+                      className={headerMenuIsOver === `${index}` ? "hover" : ""}
+                    ></div>
+                  </div>
+                );
+              }
+            )}
           </div>
-          <div>
-            <div>기업라운지</div>
-            <div>서비스안내</div>
-          </div>
+          {midScreen && (
+            <div>
+              <div>기업라운지</div>
+              <div>서비스안내</div>
+            </div>
+          )}
         </div>
       </HeaderBox>
       {dropdownIsClick ? <DropdownContainer></DropdownContainer> : <></>}
@@ -131,13 +144,13 @@ const HeaderComponent = ({
 };
 
 const HeaderBox = styled.div`
-  height: 136px;
+  height: 25%;
   background-color: #323743;
 
   & > div {
     color: white;
     margin: auto;
-    width: 64%;
+    width: 65%;
     display: flex;
     justify-content: space-between;
     padding: 12px;
@@ -152,10 +165,15 @@ const HeaderBox = styled.div`
     align-items: center;
   }
 
-  & > div > div:first-child {
+  & .title {
     font-size: 24px;
     font-weight: 700;
   }
+
+  /* & > div > div:first-child {
+    font-size: 24px;
+    font-weight: 700;
+  } */
 
   & > div > div:nth-child(2) > div {
     margin: 0 10px;
@@ -168,13 +186,13 @@ const HeaderBox = styled.div`
     font-weight: 600;
   }
   & > div:nth-child(2) > div:nth-child(1) > div {
-    padding: 0 20px;
+    padding: 0 10px;
     margin-top: 20px;
     cursor: pointer;
   }
 
   & > div:nth-child(2) > div:nth-child(1) > div:first-child {
-    padding: 0 20px 0 0;
+    padding: 0 10px 0 0;
     margin-bottom: 2px;
   }
 
@@ -202,6 +220,14 @@ const HeaderBox = styled.div`
 
   img {
     cursor: pointer;
+  }
+
+  & .smallerFont {
+    font-size: smaller;
+  }
+
+  & .smallerLogo {
+    font-size: smaller;
   }
 `;
 
