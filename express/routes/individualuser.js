@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
             "individual_login",
             jwt.sign({ individualId: req.body.id }, process.env.COOKIE_SECRET),
 
-            { expires: new Date(Date.now() + 6000 * 30) }
+            { expires: new Date(Date.now() + 6000 * 300000) }
           );
           res.send("로그인 완료");
         } else {

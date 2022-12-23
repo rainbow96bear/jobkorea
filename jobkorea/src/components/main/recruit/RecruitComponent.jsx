@@ -173,7 +173,7 @@ export default function RecruitComponent({
             <Informationboxscontenttwo>
               <Imgbox>
                 <img
-                  style={{ width: 100 }}
+                  style={{ width: 70 }}
                   src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
                   alt=""
                 />
@@ -361,11 +361,12 @@ const Footercontainer = styled.div`
 const Home = styled.div`
   color: white;
   text-align: center;
-  padding: 5px 20px;
+  padding: 0px 20px;
   width: 100%;
   height: 5vh;
   background-color: #3399ff;
   margin-right: 10px;
+  margin-bottom: 15px;
 
   div:first-child {
     padding-top: 10%;

@@ -1,22 +1,25 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function ApplyComponent({ application }) {
-  // console.log(application);
-  // console.log(application);
+  const [newapplication, setNewapplication] = useState([]);
+
+  console.log(application);
   return (
     <Container>
-      <Header>
-        <Texttitle>입사지원 현황</Texttitle>
-        <h2>
-          <Texttitlespan>| 취업활동 증명서</Texttitlespan>
-        </h2>
-      </Header>
-      <Subcontainerone>
-        <Subcontaineronecontent>
-          <h1>{application.length}</h1>
-          <span>지원완료</span>
-        </Subcontaineronecontent>
-        {/* <Subcontaineronecontent>
+      <Contaninerdiv>
+        <Header>
+          <Texttitle>입사지원 현황</Texttitle>
+
+          <h2>{/* <Texttitlespan>| 취업활동 증명서</Texttitlespan> */}</h2>
+        </Header>
+        <Subcontainerone>
+          <Subcontaineronecontent>
+            <h1>{application.length}</h1>
+            <span>지원완료</span>
+          </Subcontaineronecontent>
+
+          {/* <Subcontaineronecontent>
           <h1>0</h1>
           <span>열람</span>
         </Subcontaineronecontent>
@@ -24,12 +27,13 @@ export default function ApplyComponent({ application }) {
           <h1>0</h1>
           <span>미열람</span>
         </Subcontaineronecontent> */}
-        {/* <Subcontaineronecontent>
+          {/* <Subcontaineronecontent>
           <h1>0</h1>
           <span>지원취소</span>
         </Subcontaineronecontent> */}
-      </Subcontainerone>
-      <Subcontainertwo>
+        </Subcontainerone>
+
+        {/* <Subcontainertwo>
         <Subcontainertwocontentitem>
           <Itemone>
             <span>조회기간</span>
@@ -76,44 +80,54 @@ export default function ApplyComponent({ application }) {
           </Itemtwo>
         </Subcontainertwocontentitems>
         <Search>검색</Search>
-      </Subcontainertwo>
-
-      <Subcontainerthree>
-        {/* <div>
-          <div>{application[0].recruitName}</div>
-          <div>{application[0].myTask}</div>
-          <div>{application[0].workRank}</div>
-          <div>{application[0].area}</div>
-        </div>
+      </Subcontainertwo> */}
         <div>
-          <div>{application[1].recruitName}</div>
-          <div>{application[1].myTask}</div>
-          <div>{application[1].workRank}</div>
-          <div>{application[1].area}</div>
-        </div> */}
+          <Mainbar>
+            <Itemdiv>회사로고</Itemdiv>
+            <Itemdiv>회사이름</Itemdiv>
+            <Itemdiv>공고명</Itemdiv>
+            <Itemdiv>업무</Itemdiv>
+            <Itemdiv>직급</Itemdiv>
+            <Itemdiv>지역</Itemdiv>
+            <Itemdiv>상태</Itemdiv>
+          </Mainbar>
 
-        {application.length ? (
-          <div>
-            {application.map((item, index) => (
-              <Itembox key={`${index}`}>
-                <div>
-                  <RecruitName>{item.recruitName}</RecruitName>
-                </div>
-                <Thicksolid></Thicksolid>
-                <div style={{ width: 180 }}>
-                  <h2>업무: {item.myTask}</h2>
-                  <h2>직급: {item.workRank}</h2>
-                  <h2>지역: {item.area}</h2>
-                </div>
-                <Canclebutton>취소하기</Canclebutton>
-              </Itembox>
-            ))}
-          </div>
-        ) : (
-          <div>지원완료 및 지원예약 내역이 없습니다.</div>
-        )}
+          <Subcontainerthree>
+            {application.length ? (
+              <>
+                {application.map((item, index) => (
+                  <Itembox key={`${index}`}>
+                    <Itemdiv>
+                      <Companylogo
+                        src={`http://localhost:8080/uploads/${
+                          application[`${index}`]?.Companyuser_Info.companylogo
+                        }`}
+                        alt=""
+                      />
+                    </Itemdiv>
+                    <Itemdiv>
+                      <Companyname>
+                        {application[`${index}`]?.Companyuser_Info.companyName}
+                      </Companyname>
+                    </Itemdiv>
+                    <Itemdiv>
+                      <RecruitName>{item.recruitName}</RecruitName>
+                    </Itemdiv>
 
-        {/* {application.length ? (
+                    <Itemdiv>{item.myTask}</Itemdiv>
+                    <Itemdiv>{item.workRank}</Itemdiv>
+                    <Itemdiv>{item.area}</Itemdiv>
+                    <Itemdiv>{item.personalRecruit.check}예성</Itemdiv>
+
+                    {/* <Canclebutton>취소하기</Canclebutton> */}
+                  </Itembox>
+                ))}
+              </>
+            ) : (
+              <div>지원완료 및 지원예약 내역이 없습니다.</div>
+            )}
+
+            {/* {application.length ? (
         
           {application.map((item,index)=>(
              <Itembox>
@@ -129,56 +143,110 @@ export default function ApplyComponent({ application }) {
           <div>지원완료 및 지원예약 내역이 없습니다.</div>
         )} */}
 
-        <p style={{ color: " grey" }}>
-          회원님의 구직활동 정보를 분석하여 꼭 맞는 채용정보를 추천합니다
-        </p>
-        {/* <Button>스마트매치 바로가기</Button> */}
-      </Subcontainerthree>
-      <Subcontainerfour></Subcontainerfour>
-      <Subcontainertwo>
-        <Listone>
-          <ul>
-            <li style={{ color: "grey" }}>
-              입사지원을 한 후 해당이력서를 수정해도{" "}
-              <span>이전에 지원한 이력서의 내용은 바뀌지 않으므로</span>
-              회사마다 이력서 내용을 다르게 지원할 수 있습니다.
-            </li>
-          </ul>
-          <ul>
-            <li style={{ color: "grey" }}>
-              입사지원 내역을 삭제한 경우 지원내역, 지원취소, 열람여부 확인이
-              불가능합니다.
-            </li>
-          </ul>
-          <ul>
-            <li style={{ color: "grey" }}>
-              지원취소 시 지원한 회사에서 이력서를 열람할 수 없으며, 취업활동
-              증명서 조회도 불가능합니다.
-              <span style={{ textDecoration: "underline" }}>
-                지원취소 안내보기
-              </span>
-            </li>
-          </ul>
-          <ul>
-            <li style={{ color: "grey" }}>
-              기업에 별도의 채용서류를 제출 했다면, 채용 여부 확정 후 서류 반환
-              요청을 할 수 있습니다.
-              <span style={{ textDecoration: "underline" }}>
-                채용절차법 확인하기
-              </span>
-            </li>
-          </ul>
-          <ul>
-            <li style={{ color: "grey" }}>
-              지원이력서에 포함된 첨부파일은 채용공고 접수마감일로부터 90일간
-              확인 가능합니다.
-            </li>
-          </ul>
-        </Listone>
-      </Subcontainertwo>
+            <p style={{ color: " grey" }}>
+              회원님의 구직활동 정보를 분석하여 꼭 맞는 채용정보를 추천합니다
+            </p>
+            {/* <Button>스마트매치 바로가기</Button> */}
+          </Subcontainerthree>
+        </div>
+        {/* <Subcontainerfour></Subcontainerfour> */}
+        <Subcontainertwo>
+          <Listone>
+            <ul>
+              <li style={{ color: "grey" }}>
+                입사지원을 한 후 해당이력서를 수정해도{" "}
+                <span>이전에 지원한 이력서의 내용은 바뀌지 않으므로</span>
+                회사마다 이력서 내용을 다르게 지원할 수 있습니다.
+              </li>
+            </ul>
+            <ul>
+              <li style={{ color: "grey" }}>
+                입사지원 내역을 삭제한 경우 지원내역, 지원취소, 열람여부 확인이
+                불가능합니다.
+              </li>
+            </ul>
+            <ul>
+              <li style={{ color: "grey" }}>
+                지원취소 시 지원한 회사에서 이력서를 열람할 수 없으며, 취업활동
+                증명서 조회도 불가능합니다.
+                <span style={{ textDecoration: "underline" }}>
+                  지원취소 안내보기
+                </span>
+              </li>
+            </ul>
+            <ul>
+              <li style={{ color: "grey" }}>
+                기업에 별도의 채용서류를 제출 했다면, 채용 여부 확정 후 서류
+                반환 요청을 할 수 있습니다.
+                <span style={{ textDecoration: "underline" }}>
+                  채용절차법 확인하기
+                </span>
+              </li>
+            </ul>
+            <ul>
+              <li style={{ color: "grey" }}>
+                지원이력서에 포함된 첨부파일은 채용공고 접수마감일로부터 90일간
+                확인 가능합니다.
+              </li>
+            </ul>
+          </Listone>
+        </Subcontainertwo>
+      </Contaninerdiv>
     </Container>
   );
 }
+const Contaninerdiv = styled.div`
+  width: 100%;
+  max-width: 938px;
+`;
+
+const Itemdiv = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+`;
+
+const Mainbar = styled.div`
+  border-top: solid;
+  border-color: lightgray;
+  background-color: #f6f6fc;
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  width: 100%;
+  /* margin-left: 10%; */
+  height: 5vh;
+  /* & > div:nth-child(1) {
+    width: 23%;
+  }
+
+  & > div:nth-child(2) {
+    width: 20%;
+  }
+  & > div:nth-child(3) {
+    width: 21%;
+  }
+  & > div:nth-child(4) {
+    width: 15%;
+  }
+  & > div:nth-child(5) {
+    width: 10%;
+  }
+  & > div:nth-child(6) {
+    width: 10%;
+  } */
+`;
+
+const Companyname = styled.div`
+  /* font-size: 30px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Companylogo = styled.img`
+  width: 50px;
+`;
 
 const Canclebutton = styled.div`
   width: 14%;
@@ -198,10 +266,11 @@ const Thicksolid = styled.div`
   /* margin-left: 20%; */
 `;
 
-const RecruitName = styled.h1`
-  padding-top: 18%;
-  width: 15vw;
+const RecruitName = styled.div`
+  /* padding-top: 18%; */
+  /* width: 15vw; */
   display: flex;
+  align-items: center;
   justify-content: center;
   /* align-items: center; */
 
@@ -214,37 +283,64 @@ const RecruitName = styled.h1`
 `;
 
 const Itembox = styled.div`
+  /* min-width: 750px; */
   display: flex;
-  width: 40vw;
-  border: solid;
-  border-color: lightgray;
-  height: 20vh;
-  color: gray;
-  margin-top: 5%;
+  width: 100%;
+  /* border: solid; */
+  /* border-color: lightgray; */
+  justify-content: center;
+  align-items: center;
+  /* height: 20vh; */
+  /* color: gray; */
+  /* margin-top: 5%; */
+  /* & > div:nth-child(1) {
+    width: 16%;
+  }
+
+  & > div:nth-child(2) {
+    width: 10%;
+  }
+  & > div:nth-child(3) {
+    width: 20%;
+  }
+  & > div:nth-child(4) {
+    width: 10%;
+  }
+  & > div:nth-child(5) {
+    width: 10%;
+  }
+  & > div:nth-child(6) {
+    width: 5%;
+  } */
 `;
 
 const Container = styled.div`
-  width: 50%;
-  /* height: 100%; */
+  width: 100%;
+  /* height: 100vh; */
   background-color: white;
+  padding-bottom: 20px;
   border-style: solid;
   border-color: #f8f4f4;
-  margin: auto;
+  /* margin: auto; */
+  display: flex;
+  justify-content: center;
 `;
 
 const Header = styled.div`
   display: flex;
   margin: auto;
   /* margin-left: 10%; */
-  width: 80%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   border-bottom: solid 1px lightgray;
 `;
 
 const Texttitle = styled.h1`
-  width: 30%;
+  width: 100%;
   font-weight: 10;
+  display: flex;
+  justify-content: center;
 `;
 
 const Texttitlespan = styled.span`
@@ -272,11 +368,11 @@ const Subcontainertwo = styled.div`
   /* padding-top: 5%; */
 
   display: flex;
-  width: 80%;
-  height: 12vh;
-  margin: auto;
+  width: 100%;
+  /* height: 12vh; */
+  /* margin: auto; */
   background-color: whitesmoke;
-  margin-top: 50px;
+  margin-top: 40px;
 `;
 
 const Subcontainertwocontentitem = styled.div`
@@ -324,14 +420,14 @@ const Search = styled.div`
 `;
 
 const Subcontainerthree = styled.div`
-  padding-top: 10%;
+  /* padding-top: 10%; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   /* width: 500px; */
   /* background-color: red; */
-  border-bottom: 50px;
+  /* border-bottom: 50px; */
 `;
 
 const Button = styled.div`
