@@ -6,10 +6,69 @@ const {
   Recruit,
   Companyuser_Info,
   Individualuser_Info,
+  PersonalRecruit,
 } = require("../models/index.js");
-const { update, findOne } = require("../models/join.js");
 
-router.post("/whoapply", async (req, res) => {
+router.post("/pass", async (req, res) => {
+  PersonalRecruit.update(
+    {
+      check: "pass",
+    },
+    {
+      where: {
+        individualId: req.body.individualId,
+        recruitId: req.body.recruitId,
+      },
+    }
+  ).then((data) => {
+    console.log("update", data);
+  });
+  res.end();
+});
+
+router.post("/fail", async (req, res) => {
+  PersonalRecruit.update(
+    {
+      check: "fail",
+    },
+    {
+      where: {
+        individualId: req.body.individualId,
+        recruitId: req.body.recruitId,
+      },
+    }
+  ).then((data) => {
+    console.log("update", data);
+  });
+  res.end();
+});
+
+router.post("/fix", (req, res) => {
+  Recruit.update(
+    {
+      recruitName: req.body.recruitName,
+      recruitNum: req.body.recruitNum,
+      isExp: req.body.isExp.join(", "),
+      myTask: req.body.myTask,
+      workDepartment: req.body.workDepartment,
+      workRank: req.body.workRank.join(),
+      condition: req.body.condition.join(", "),
+      edu: req.body.edu,
+      area: req.body.area.join(", "),
+      shape: req.body.shape,
+      isPay: req.body.isPay.join(", "),
+      minPay: req.body.minPay,
+      maxPay: req.body.maxPay,
+      payKinds: req.body.payKinds,
+    },
+    { where: { id: req.body.id } }
+  ).then((data) => {
+    console.log("update", data);
+    res.end();
+  });
+});
+
+router.post("/whoapply", (req, res) => {
   console.log(req.body);
   Recruit.findAll({
     where: { id: req.body.id },
@@ -141,31 +200,6 @@ router.post("/dbcall", (req, res) => {
   });
 });
 
-router.post("/fix", (req, res) => {
-  Recruit.update(
-    {
-      recruitName: req.body.recruitName,
-      recruitNum: req.body.recruitNum,
-      isExp: req.body.isExp.join(", "),
-      myTask: req.body.myTask,
-      workDepartment: req.body.workDepartment,
-      workRank: req.body.workRank.join(),
-      condition: req.body.condition.join(", "),
-      edu: req.body.edu,
-      area: req.body.area.join(", "),
-      shape: req.body.shape,
-      isPay: req.body.isPay.join(", "),
-      minPay: req.body.minPay,
-      maxPay: req.body.maxPay,
-      payKinds: req.body.payKinds,
-    },
-    { where: { id: req.body.id } }
-  ).then((data) => {
-    console.log("update", data);
-    res.end();
-  });
-});
-
 router.post("/call", async (req, res) => {
   let userInfo;
   if (req.cookies["jobkorea_login"]) {
@@ -193,14 +227,28 @@ router.post("/call", async (req, res) => {
 
 router.post("/search/call", async (req, res) => {
   try {
-    const rowData = await Recruit.findAll({
-      include: [
-        {
-          model: db.Companyuser_Info,
-        },
-      ],
-    });
-    res.send(rowData);
+    if (req.body.check == "전체") {
+      const rowData = await Recruit.findAll({
+        include: [
+          {
+            model: db.Companyuser_Info,
+          },
+        ],
+      });
+      res.send(rowData);
+    } else {
+      const rowData = await Recruit.findAll({
+        include: [
+          {
+            model: db.Companyuser_Info,
+            where: {
+              selectedOption: req.body.check,
+            },
+          },
+        ],
+      });
+      res.send(rowData);
+    }
   } catch (error) {
     res.send(error);
   }

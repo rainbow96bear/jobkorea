@@ -5,6 +5,7 @@ export default function SimpleSortComponent({
   setClassOn,
   category,
   showNums,
+  setCategoryCheck,
 }) {
   return (
     <SimpleBox>
@@ -14,6 +15,7 @@ export default function SimpleSortComponent({
             key={`category-${index}`}
             onClick={() => {
               setClassOn(index);
+              setCategoryCheck(item);
             }}
             className={classOn === index ? "on" : ""}
           >

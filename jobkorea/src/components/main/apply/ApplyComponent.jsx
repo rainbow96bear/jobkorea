@@ -95,18 +95,29 @@ export default function ApplyComponent({ application }) {
         {application.length ? (
           <div>
             {application.map((item, index) => (
-              <Itembox key={`${index}`}>
-                <div>
-                  <RecruitName>{item.recruitName}</RecruitName>
-                </div>
-                <Thicksolid></Thicksolid>
-                <div style={{ width: 180 }}>
-                  <h2>업무: {item.myTask}</h2>
-                  <h2>직급: {item.workRank}</h2>
-                  <h2>지역: {item.area}</h2>
-                </div>
-                <Canclebutton>취소하기</Canclebutton>
-              </Itembox>
+              <div key={`${index}`}>
+                <Itembox>
+                  <div>
+                    <RecruitName>{item.recruitName}</RecruitName>
+                  </div>
+                  <Thicksolid></Thicksolid>
+                  <div style={{ width: 180 }}>
+                    <h2>업무: {item.myTask}</h2>
+                    <h2>직급: {item.workRank}</h2>
+                    <h2>지역: {item.area}</h2>
+                  </div>
+                  <Canclebutton>취소하기</Canclebutton>
+                </Itembox>
+                <ResultBox>
+                  {item.personalRecruit.check == "pass" ? (
+                    <div>축하합니다! 서류전형에 합격하셨습니다.</div>
+                  ) : item.personalRecruit.check == "fail" ? (
+                    <div>아쉽지만 서류전형에 합격하지 못하셨습니다.</div>
+                  ) : (
+                    <div>제출하신 서류를 검토중입니다. 기다려주세요</div>
+                  )}
+                </ResultBox>
+              </div>
             ))}
           </div>
         ) : (
@@ -179,6 +190,10 @@ export default function ApplyComponent({ application }) {
     </Container>
   );
 }
+
+const ResultBox = styled.div`
+  padding: 60px 0;
+`;
 
 const Canclebutton = styled.div`
   width: 14%;

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import SimpleSortComponent from "./SimpleSortComponent";
 
-export default function SimpleSortContainer({ midScreen }) {
+export default function SimpleSortContainer({ midScreen, setCategoryCheck }) {
   const [classOn, setClassOn] = useState(0);
   const category = ["전체", "대기업", "중견기업", "중소기업", "외국계"];
   const sortWay = [
@@ -17,6 +17,7 @@ export default function SimpleSortContainer({ midScreen }) {
   const checkWord = ["포함 단어", "제외 단어"];
   return (
     <SimpleSortComponent
+      setCategoryCheck={setCategoryCheck}
       classOn={classOn}
       setClassOn={setClassOn}
       category={category}

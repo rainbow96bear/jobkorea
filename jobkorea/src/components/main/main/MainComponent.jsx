@@ -12,12 +12,15 @@ import VVIPContainer from "./VVIP/VVIPContainer";
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function MainComponent({ smallScreen, midScreen }) {
-  const [individualId, setIndividualId] = useState("");
+export default function MainComponent({
+  smallScreen,
+  midScreen,
+  test,
+  setTest,
+  individualId,
+  setIndividualId,
+}) {
   const [individualPw, setIndividualPw] = useState("");
-  const [individualName, setIndividualName] = useState("");
-
-  const [test, setTest] = useState(false);
   return (
     <MainBox>
       <MainFirstItem>
@@ -27,21 +30,14 @@ export default function MainComponent({ smallScreen, midScreen }) {
           {test ? (
             <AfterLogInContainer
               setTest={setTest}
-              individualName={individualName}
               individualId={individualId}
-              individualPw={individualPw}
-              setIndividualName={setIndividualName}
-              setIndividualId={setIndividualId}
-              setIndividualPw={setIndividualPw}
               smallScreen={smallScreen}
             />
           ) : (
             <BeforeLogInContainer
               setTest={setTest}
-              individualName={individualName}
               individualId={individualId}
               individualPw={individualPw}
-              setIndividualName={setIndividualName}
               setIndividualId={setIndividualId}
               setIndividualPw={setIndividualPw}
               smallScreen={smallScreen}

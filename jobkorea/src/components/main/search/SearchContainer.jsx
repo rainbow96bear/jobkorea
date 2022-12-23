@@ -7,11 +7,14 @@ export default function SearchContainer() {
   const [inputData, setInputData] = useState([]);
   const midScreen = useMediaQuery({ minWidth: 1200 });
   const smallScreen = useMediaQuery({ minWidth: 1070 });
+  const [categoryCheck, setCategoryCheck] = useState("전체");
 
   useEffect(() => {
     try {
       axios
-        .post("http://localhost:8080/api/recruit/search/call")
+        .post("http://localhost:8080/api/recruit/search/call", {
+          check: categoryCheck,
+        })
         .then((data) => {
           const _inputData = data.data.map((rowData) => ({
             id: rowData.id,
@@ -30,19 +33,18 @@ export default function SearchContainer() {
             MaxPay: rowData.maxPay,
             CompanyName: rowData.Companyuser_Info.companyName,
           }));
-          setInputData([...inputData, _inputData]);
-          console.log(data.data);
-          console.log([...inputData, _inputData]);
+          setInputData([_inputData]);
         });
     } catch (e) {
       console.error(e.message);
     }
-  }, []);
+  }, [categoryCheck]);
   return (
     <SearchComponent
       data={inputData}
       midScreen={midScreen}
       smallScreen={smallScreen}
+      setCategoryCheck={setCategoryCheck}
     ></SearchComponent>
   );
 }

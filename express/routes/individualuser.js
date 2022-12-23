@@ -8,6 +8,18 @@ const { Individualuser_Info } = require("../models/index.js");
 
 // const cookies = new Cookies();
 
+router.post("/autologin", (req, res) => {
+  if (req.cookies["individual_login"]) {
+    userInfo = jwt.verify(
+      req.cookies.individual_login,
+      process.env.COOKIE_SECRET
+    );
+    res.send(userInfo);
+  } else {
+    res.end;
+  }
+});
+
 router.post("/regist", async (req, res) => {
   console.log(req.body.individualId);
   try {
@@ -46,37 +58,27 @@ router.post("/login", async (req, res) => {
   const userPw = crypto.SHA256(req.body.pw).toString();
 
   try {
-    if (req.cookies["individual_login"]) {
-      const temp = jwt.verify(
-        req.cookies["individual_login"],
-        process.env.COOKIE_SECRET
-      );
-      console.log(temp["id"]);
+    if (logInData) {
+      if (
+        // await Individualuser_Info.findOne({
+        //   where: {
+        //     individualPw: userPw,
+        //   },
+        // })
+        logInData.individualPw == userPw
+      ) {
+        res.cookie(
+          "individual_login",
+          jwt.sign({ individualId: req.body.id }, process.env.COOKIE_SECRET),
 
-      res.send({ individualId: req.body.id });
-    } else {
-      if (logInData) {
-        if (
-          // await Individualuser_Info.findOne({
-          //   where: {
-          //     individualPw: userPw,
-          //   },
-          // })
-          logInData.individualPw == userPw
-        ) {
-          res.cookie(
-            "individual_login",
-            jwt.sign({ individualId: req.body.id }, process.env.COOKIE_SECRET),
-
-            { expires: new Date(Date.now() + 6000 * 30) }
-          );
-          res.send("로그인 완료");
-        } else {
-          res.send("비밀번호가 일치하지 않습니다.");
-        }
+          { expires: new Date(Date.now() + 6000 * 300) }
+        );
+        res.send("로그인 완료");
       } else {
-        res.send("없는 아이디 입니다.");
+        res.send("비밀번호가 일치하지 않습니다.");
       }
+    } else {
+      res.send("없는 아이디 입니다.");
     }
   } catch (err) {
     console.error(err);
@@ -97,16 +99,8 @@ router.post("/login", async (req, res) => {
 // }
 
 router.post("/logout", (req, res) => {
-  const logOutData = Individualuser_Info.findOne({
-    where: { individualId: req.body.individualId },
-  });
-  if (logOutData) {
-    res.clearCookie("individual_login");
-    res.send();
-    // res.send() 매우 중요!!
-  } else {
-    res.send();
-  }
+  res.clearCookie("individual_login");
+  res.send();
 });
 
 module.exports = router;
