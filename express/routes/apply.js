@@ -1,6 +1,10 @@
 const router = require("express").Router();
 
-const { Recruit, Individualuser_Info } = require("../models/index.js");
+const {
+  Recruit,
+  Individualuser_Info,
+  Companyuser_Info,
+} = require("../models/index.js");
 
 const jwt = require("jsonwebtoken");
 
@@ -26,13 +30,17 @@ router.post("/jobApplication", async (req, res) => {
         include: [
           {
             model: Recruit,
+            include: [
+              {
+                model: Companyuser_Info,
+              },
+            ],
             as: "IndividualInfo",
 
             attributes: ["recruitName", "myTask", "workRank", "area"],
           },
         ],
       });
-      console.log(applyInfo);
 
       res.send(applyInfo.IndividualInfo);
     }

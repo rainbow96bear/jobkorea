@@ -10,7 +10,7 @@ import styled from "styled-components";
 export default function Main() {
   return (
     <Box>
-      <HeaderContainer></HeaderContainer>
+      {/* <HeaderContainer></HeaderContainer> */}
       <Routes>
         <Route path="/" element={<MainContainer></MainContainer>}></Route>
         <Route
@@ -26,7 +26,7 @@ export default function Main() {
           element={<ApplyContainer></ApplyContainer>}
         ></Route>
       </Routes>
-      <FooterContainer></FooterContainer>
+      {/* <FooterContainer></FooterContainer> */}
     </Box>
   );
 }

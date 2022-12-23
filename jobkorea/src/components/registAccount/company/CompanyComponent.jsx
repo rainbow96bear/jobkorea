@@ -104,9 +104,8 @@ export default function CompanyComponent({ onClick, midScreen }) {
   return (
     <JoinBox>
       <Mainbanner>
-        {/* <Join> */}
         <img src={banner} alt="" />
-        {/* </Join> */}
+
         <Join>
           <div
             className="personal"
@@ -119,7 +118,7 @@ export default function CompanyComponent({ onClick, midScreen }) {
           <div className="company">기업회원</div>
         </Join>
       </Mainbanner>
-      {/* <Join> */}
+
       <Joindetailbackground>
         <Joindetail>
           기업정보 <span style={{ color: "gray" }}>*필수정보</span>
@@ -140,25 +139,27 @@ export default function CompanyComponent({ onClick, midScreen }) {
             autocomplete={"off"}
           />
         </Multercontainer>
-        <Selectdiv>
-          <Select
-            onChange={(e) => {
-              setSelectedOption(e.value);
-            }}
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                height: "50px",
-                width: "100%",
-                // minWidth: "300px",
-                maxWidth: "330px",
-              }),
-            }}
-            className="selectone"
-            placeholder="기업형태＊"
-            options={options}
-          />
-        </Selectdiv>
+
+        <Select
+          // menuPlacement="auto"
+          // menuPosition="fixed"
+          onChange={(e) => {
+            setSelectedOption(e.value);
+          }}
+          styles={{
+            control: (baseStyles, state) => ({
+              ...baseStyles,
+
+              height: "50px",
+
+              width: "100%",
+            }),
+          }}
+          className="selectone"
+          placeholder="기업형태＊"
+          options={options}
+        />
+
         <Companynumber
           onBlur={(e) => {
             setNumberMessage(null);
@@ -323,7 +324,7 @@ export default function CompanyComponent({ onClick, midScreen }) {
           placeholder="이메일 *"
         ></Companyidname>
         <div className="idmessage">{emailMessage}</div>
-        {/* <Join> */}
+
         <div
           onClick={() => {
             if (
@@ -368,15 +369,16 @@ export default function CompanyComponent({ onClick, midScreen }) {
         >
           가입하기
         </div>
-        {/* </Join> */}
       </Joindetailbackground>
-      {/* </Join> */}
     </JoinBox>
   );
 }
-const Selectdiv = styled.div`
-  width: 100%;
-`;
+
+const CustomSelect = styled(Select)``;
+
+// const Selectdiv = styled.div`
+
+// `;
 
 const Multercontainer = styled.div`
   width: 100%;
@@ -385,6 +387,7 @@ const Multercontainer = styled.div`
 `;
 const Mainbanner = styled.div`
   display: flex;
+  /* min-width: 600px; */
 
   flex-direction: column;
 
@@ -430,6 +433,7 @@ const Join = styled.div`
   align-items: center;
   width: 100vw;
   max-width: 600px;
+  /* min-width: 600px; */
 
   & .personal {
     font-size: 20px;
@@ -464,6 +468,7 @@ const Joindetailbackground = styled.div`
   padding-bottom: 20px;
 
   max-width: 600px;
+  /* min-width: 600px; */
 
   width: 100%;
   /* min-width: 600px; */
@@ -475,8 +480,6 @@ const Joindetailbackground = styled.div`
 
   & .selectone {
     padding: 3%;
-
-    width: 600px;
   }
 
   & .check {
