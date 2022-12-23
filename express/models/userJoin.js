@@ -42,7 +42,7 @@ module.exports = class Individual_Info extends Sequelize.Model {
       as: "IndividualInfo",
       foreignKey: "individualId",
       sourceKey: "individualId",
-      onDelete: "cascade",
+      onDelete: "CASCADE",
     });
   }
 };

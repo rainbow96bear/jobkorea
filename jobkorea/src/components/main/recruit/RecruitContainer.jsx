@@ -3,11 +3,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 export default function RecruitContainer() {
   const navigate = useNavigate();
   const [recruitInfo, SetrecruitInfo] = useState([]);
   const params = useParams();
+  const midScreen = useMediaQuery({ maxWidth: 800 });
+  const bottomScreen = useMediaQuery({ maxWidth: 600 });
 
   console.log(params);
   useEffect(() => {
@@ -55,7 +58,9 @@ export default function RecruitContainer() {
       const data = await axios.post("http://localhost:8080/api/apply/cancle", {
         id: params.id,
       });
-      if (data.data == "취소되었습니다") {
+      if (data.data == "지원하지않은 공고입니다") {
+        alert("지원하지않은 공고입니다");
+      } else if (data.data == "취소되었습니다") {
         alert("취소되었습니다");
         navigate("/apply");
       } else {
@@ -72,9 +77,12 @@ export default function RecruitContainer() {
       const data = await axios.post("http://localhost:8080/api/apply/now", {
         id: params.id,
       });
-      if (data.data == "지원성공") {
+
+      if (data.data == "즉시지원 되었습니다") {
         alert("즉시지원완료");
         navigate("/apply");
+      } else if (data.data == "이미 지원한 공고입니다") {
+        alert("이미 지원한 공고입니다");
       } else {
         alert("로그인 해야 이용가능합니다");
         navigate("/");
@@ -104,6 +112,9 @@ export default function RecruitContainer() {
     <RecruitComponent
       recruitInfo={recruitInfo}
       applybutton={applybutton}
-      applycanclebutton={applycanclebutton}></RecruitComponent>
+      applycanclebutton={applycanclebutton}
+      midScreen={midScreen}
+      bottomScreen={bottomScreen}
+    ></RecruitComponent>
   );
 }

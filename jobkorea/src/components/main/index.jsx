@@ -37,6 +37,4 @@ export default function Main() {
   );
 }
 
-const Box = styled.div`
-  min-width: 1697px;
-`;
+const Box = styled.div``;
