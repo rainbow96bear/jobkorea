@@ -13,10 +13,8 @@ const IndividualComponent = ({ registClick }) => {
   const [individualEmail, setIndividualEmail] = useState("");
   const [individualTel, setIndividualTel] = useState("");
   const [individualInfoValid, setIndividualInfoValid] = useState([]);
+  const smallScreen = useMediaQuery({ minWidth: 360 });
   const navigate = useNavigate();
-  const midScreen = useMediaQuery({ minWidth: 1200 });
-  const smallScreen = useMediaQuery({ minWidth: 800 });
-  const smallScreenReverse = useMediaQuery({ maxWidth: 799 });
 
   const handlieClickRadio1 = (e) => {
     console.log(e.target.value);
@@ -42,16 +40,19 @@ const IndividualComponent = ({ registClick }) => {
             className="companyRegist"
             onClick={() => {
               navigate("/registAccount/company");
-            }}>
+            }}
+          >
             기업회원
           </div>
         </div>
       </div>
 
       <div className="memberRegistdiv1">
-        <div className="registMessage">
-          회원가입하고 다양한 혜택을 누리세요!
-        </div>
+        {smallScreen && (
+          <div className="registMessage">
+            회원가입하고 다양한 혜택을 누리세요!
+          </div>
+        )}
       </div>
 
       <input
@@ -171,7 +172,8 @@ const IndividualComponent = ({ registClick }) => {
           } else if (!tel) {
             alert("휴대폰번호 형식이 올바르지 않습니다.");
           }
-        }}>
+        }}
+      >
         가입하기
       </button>
     </IndividualRegistBox>
@@ -225,12 +227,13 @@ const IndividualRegistBox = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
+    margin: 30px 0;
   }
   & .memberRegist {
     display: flex;
     justify-content: center;
     width: 70%;
-    /* height: 20%; */
+    padding: 15px 0;
     background-color: ${COLOR};
     color: white;
     font-size: 25px;
@@ -241,7 +244,7 @@ const IndividualRegistBox = styled.div`
     display: flex;
     justify-content: center;
     width: 30%;
-    /* height: 20%; */
+    padding: 15px 0;
     background-color: white;
     color: ${COLOR};
     font-size: 25px;
@@ -256,18 +259,19 @@ const IndividualRegistBox = styled.div`
     position: absolute;
     bottom: 0;
     width: 100%;
+    padding: 15px;
     background-color: ${COLOR};
     color: white;
     font-size: 2em;
     font-weight: 700;
   }
   & .input {
-    padding: 20px;
+    padding: 30px;
     margin: 5px;
     width: 70%;
     border: 1px solid #dadada;
   }
   & .radio {
-    margin: 3% auto;
+    margin: 1% auto;
   }
 `;

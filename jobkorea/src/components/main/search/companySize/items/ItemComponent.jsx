@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function ItemComponent({ data, midScreen }) {
+export default function ItemComponent({ data, midScreen, smallScreen }) {
   const navigate = useNavigate();
   return (
     <>
@@ -15,10 +15,14 @@ export default function ItemComponent({ data, midScreen }) {
                   <span>{data2.Name}</span>
                   <Qualification>
                     <div>{data2.Exp}</div>
-                    <div>{data2.Edu}</div>
+                    {smallScreen && <div>{data2.Edu}</div>}
                     <div>{data2.Area}</div>
-                    <div>{data2.Shape}</div>
-                    <div>{data2.Rank}</div>
+                    {smallScreen && (
+                      <>
+                        <div>{data2.Shape}</div>
+                        <div>{data2.Rank}</div>
+                      </>
+                    )}
                   </Qualification>
                   {midScreen && (
                     <OtherPreferential>
@@ -27,16 +31,14 @@ export default function ItemComponent({ data, midScreen }) {
                     </OtherPreferential>
                   )}
                 </ContentBox>
-                <div>
-                  <ApplyBtn
-                    onClick={() => {
-                      navigate("/recruit/" + data2.id);
-                    }}
-                  >
-                    상세 정보
-                  </ApplyBtn>
-                  <div></div>
-                </div>
+
+                <ApplyBtn
+                  onClick={() => {
+                    navigate("/recruit/" + data2.id);
+                  }}
+                >
+                  상세 정보
+                </ApplyBtn>
               </RecruitContentBox>
             </ItemFrame>
           </ItemBox>
@@ -45,6 +47,7 @@ export default function ItemComponent({ data, midScreen }) {
     </>
   );
 }
+
 const ItemBox = styled.div`
   display: flex;
   padding: 20px;
@@ -65,6 +68,7 @@ const RecruitContentBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 20px;
+  flex-wrap: wrap;
   span {
     font-weight: 900;
     padding-bottom: 20px;
@@ -74,11 +78,13 @@ const RecruitContentBox = styled.div`
 const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 12;
 `;
 
 const Qualification = styled.div`
   display: flex;
   padding-bottom: 25px;
+  flex-wrap: wrap;
   div {
     font-size: small;
     color: #777777;
@@ -90,9 +96,10 @@ const OtherPreferential = styled.div`
   color: #888888;
 `;
 const ApplyBtn = styled.button`
+  flex: 1;
   color: white;
   font-weight: 900;
-  background-color: #ff7200;
+  background-color: #3399ff;
   border: none;
   padding: 10px 15px;
 `;

@@ -4,9 +4,7 @@ export default function SimpleSortComponent({
   classOn,
   setClassOn,
   category,
-  sortWay,
   showNums,
-  checkWord,
 }) {
   return (
     <SimpleBox>
@@ -17,49 +15,20 @@ export default function SimpleSortComponent({
             onClick={() => {
               setClassOn(index);
             }}
-            className={classOn === index ? "on" : ""}>
+            className={classOn === index ? "on" : ""}
+          >
             {item}
           </div>
         ))}
       </SimpleCategory>
       <DetailInfoBox>
-        <div>
-          <label>
-            <input type="radio" name="chk_info" value="즉시지원만 보기" />
-            즉시지원만 보기
-          </label>
-          <label>
-            <input type="radio" name="chk_info" value="정규직만 보기" />
-            정규직만 보기
-          </label>
-          <label>
-            <input type="radio" name="chk_info" value="확인한 공고 제외" />
-            확인한 공고 제외
-          </label>
-        </div>
-        <div>
-          <select>
-            {sortWay.map((item, index) => (
-              <option key={`sortWay-${index}`} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <select>
-            {showNums.map((item, index) => (
-              <option key={`showNums-${index}`} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <select>
-            {checkWord.map((item, index) => (
-              <option key={`checkWord-${index}`} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select>
+          {showNums.map((item, index) => (
+            <option key={`showNums-${index}`} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
       </DetailInfoBox>
     </SimpleBox>
   );
@@ -69,10 +38,12 @@ const SimpleCategory = styled.div`
   display: flex;
   div {
     flex: 1;
+    flex-wrap: wrap;
     text-align: center;
     background-color: #f6f6f6;
     border: 1px solid #dcdcdc;
     border-bottom: solid 1px black;
+    font-size: 14px;
     padding: 10px;
     cursor: pointer;
   }
@@ -84,7 +55,7 @@ const SimpleCategory = styled.div`
 `;
 const DetailInfoBox = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
   padding: 15px;
   border: 1px solid #dcdcdc;

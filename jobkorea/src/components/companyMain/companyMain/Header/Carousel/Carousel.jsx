@@ -13,6 +13,16 @@ export default class VerticalMode extends Component {
       vertical: true,
       autoplay: true,
       arrows: false,
+      autoplaySpeed: 2000,
+      responsive: [
+        {
+          breakpoint: 505,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     };
     return (
       <CarouselBox>
@@ -45,7 +55,7 @@ export default class VerticalMode extends Component {
 
 const CarouselBox = styled.div`
   font-size: 14px;
-  width: 63.2%;
+  width: 90%;
   margin: auto;
   span {
     font-weight: 700;

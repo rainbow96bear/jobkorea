@@ -6,6 +6,7 @@ import { useMediaQuery } from "react-responsive";
 export default function SearchContainer() {
   const [inputData, setInputData] = useState([]);
   const midScreen = useMediaQuery({ minWidth: 1200 });
+  const smallScreen = useMediaQuery({ minWidth: 1070 });
 
   useEffect(() => {
     try {
@@ -38,6 +39,10 @@ export default function SearchContainer() {
     }
   }, []);
   return (
-    <SearchComponent data={inputData} midScreen={midScreen}></SearchComponent>
+    <SearchComponent
+      data={inputData}
+      midScreen={midScreen}
+      smallScreen={smallScreen}
+    ></SearchComponent>
   );
 }

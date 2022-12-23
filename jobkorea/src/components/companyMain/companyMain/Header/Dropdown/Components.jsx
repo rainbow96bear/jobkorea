@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 function DropDown({ moveTo }) {
-  return (
+  const midScreen = useMediaQuery({ minWidth: 1200 });
+  return midScreen ? (
     <DropdownBox>
       <div className="flex">
         <div>
@@ -29,21 +31,23 @@ function DropDown({ moveTo }) {
             </li>
           </ul>
         </div>
-        <div>
-          <div>인재검색</div>
-          <ul>
-            <li>인재검색</li>
-            <li>인재관리</li>
-            <ul className="telent">
-              <li>스크랩 인재</li>
-              <li>오늘 본 인재</li>
-              <li>연락처 확인 인재</li>
-              <li>우리기업관심인재</li>
-              <li>포지션 제안 인재</li>
+        {midScreen && (
+          <div>
+            <div>인재검색</div>
+            <ul>
+              <li>인재검색</li>
+              <li>인재관리</li>
+              <ul className="telent">
+                <li>스크랩 인재</li>
+                <li>오늘 본 인재</li>
+                <li>연락처 확인 인재</li>
+                <li>우리기업관심인재</li>
+                <li>포지션 제안 인재</li>
+              </ul>
+              <li>SMS 발송 내역</li>
             </ul>
-            <li>SMS 발송 내역</li>
-          </ul>
-        </div>
+          </div>
+        )}
         <div>
           <div>헤드헌팅 의뢰</div>
           <ul>
@@ -51,15 +55,17 @@ function DropDown({ moveTo }) {
             <li>헤드헌팅 의뢰하기</li>
           </ul>
         </div>
-        <div>
-          <div>유료서비스 내역</div>
-          <ul>
-            <li>유료서비스 이용내역</li>
-            <li>전자세금계산서</li>
-            <li>쿠폰</li>
-            <li>e-머니/충전금</li>
-          </ul>
-        </div>
+        {midScreen && (
+          <div>
+            <div>유료서비스 내역</div>
+            <ul>
+              <li>유료서비스 이용내역</li>
+              <li>전자세금계산서</li>
+              <li>쿠폰</li>
+              <li>e-머니/충전금</li>
+            </ul>
+          </div>
+        )}
         <div>
           <div>기업정보</div>
           <ul>
@@ -84,26 +90,18 @@ function DropDown({ moveTo }) {
             <li>이벤트</li>
           </ul>
         </div>
-        <div>
-          <div>기업서비스 안내</div>
-          <ul>
-            <li>유료채용광고서비스</li>
-            <li>인재검색 서칭서비스</li>
-            <li>잡코리아 기업러닝</li>
-            <li>스마트A 직정전문검사</li>
-            <li>JAT 기업용 인적성 검사</li>
-            <li>채용대행 솔루션</li>
-            <li>배너광고</li>
-          </ul>
-        </div>
       </div>
     </DropdownBox>
+  ) : (
+    <></>
   );
 }
 
 export default DropDown;
 
 const DropdownBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   height: 350px;
   width: 100%;
   background-color: white;
@@ -121,6 +119,8 @@ const DropdownBox = styled.div`
 
   .flex {
     display: flex;
+    flex-wrap: wrap;
+
     width: 68%;
     margin: auto;
   }
