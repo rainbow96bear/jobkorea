@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
+  console.log(individualId);
   return (
     <>
       <AfterLogInBox>

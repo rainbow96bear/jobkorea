@@ -16,6 +16,7 @@ export default function ApplyContainer() {
             navigate("/");
           } else {
             setApplication(data);
+            console.log(data);
             // console.log(data);
             // console.log(item.data[0].IndividualInfo[0].recruitName);
             // const jobApplicationData = item.map((itemone) => {

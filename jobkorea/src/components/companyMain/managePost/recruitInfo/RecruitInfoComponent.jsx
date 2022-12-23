@@ -1,10 +1,20 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 export default function RecruitInfoComponent({
   myRecruit,
   moveTo,
   applyUserInfo,
+  failOnclick,
+  passOnclick,
+  btnRender,
 }) {
+  console.log(applyUserInfo[0]?.personalRecruit);
+
+  useEffect(() => {
+    console.log(btnRender);
+  }, [btnRender]);
+
   return (
     <div>
       <Informationboxs>
@@ -181,14 +191,32 @@ export default function RecruitInfoComponent({
               <UserTitle>지원자 명</UserTitle>
               <UserContent>{item.individualName}</UserContent>
             </UserFlex>
-
             <UserFlex>
               <UserTitle>지원자 E-mail</UserTitle>
               <UserContent>{item.individualEmail}</UserContent>
-              <UserBtn>
-                <div>합격</div>
-                <div>불합격</div>
-              </UserBtn>
+              {/* <div>{item.personalRecruit.check}</div> */}
+              {!item.personalRecruit.check ? (
+                <UserBtn>
+                  <div
+                    onClick={() => {
+                      passOnclick(item.individualId);
+                    }}
+                  >
+                    합격
+                  </div>
+                  <div
+                    onClick={() => {
+                      failOnclick(item.individualId);
+                    }}
+                  >
+                    불합격
+                  </div>
+                </UserBtn>
+              ) : item.personalRecruit.check == "pass" ? (
+                <div>합격처리 완료</div>
+              ) : (
+                <div>불합격처리 완료</div>
+              )}
             </UserFlex>
             <UserFlex>
               <UserTitle>지원자 전화번호</UserTitle>

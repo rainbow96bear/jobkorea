@@ -3,12 +3,10 @@ import BeforeLogInComponent from "./BeforeLogInComponent";
 
 const BeforeLogInContainer = ({
   setTest,
-  individualName,
   individualId,
   individualPw,
   setIndividualId,
   setIndividualPw,
-  setIndividualName,
   smallScreen,
 }) => {
   const onClick = async (individualId, individualPw) => {
@@ -34,10 +32,8 @@ const BeforeLogInContainer = ({
   return (
     <BeforeLogInComponent
       logInClick={onClick}
-      individualName={individualName}
       individualId={individualId}
       individualPw={individualPw}
-      setIndividualName={setIndividualName}
       setIndividualId={setIndividualId}
       setIndividualPw={setIndividualPw}
       smallScreen={smallScreen}

@@ -5,7 +5,12 @@ import { action } from "../../../../../modules/userInfo";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const MainLoginBoardComponent = ({ loginOnClick, moveTo, setLoginIsClick }) => {
+const MainLoginBoardComponent = ({
+  loginOnClick,
+  moveTo,
+  setLoginIsClick,
+  midScreen,
+}) => {
   const dispatch = useDispatch();
 
   const companyUser = useSelector((state) => state.companyUser.value);
@@ -114,10 +119,10 @@ const MainLoginBoardBox = styled.div`
     background-color: #ffffff;
   }
 
-  .MainBoard img {
+  /* img {
     width: 100%;
     height: 100%;
-  }
+  } */
 
   .text-box {
     font-size: 44px;

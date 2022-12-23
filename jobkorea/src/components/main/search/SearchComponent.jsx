@@ -3,11 +3,19 @@ import styled from "styled-components";
 import ItemComponent from "./companySize/items/ItemComponent";
 import SimpleSortContainer from "./companySize/SimpleSortContainer";
 
-export default function SearchComponent({ data, midScreen, smallScreen }) {
+export default function SearchComponent({
+  data,
+  midScreen,
+  smallScreen,
+  setCategoryCheck,
+}) {
   return (
     <SearchBox>
       <SearchFrame>
-        <SimpleSortContainer midScreen={midScreen}></SimpleSortContainer>
+        <SimpleSortContainer
+          midScreen={midScreen}
+          setCategoryCheck={setCategoryCheck}
+        ></SimpleSortContainer>
 
         <ItemComponent
           data={data}
