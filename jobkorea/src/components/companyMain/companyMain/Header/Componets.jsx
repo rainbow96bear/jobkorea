@@ -28,7 +28,7 @@ const HeaderComponent = ({
   return (
     <>
       <HeaderBox>
-        <div>
+        <div className={miniScreen ? "" : "titleColumn"}>
           <div
             onClick={() => {
               moveTo("");
@@ -228,6 +228,11 @@ const HeaderBox = styled.div`
 
   & .smallerLogo {
     font-size: smaller;
+  }
+
+  & .titleColumn {
+    display: flex;
+    flex-direction: column;
   }
 `;
 

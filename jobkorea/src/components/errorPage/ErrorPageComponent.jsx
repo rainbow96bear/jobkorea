@@ -1,12 +1,9 @@
 import styled from "styled-components";
-import { BiHomeHeart } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import img1 from "./images/warning.gif";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
-  const goToError = () => {
-    navigate("/errorpage");
-  };
   const goHome = () => {
     navigate("/");
   };
@@ -14,21 +11,14 @@ const ErrorPage = () => {
   return (
     <ErrorBox>
       <div className="title1">JOBKOREA</div>
-      <div className="title2">BY JOB CODING</div>
-      <div className="notFound">
+      <div className="title2">BY JJOB KOREA</div>{" "}
+      <div className="warning">
+        <img src={img1} alt="asd" onClick={goHome} />
+      </div>
+      <div className="notFound" onClick={goHome}>
         404
         <br />
         Page not found
-      </div>
-      <div className="homeIcon" onClick={goToError}>
-        <BiHomeHeart onClick={goHome} />
-      </div>
-      <div className="text">
-        WE'RE NOT SURE WHERE THE PAGE
-        <br />
-        WENT, BUT PERHAPS IT WILL BE BETTER
-        <br />
-        TO GO BACK HOME.
       </div>
     </ErrorBox>
   );
@@ -38,16 +28,16 @@ export default ErrorPage;
 
 const ErrorBox = styled.div`
   background-color: black;
-  background-image: url("./images/warning.gif");
   background-repeat: no-repeat;
   color: white;
   width: 100%;
   height: 100%;
+  position: relative;
 
   & .title1 {
     font-size: 5.5em;
     font-weight: 700;
-    padding: 1em 0 0 1em;
+    padding: 0.5em 0 0 1em;
   }
   & .title2 {
     font-size: 4em;
@@ -57,19 +47,27 @@ const ErrorBox = styled.div`
   & .notFound {
     font-size: 8em;
     font-weight: 600;
-    padding-left: 2.45em;
+    padding: 0 0em 1em 0em;
     color: gray;
     text-align: center;
   }
-  & .text {
+  & .warning {
     font-size: 3em;
     font-weight: 500;
-    padding: 2.5em 2.45em;
+    padding: 1em 1em;
     color: white;
+    display: flex;
+    justify-content: center;
   }
   & .homeIcon {
-    width: 300px;
+    display: flex;
+    justify-content: center;
     color: white;
     cursor: pointer;
+    position: absolute;
+    right: 200px;
+    top: 150px;
+    width: 300px;
+    height: 100px;
   }
 `;

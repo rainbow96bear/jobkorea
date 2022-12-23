@@ -257,7 +257,7 @@ router.post("/vvip", async (req, res) => {
       include: [
         {
           model: db.Companyuser_Info,
-          attributes: ["companyName"],
+          attributes: ["companylogo", "companyName"],
         },
       ],
     });

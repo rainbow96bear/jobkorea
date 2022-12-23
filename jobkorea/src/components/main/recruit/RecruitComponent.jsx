@@ -28,6 +28,7 @@ export default function RecruitComponent({
                   <img
                     style={{ width: 100 }}
                     src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
+                    alt=""
                   />
                 </Imgboxafter>
 
@@ -174,6 +175,7 @@ export default function RecruitComponent({
                 <img
                   style={{ width: 100 }}
                   src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
+                  alt=""
                 />
               </Imgbox>
 
@@ -247,7 +249,7 @@ const Divcontainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* height: 100vh; */
+  height: 100vh;
   /* min-height: 100vh; */
 `;
 
@@ -255,8 +257,7 @@ const Informationboxs = styled.div`
   display: flex;
   height: fit-content;
   width: 100%;
-  max-width: 938px;
-
+  max-width: 60%;
   background-color: white;
   border-top: solid 2px black;
   border-left: solid 0.1px lightgray;
@@ -319,7 +320,7 @@ const Textthree = styled.div`
 `;
 
 const Textfour = styled.div`
-  width: 100%;
+  width: 90%;
   margin-left: 3%;
 `;
 

@@ -8,7 +8,10 @@ const VVIPComponent = ({ inputData }) => {
         data.map((data2, index) => (
           <GroupItemBox key={`groupItemBox-${index}`}>
             <div>
-              <img src={`http://localhost:8080/uploads/2615s00.gif`} alt="" />
+              <img
+                src={`http://localhost:8080/uploads/${data2.companylogo}`}
+                alt=""
+              />
             </div>
             <div className="companyName">
               <div>{data2.CompanyName}</div>
@@ -43,8 +46,9 @@ const GroupItemBox = styled.div`
       font-weight: 700;
       margin-bottom: 20px;
     }
-    & > img {
+    img {
       width: 90%;
+      height: 100px;
     }
   }
 `;

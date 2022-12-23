@@ -15,7 +15,7 @@ const FirstVVIPComponent = ({ inputData }) => {
           <GroupItemBox key={`groupItemBox-${index}`}>
             <div>
               <img
-                src={`http://localhost:8080/uploads/1671167479625vvip4.gif`}
+                src={`http://localhost:8080/uploads/${data2.companylogo}`}
                 alt=""
               />
             </div>
@@ -54,7 +54,8 @@ const GroupItemBox = styled.div`
     font-weight: 700;
     margin-bottom: 20px;
   }
-  & > img {
+  img {
     width: 90%;
+    height: 100px;
   }
 `;

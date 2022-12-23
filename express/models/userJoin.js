@@ -20,10 +20,9 @@ module.exports = class Individual_Info extends Sequelize.Model {
         individualTel: {
           type: Sequelize.STRING(255),
         },
-        // individualInfoValid: {
-        //   type: Sequelize.STRING(255),
-        //   unique: true,
-        // },
+        individualInfoValid: {
+          type: Sequelize.STRING(255),
+        },
       },
       {
         sequelize,
