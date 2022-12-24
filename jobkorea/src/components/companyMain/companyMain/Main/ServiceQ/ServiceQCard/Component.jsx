@@ -36,6 +36,14 @@ const ServiceQCardBox = styled.div`
   white-space: pre-wrap;
   text-align: center;
 
+  @media (max-width: 1550px) {
+    width: 49.5%;
+  }
+
+  @media (max-width: 850px) {
+    width: 99%;
+  }
+
   &:hover {
     border: 1px solid #3399ff;
     color: #3399ff;

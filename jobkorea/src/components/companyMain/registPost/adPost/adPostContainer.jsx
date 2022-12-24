@@ -9,15 +9,19 @@ export default function AdPostContainer({ setAdGrade }) {
   const [resultMoney, setResultMoney] = useState(0);
   const [vipcss, setVipcss] = useState(false);
   const [firstvipcss, setFirstVipcss] = useState(false);
+  const [day, setDay] = useState(0);
 
   const navigate = useNavigate();
 
+  const dayHandler = (value) => {
+    setDay(value);
+  };
+
   useEffect(() => {
-    axios
-      .post("http://localhost:8080/api/companyuser/money", 1)
-      .then((data) => {
-        setCompanyMoney(data.data.companyMoney);
-      });
+    axios.post("http://localhost:8080/api/companyuser/money").then((data) => {
+      console.log(data.data);
+      setCompanyMoney(data.data.companyMoney);
+    });
   }, []);
 
   const AdHandler = (e) => {
@@ -37,6 +41,16 @@ export default function AdPostContainer({ setAdGrade }) {
     navigate("/companymain/registpost");
   };
 
+  console.log(day);
+
+  const firstVVIPonClick = () => {
+    setVipPay(1540000 * day.value);
+    setResultMoney(companyMoney - 1540000);
+    setAdGrade(1);
+    setFirstVipcss(true);
+    setVipcss(false);
+  };
+
   return (
     <AdPostComponent
       setVipPay={setVipPay}
@@ -47,6 +61,9 @@ export default function AdPostContainer({ setAdGrade }) {
       setAdGrade={setAdGrade}
       setVipcss={setVipcss}
       setFirstVipcss={setFirstVipcss}
+      dayHandler={dayHandler}
+      day={day}
+      firstVVIPonClick={firstVVIPonClick}
     ></AdPostComponent>
   );
 }

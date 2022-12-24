@@ -191,6 +191,22 @@ router.post("/add", async (req, res) => {
   res.send("남양주 놀러오면 풀코스로 쏜다");
 });
 
+router.post("/sidebar", (req, res) => {
+  console.log(req.body.companyUser);
+  Recruit.findAll({
+    where: { company: req.body.companyUser },
+    include: [
+      {
+        model: Individualuser_Info,
+        as: "RecruitInfo",
+      },
+    ],
+  }).then((data) => {
+    console.log(data);
+    res.send(data);
+  });
+});
+
 router.post("/dbcall", (req, res) => {
   Recruit.findOne({
     where: { id: req.body.id },

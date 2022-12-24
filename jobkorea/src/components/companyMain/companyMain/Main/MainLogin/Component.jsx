@@ -9,9 +9,9 @@ const MainLoginBoardComponent = ({
   loginOnClick,
   moveTo,
   setLoginIsClick,
-  oneScreen,
-  twoScreen,
-  threeScreen,
+  XLScreen,
+  LScreen,
+  MScreen,
 }) => {
   const dispatch = useDispatch();
 
@@ -47,11 +47,11 @@ const MainLoginBoardComponent = ({
   }, [companyUser]);
 
   return (
-    <MainLoginBoardBox>
+    <MainLoginBoardBox MScreen={"640px"}>
       <div className="temp"></div>
       <div className="MainBoard">
-        {twoScreen ? (
-          <div>
+        <div>
+          {LScreen ? (
             <div className="text-box">
               지금,
               <div>
@@ -59,41 +59,10 @@ const MainLoginBoardComponent = ({
               </div>
               시작해 보세요
             </div>
-            <div>
-              {companyUser == 0 ? (
-                <div className="flex button-box">
-                  <div onClick={loginOnClick}>로그인</div>
-                  <div
-                    onClick={() => {
-                      moveTo("registAccount/company");
-                    }}
-                  >
-                    회원가입
-                  </div>
-                </div>
-              ) : (
-                <div className="flex button-box">
-                  <div
-                    onClick={async () => {
-                      dispatch(action.logoutCompany());
-                      setLoginIsClick(false);
-                      const data = await axios.post(
-                        "http://localhost:8080/api/companyuser/logout",
-                        {}
-                      );
-                      console.log(data);
-                    }}
-                  >
-                    로그아웃
-                  </div>
-                  <WelcomeBox>
-                    <div>{companyUser} 님</div> 환영합니다
-                  </WelcomeBox>
-                </div>
-              )}
-            </div>
-          </div>
-        ) : (
+          ) : (
+            <div></div>
+          )}
+
           <div>
             {companyUser == 0 ? (
               <div className="flex button-box">
@@ -127,9 +96,9 @@ const MainLoginBoardComponent = ({
               </div>
             )}
           </div>
-        )}
+        </div>
 
-        {oneScreen ? (
+        {XLScreen ? (
           <ImgBox>
             <img src="/img/start.png" alt="" />
           </ImgBox>
@@ -139,7 +108,7 @@ const MainLoginBoardComponent = ({
       </div>
       <div className="temp"></div>
       <div className="flex whiteline">
-        {oneScreen ? <div className="whiteDiv"></div> : <></>}
+        <div className="whiteDiv"></div>
         <div className="companyLearn">
           <div>기업전용 필수 법정교육, 직무학습</div>
           <div>잡코리아 기업러닝 &gt;</div>
@@ -199,6 +168,7 @@ const MainLoginBoardBox = styled.div`
     font-weight: 700;
     padding: 30px 50px;
   }
+
   .whiteline {
     display: flex;
     justify-content: space-between;
@@ -231,33 +201,74 @@ const MainLoginBoardBox = styled.div`
   }
 
   .whiteDiv {
-    width: 60%;
-    height: 80px;
+    width: 75%;
     background-color: white;
     border-radius: 10px;
   }
 
   .companyLearn {
-    margin-left: 20px;
-    width: 300px;
-    height: 80px;
+    width: 21%;
     background-image: url("/img/companyLearn.png");
+    background-size: 100% 100%;
     color: white;
-    cursor: pointer;
-  }
-
-  .companyLearn div {
-    margin-left: 30px;
+    padding: 10px 20px;
+    white-space: nowrap;
   }
 
   .companyLearn div:first-child {
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 15px;
   }
 
   .companyLearn div:last-child {
-    font-size: 18px;
+    font-size: 17px;
     margin-top: 5px;
+  }
+
+  @media (max-width: 1300px) {
+    .companyLearn div:first-child {
+      display: none;
+    }
+
+    .companyLearn div:last-child {
+      font-size: 12px;
+      margin-top: 5px;
+      padding: 15px 0;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .whiteDiv {
+      display: none;
+    }
+
+    .companyLearn {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .companyLearn div:first-child {
+      display: block;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .button-box {
+      flex-direction: column;
+      row-gap: 20px;
+    }
+
+    .companyLearn {
+      padding: 30px;
+      justify-content: center;
+    }
+
+    .companyLearn div:last-child {
+      display: none;
+    }
   }
 `;
 

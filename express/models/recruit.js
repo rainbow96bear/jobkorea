@@ -54,6 +54,9 @@ module.exports = class Recruit extends Sequelize.Model {
         adGrade: {
           type: Sequelize.STRING(255),
         },
+        time: {
+          type: Sequelize.STRING(255),
+        },
       },
       {
         sequelize,
