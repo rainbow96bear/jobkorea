@@ -8,34 +8,45 @@ export default function HeaderComponent({
   moveTo,
   dropDown,
   setDropDown,
-  smallScreen,
-  midScreen,
+
+  keyWord,
+  setKeyWord,
 }) {
   return (
     <HeaderBox>
       <SearchFrame>
         <SearchBox>
-          {smallScreen && (
-            <HomeBtn
-              onClick={() => {
-                moveTo("");
-              }}
-            >
-              JOBKOREA
-            </HomeBtn>
-          )}
+          <HomeBtn
+            onClick={() => {
+              moveTo("");
+            }}>
+            JOBKOREA
+          </HomeBtn>
+
           <InputBox>
-            <input></input>
-            <div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                moveTo(`searchKeyWord/${keyWord}`);
+              }}>
+              <input
+                type="text"
+                value={keyWord}
+                onChange={(e) => {
+                  setKeyWord(e.target.value);
+                }}></input>
+            </form>
+            <div
+              onClick={() => {
+                moveTo(`searchKeyWord/${keyWord}`);
+              }}>
               <img src={searchImg} alt=""></img>
             </div>
           </InputBox>
-          {smallScreen && <FuncBtn>직무•지역 찾기</FuncBtn>}
           <DetailSearchBtn
             onClick={() => {
-              moveTo("search");
-            }}
-          >
+              moveTo("searchdetail");
+            }}>
             상세검색
           </DetailSearchBtn>
         </SearchBox>
@@ -67,24 +78,14 @@ export default function HeaderComponent({
                 className="colorText"
                 onClick={() => {
                   moveTo("search");
-                }}
-              >
+                }}>
                 채용정보
               </div>
               <div className="colorText">공채</div>
-              {smallScreen && (
-                <>
-                  <div className="colorText">헤드헌팅</div>
-                  <div className="colorText">인재정보</div>
-                  {midScreen && (
-                    <>
-                      {" "}
-                      <div>퓨처랩</div>
-                      <div>취업톡톡</div>{" "}
-                    </>
-                  )}
-                </>
-              )}
+              <div className="colorText">헤드헌팅</div>
+              <div className="colorText">인재정보</div>
+              <div>퓨처랩</div>
+              <div>취업톡톡</div>{" "}
             </HoverBox>
           </LeftFunc>
           <RightFunc>
@@ -93,8 +94,7 @@ export default function HeaderComponent({
               className="border borderRight"
               onClick={() => {
                 moveTo("companymain");
-              }}
-            >
+              }}>
               기업 회원 홈
             </div>
           </RightFunc>
@@ -112,14 +112,16 @@ const HeaderBox = styled.div`
 `;
 
 const SearchFrame = styled.div`
-  min-width: 360px;
-  width: 60%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   padding: 35px 0;
 `;
 
 const SearchBox = styled.div`
+  width: 100%;
+  max-width: 1268px;
   display: flex;
-  justify-content: start;
   align-items: center;
   color: ${COLOR};
   font-weight: 800;
@@ -150,21 +152,6 @@ const InputBox = styled.div`
   }
 `;
 
-const FuncBtn = styled.div`
-  min-width: 94px;
-  display: flex;
-  align-items: center;
-  font-weight: none;
-  font-size: 14px;
-  padding: 0 15px;
-  border: solid 1px ${COLOR};
-  height: 38px;
-  margin-left: 5px;
-  & .detailSearch {
-    color: black;
-    border: solid 1px lightgray;
-  }
-`;
 const DetailSearchBtn = styled.div`
   min-width: 56px;
   display: flex;
@@ -187,8 +174,9 @@ const FuncFrame = styled.div`
 `;
 
 const FuncBar = styled.div`
+  width: 100%;
+  max-width: 1268px;
   display: flex;
-  width: 60%;
   min-width: 360px;
   justify-content: space-between;
 `;

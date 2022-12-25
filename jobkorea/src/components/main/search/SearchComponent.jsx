@@ -14,14 +14,12 @@ export default function SearchComponent({
       <SearchFrame>
         <SimpleSortContainer
           midScreen={midScreen}
-          setCategoryCheck={setCategoryCheck}
-        ></SimpleSortContainer>
+          setCategoryCheck={setCategoryCheck}></SimpleSortContainer>
 
         <ItemComponent
           data={data}
           midScreen={midScreen}
-          smallScreen={smallScreen}
-        ></ItemComponent>
+          smallScreen={smallScreen}></ItemComponent>
       </SearchFrame>
     </SearchBox>
   );
@@ -29,11 +27,13 @@ export default function SearchComponent({
 
 const SearchBox = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
 `;
 const SearchFrame = styled.div`
   min-width: 360px;
-  width: 60%;
+  width: 100%;
+  max-width: 1268px;
   margin: 20px 0;
 `;

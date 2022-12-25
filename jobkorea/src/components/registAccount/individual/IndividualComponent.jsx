@@ -1,34 +1,41 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import DaumPostcode from "react-daum-postcode";
 
 const COLOR = "#3399ff";
 
-const IndividualComponent = ({ registClick }) => {
+const IndividualComponent = ({
+  registClick,
+  handle,
+  openPostcode,
+  individualAddress,
+}) => {
   const [individualName, setIndividualName] = useState("");
   const [individualId, setIndividualId] = useState("");
   const [individualPw, setIndividualPw] = useState("");
+  const [individualPwCheck, setIndividualPwCheck] = useState("");
   const [individualEmail, setIndividualEmail] = useState("");
   const [individualTel, setIndividualTel] = useState("");
-  const [individualInfoValid, setIndividualInfoValid] = useState([]);
+  const [individualInfoValid, setIndividualInfoValid] = useState("withdraw");
+  const [pwCheck, setPwCheck] = useState(false);
+
   const smallScreen = useMediaQuery({ minWidth: 300 });
   const navigate = useNavigate();
 
-  const handlieClickRadio1 = (e) => {
+  const handlieClickRadio = (e) => {
     console.log(e.target.value);
     setIndividualInfoValid(e.target.value);
   };
-  const handlieClickRadio2 = (e) => {
-    console.log(e.target.value);
-    setIndividualInfoValid(e.target.value);
-  };
-  const handlieClickRadio3 = (e) => {
-    console.log(e.target.value);
-    setIndividualInfoValid(e.target.value);
-  };
-
+  useEffect(() => {
+    if (individualPw.length > 0 && individualPw === individualPwCheck) {
+      setPwCheck(true);
+    } else {
+      setPwCheck(false);
+    }
+  }, [individualPw, individualPwCheck]);
   return (
     <IndividualRegistBox>
       <IndividualRegistFrame>
@@ -43,8 +50,7 @@ const IndividualComponent = ({ registClick }) => {
               className={smallScreen ? "" : "RegistSmall"}
               onClick={() => {
                 navigate("/registAccount/company");
-              }}
-            >
+              }}>
               기업회원
             </CompanyRegist>
           </WhoRegist>
@@ -87,12 +93,21 @@ const IndividualComponent = ({ registClick }) => {
           <input
             type="password"
             className={smallScreen ? "input" : "InputSmall"}
-            value={individualPw}
+            value={individualPwCheck}
             placeholder="비밀번호 확인 *"
             onInput={(e) => {
-              setIndividualPw(e.target.value);
+              setIndividualPwCheck(e.target.value);
             }}
           />
+          {individualPwCheck.length > 0 ? (
+            pwCheck ? (
+              <div>비밀번호가 동일합니다.</div>
+            ) : (
+              <div>비밀번호가 다릅니다.</div>
+            )
+          ) : (
+            <></>
+          )}
           <input
             type="email"
             className={smallScreen ? "input" : "InputSmall"}
@@ -111,6 +126,24 @@ const IndividualComponent = ({ registClick }) => {
               setIndividualTel(e.target.value);
             }}
           />
+          <input
+            type="text"
+            className={smallScreen ? "input" : "InputSmall"}
+            value={individualAddress}
+            placeholder="주소 *"
+            onClick={handle.clickButton}
+            onInput={(e) => {
+              e.preventDefault();
+            }}
+          />
+
+          {openPostcode && (
+            <DaumPostcode
+              onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
+              autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+              defaultQuery="" // 팝업을 열때 기본적으로 입력되는 검색어
+            />
+          )}
         </InputDiv>
 
         <RadioTitle>개인정보 유효기간 선택 *</RadioTitle>
@@ -120,7 +153,7 @@ const IndividualComponent = ({ registClick }) => {
             name="infoValid"
             className="radio"
             value="1year"
-            onChange={handlieClickRadio1}
+            onChange={handlieClickRadio}
           />
           1년
           <input
@@ -128,7 +161,7 @@ const IndividualComponent = ({ registClick }) => {
             name="infoValid"
             className="radio"
             value="3years"
-            onChange={handlieClickRadio2}
+            onChange={handlieClickRadio}
           />
           3년
           <input
@@ -136,7 +169,7 @@ const IndividualComponent = ({ registClick }) => {
             name="infoValid"
             className="radio"
             value="withdraw"
-            onChange={handlieClickRadio3}
+            onChange={handlieClickRadio}
             checked="checked"
           />
           회원탈퇴시
@@ -158,14 +191,23 @@ const IndividualComponent = ({ registClick }) => {
             const pw = pwRegExp.test(individualPw);
             const email = emailRegExp.test(individualEmail);
             const tel = telRegExp.test(individualTel);
-            if (name && id && pw && email && tel) {
+            if (
+              name &&
+              id &&
+              pw &&
+              email &&
+              tel &&
+              individualAddress != "" &&
+              pwCheck
+            ) {
               registClick(
                 individualName,
                 individualId,
                 individualPw,
                 individualEmail,
                 individualTel,
-                individualInfoValid
+                individualInfoValid,
+                individualAddress
               );
               navigate("/");
             } else if (!name) {
@@ -182,9 +224,12 @@ const IndividualComponent = ({ registClick }) => {
               alert("이메일 형식이 올바르지 않습니다");
             } else if (!tel) {
               alert("휴대폰번호 형식이 올바르지 않습니다.");
+            } else if (!individualAddress) {
+              alert("주소를 입력하세요.");
+            } else if (pwCheck) {
+              alert("비밀번호를 확인하세요.");
             }
-          }}
-        >
+          }}>
           가입하기
         </MemberRegistBtn>
       </IndividualRegistFrame>
@@ -326,4 +371,11 @@ const RadioTitle = styled.div`
 const Radio = styled.div`
   margin: 5px auto;
   text-align: center;
+`;
+
+const AddressDiv = styled.div`
+  border: 1px solid black;
+  height: 100px;
+  margin: 10px;
+  width: 50%;
 `;

@@ -5,6 +5,7 @@ import RecruitContainer from "./recruit/RecruitContainer";
 import SearchContainer from "./search/SearchContainer";
 import HeaderContainer from "./header/HeaderContainer";
 import FooterContainer from "./footer/FooterContainer";
+import SearchKeyWordContainer from "./searchKeyWord/SearchKeyWordContainer";
 import styled from "styled-components";
 
 export default function Main() {
@@ -14,8 +15,12 @@ export default function Main() {
       <Routes>
         <Route path="/" element={<MainContainer></MainContainer>}></Route>
         <Route
-          path="/search"
+          path="/searchdetail"
           element={<SearchContainer></SearchContainer>}></Route>
+        <Route
+          path="/searchKeyWord/:keyWord"
+          element={<SearchKeyWordContainer></SearchKeyWordContainer>}></Route>
+
         <Route
           path="/recruit/:id"
           element={<RecruitContainer></RecruitContainer>}></Route>

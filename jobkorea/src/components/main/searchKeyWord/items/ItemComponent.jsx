@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function ItemComponent({ data, midScreen, smallScreen }) {
+export default function ItemComponent({ data }) {
   const navigate = useNavigate();
   return (
     <>
@@ -15,21 +15,17 @@ export default function ItemComponent({ data, midScreen, smallScreen }) {
                   <span>{data2.Name}</span>
                   <Qualification>
                     <div>{data2.Exp}</div>
-                    {smallScreen && <div>{data2.Edu}</div>}
+                    <div>{data2.Edu}</div>
                     <div>{data2.Area}</div>
-                    {smallScreen && (
-                      <>
-                        <div>{data2.Shape}</div>
-                        <div>{data2.Rank}</div>
-                      </>
-                    )}
+
+                    <div>{data2.Shape}</div>
+                    <div>{data2.Rank}</div>
                   </Qualification>
-                  {midScreen && (
-                    <OtherPreferential>
-                      <div>{data2.Condition}</div>
-                      <div>{data2.Task}</div>
-                    </OtherPreferential>
-                  )}
+
+                  <OtherPreferential>
+                    <div>{data2.Condition}</div>
+                    <div>{data2.Task}</div>
+                  </OtherPreferential>
                 </ContentBox>
 
                 <ApplyBtn

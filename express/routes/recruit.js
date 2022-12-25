@@ -7,8 +7,9 @@ const {
   Companyuser_Info,
   Individualuser_Info,
   PersonalRecruit,
+  Sequelize,
 } = require("../models/index.js");
-
+const Op = Sequelize.Op;
 router.post("/pass", async (req, res) => {
   PersonalRecruit.update(
     {
@@ -253,7 +254,46 @@ router.post("/search/call", async (req, res) => {
     res.send(error);
   }
 });
+router.post("/keyWord", async (req, res) => {
+  try {
+    if (req.body.keyWord == "") {
+      res.send({ status: 400 });
+    } else {
+      const rowData1 = await Recruit.findAll({
+        where: {
+          [Op.or]: {
+            recruitName: {
+              [Op.like]: `%${req.body.keyWord}%`,
+            },
+          },
+        },
+        include: [
+          {
+            model: db.Companyuser_Info,
+          },
+        ],
+      });
+      const rowData2 = await Recruit.findAll({
+        include: [
+          {
+            model: db.Companyuser_Info,
+            where: {
+              [Op.or]: {
+                companyName: {
+                  [Op.like]: `%${req.body.keyWord}%`,
+                },
+              },
+            },
+          },
+        ],
+      });
 
+      res.send({ status: 200, data: [...rowData1, ...rowData2] });
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
 router.post("/remove", async (req, res) => {
   const deleteRecruit = await Recruit.destroy({
     where: {

@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
+    "username": "test",
     "password": "1234",
-    "database": "jobkoreatest",
-    "host": "127.0.0.1",
+    "database": "jobkorea",
+    "host": "13.125.130.235",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
+    "username": "test",
     "password": "1234",
-    "database": "jobkoreatest",
-    "host": "127.0.0.1",
+    "database": "jobkorea",
+    "host": "13.125.130.235",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
+    "username": "test",
     "password": "1234",
-    "database": "jobkoreatest",
-    "host": "127.0.0.1",
+    "database": "jobkorea",
+    "host": "13.125.130.235",
     "dialect": "mysql"
   }
 }

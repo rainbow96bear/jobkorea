@@ -38,6 +38,7 @@ router.post("/regist", async (req, res) => {
         individualEmail: req.body.individualEmail,
         individualTel: req.body.individualTel,
         individualInfoValid: req.body.individualInfoValid,
+        individualAddress: req.body.individualAddress,
       });
       console.log("아이디 생성");
       res.send({ status: 200 });

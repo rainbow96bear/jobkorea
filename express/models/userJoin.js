@@ -23,6 +23,9 @@ module.exports = class Individual_Info extends Sequelize.Model {
         individualInfoValid: {
           type: Sequelize.STRING(255),
         },
+        individualAddress: {
+          type: Sequelize.TEXT,
+        },
       },
       {
         sequelize,

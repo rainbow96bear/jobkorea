@@ -1,22 +1,23 @@
-import SearchComponent from "./SearchComponent";
+import SearchKeyWordComponent from "./SearchKeyWordComponent";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-
-export default function SearchContainer() {
+import { useNavigate, useParams } from "react-router-dom";
+export default function SearchKeyWordContainer() {
   const [inputData, setInputData] = useState([]);
-  const midScreen = useMediaQuery({ minWidth: 1200 });
-  const smallScreen = useMediaQuery({ minWidth: 1070 });
-  const [categoryCheck, setCategoryCheck] = useState("전체");
+  const params = useParams();
 
   useEffect(() => {
+    console.log(params.keyWord);
     try {
       axios
-        .post("http://localhost:8080/api/recruit/search/call", {
-          check: categoryCheck,
+        .post("http://localhost:8080/api/recruit/keyWord", {
+          keyWord: params.keyWord,
         })
         .then((data) => {
-          const _inputData = data.data.map((rowData) => ({
+          console.log(data);
+          console.log(data.status);
+          const _inputData = data.data.data.map((rowData) => ({
             id: rowData.id,
             Name: rowData.recruitName,
             Num: rowData.recruitNum,
@@ -38,12 +39,6 @@ export default function SearchContainer() {
     } catch (e) {
       console.error(e.message);
     }
-  }, [categoryCheck]);
-  return (
-    <SearchComponent
-      data={inputData}
-      midScreen={midScreen}
-      smallScreen={smallScreen}
-      setCategoryCheck={setCategoryCheck}></SearchComponent>
-  );
+  }, [params.keyWord]);
+  return <SearchKeyWordComponent data={inputData}></SearchKeyWordComponent>;
 }
