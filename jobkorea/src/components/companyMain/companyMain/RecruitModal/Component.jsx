@@ -1,8 +1,6 @@
-import { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
 export default function RecruitModalComponent({
-  companyUser,
   onClick,
   isCompanyMordal,
   recruitInfo,
@@ -35,12 +33,12 @@ export default function RecruitModalComponent({
               {item.recruitNum == -1 ? (
                 <>
                   <div>지원자 수 : {item.RecruitInfo.length}명</div>
-                  <div>모집인원 제한없음</div>
+                  <div>모집 인원 : 0명</div>
                 </>
               ) : (
                 <>
-                  <div>현재 지원자 수{item.RecruitInfo.length} 명 /</div>
-                  <div>모집인원 {item.recruitNum}명</div>
+                  <div>지원자 수 : {item.RecruitInfo.length}명</div>
+                  <div>모집 인원 : {item.recruitNum}명</div>
                 </>
               )}
               <div>남은 시간 : </div>

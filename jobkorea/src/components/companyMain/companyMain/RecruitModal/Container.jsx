@@ -13,7 +13,10 @@ export default function RecruitModalContainer({}) {
     dispatch(action.companyMordal());
     console.log(isCompanyMordal);
   };
-
+  const AdDay = useSelector((state) => state.recruit.AdDay);
+  const AdHour = useSelector((state) => state.recruit.AdHour);
+  const AdMin = useSelector((state) => state.recruit.AdMin);
+  const AdSec = useSelector((state) => state.recruit.AdSec);
   const [recruitInfo, setRecruitInfo] = useState([]);
 
   const navigate = useNavigate();
