@@ -10,7 +10,15 @@ export default function RecruitInfoComponent({
   btnRender,
 }) {
   console.log(applyUserInfo[0]?.personalRecruit);
+  console.log(myRecruit);
+  console.log(myRecruit[0]?.createdAt);
 
+  let date = new Date(
+    myRecruit[0]?.createdAt.slice(0, 10) +
+      " " +
+      myRecruit[0]?.createdAt.slice(11, 19)
+  );
+  console.log(date);
   useEffect(() => {
     console.log(btnRender);
   }, [btnRender]);

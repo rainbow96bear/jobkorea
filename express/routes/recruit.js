@@ -176,6 +176,7 @@ router.post("/add", async (req, res) => {
     maxPay: req.body.maxPay,
     payKinds: req.body.payKinds,
     adGrade: req.body.adGrade,
+    day: req.body.day,
   });
 
   const userInfo = jwt.verify(

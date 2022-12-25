@@ -1,69 +1,80 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { action } from "../../../../modules/recruit";
 import AdPostComponent from "./adPostComponent";
 
-export default function AdPostContainer({ setAdGrade }) {
-  const [vipPay, setVipPay] = useState(0);
+export default function AdPostContainer({ adGrade, setAdGrade }) {
   const [companyMoney, setCompanyMoney] = useState(0);
   const [resultMoney, setResultMoney] = useState(0);
-  const [vipcss, setVipcss] = useState(false);
-  const [firstvipcss, setFirstVipcss] = useState(false);
   const [day, setDay] = useState(0);
+  const [selPay, setSelPay] = useState(0);
+  const [sumPay, setSumPay] = useState(0);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   const dayHandler = (value) => {
-    setDay(value);
+    setDay(value.value);
   };
 
   useEffect(() => {
     axios.post("http://localhost:8080/api/companyuser/money").then((data) => {
-      console.log(data.data);
       setCompanyMoney(data.data.companyMoney);
     });
-  }, []);
+  }, [adGrade, day]);
 
-  const AdHandler = (e) => {
-    e.preventDefault();
+  const AdHandler = () => {
+    let body = {
+      resultMoney: resultMoney,
+    };
     if (resultMoney < 0) {
       alert("공고등록시 필요한 돈이 부족합니다.");
       navigate("/companymain");
       return;
     }
-    let body = {
-      resultMoney: resultMoney,
-    };
     axios
       .post("http://localhost:8080/api/recruit/ad", body)
       .then((res) => console.log(res));
-
+    dispatch(action.recruitDay({ day: day }));
     navigate("/companymain/registpost");
   };
 
-  console.log(day);
+  // console.log(day);
 
-  const firstVVIPonClick = () => {
-    setVipPay(1540000 * day.value);
-    setResultMoney(companyMoney - 1540000);
+  const firstvvipOnClick = () => {
     setAdGrade(1);
-    setFirstVipcss(true);
-    setVipcss(false);
+    setSelPay(1540000);
   };
+
+  const vipOnClick = () => {
+    setAdGrade(2);
+    setSelPay(752400);
+  };
+
+  useEffect(() => {
+    setSumPay(selPay * day);
+  }, [adGrade, day]);
+
+  useEffect(() => {
+    setResultMoney(companyMoney - sumPay);
+  }, [sumPay]);
 
   return (
     <AdPostComponent
-      setVipPay={setVipPay}
-      vipPay={vipPay}
       companyMoney={companyMoney}
       AdHandler={AdHandler}
       setResultMoney={setResultMoney}
       setAdGrade={setAdGrade}
-      setVipcss={setVipcss}
-      setFirstVipcss={setFirstVipcss}
       dayHandler={dayHandler}
       day={day}
-      firstVVIPonClick={firstVVIPonClick}
+      firstvvipOnClick={firstvvipOnClick}
+      vipOnClick={vipOnClick}
+      selPay={selPay}
+      sumPay={sumPay}
+      adGrade={adGrade}
+      resultMoney={resultMoney}
     ></AdPostComponent>
   );
 }

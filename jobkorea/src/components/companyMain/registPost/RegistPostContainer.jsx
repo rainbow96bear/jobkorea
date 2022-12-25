@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RegistPostComponent from "./RegistPostComponent";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function RegistPostContainer({ adGrade }) {
   const [recruitName, setRecruitName] = useState("");
@@ -19,6 +20,7 @@ export default function RegistPostContainer({ adGrade }) {
   const [maxPay, setMaxPay] = useState("");
   const [isLimit, setisLimit] = useState("");
   const [payKinds, setPayKinds] = useState("");
+  const day = useSelector((state) => state.recruit.value);
 
   const navigate = useNavigate();
 
@@ -144,6 +146,7 @@ export default function RegistPostContainer({ adGrade }) {
       isLimit: isLimit,
       payKinds: payKinds,
       adGrade: adGrade,
+      day: day,
     };
     axios
       .post("http://localhost:8080/api/recruit/add", body)

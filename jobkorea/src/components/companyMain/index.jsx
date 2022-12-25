@@ -37,10 +37,7 @@ export default function CompanyMain() {
         <Route
           path="/registPost/*"
           element={
-            <RegistPostContainer
-              adGrade={adGrade}
-              setAdGrade={setAdGrade}
-            ></RegistPostContainer>
+            <RegistPostContainer adGrade={adGrade}></RegistPostContainer>
           }
         ></Route>
         <Route
