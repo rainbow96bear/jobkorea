@@ -8,13 +8,11 @@ export default function RecruitInfoComponent({
   failOnclick,
   passOnclick,
   btnRender,
+  sec,
+  day,
+  hour,
+  min,
 }) {
-  console.log(applyUserInfo[0]?.personalRecruit);
-
-  useEffect(() => {
-    console.log(btnRender);
-  }, [btnRender]);
-
   return (
     <div>
       <Informationboxs>
@@ -23,6 +21,9 @@ export default function RecruitInfoComponent({
             <Textfour>
               {myRecruit[0]?.Companyuser_Info.companyName}
               <h2 style={{ color: "black" }}>{myRecruit[0]?.recruitName}</h2>
+              <div>
+                공고 마감 시한 : {day - 1}일 {hour} : {min} : {sec}
+              </div>
             </Textfour>
           </Boxscontentone>
           <Boxscontenttwo>
@@ -285,11 +286,6 @@ const PayBox = styled.div`
   }
 `;
 
-const InformationBox = styled.div`
-  margin: auto;
-  width: 50%;
-`;
-
 const Informationboxs = styled.div`
   display: flex;
   margin: auto;
@@ -304,7 +300,7 @@ const Informationboxs = styled.div`
 `;
 
 const Boxscontentone = styled.div`
-  padding-top: 3%;
+  padding: 1% 0;
   height: 20%;
   width: 100%;
   background-color: white;
@@ -315,9 +311,8 @@ const Boxscontentone = styled.div`
 
 const Boxscontenttwo = styled.div`
   width: 100%;
-  height: 74.2%;
+  height: 76.2%;
   background-color: white;
-  border-bottom: solid 1px lightgray;
   border-right: solid 1px lightgray;
   display: flex;
 `;

@@ -10,10 +10,13 @@ import RecruitInfoContainer from "./managePost/recruitInfo/RecruitInfoContainer"
 import FixPostContainer from "./registPost/fixPost/FixPostContainer";
 import AdPostContainer from "./registPost/adPost/adPostContainer";
 import CompanyMyPageContainer from "./companyMain/MyPage/MyPageContainer";
+import RecruitModalContainer from "./companyMain/RecruitModal/Container";
+import { useSelector } from "react-redux";
 
 export default function CompanyMain() {
   const [loginIsClick, setLoginIsClick] = useState(false);
   const [adGrade, setAdGrade] = useState(0);
+  const companyUser = useSelector((state) => state.companyUser.value);
 
   return (
     <Box>
@@ -34,10 +37,7 @@ export default function CompanyMain() {
         <Route
           path="/registPost/*"
           element={
-            <RegistPostContainer
-              adGrade={adGrade}
-              setAdGrade={setAdGrade}
-            ></RegistPostContainer>
+            <RegistPostContainer adGrade={adGrade}></RegistPostContainer>
           }
         ></Route>
         <Route
@@ -66,6 +66,7 @@ export default function CompanyMain() {
           element={<CompanyMyPageContainer></CompanyMyPageContainer>}
         ></Route>
       </Routes>
+      {companyUser ? <RecruitModalContainer></RecruitModalContainer> : <></>}
       <FooterContainer></FooterContainer>
     </Box>
   );

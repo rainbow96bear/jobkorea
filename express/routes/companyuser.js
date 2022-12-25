@@ -119,7 +119,6 @@ router.post("/money", async (req, res) => {
       req.cookies["jobkorea_login"],
       process.env.COOKIE_SECRET
     );
-    console.log(temp);
     const data = await Companyuser_Info.findOne({
       where: { companyId: temp.companyId },
     });

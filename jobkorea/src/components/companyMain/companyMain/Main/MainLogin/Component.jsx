@@ -9,7 +9,9 @@ const MainLoginBoardComponent = ({
   loginOnClick,
   moveTo,
   setLoginIsClick,
-  midScreen,
+  XLScreen,
+  LScreen,
+  MScreen,
 }) => {
   const dispatch = useDispatch();
 
@@ -45,19 +47,23 @@ const MainLoginBoardComponent = ({
   }, [companyUser]);
 
   return (
-    <MainLoginBoardBox>
+    <MainLoginBoardBox MScreen={"640px"}>
       <div className="temp"></div>
       <div className="MainBoard">
         <div>
-          <div className="text-box">
-            지금,
-            <div>
-              <span className="our">우리기업의 채용</span>을
+          {LScreen ? (
+            <div className="text-box">
+              지금,
+              <div>
+                <span className="our">우리기업의 채용</span>을
+              </div>
+              시작해 보세요
             </div>
-            시작해 보세요
-          </div>
+          ) : (
+            <div></div>
+          )}
+
           <div>
-            {}
             {companyUser == 0 ? (
               <div className="flex button-box">
                 <div onClick={loginOnClick}>로그인</div>
@@ -91,12 +97,17 @@ const MainLoginBoardComponent = ({
             )}
           </div>
         </div>
-        <div>
-          <img src="/img/start.png" alt="" />
-        </div>
+
+        {XLScreen ? (
+          <ImgBox>
+            <img src="/img/start.png" alt="" />
+          </ImgBox>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className="temp"></div>
-      <div className="flex">
+      <div className="flex whiteline">
         <div className="whiteDiv"></div>
         <div className="companyLearn">
           <div>기업전용 필수 법정교육, 직무학습</div>
@@ -108,13 +119,23 @@ const MainLoginBoardComponent = ({
   );
 };
 
+const ImgBox = styled.div`
+  width: 50%;
+
+  img {
+    width: 100%;
+    height: 360px;
+  }
+`;
+
 const MainLoginBoardBox = styled.div`
-  width: 1260px;
+  width: 67%;
   margin: auto;
 
   .MainBoard {
     overflow: hidden;
     display: flex;
+    justify-content: center;
     border-radius: 10px;
     background-color: #ffffff;
   }
@@ -145,9 +166,13 @@ const MainLoginBoardBox = styled.div`
   .button-box {
     font-size: 20px;
     font-weight: 700;
-    padding: 0 50px 40px 50px;
+    padding: 30px 50px;
   }
 
+  .whiteline {
+    display: flex;
+    justify-content: space-between;
+  }
   .button-box > div:first-child {
     color: white;
     background-color: #3399ff;
@@ -176,33 +201,74 @@ const MainLoginBoardBox = styled.div`
   }
 
   .whiteDiv {
-    width: 940px;
-    height: 80px;
+    width: 75%;
     background-color: white;
     border-radius: 10px;
   }
 
   .companyLearn {
-    margin-left: 20px;
-    width: 300px;
-    height: 80px;
+    width: 21%;
     background-image: url("/img/companyLearn.png");
+    background-size: 100% 100%;
     color: white;
-    cursor: pointer;
-  }
-
-  .companyLearn div {
-    margin-left: 30px;
+    padding: 10px 20px;
+    white-space: nowrap;
   }
 
   .companyLearn div:first-child {
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 15px;
   }
 
   .companyLearn div:last-child {
-    font-size: 18px;
+    font-size: 17px;
     margin-top: 5px;
+  }
+
+  @media (max-width: 1300px) {
+    .companyLearn div:first-child {
+      display: none;
+    }
+
+    .companyLearn div:last-child {
+      font-size: 12px;
+      margin-top: 5px;
+      padding: 15px 0;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .whiteDiv {
+      display: none;
+    }
+
+    .companyLearn {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .companyLearn div:first-child {
+      display: block;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .button-box {
+      flex-direction: column;
+      row-gap: 20px;
+    }
+
+    .companyLearn {
+      padding: 30px;
+      justify-content: center;
+    }
+
+    .companyLearn div:last-child {
+      display: none;
+    }
   }
 `;
 

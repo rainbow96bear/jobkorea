@@ -114,42 +114,18 @@ export default function ApplyComponent({ application }) {
                       <RecruitName>{item.recruitName}</RecruitName>
                     </Itemdiv>
 
-                    {/* {application.length ? (
-          <div>
-            {application.map((item, index) => (
-              <div key={`${index}`}>
-                <Itembox>
-                  <div>
-                    <RecruitName>{item.recruitName}</RecruitName>
-                  </div>
-                  <Thicksolid></Thicksolid>
-                  <div style={{ width: 180 }}>
-                    <h2>업무: {item.myTask}</h2>
-                    <h2>직급: {item.workRank}</h2>
-                    <h2>지역: {item.area}</h2>
-                  </div>
-                  <Canclebutton>취소하기</Canclebutton>
-                </Itembox>
-                <ResultBox>
-                  {item.personalRecruit.check == "pass" ? (
-                    <div>축하합니다! 서류전형에 합격하셨습니다.</div>
-                  ) : item.personalRecruit.check == "fail" ? (
-                    <div>아쉽지만 서류전형에 합격하지 못하셨습니다.</div>
-                  ) : (
-                    <div>제출하신 서류를 검토중입니다. 기다려주세요</div>
-                  )}
-                </ResultBox>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div>지원완료 및 지원예약 내역이 없습니다.</div>
-        )} */}
-
                     <Itemdiv>{item.myTask}</Itemdiv>
                     <Itemdiv>{item.workRank}</Itemdiv>
                     <Itemdiv>{item.area}</Itemdiv>
-                    <Itemdiv>{item.personalRecruit.check}예성</Itemdiv>
+                    <Itemdiv>
+                      {item.personalRecruit.check == "pass" ? (
+                        <div>합격</div>
+                      ) : item.personalRecruit.check == "fail" ? (
+                        <div>불합격</div>
+                      ) : (
+                        <div>검토중</div>
+                      )}
+                    </Itemdiv>
 
                     {/* <Canclebutton>취소하기</Canclebutton> */}
                   </Itembox>

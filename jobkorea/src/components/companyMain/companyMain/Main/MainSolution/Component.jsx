@@ -1,8 +1,16 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ListComponent from "./SolutionLIst/Component";
 
 const SolutionComponent = () => {
-  const onList = [
+  const [resize, setResize] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setResize(window.innerWidth);
+    });
+  }, []);
+
+  let onList = [
     {
       img: "/img/icon_start_1.png",
       title: "간편한 ",
@@ -17,8 +25,8 @@ const SolutionComponent = () => {
       text1: "한눈에 보는 지원자 현황 ",
       text2: "서류합격, 면접제의 관리하기",
     },
-    {},
-    {},
+    { a: "A" },
+    { a: "A" },
     {
       img: "/img/icon_start_3.png",
       title: "인턴/신입부터 경력까지 ",
@@ -34,9 +42,13 @@ const SolutionComponent = () => {
       text2: "",
     },
   ];
+  if (resize <= 1850) {
+    onList = onList.filter((item) => item.a != "A");
+    console.log(onList);
+  }
   return (
-    <SolutionBox>
-      <div className="flex">
+    <SolutionBox resize={resize}>
+      <div className="flex resize">
         <div className="title">
           <span>
             잡코리아
@@ -93,7 +105,11 @@ const SolutionBox = styled.div`
 
   .wrap > div:nth-child(3),
   div:nth-child(4) {
-    opacity: 0;
+    opacity: ${({ resize }) => {
+      if (resize >= 1850) {
+        return 0;
+      } else return 1;
+    }};
   }
 
   .imgtitle {
@@ -109,5 +125,22 @@ const SolutionBox = styled.div`
   .imgtext {
     font-size: 13px;
     margin: 10px 0 20px 20px;
+  }
+
+  @media (max-width: 1400px) {
+    .resize {
+      flex-direction: column;
+
+      align-items: center;
+
+      & > div:first-child {
+        text-align: center;
+        padding: 0;
+      }
+    }
+
+    .wrap {
+      justify-content: center;
+    }
   }
 `;
