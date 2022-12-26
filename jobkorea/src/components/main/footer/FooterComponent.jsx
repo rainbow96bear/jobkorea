@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-export default function FooterComponent() {
+export default function FooterComponent({ screen875, screen730, screen400 }) {
   const navigate = useNavigate();
   const goError = () => {
     navigate("/errorpage");
@@ -10,7 +10,7 @@ export default function FooterComponent() {
   return (
     <FooterBox>
       <FooterFrame>
-        <FirstLine>
+        <FirstLine className={screen730 ? "" : "screen730"}>
           <div className="left">
             <span className="rightPadding" onClick={goError}>
               공지사항
@@ -22,17 +22,25 @@ export default function FooterComponent() {
             <div onClick={goError}> 잡코리아 TV</div>
             <div onClick={goError}>전문채용관</div>
             <div onClick={goError}>슈퍼기업관</div>
-            <div onClick={goError}>헤드헌팅 의뢰</div>
-            <div onClick={goError}>기업러닝</div>
+            {screen400 && (
+              <>
+                <div onClick={goError}>헤드헌팅 의뢰</div>
+                <div onClick={goError}>기업러닝</div>
+              </>
+            )}
             <div onClick={goError}>더보기</div>
           </div>
         </FirstLine>
 
-        <SecondLine>
+        <SecondLine className={screen875 ? "" : "screen875"}>
           <div onClick={goError}>회사소개</div>
-          <div onClick={goError}>운영사이트</div>
-          <div onClick={goError}>이용약관</div>
-          <span onClick={goError}>개인정보처리방침</span>
+          {screen730 && (
+            <>
+              <div onClick={goError}>운영사이트</div>
+              <div onClick={goError}>이용약관</div>
+              <span onClick={goError}>개인정보처리방침</span>
+            </>
+          )}
           <div onClick={goError}>Open API</div>
           <div onClick={goError}>광고문의</div>
           <div onClick={goError}>제휴문의</div>
@@ -43,8 +51,12 @@ export default function FooterComponent() {
             고객센터 : 1588-19350 (평일 09:00 ~ 19:00 토요일 09:00 ~ 15:00)
           </div>
           <div onClick={goError}>FAX : 02-565-9351</div>
-          <div onClick={goError}>Email : helpdesk@jobkorea.co.kr</div>
-          <div onClick={goError}>톡톡상담</div>
+          {screen875 && (
+            <>
+              <div onClick={goError}>Email : helpdesk@jobkorea.co.kr</div>
+              <div onClick={goError}>톡톡상담</div>
+            </>
+          )}
         </ThirdLine>
         <ForthLine>
           <div>
@@ -74,6 +86,12 @@ const FooterFrame = styled.div`
   span {
     font-weight: 900;
   }
+  & .screen875 {
+    font-size: 12px;
+  }
+  & .screen730 {
+    flex-direction: column;
+  }
 `;
 
 const FirstLine = styled.div`
@@ -86,14 +104,14 @@ const FirstLine = styled.div`
   font-size: 12px;
   & .left {
     display: flex;
-    width: 40%;
+    flex: 1;
   }
   & .smallLeft {
     display: flex;
   }
   & .right {
     display: flex;
-    width: 40%;
+    flex: 1;
     justify-content: space-between;
   }
   & .rightPadding {

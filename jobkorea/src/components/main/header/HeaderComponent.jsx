@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { VscMenu, VscBell, VscChromeClose } from "react-icons/vsc";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 
 import searchImg from "./imgfold/searchImg.svg";
 
@@ -10,12 +9,12 @@ export default function HeaderComponent({
   moveTo,
   dropDown,
   setDropDown,
-
   keyWord,
   setKeyWord,
+  screen450,
+  screen500,
+  screen650,
 }) {
-  const smallScreen = useMediaQuery({ minWidth: 700 });
-  const xsScreen = useMediaQuery({ minWidth: 425 });
   const navigate = useNavigate();
   const goError = () => {
     navigate("/errorpage");
@@ -24,45 +23,41 @@ export default function HeaderComponent({
   return (
     <HeaderBox>
       <SearchFrame>
-        <SearchBox>
+        <SearchBox className={screen500 ? "" : "screen500"}>
           <HomeBtn
             onClick={() => {
               moveTo("");
-            }}
-          >
+            }}>
             JJOBKOREA
           </HomeBtn>
-
-          <InputBox>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                moveTo(`searchKeyWord/${keyWord}`);
-              }}
-            >
-              <input
-                type="text"
-                value={keyWord}
-                onChange={(e) => {
-                  setKeyWord(e.target.value);
-                }}
-              ></input>
-            </form>
-            <div
+          <SearchItems>
+            <InputBox>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  moveTo(`searchKeyWord/${keyWord}`);
+                }}>
+                <input
+                  type="text"
+                  value={keyWord}
+                  onChange={(e) => {
+                    setKeyWord(e.target.value);
+                  }}></input>
+                <div
+                  onClick={() => {
+                    moveTo(`searchKeyWord/${keyWord}`);
+                  }}>
+                  <img src={searchImg} alt=""></img>
+                </div>
+              </form>
+            </InputBox>
+            <DetailSearchBtn
               onClick={() => {
-                moveTo(`searchKeyWord/${keyWord}`);
-              }}
-            >
-              <img src={searchImg} alt=""></img>
-            </div>
-          </InputBox>
-          <DetailSearchBtn
-            onClick={() => {
-              moveTo("searchdetail");
-            }}
-          >
-            상세검색
-          </DetailSearchBtn>
+                moveTo("searchdetail");
+              }}>
+              상세검색
+            </DetailSearchBtn>
+          </SearchItems>
         </SearchBox>
       </SearchFrame>
       <FuncFrame>
@@ -92,13 +87,12 @@ export default function HeaderComponent({
                 className="colorText"
                 onClick={() => {
                   moveTo("search");
-                }}
-              >
+                }}>
                 채용정보
               </div>
               <div className="colorText">공채</div>
-              {xsScreen && <div className="colorText">헤드헌팅</div>}
-              {smallScreen && (
+              {screen450 && <div className="colorText">헤드헌팅</div>}
+              {screen650 && (
                 <>
                   {" "}
                   <div className="colorText">인재정보</div>
@@ -114,8 +108,7 @@ export default function HeaderComponent({
               className="border borderRight"
               onClick={() => {
                 moveTo("companymain");
-              }}
-            >
+              }}>
               기업 회원 홈
             </div>
           </RightFunc>
@@ -137,6 +130,10 @@ const SearchFrame = styled.div`
   display: flex;
   justify-content: center;
   padding: 35px 0;
+
+  & .screen500 {
+    flex-direction: column;
+  }
 `;
 
 const SearchBox = styled.div`
@@ -147,15 +144,21 @@ const SearchBox = styled.div`
   color: ${COLOR};
   font-weight: 800;
   font-size: 26px;
+  flex-direction: row;
 `;
 const HomeBtn = styled.div`
   cursor: pointer;
 `;
 const InputBox = styled.div`
   display: flex;
+  form {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+  }
   input {
     margin-left: 15px;
-    padding: 10px;
+    padding: 12px;
     outline: none;
     border: solid 2px ${COLOR};
   }
@@ -182,7 +185,7 @@ const DetailSearchBtn = styled.div`
   padding: 0 15px;
   color: black;
   border: solid 1px lightgray;
-  height: 38px;
+  height: 43px;
   margin-left: 5px;
   cursor: pointer;
 `;
@@ -245,4 +248,7 @@ const RightFunc = styled.div`
   & .borderRight {
     border-right: solid 1px lightgray;
   }
+`;
+const SearchItems = styled.div`
+  display: flex;
 `;

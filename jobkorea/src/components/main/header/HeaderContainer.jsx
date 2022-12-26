@@ -10,13 +10,18 @@ export default function HeaderContainer() {
     navigate(`/${where}`);
   };
   const [keyWord, setKeyWord] = useState("");
-
+  const screen500 = useMediaQuery({ minWidth: 500 });
+  const screen650 = useMediaQuery({ minWidth: 650 });
+  const screen450 = useMediaQuery({ minWidth: 450 });
   return (
     <HeaderComponent
       moveTo={moveTo}
       dropDown={dropDown}
       setDropDown={setDropDown}
       keyWord={keyWord}
-      setKeyWord={setKeyWord}></HeaderComponent>
+      setKeyWord={setKeyWord}
+      screen500={screen500}
+      screen425={screen450}
+      screen650={screen650}></HeaderComponent>
   );
 }
