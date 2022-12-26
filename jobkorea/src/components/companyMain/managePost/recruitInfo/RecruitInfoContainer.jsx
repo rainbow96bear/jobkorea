@@ -15,22 +15,24 @@ export default function RecruitInfoContainer() {
 
   const navigate = useNavigate();
 
+  const moveTo = (where) => {
+    navigate(`${where}`);
+  };
+
   let date = new Date(
-    myRecruit[0]?.createdAt.slice(0, 10) +
+    myRecruit?.createdAt?.slice(0, 10) +
       " " +
-      myRecruit[0]?.createdAt.slice(11, 19)
+      myRecruit?.createdAt?.slice(11, 19)
   );
 
-  date.setHours(date.getHours() + 8);
-  date.setDate(date.getDate() + +myRecruit[0]?.day);
+  date.setHours(date.getHours() + 9);
+  date.setDate(date.getDate() + +myRecruit?.day);
 
   let today = new Date();
   let gap = date.getTime() - today.getTime();
-  let day = Math.ceil(gap / (1000 * 60 * 60 * 24));
-  let hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60));
-
-  useEffect(() => {}, []);
+  let day = Math.ceil(gap / (1000 * 60 * 60 * 24)) - 1;
+  let hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60) - 1);
+  let min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60)) - 1;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -46,10 +48,6 @@ export default function RecruitInfoContainer() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [sec]);
-
-  const moveTo = (where) => {
-    navigate(`${where}`);
-  };
 
   const passOnclick = (individualId) => {
     axios
@@ -77,7 +75,6 @@ export default function RecruitInfoContainer() {
     axios
       .post("http://localhost:8080/api/recruit/whoapply", { id: params.id })
       .then((data) => {
-        console.log(data.data);
         setApplyUserInfo(data.data[0].RecruitInfo);
       });
   }, [btnRender]);
@@ -90,7 +87,7 @@ export default function RecruitInfoContainer() {
           { id: params.id }
         );
         const result = data.data;
-        setMyRecruit([result]);
+        setMyRecruit(result);
       } catch (err) {
         console.error(err);
       }
@@ -105,7 +102,6 @@ export default function RecruitInfoContainer() {
       applyUserInfo={applyUserInfo}
       passOnclick={passOnclick}
       failOnclick={failOnclick}
-      btnRender={btnRender}
       setSec={setSec}
       sec={sec}
       day={day}

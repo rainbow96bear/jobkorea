@@ -28,6 +28,13 @@ const ListBox = styled.div`
     border-radius: 15px;
   }
 
+  @media (max-width: 350px) {
+    .solutionList {
+      width: 250px;
+      height: 280px;
+    }
+  }
+
   .solutionList img {
     margin: 30px 20px;
   }

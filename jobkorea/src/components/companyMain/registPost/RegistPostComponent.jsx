@@ -239,40 +239,46 @@ export default function RegistPostComponent({
             />
           </LineBox>
         </div>
-        <div className="line">
+        <PayWrap>
           <div>급여*</div>
-          <Select
-            className="basic-multi-select"
-            classNamePrefix="select"
-            options={options7}
-            onChange={payKindsHandler}
-          />
-          {isPay[0] == "회사내규에 따름" || isPay[1] == "회사내규에 따름" ? (
-            <></>
-          ) : (
-            <>
-              <input type="number" className="mo3" onChange={minPayHandler} /> ~
-              <input type="number" className="mo4" onChange={maxPayHandler} />만
-              원 -
-            </>
-          )}
-          {payList.map((item, index) => {
-            return (
-              <CheckBox key={`payList-${index}`}>
-                <input
-                  key={`payList-input-${index}`}
-                  type="checkbox"
-                  value={item.data}
-                  checked={isPay.includes(item.data) ? true : false}
-                  onChange={(e) => {
-                    payChecked(e.target.checked, e.target.value);
-                  }}
-                />
-                <div key={`payList-div-${index}`}>{item.name}</div>
-              </CheckBox>
-            );
-          })}
-        </div>
+          <PayBox>
+            <Select
+              className="basic-multi-select"
+              classNamePrefix="select"
+              options={options7}
+              onChange={payKindsHandler}
+            />
+            {isPay[0] == "회사내규에 따름" || isPay[1] == "회사내규에 따름" ? (
+              <></>
+            ) : (
+              <>
+                <input type="number" className="mo3" onChange={minPayHandler} />{" "}
+                ~
+                <input type="number" className="mo4" onChange={maxPayHandler} />
+                만 원
+              </>
+            )}
+          </PayBox>
+
+          <ColBox>
+            {payList.map((item, index) => {
+              return (
+                <CheckBox key={`payList-${index}`}>
+                  <input
+                    key={`payList-input-${index}`}
+                    type="checkbox"
+                    value={item.data}
+                    checked={isPay.includes(item.data) ? true : false}
+                    onChange={(e) => {
+                      payChecked(e.target.checked, e.target.value);
+                    }}
+                  />
+                  <div key={`payList-div-${index}`}>{item.name}</div>
+                </CheckBox>
+              );
+            })}
+          </ColBox>
+        </PayWrap>
       </RegistPostBox>
       <div className="nextBtn" onClick={saveHandler}>
         공고등록
@@ -284,7 +290,10 @@ export default function RegistPostComponent({
 const BackgroundBox = styled.div`
   background-color: #f2f6f9;
   padding-bottom: 50px;
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   .nextBtn {
     width: 200px;
     height: 50px;
@@ -308,12 +317,44 @@ const HeadBox = styled.div`
   padding: 30px;
 `;
 
+const ColBox = styled.div`
+  display: flex;
+`;
+
+const PayBox = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+  }
+`;
+
+const PayWrap = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > div:first-child {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 20px;
+  }
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+`;
 const RegistPostBox = styled.div`
-  width: 66%;
+  width: 100%;
+  max-width: 1240px;
   margin: auto;
   border-radius: 20px;
   background-color: white;
   padding: 30px 0;
+
+  @media (max-width: 1400px) {
+    width: 90%;
+  }
 
   & > div > div:first-child {
     width: 15%;
@@ -328,12 +369,32 @@ const RegistPostBox = styled.div`
       font-weight: 700;
       margin: 20px;
     }
+
+    @media (max-width: 1000px) {
+      & > div:first-child {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      flex-direction: column;
+
+      & > div:first-child {
+        width: 100%;
+        text-align: center;
+        margin: 5px auto;
+      }
+    }
   }
 
   .mo1 {
     width: 500px;
     padding-left: 10px;
     margin-right: 30px;
+
+    @media (max-width: 720px) {
+      width: 60%;
+    }
   }
 
   .mo2 {

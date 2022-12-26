@@ -146,6 +146,7 @@ const HeaderComponent = ({
 const HeaderBox = styled.div`
   height: 25%;
   background-color: #323743;
+  white-space: nowrap;
 
   & > div {
     color: white;
