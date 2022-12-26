@@ -13,7 +13,7 @@ module.exports = class personalRecruit extends Sequelize.Model {
         modelName: "personalRecruit",
         tableName: "personalRecruit",
         timestamps: true,
-        paranoid: true,
+        // paranoid: true,
         charset: "utf8mb4",
         collate: "utf8mb4_general_ci",
       }

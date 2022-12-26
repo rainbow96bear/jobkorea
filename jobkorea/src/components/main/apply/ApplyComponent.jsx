@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { current } from "@reduxjs/toolkit";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function ApplyComponent({ application }) {
+export default function ApplyComponent({
+  application,
+  firstScreen,
+  midScreen,
+  setReload,
+  reload,
+}) {
   const [newapplication, setNewapplication] = useState([]);
 
   console.log(application);
@@ -83,13 +91,14 @@ export default function ApplyComponent({ application }) {
       </Subcontainertwo> */}
         <div>
           <Mainbar>
-            <Itemdiv>회사로고</Itemdiv>
-            <Itemdiv>회사이름</Itemdiv>
+            {midScreen && <Itemdiv>회사로고</Itemdiv>}
+            <Itemdivname>회사이름</Itemdivname>
             <Itemdiv>공고명</Itemdiv>
             <Itemdiv>업무</Itemdiv>
             <Itemdiv>직급</Itemdiv>
             <Itemdiv>지역</Itemdiv>
             <Itemdiv>상태</Itemdiv>
+            <Itemdivcancle1></Itemdivcancle1>
           </Mainbar>
 
           <Subcontainerthree>
@@ -97,14 +106,20 @@ export default function ApplyComponent({ application }) {
               <>
                 {application.map((item, index) => (
                   <Itembox key={`${index}`}>
-                    <Itemdiv>
-                      <Companylogo
-                        src={`http://localhost:8080/uploads/${
-                          application[`${index}`]?.Companyuser_Info.companylogo
-                        }`}
-                        alt=""
-                      />
-                    </Itemdiv>
+                    {midScreen && (
+                      <Itemdiv>
+                        {application[`${index}`]?.Companyuser_Info
+                          .companylogo && (
+                          <Companylogo
+                            src={`http://localhost:8080/uploads/${
+                              application[`${index}`]?.Companyuser_Info
+                                .companylogo
+                            }`}
+                            alt=""
+                          />
+                        )}
+                      </Itemdiv>
+                    )}
                     <Itemdiv>
                       <Companyname>
                         {application[`${index}`]?.Companyuser_Info.companyName}
@@ -114,7 +129,7 @@ export default function ApplyComponent({ application }) {
                       <RecruitName>{item.recruitName}</RecruitName>
                     </Itemdiv>
 
-                    <Itemdiv>{item.myTask}</Itemdiv>
+                    <ItemdivTask>{item.myTask}</ItemdivTask>
                     <Itemdiv>{item.workRank}</Itemdiv>
                     <Itemdiv>{item.area}</Itemdiv>
                     <Itemdiv>
@@ -126,6 +141,27 @@ export default function ApplyComponent({ application }) {
                         <div>검토중</div>
                       )}
                     </Itemdiv>
+                    <Itemdivcancle
+                      onClick={() => {
+                        // console.log(`${index + 1}`);
+                        console.log(item.personalRecruit.recruitId);
+                        console.log(item.personalRecruit.individualId);
+                        try {
+                          axios
+                            .post("http://localhost:8080/api/apply/remove", {
+                              recruitId: item.personalRecruit.recruitId,
+                              individualId: item.personalRecruit.individualId,
+                            })
+                            .then((data) => {
+                              setReload(!reload);
+                            });
+                        } catch (err) {
+                          console.error(err);
+                        }
+                      }}
+                    >
+                      X
+                    </Itemdivcancle>
 
                     {/* <Canclebutton>취소하기</Canclebutton> */}
                   </Itembox>
@@ -134,22 +170,6 @@ export default function ApplyComponent({ application }) {
             ) : (
               <div>지원완료 및 지원예약 내역이 없습니다.</div>
             )}
-
-            {/* {application.length ? (
-        
-          {application.map((item,index)=>(
-             <Itembox>
-            <div>
-              <RecruitName>{item.recruitName}</RecruitName>
-            </div>
-            <Thicksolid></Thicksolid>
-           
-          </Itembox>
-         
-          ))}
-        ) : (
-          <div>지원완료 및 지원예약 내역이 없습니다.</div>
-        )} */}
 
             <p style={{ color: " grey" }}>
               회원님의 구직활동 정보를 분석하여 꼭 맞는 채용정보를 추천합니다
@@ -203,13 +223,51 @@ export default function ApplyComponent({ application }) {
     </Container>
   );
 }
-const Contaninerdiv = styled.div`
-  width: 100%;
-  max-width: 938px;
+
+const Itemdivname = styled.div`
+  white-space: nowrap;
+  display: block;
+  text-align: center;
+  text-overflow: ellipsis;
+  width: 30px;
+  overflow: hidden;
+
+  flex: 4;
 `;
 
-const Itemdiv = styled.div`
+const Itemdivcancle1 = styled.div`
   flex: 1;
+`;
+
+const Itemdivcancle = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3399ff;
+  border-radius: 7%;
+  color: white;
+  height: 5vh;
+`;
+
+const Contaninerdiv = styled.div`
+  width: 100%;
+  max-width: 1268px;
+`;
+const ItemdivTask = styled.div`
+  white-space: nowrap;
+  display: block;
+  text-align: center;
+  text-overflow: ellipsis;
+  width: 30px;
+  overflow: hidden;
+
+  flex: 4;
+  /* display: flex; */
+  /* justify-content: /center; */
+`;
+const Itemdiv = styled.div`
+  flex: 4;
   display: flex;
   justify-content: center;
 `;
@@ -220,8 +278,10 @@ const Mainbar = styled.div`
   background-color: #f6f6fc;
   display: flex;
   /* justify-content: space-around; */
+  justify-content: space-around;
   align-items: center;
   width: 100%;
+  /* margin-left: 14px; */
   /* margin-left: 10%; */
   height: 5vh;
   /* & > div:nth-child(1) {
@@ -281,9 +341,15 @@ const Thicksolid = styled.div`
 const RecruitName = styled.div`
   /* padding-top: 18%; */
   /* width: 15vw; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  white-space: nowrap;
+  display: block;
+
+  text-overflow: ellipsis;
+  width: 100px;
+  overflow: hidden;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
   /* align-items: center; */
 
   /* display: flex;

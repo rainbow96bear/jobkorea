@@ -147,7 +147,7 @@ router.post("/regist", upload.single("companyLogoUpload"), async (req, res) => {
         companyNumber: req.body.companyNumber,
         companyName: req.body.companyName,
         companyHeader: req.body.companyHeader,
-        companyAdress: req.body.companyAdress,
+        companyAddress: req.body.companyAddress,
         companyId: req.body.companyId,
         companyPw: crypto.SHA256(req.body.companyPw).toString(),
         companyIdname: req.body.companyIdname,

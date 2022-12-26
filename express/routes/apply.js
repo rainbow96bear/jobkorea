@@ -4,6 +4,7 @@ const {
   Recruit,
   Individualuser_Info,
   Companyuser_Info,
+  PersonalRecruit,
 } = require("../models/index.js");
 
 const jwt = require("jsonwebtoken");
@@ -164,6 +165,18 @@ router.post("/now", async (req, res) => {
     console.error(err);
     res.send("실패");
   }
+});
+
+router.post("/remove", async (req, res) => {
+  const deleteApply = await PersonalRecruit.destroy({
+    where: {
+      individualId: req.body.individualId,
+      recruitId: req.body.recruitId,
+    },
+  });
+  // console.log(deleteApply);
+  console.log(req.body);
+  res.end();
 });
 
 module.exports = router;
