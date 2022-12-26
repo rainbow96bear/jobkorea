@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 const FirstVVIPComponent = ({ inputData }) => {
   return (
-    <>
+    <FirstVVIPComponentBox>
       {inputData.map((data) =>
         data.map((data2, index) => (
           <GroupItemBox key={`groupItemBox-${index}`}>
@@ -28,12 +28,17 @@ const FirstVVIPComponent = ({ inputData }) => {
           </GroupItemBox>
         ))
       )}
-    </>
+    </FirstVVIPComponentBox>
   );
 };
 
 export default FirstVVIPComponent;
-
+const FirstVVIPComponentBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
 const GroupItemBox = styled.div`
   min-width: 300px;
   width: 23.5%;

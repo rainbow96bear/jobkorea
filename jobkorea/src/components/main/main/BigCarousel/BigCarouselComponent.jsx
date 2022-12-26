@@ -65,8 +65,7 @@ const BigCarouselBox = styled.div`
   width: 60%;
   background-color: #e8ecef;
   cursor: pointer;
-  height: 7em;
   & .banner {
-    height: 7.4em;
+    height: 120px;
   }
 `;
