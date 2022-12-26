@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RegistPostComponent from "./RegistPostComponent";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";

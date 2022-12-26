@@ -6,7 +6,7 @@ const EndLineComponent = () => {
 
   return (
     <EndLineBox>
-      <div className="section">
+      <div className="section Msize">
         <div className="title">
           <div>공지사항</div>
           <div>더보기</div>
@@ -44,7 +44,7 @@ const EndLineComponent = () => {
           </li>
         </ul>
       </div>
-      <div className="section">
+      <div className="section Lsize">
         <div className="title">
           <div>FAQ</div>
           <div>더보기</div>
@@ -73,22 +73,24 @@ const EndLineComponent = () => {
         </ul>
       </div>
       <div className="center">
-        <div className="title">고객센터</div>
-        <div className="number">1588-9350</div>
-        <div>
-          <div className="bm">Time</div>
-          <div>평일 09시 - 19시</div>
-          <div className="borderright"></div>
-          <div>토요일 09시 - 15시</div>
-        </div>
-        <div>
-          <div className="bm">FAX</div>
-          <div>02-565-9351</div>
-        </div>
-        <div>
-          <div>E-mail</div>
-          <div className="email">
-            helpdesk@<span>jobcoding.co.kr</span>
+        <div className="centerBox">
+          <div className="title">고객센터</div>
+          <div className="number">1588-9350</div>
+          <div className="bmflex">
+            <div className="bm">Time</div>
+            <div>평일 09시 - 19시</div>
+            <div className="borderright"></div>
+            <div>토요일 09시 - 15시</div>
+          </div>
+          <div>
+            <div className="bm">FAX</div>
+            <div>02-565-9351</div>
+          </div>
+          <div>
+            <div>E-mail</div>
+            <div className="email">
+              helpdesk@<span>jobcoding.co.kr</span>
+            </div>
           </div>
         </div>
       </div>
@@ -103,6 +105,47 @@ const EndLineBox = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin: auto;
+
+  @media (max-width: 1750px) {
+    .Lsize {
+      display: none;
+    }
+
+    .section {
+      width: 45%;
+    }
+
+    .center {
+      width: 45%;
+    }
+  }
+
+  @media (max-width: 1250px) {
+    .Msize {
+      display: none;
+    }
+    .center .centerBox {
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .bmflex {
+      flex-direction: column;
+    }
+    .borderright {
+      display: none;
+    }
+
+    .center .centerBox {
+      width: 80%;
+    }
+  }
+
+  .centerBox {
+    width: 80%;
+    margin: auto;
+  }
 
   .title {
     display: flex;
@@ -121,23 +164,23 @@ const EndLineBox = styled.div`
   }
 
   .section {
-    width: 33%;
+    flex: 1;
     font-size: 13px;
     font-weight: 200;
-    padding: 15px 0;
+    padding: 15px 20px;
   }
 
   .center {
-    width: 25%;
+    flex: 1;
     font-size: 12px;
     padding: 15px 0;
   }
 
-  .center > div {
+  .centerBox > div {
     display: flex;
   }
 
-  .center > div > div:first-child {
+  .centerBox > div > div:first-child {
     font-weight: 700;
     width: 50px;
   }

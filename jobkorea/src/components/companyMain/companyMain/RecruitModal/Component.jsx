@@ -6,7 +6,6 @@ export default function RecruitModalComponent({
   recruitInfo,
   moveTo,
 }) {
-  console.log(recruitInfo);
   return (
     <SideBarBox>
       <FlexBox>
@@ -71,6 +70,13 @@ const SideBarBox = styled.div`
   position: fixed;
   top: calc(25%);
   right: 0;
+  overflow-y: scroll;
+
+  height: 600px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const FlexBox = styled.div`
@@ -83,8 +89,6 @@ const InfoBox = styled.div`
   width: 250px;
   border-radius: 0 10px 10px 10px;
 
-  /* &.open {
-  } */
   &.close {
     margin-right: -250px;
   }

@@ -78,6 +78,11 @@ const SolutionBox = styled.div`
     font-size: 36px;
     padding: 40px 0 0 41px;
     color: #333333;
+    white-space: nowrap;
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
   }
 
   .title span {

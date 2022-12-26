@@ -34,7 +34,8 @@ const HeaderComponent = ({
               onClick={() => {
                 moveTo("");
               }}
-              className="title">
+              className="title"
+            >
               JOBKOREA
             </div>
 
@@ -43,14 +44,16 @@ const HeaderComponent = ({
                 <div
                   onClick={() => {
                     moveTo("registAccount/company");
-                  }}>
+                  }}
+                >
                   회원가입
                 </div>
               ) : (
                 <div
                   onClick={() => {
                     moveTo("companymain/mypage");
-                  }}>
+                  }}
+                >
                   마이페이지
                 </div>
               )}
@@ -70,7 +73,8 @@ const HeaderComponent = ({
                       );
                       console.log(data);
                       navigate("/companymain");
-                    }}>
+                    }}
+                  >
                     로그아웃
                   </div>
                 )}
@@ -113,12 +117,14 @@ const HeaderComponent = ({
                           moveTo(`companymain/${item.routes}`);
                         else moveTo("companymain");
                       }}
-                      className={miniScreen ? "" : "smallerFont"}>
+                      className={miniScreen ? "" : "smallerFont"}
+                    >
                       {item.title}
                       <div
                         className={
                           headerMenuIsOver === `${index}` ? "hover" : ""
-                        }></div>
+                        }
+                      ></div>
                     </div>
                   );
                 }

@@ -30,8 +30,13 @@ export default function AdPostContainer({ adGrade, setAdGrade }) {
       resultMoney: resultMoney,
     };
     if (resultMoney < 0) {
-      alert("공고등록시 필요한 돈이 부족합니다.");
-      navigate("/companymain");
+      alert("공고등록시 필요한 잡머니가 부족합니다.");
+      return;
+    } else if (adGrade == 0) {
+      alert("광고 등급을 선택해주세요");
+      return;
+    } else if (day == 0) {
+      alert("게시 일수를 선택해주세요");
       return;
     }
     axios

@@ -13,16 +13,20 @@ export default function RecruitInfoComponent({
   hour,
   min,
 }) {
+  useEffect(() => {
+    console.log(btnRender);
+  }, [btnRender]);
+
   return (
     <div>
       <Informationboxs>
         <Informationboxscontent>
           <Boxscontentone>
             <Textfour>
-              {myRecruit[0]?.Companyuser_Info.companyName}
-              <h2 style={{ color: "black" }}>{myRecruit[0]?.recruitName}</h2>
+              {myRecruit?.Companyuser_Info?.companyName}
+              <h2 style={{ color: "black" }}>{myRecruit?.recruitName}</h2>
               <div>
-                공고 마감 시한 : {day - 1}일 {hour} : {min} : {sec}
+                공고 마감 시한 : {day}일 {hour} : {min} : {sec}
               </div>
             </Textfour>
           </Boxscontentone>
@@ -32,19 +36,19 @@ export default function RecruitInfoComponent({
               <div>
                 <Texttwo>
                   <TitleBox className="gray">경력</TitleBox>{" "}
-                  <Textcolor>{myRecruit[0]?.isExp}</Textcolor>
+                  <Textcolor>{myRecruit?.isExp}</Textcolor>
                 </Texttwo>
                 <Texttwo>
                   <TitleBox className="gray">학력</TitleBox>
-                  <Textcolor>{myRecruit[0]?.edu}</Textcolor>
+                  <Textcolor>{myRecruit?.edu}</Textcolor>
                 </Texttwo>
                 <Texttwo>
                   <TitleBox className="gray">우대</TitleBox>
-                  {myRecruit[0]?.condition == "" ? (
+                  {myRecruit?.condition == "" ? (
                     <div>우대 사항 없음</div>
                   ) : (
                     <ul>
-                      {myRecruit[0]?.condition.split(",").map((item, index) => (
+                      {myRecruit?.condition?.split(",").map((item, index) => (
                         <li key={`li-${index}`}>{item}</li>
                       ))}
                     </ul>
@@ -57,35 +61,35 @@ export default function RecruitInfoComponent({
               <div style={{ marginBottom: 10 }}>근무조건</div>
               <Texttwo>
                 <Textthree>고용형태</Textthree>
-                <Textcolor>{myRecruit[0]?.shape}</Textcolor>
+                <Textcolor>{myRecruit?.shape}</Textcolor>
               </Texttwo>
               <Texttwo>
                 <Textthree>급여</Textthree>
                 <PayBox>
-                  {myRecruit[0]?.isPay == "회사내규에 따름" ||
-                  myRecruit[0]?.isPay == "회사내규에 따름, 면접 후 결정" ||
-                  myRecruit[0]?.isPay == "면접 후 결정, 회사내규에 따름" ? (
-                    <>{myRecruit[0]?.isPay}</>
+                  {myRecruit?.isPay == "회사내규에 따름" ||
+                  myRecruit?.isPay == "회사내규에 따름, 면접 후 결정" ||
+                  myRecruit?.isPay == "면접 후 결정, 회사내규에 따름" ? (
+                    <>{myRecruit?.isPay}</>
                   ) : (
                     <>
-                      {myRecruit[0]?.payKinds == "주급" ? (
+                      {myRecruit?.payKinds == "주급" ? (
                         <span>주급 </span>
                       ) : (
                         <></>
                       )}
-                      {myRecruit[0]?.payKinds == "월급" ? (
+                      {myRecruit?.payKinds == "월급" ? (
                         <span>월급 </span>
                       ) : (
                         <></>
                       )}
-                      {myRecruit[0]?.payKinds == "연봉" ? (
+                      {myRecruit?.payKinds == "연봉" ? (
                         <span>연봉 </span>
                       ) : (
                         <></>
                       )}
-                      {myRecruit[0]?.minPay}~{myRecruit[0]?.maxPay}만원
-                      {myRecruit[0]?.isPay ? (
-                        <span>- {myRecruit[0]?.isPay}</span>
+                      {myRecruit?.minPay}~{myRecruit?.maxPay}만원
+                      {myRecruit?.isPay ? (
+                        <span>- {myRecruit?.isPay}</span>
                       ) : (
                         <></>
                       )}
@@ -96,7 +100,7 @@ export default function RecruitInfoComponent({
               <Texttwo>
                 <Textthree>지역</Textthree>
                 <div>
-                  {myRecruit[0]?.area} <button>지도</button>
+                  {myRecruit?.area} <button>지도</button>
                 </div>
               </Texttwo>
               <Texttwo>
@@ -105,20 +109,20 @@ export default function RecruitInfoComponent({
               </Texttwo>
               <Texttwo>
                 <Textthree>직급</Textthree>
-                <div>{myRecruit[0]?.workRank}</div>
+                <div>{myRecruit?.workRank}</div>
               </Texttwo>
               <Texttwo>
                 <Textthree>담당업무</Textthree>
-                <div>{myRecruit[0]?.myTask}</div>
+                <div>{myRecruit?.myTask}</div>
               </Texttwo>
 
-              {myRecruit[0]?.workDepartment == "" ? (
+              {myRecruit?.workDepartment == "" ? (
                 <></>
               ) : (
                 <Texttwo>
                   <Textthree>근무부서</Textthree>
 
-                  <div>{myRecruit[0]?.workDepartment}</div>
+                  <div>{myRecruit?.workDepartment}</div>
                 </Texttwo>
               )}
             </Textone>
@@ -126,42 +130,40 @@ export default function RecruitInfoComponent({
         </Informationboxscontent>
         <Informationboxscontenttwo>
           <Imgbox>
-            <img
-              src={`http://localhost:8080/uploads/${myRecruit[0]?.Companyuser_Info.companylogo}`}
-            />
+            {myRecruit?.Companyuser_Info?.companylogo && (
+              <img
+                src={`http://localhost:8080/uploads/${myRecruit?.Companyuser_Info?.companylogo}`}
+              />
+            )}
           </Imgbox>
           <div>
             <div style={{ marginBottom: 10, marginLeft: 10 }}>기업정보</div>
             <Textbox>
               <Texttwo>
                 <Textfive>대표 이름</Textfive>
-                <Textsix>
-                  {myRecruit[0]?.Companyuser_Info.companyHeader}
-                </Textsix>
+                <Textsix>{myRecruit?.Companyuser_Info?.companyHeader}</Textsix>
               </Texttwo>
               <Texttwo>
                 <Textfive>담당자 명</Textfive>
                 <Textsix style={{ marginLeft: 20 }}>
-                  {myRecruit[0]?.Companyuser_Info.companyIdname}
+                  {myRecruit?.Companyuser_Info?.companyIdname}
                 </Textsix>
               </Texttwo>
               <Texttwo>
                 <Textfive>담당자 번호</Textfive>
                 <Textsix style={{ marginLeft: 8 }}>
-                  {myRecruit[0]?.Companyuser_Info.companyIdnumber}
+                  {myRecruit?.Companyuser_Info?.companyIdnumber}
                 </Textsix>
               </Texttwo>
               <Texttwo>
                 <Textfive>기업형태</Textfive>
                 <Textsix style={{ marginLeft: 8 }}>
-                  {myRecruit[0]?.Companyuser_Info.selectedOption}
+                  {myRecruit?.Companyuser_Info?.selectedOption}
                 </Textsix>
               </Texttwo>
               <Texttwo>
                 <Textfive style={{ width: 70 }}>E-mail</Textfive>
-                <Textsix>
-                  {myRecruit[0]?.Companyuser_Info.companyIdemail}
-                </Textsix>
+                <Textsix>{myRecruit?.Companyuser_Info?.companyIdemail}</Textsix>
               </Texttwo>
             </Textbox>
           </div>
@@ -173,9 +175,7 @@ export default function RecruitInfoComponent({
       </Informationboxs>
       <Footercontainer>
         <FixBtn>
-          <div
-            onClick={() => moveTo(`/companymain/fixpost/${myRecruit[0]?.id}`)}
-          >
+          <div onClick={() => moveTo(`/companymain/fixpost/${myRecruit?.id}`)}>
             <strong>공고 수정</strong>
           </div>
         </FixBtn>
@@ -286,6 +286,11 @@ const PayBox = styled.div`
   }
 `;
 
+const InformationBox = styled.div`
+  margin: auto;
+  width: 50%;
+`;
+
 const Informationboxs = styled.div`
   display: flex;
   margin: auto;
@@ -313,6 +318,7 @@ const Boxscontenttwo = styled.div`
   width: 100%;
   height: 76.2%;
   background-color: white;
+  border-bottom: solid 1px lightgray;
   border-right: solid 1px lightgray;
   display: flex;
 `;

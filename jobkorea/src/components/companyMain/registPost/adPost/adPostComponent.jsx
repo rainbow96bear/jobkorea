@@ -119,6 +119,15 @@ const PayInfoBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 500px) {
+    & > div {
+      flex-direction: column;
+    }
+    & > div > div {
+      width: 100%;
+    }
+  }
 `;
 const WillPayBox = styled.div`
   font-size: 22px;
@@ -144,6 +153,13 @@ const ProductBox = styled.div`
 const AdInfoBox = styled.div`
   text-align: center;
   margin-top: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 10px;
+
+    & > div {
+    }
+  }
 `;
 const AdBtnBox = styled.div`
   display: flex;
@@ -165,6 +181,12 @@ const AdBtnBox = styled.div`
 
   .clicked {
     border: 2px solid black;
+  }
+
+  @media (max-width: 800px) {
+    & > div {
+      width: 100px;
+    }
   }
 `;
 
@@ -191,6 +213,14 @@ const SelectBox = styled.div`
   margin: auto;
   padding: 20px;
   text-align: center;
+
+  @media (max-width: 800px) {
+    width: 220px;
+  }
+
+  @media (max-width: 400px) {
+    width: 150px;
+  }
 `;
 
 const LineBox = styled.div`
@@ -204,6 +234,10 @@ const HeadBox = styled.div`
   font-size: 30px;
   font-weight: 800;
   padding: 30px;
+
+  @media (max-width: 300px) {
+    font-size: 24px;
+  }
 `;
 
 const AdBox = styled.div`
@@ -212,4 +246,5 @@ const AdBox = styled.div`
   border-radius: 20px;
   background-color: white;
   padding: 30px 0;
+  min-width: 200px;
 `;
