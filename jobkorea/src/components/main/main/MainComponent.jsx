@@ -21,12 +21,13 @@ export default function MainComponent({
   setIndividualId,
 }) {
   const [individualPw, setIndividualPw] = useState("");
+
   return (
     <MainBox>
       <MainFirstItem>
         <div className="firstRow">
-          {smallScreen && <BigCarouselContainer></BigCarouselContainer>}
-          {midScreen && <SmallCarouselContainer></SmallCarouselContainer>}
+          <BigCarouselContainer></BigCarouselContainer>
+          <SmallCarouselContainer></SmallCarouselContainer>
           {test ? (
             <AfterLogInContainer
               setTest={setTest}
@@ -45,11 +46,10 @@ export default function MainComponent({
           )}
         </div>
         <div className="secondRow">
-          {smallScreen && (
-            <OpenRecruitContainer midScreen={midScreen}></OpenRecruitContainer>
-          )}
+          <OpenRecruitContainer midScreen={midScreen}></OpenRecruitContainer>
+
           <RankingContainer></RankingContainer>
-          {midScreen && <QuickMenuContainer></QuickMenuContainer>}
+          <QuickMenuContainer></QuickMenuContainer>
         </div>
       </MainFirstItem>
       <MainSecondItem>

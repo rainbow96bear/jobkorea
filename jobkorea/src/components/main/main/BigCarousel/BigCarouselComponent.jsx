@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -31,11 +32,15 @@ const BigCarouselComponent = () => {
   const goError = () => {
     navigate("/errorpage");
   };
+  const midScreen = useMediaQuery({ minWidth: 900 });
 
   return (
     <>
       <BigCarouselBox>
-        <div className="carousel">
+        <div
+          className="carousel"
+          style={midScreen ? { width: "100%" } : { width: "110%" }}
+        >
           <Slider {...settings}>
             <img src={banner1} alt="" className="banner" onClick={goError} />
             <img src={banner2} alt="" className="banner" onClick={goError} />

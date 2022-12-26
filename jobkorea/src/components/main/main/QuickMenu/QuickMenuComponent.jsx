@@ -10,16 +10,18 @@ import abroadImage from "./images/image6.png";
 import industryImage from "./images/image7.png";
 import specialImage from "./images/image8.png";
 import top100Image from "./images/image9.png";
+import { useMediaQuery } from "react-responsive";
 
 const QuickMenuComponent = () => {
   const navigate = useNavigate();
   const goError = () => {
     navigate("/errorpage");
   };
+  const midScreen = useMediaQuery({ minWidth: 730 });
 
   return (
-    <QuickMenuBox>
-      <div className="QuickMenuRow1">
+    <QuickMenuBox style={{ display: midScreen ? "block" : "none" }}>
+      <div className="QuickMenuRow1" onClick={goError}>
         <div className="job" onClick={goError}>
           <img src={jobImage} alt="" />
           <span>직무별</span>

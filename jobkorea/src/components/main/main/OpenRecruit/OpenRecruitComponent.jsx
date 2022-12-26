@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import recruitLogo1 from "./images/logo1.gif";
 import recruitLogo2 from "./images/logo2.gif";
 import recruitLogo3 from "./images/logo3.gif";
@@ -12,13 +13,14 @@ import recruitLogo8 from "./images/logo8.gif";
 
 const COLOR = "#3399ff";
 
-const OpenRecruitComponent = ({ midScreen }) => {
+const OpenRecruitComponent = () => {
   const [juniorTitle, setJuniorTitle] = useState(true);
   // CSS를 주고 싶은 div 상태 변경하기
   const navigate = useNavigate();
   const goError = () => {
     navigate("/errorpage");
   };
+  const smallScreen = useMediaQuery({ minWidth: 920 });
 
   return (
     <ItemBox>
@@ -37,15 +39,20 @@ const OpenRecruitComponent = ({ midScreen }) => {
           <div className="boxTitle4" onClick={goError}>
             전문채용관
           </div>
+
           <div className="boxTitle5" onClick={goError}>
             합격스펙
           </div>
-          <div className="boxTitle6" onClick={goError}>
-            합격자소서
-          </div>
-          <div className="boxTitle7" onClick={goError}>
-            인적성/면접
-          </div>
+          {smallScreen && (
+            <>
+              <div className="boxTitle6" onClick={goError}>
+                합격자소서
+              </div>
+              <div className="boxTitle7" onClick={goError}>
+                인적성/면접
+              </div>
+            </>
+          )}
           <div className="boxJrSrUl" onClick={goError}>
             <div
               className="boxJuniorTitle"
@@ -106,28 +113,27 @@ const OpenRecruitComponent = ({ midScreen }) => {
             소노소노
           </div>
         </div>
-        {midScreen && (
-          <div className="RecruitDiv3">
-            <div className="bigtech" onClick={goError}>
-              #1000대기업 공채{" "}
-            </div>
-            <div className="intern" onClick={goError}>
-              #인턴채용{" "}
-            </div>
-            <div className="openrecruit" onClick={goError}>
-              #공채달력{" "}
-            </div>
-            <div className="livenews" onClick={goError}>
-              #Live공채소식{" "}
-            </div>
-            <div className="expecteddays" onClick={goError}>
-              #공채예상일정{" "}
-            </div>
-            <div className="top100" onClick={goError}>
-              #TOP100
-            </div>
+
+        <div className="RecruitDiv3">
+          <div className="bigtech" onClick={goError}>
+            #1000대기업 공채{" "}
           </div>
-        )}
+          <div className="intern" onClick={goError}>
+            #인턴채용{" "}
+          </div>
+          <div className="openrecruit" onClick={goError}>
+            #공채달력{" "}
+          </div>
+          <div className="livenews" onClick={goError}>
+            #Live공채소식{" "}
+          </div>
+          <div className="expecteddays" onClick={goError}>
+            #공채예상일정{" "}
+          </div>
+          <div className="top100" onClick={goError}>
+            #TOP100
+          </div>
+        </div>
       </RecruitNewsBox>
     </ItemBox>
   );

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function MainContainer() {
   const smallScreen = useMediaQuery({ minWidth: 1200 });
-  const midScreen = useMediaQuery({ minWidth: 1780 });
+  const midScreen = useMediaQuery({ minWidth: 920 });
   // const navigate = useNavigate();
   const [test, setTest] = useState(false);
   const [individualId, setIndividualId] = useState("");
