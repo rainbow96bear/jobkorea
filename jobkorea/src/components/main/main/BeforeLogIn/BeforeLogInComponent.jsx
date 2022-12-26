@@ -22,6 +22,9 @@ const BeforeLogInComponent = ({
   const goToRegist = () => {
     navigate("/registAccount/individual");
   };
+  const goError = () => {
+    navigate("/errorpage");
+  };
 
   return (
     <BeforeLogInBox>
@@ -30,7 +33,9 @@ const BeforeLogInComponent = ({
         <div className="registBtn" onClick={goToRegist}>
           회원가입
         </div>
-        <div className="findInfoBtn">ID/PW 찾기</div>
+        <div className="findInfoBtn" onClick={goError}>
+          ID/PW 찾기
+        </div>
       </div>
       <div className="logInDiv">
         <div className="logInInput">

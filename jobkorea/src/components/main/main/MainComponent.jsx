@@ -89,12 +89,14 @@ const MainBox = styled.div`
 
 const MainFirstItem = styled.div`
   min-width: 360px;
-  width: 60%;
+  max-width: 1268px;
+  width: 100%;
   height: 40%;
 `;
 
 const MainSecondItem = styled.div`
   background-color: white;
+  max-width: 1268px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -114,6 +116,7 @@ const MainSecondItem = styled.div`
 
 const MainThirdItem = styled.div`
   background-color: white;
+  max-width: 1268px;
   width: 100%;
   display: flex;
   justify-content: center;

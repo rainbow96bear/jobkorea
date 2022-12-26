@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -21,20 +22,24 @@ const SmallCarouselComponent = () => {
     loop: true,
     arrows: false,
   };
+  const navigate = useNavigate();
+  const goError = () => {
+    navigate("/errorpage");
+  };
 
   return (
     <SmallCarouselBox>
       <div className="carousel">
         <Slider {...settings}>
-          <img src={banner1} alt="" />
+          <img src={banner1} alt="" onClick={goError} />
 
-          <img src={banner2} alt="" />
+          <img src={banner2} alt="" onClick={goError} />
 
-          <img src={banner3} alt="" />
+          <img src={banner3} alt="" onClick={goError} />
 
-          <img src={banner4} alt="" />
+          <img src={banner4} alt="" onClick={goError} />
 
-          <img src={banner5} alt="" />
+          <img src={banner5} alt="" onClick={goError} />
         </Slider>
       </div>
     </SmallCarouselBox>

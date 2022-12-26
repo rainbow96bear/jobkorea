@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { VscMenu, VscBell, VscChromeClose } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 import searchImg from "./imgfold/searchImg.svg";
 
@@ -12,6 +14,13 @@ export default function HeaderComponent({
   keyWord,
   setKeyWord,
 }) {
+  const smallScreen = useMediaQuery({ minWidth: 700 });
+  const xsScreen = useMediaQuery({ minWidth: 425 });
+  const navigate = useNavigate();
+  const goError = () => {
+    navigate("/errorpage");
+  };
+
   return (
     <HeaderBox>
       <SearchFrame>
@@ -19,8 +28,9 @@ export default function HeaderComponent({
           <HomeBtn
             onClick={() => {
               moveTo("");
-            }}>
-            JOBKOREA
+            }}
+          >
+            JJOBKOREA
           </HomeBtn>
 
           <InputBox>
@@ -28,25 +38,29 @@ export default function HeaderComponent({
               onSubmit={(e) => {
                 e.preventDefault();
                 moveTo(`searchKeyWord/${keyWord}`);
-              }}>
+              }}
+            >
               <input
                 type="text"
                 value={keyWord}
                 onChange={(e) => {
                   setKeyWord(e.target.value);
-                }}></input>
+                }}
+              ></input>
             </form>
             <div
               onClick={() => {
                 moveTo(`searchKeyWord/${keyWord}`);
-              }}>
+              }}
+            >
               <img src={searchImg} alt=""></img>
             </div>
           </InputBox>
           <DetailSearchBtn
             onClick={() => {
               moveTo("searchdetail");
-            }}>
+            }}
+          >
             상세검색
           </DetailSearchBtn>
         </SearchBox>
@@ -78,14 +92,20 @@ export default function HeaderComponent({
                 className="colorText"
                 onClick={() => {
                   moveTo("search");
-                }}>
+                }}
+              >
                 채용정보
               </div>
               <div className="colorText">공채</div>
-              <div className="colorText">헤드헌팅</div>
-              <div className="colorText">인재정보</div>
-              <div>퓨처랩</div>
-              <div>취업톡톡</div>{" "}
+              {xsScreen && <div className="colorText">헤드헌팅</div>}
+              {smallScreen && (
+                <>
+                  {" "}
+                  <div className="colorText">인재정보</div>
+                  <div onClick={goError}>퓨처랩</div>
+                  <div onClick={goError}>취업톡톡</div>
+                </>
+              )}
             </HoverBox>
           </LeftFunc>
           <RightFunc>
@@ -94,7 +114,8 @@ export default function HeaderComponent({
               className="border borderRight"
               onClick={() => {
                 moveTo("companymain");
-              }}>
+              }}
+            >
               기업 회원 홈
             </div>
           </RightFunc>

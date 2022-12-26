@@ -1,41 +1,50 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 export default function FooterComponent() {
+  const navigate = useNavigate();
+  const goError = () => {
+    navigate("/errorpage");
+  };
+
   return (
     <FooterBox>
       <FooterFrame>
         <FirstLine>
           <div className="left">
-            <span className="rightPadding">공지사항</span>
-            <div>[이벤트]12월 전체 회원 이벤트</div>
+            <span className="rightPadding" onClick={goError}>
+              공지사항
+            </span>
+            <div onClick={goError}>[이벤트]12월 전체 회원 이벤트</div>
           </div>
 
           <div className="right">
-            <div> 잡코리아 TV</div>
-            <div>전문채용관</div>
-            <div>슈퍼기업관</div>
-            <div>헤드헌팅 의뢰</div>
-            <div>기업러닝</div>
-            <div>더보기</div>
+            <div onClick={goError}> 잡코리아 TV</div>
+            <div onClick={goError}>전문채용관</div>
+            <div onClick={goError}>슈퍼기업관</div>
+            <div onClick={goError}>헤드헌팅 의뢰</div>
+            <div onClick={goError}>기업러닝</div>
+            <div onClick={goError}>더보기</div>
           </div>
         </FirstLine>
 
         <SecondLine>
-          <div>회사소개</div>
-          <div>운영사이트</div>
-          <div>이용약관</div>
-          <span>개인정보처리방침</span>
-          <div>Open API</div>
-          <div>광고문의</div>
-          <div>제휴문의</div>
-          <div>고객센터</div>
+          <div onClick={goError}>회사소개</div>
+          <div onClick={goError}>운영사이트</div>
+          <div onClick={goError}>이용약관</div>
+          <span onClick={goError}>개인정보처리방침</span>
+          <div onClick={goError}>Open API</div>
+          <div onClick={goError}>광고문의</div>
+          <div onClick={goError}>제휴문의</div>
+          <div onClick={goError}>고객센터</div>
         </SecondLine>
         <ThirdLine>
-          <div>
+          <div onClick={goError}>
             고객센터 : 1588-19350 (평일 09:00 ~ 19:00 토요일 09:00 ~ 15:00)
           </div>
-          <div>FAX : 02-565-9351</div>
-          <div>Email : helpdesk@jobkorea.co.kr</div>
-          <div>톡톡상담</div>
+          <div onClick={goError}>FAX : 02-565-9351</div>
+          <div onClick={goError}>Email : helpdesk@jobkorea.co.kr</div>
+          <div onClick={goError}>톡톡상담</div>
         </ThirdLine>
         <ForthLine>
           <div>

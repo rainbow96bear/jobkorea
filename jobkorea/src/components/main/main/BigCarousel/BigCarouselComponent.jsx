@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -26,22 +27,26 @@ const BigCarouselComponent = () => {
     loop: true,
     arrows: false,
   };
+  const navigate = useNavigate();
+  const goError = () => {
+    navigate("/errorpage");
+  };
 
   return (
     <>
       <BigCarouselBox>
         <div className="carousel">
           <Slider {...settings}>
-            <img src={banner1} alt="" className="banner" />
-            <img src={banner2} alt="" className="banner" />
-            <img src={banner3} alt="" className="banner" />
-            <img src={banner4} alt="" className="banner" />
-            <img src={banner5} alt="" className="banner" />
-            <img src={banner6} alt="" className="banner" />
-            <img src={banner7} alt="" className="banner" />
-            <img src={banner8} alt="" className="banner" />
-            <img src={banner9} alt="" className="banner" />
-            <img src={banner10} alt="" className="banner" />
+            <img src={banner1} alt="" className="banner" onClick={goError} />
+            <img src={banner2} alt="" className="banner" onClick={goError} />
+            <img src={banner3} alt="" className="banner" onClick={goError} />
+            <img src={banner4} alt="" className="banner" onClick={goError} />
+            <img src={banner5} alt="" className="banner" onClick={goError} />
+            <img src={banner6} alt="" className="banner" onClick={goError} />
+            <img src={banner7} alt="" className="banner" onClick={goError} />
+            <img src={banner8} alt="" className="banner" onClick={goError} />
+            <img src={banner9} alt="" className="banner" onClick={goError} />
+            <img src={banner10} alt="" className="banner" onClick={goError} />
           </Slider>
         </div>
       </BigCarouselBox>

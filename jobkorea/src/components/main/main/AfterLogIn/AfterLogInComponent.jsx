@@ -1,8 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
   console.log(individualId);
+  const navigate = useNavigate();
+  const goApply = () => {
+    navigate("/apply");
+  };
+  const goError = () => {
+    navigate("/errorpage");
+  };
+
   return (
     <>
       <AfterLogInBox>
@@ -25,10 +34,10 @@ const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
           <div className="modifiedDate">최종 수정일 (2022.07.18)</div>
         </div>
         <div className="afterLogInDiv3">
-          <button>지원현황</button>
-          <button>열람기업</button>
-          <button>스크랩</button>
-          <button>스마트매치</button>
+          <button onClick={goApply}>지원현황</button>
+          <button onClick={goError}>열람기업</button>
+          <button onClick={goError}>스크랩</button>
+          <button onClick={goError}>스마트매치</button>
         </div>
       </AfterLogInBox>
     </>
@@ -39,7 +48,8 @@ export default AfterLogInComponent;
 
 const AfterLogInBox = styled.div`
   width: 100%;
-  height: 100%;
+  height: 118px;
+
   text-align: center;
   background-color: #fafafa;
   border: 1px solid #dadada;
@@ -74,15 +84,16 @@ const AfterLogInBox = styled.div`
     justify-content: center;
     width: 100%;
     button {
-      text-align: center;
       border: 1px solid #dadada;
       background-color: #f2f2f2;
       color: #424242;
       font-size: 0.7em;
       cursor: pointer;
-      padding: 2em 0.71em;
+      padding: 8px 3px;
       display: flex;
       flex-wrap: wrap;
+      flex: 1;
+      justify-content: center;
     }
   }
   & .logOutBtn {
