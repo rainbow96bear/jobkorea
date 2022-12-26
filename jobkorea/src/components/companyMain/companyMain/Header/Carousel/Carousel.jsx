@@ -55,7 +55,7 @@ export default class VerticalMode extends Component {
 
 const CarouselBox = styled.div`
   font-size: 14px;
-  width: 90%;
+  width: 67%;
   margin: auto;
   span {
     font-weight: 700;
@@ -66,6 +66,9 @@ const CarouselBox = styled.div`
   }
 
   div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     cursor: pointer;
   }
 `;

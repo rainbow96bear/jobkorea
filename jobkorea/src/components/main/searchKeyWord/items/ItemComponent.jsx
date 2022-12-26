@@ -8,34 +8,29 @@ export default function ItemComponent({ data }) {
       {data.map((data) =>
         data.map((data2, index) => (
           <ItemBox key={`itembox-${index}`}>
-            <ItemFrame>
-              <CompanyName>{data2.CompanyName}</CompanyName>
-              <RecruitContentBox>
-                <ContentBox>
-                  <span>{data2.Name}</span>
-                  <Qualification>
-                    <div>{data2.Exp}</div>
-                    <div>{data2.Edu}</div>
-                    <div>{data2.Area}</div>
+            <CompanyName>{data2.CompanyName}</CompanyName>
+            <RecruitContentBox>
+              <span>{data2.Name}</span>
+              <Qualification>
+                <div>{data2.Exp}</div>
+                <div>{data2.Edu}</div>
+                <div>{data2.Area}</div>
 
-                    <div>{data2.Shape}</div>
-                    <div>{data2.Rank}</div>
-                  </Qualification>
+                <div>{data2.Shape}</div>
+                <div>{data2.Rank}</div>
+              </Qualification>
 
-                  <OtherPreferential>
-                    <div>{data2.Condition}</div>
-                    <div>{data2.Task}</div>
-                  </OtherPreferential>
-                </ContentBox>
-
-                <ApplyBtn
-                  onClick={() => {
-                    navigate("/recruit/" + data2.id);
-                  }}>
-                  상세 정보
-                </ApplyBtn>
-              </RecruitContentBox>
-            </ItemFrame>
+              <OtherPreferential>
+                <div>{data2.Condition}</div>
+                <div>{data2.Task}</div>
+              </OtherPreferential>
+            </RecruitContentBox>
+            <ApplyBtn
+              onClick={() => {
+                navigate("/recruit/" + data2.id);
+              }}>
+              상세 정보
+            </ApplyBtn>
           </ItemBox>
         ))
       )}
@@ -49,46 +44,23 @@ const ItemBox = styled.div`
   border: 1px solid #dfdfdf;
   border-top: none;
 `;
-const ItemFrame = styled.div`
-  display: flex;
-  flex: 1;
-`;
+
 const CompanyName = styled.div`
-  flex: 2;
+  flex: 5;
   border-right: 1px solid #dfdfdf;
-  width: 200px;
 `;
 const RecruitContentBox = styled.div`
-  flex: 9;
+  width: 70%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding-left: 20px;
+  padding-left: 15px;
   flex-wrap: wrap;
   span {
+    width: 80%;
     font-weight: 900;
     padding-bottom: 20px;
   }
-`;
-
-const ContentBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 12;
-`;
-
-const Qualification = styled.div`
-  display: flex;
-  padding-bottom: 25px;
-  flex-wrap: wrap;
-  div {
-    font-size: small;
-    color: #777777;
-    padding-right: 15px;
-  }
-`;
-const OtherPreferential = styled.div`
-  font-size: small;
-  color: #888888;
 `;
 const ApplyBtn = styled.button`
   flex: 1;
@@ -98,4 +70,28 @@ const ApplyBtn = styled.button`
   border: none;
   padding: 10px 15px;
   border-radius: 10px;
+`;
+const Qualification = styled.div`
+  display: flex;
+  padding-bottom: 25px;
+  flex-wrap: wrap;
+  width: 80%;
+  div {
+    font-size: small;
+    color: #777777;
+    padding-right: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+`;
+const OtherPreferential = styled.div`
+  font-size: small;
+  color: #888888;
+  width: 80%;
+  div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 `;

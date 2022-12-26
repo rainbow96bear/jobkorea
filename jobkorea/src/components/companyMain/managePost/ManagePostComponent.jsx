@@ -5,16 +5,15 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
   console.log(inputData);
   const navigate = useNavigate();
   return (
-    <>
-      {inputData.map((data, index) => (
-        <ItemBox key={`itembox-${index}`}>
-          <ItemFrame>
+    <ManagePostComponentBox>
+      <ManagePostComponentFrame>
+        {inputData.map((data, index) => (
+          <ItemBox key={`itembox-${index}`}>
             <CompanyName>
               {data.CompanyName}
               <CompanyLogo>
                 <img
-                  src={`http://localhost:8080/uploads/${data.CompanyLogo}`}
-                ></img>
+                  src={`http://localhost:8080/uploads/${data.CompanyLogo}`}></img>
               </CompanyLogo>
             </CompanyName>
             <RecruitContentBox>
@@ -22,8 +21,7 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                 <span
                   onClick={() => {
                     navigate("/companymain/myPost/" + data.Id);
-                  }}
-                >
+                  }}>
                   {data.Name}
                 </span>
                 <Qualification>
@@ -57,70 +55,68 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                     <div>{data.Condition}</div>
                   )}
                 </OtherPreferential>
-                <TaskBox>
-                  <div>{data.Task}</div>
-                </TaskBox>
+                <TaskBox>{data.Task}</TaskBox>
               </ContentBox>
-              <EndBox>
-                <BtnBox>
-                  <RemoveBtn
-                    onClick={() => {
-                      removeRecruit(data.Id);
-                    }}
-                  >
-                    삭제
-                  </RemoveBtn>
-                </BtnBox>
-                <NumBox>
-                  {data.Num == -1 ? (
-                    <div>모집인원 제한없음</div>
-                  ) : (
-                    <div>모집인원 {data.Num}명</div>
-                  )}
-                </NumBox>
-              </EndBox>
             </RecruitContentBox>
-          </ItemFrame>
-        </ItemBox>
-      ))}
-    </>
+            <EndBox>
+              <RemoveBtn
+                onClick={() => {
+                  removeRecruit(data.Id);
+                }}>
+                삭제
+              </RemoveBtn>
+              <NumBox>
+                <div>모집인원</div>
+                {data.Num == -1 ? <div>제한없음</div> : <div>{data.Num}명</div>}
+              </NumBox>
+            </EndBox>
+          </ItemBox>
+        ))}
+      </ManagePostComponentFrame>
+    </ManagePostComponentBox>
   );
 }
-
+const ManagePostComponentBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+const ManagePostComponentFrame = styled.div`
+  width: 100%;
+  max-width: 1240px;
+`;
 const ItemBox = styled.div`
   display: flex;
   padding: 20px;
   border: 1px solid #dfdfdf;
-  width: 60%;
-  margin: auto;
-`;
-const ItemFrame = styled.div`
-  display: flex;
-  flex: 1;
-`;
-const CompanyName = styled.div`
-  flex: 2;
-  border-right: 1px solid #dfdfdf;
-  width: 10%;
-  font-size: 17px;
-  text-align: center;
-  padding-right: 20px;
+  border-top: none;
 `;
 
+const CompanyName = styled.div`
+  flex: 5;
+  border-right: 1px solid #dfdfdf;
+`;
+const RecruitContentBox = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  span {
+    width: 50%;
+    font-weight: 900;
+    padding-bottom: 20px;
+  }
+`;
+const EndBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+`;
 const CompanyLogo = styled.div`
   img {
     width: 100%;
     height: 120px;
-  }
-`;
-const RecruitContentBox = styled.div`
-  flex: 9;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 20px;
-  span {
-    font-weight: 900;
-    padding-bottom: 20px;
   }
 `;
 
@@ -131,8 +127,13 @@ const ContentBox = styled.div`
 
 const Qualification = styled.div`
   display: flex;
+  // flex-direction: column;
   padding-bottom: 25px;
+  width: 80%;
   div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     font-size: small;
     color: #777777;
     padding-right: 15px;
@@ -143,6 +144,12 @@ const OtherPreferential = styled.div`
   color: #888888;
   max-width: 800px;
   padding-bottom: 20px;
+  width: 80%;
+  div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 `;
 
 const RemoveBtn = styled.button`
@@ -152,9 +159,7 @@ const RemoveBtn = styled.button`
   border: none;
   padding: 10px 15px;
   cursor: pointer;
-`;
-const BtnBox = styled.div`
-  min-width: 110px;
+  min-width: 60px;
   text-align: center;
 `;
 
@@ -162,15 +167,10 @@ const TaskBox = styled.div`
   font-size: small;
   color: #777777;
   padding-right: 15px;
+  width: 80%;
 `;
 
 const NumBox = styled.div`
+  font-size: 12px;
   text-align: center;
-`;
-
-const EndBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 150px;
 `;

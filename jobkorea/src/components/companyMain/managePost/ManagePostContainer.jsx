@@ -62,15 +62,6 @@ export default function ManagePostContainer() {
   }, []);
 
   return (
-    <WrapBox>
-      <ManagePostComponent
-        inputData={inputData}
-        removeRecruit={removeRecruit}
-      />
-    </WrapBox>
+    <ManagePostComponent inputData={inputData} removeRecruit={removeRecruit} />
   );
 }
-
-const WrapBox = styled.div`
-  margin: 50px 0;
-`;
