@@ -17,10 +17,10 @@ const QuickMenuComponent = () => {
   const goError = () => {
     navigate("/errorpage");
   };
-  const midScreen = useMediaQuery({ minWidth: 730 });
+  // const midScreen = useMediaQuery({ minWidth: 730 });
 
   return (
-    <QuickMenuBox style={{ display: midScreen ? "block" : "none" }}>
+    <QuickMenuBox>
       <div className="QuickMenuRow1" onClick={goError}>
         <div className="job" onClick={goError}>
           <img src={jobImage} alt="" />

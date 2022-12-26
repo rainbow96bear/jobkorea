@@ -37,10 +37,7 @@ const BigCarouselComponent = () => {
   return (
     <>
       <BigCarouselBox>
-        <div
-          className="carousel"
-          style={midScreen ? { width: "100%" } : { width: "110%" }}
-        >
+        <div className="carousel">
           <Slider {...settings}>
             <img src={banner1} alt="" className="banner" onClick={goError} />
             <img src={banner2} alt="" className="banner" onClick={goError} />
@@ -62,7 +59,8 @@ const BigCarouselComponent = () => {
 export default BigCarouselComponent;
 
 const BigCarouselBox = styled.div`
-  width: 60%;
+  width: 100%;
+  height: 100%;
   background-color: #e8ecef;
   cursor: pointer;
   & .banner {

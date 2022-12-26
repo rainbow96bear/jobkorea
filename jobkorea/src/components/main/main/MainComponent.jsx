@@ -11,7 +11,7 @@ import FirstVVIPContainer from "./FirstVVIP/FirstVVIPContainer";
 import VVIPContainer from "./VVIP/VVIPContainer";
 import styled from "styled-components";
 import { useState } from "react";
-// import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 
 export default function MainComponent({
   test,
@@ -20,34 +20,51 @@ export default function MainComponent({
   setIndividualId,
 }) {
   const [individualPw, setIndividualPw] = useState("");
-  // const midScreen = useMediaQuery({ minWidth: 653 });
+  const midScreen = useMediaQuery({ minWidth: 820 });
+  // const smallScreen = useMediaQuery({ minWidth: 660 });
 
   return (
     <MainBox>
       <MainFirstItem>
-        <div className="firstRow">
-          <BigCarouselContainer></BigCarouselContainer>
-          <SmallCarouselContainer></SmallCarouselContainer>
-          {test ? (
-            <AfterLogInContainer
-              setTest={setTest}
-              individualId={individualId}
-            />
-          ) : (
-            <BeforeLogInContainer
-              setTest={setTest}
-              individualId={individualId}
-              individualPw={individualPw}
-              setIndividualId={setIndividualId}
-              setIndividualPw={setIndividualPw}
-            />
-          )}
+        <div className={midScreen ? "firstRow" : "firstRowcol"}>
+          <Box1>
+            <BigCarouselContainer></BigCarouselContainer>
+          </Box1>
+          <Column>
+            <Box2>
+              <SmallCarouselContainer></SmallCarouselContainer>
+            </Box2>
+            <Box3>
+              {test ? (
+                <AfterLogInContainer
+                  setTest={setTest}
+                  individualId={individualId}
+                />
+              ) : (
+                <BeforeLogInContainer
+                  setTest={setTest}
+                  individualId={individualId}
+                  individualPw={individualPw}
+                  setIndividualId={setIndividualId}
+                  setIndividualPw={setIndividualPw}
+                />
+              )}
+            </Box3>
+          </Column>
         </div>
-        <div className="secondRow">
-          <OpenRecruitContainer></OpenRecruitContainer>
 
-          <RankingContainer></RankingContainer>
-          <QuickMenuContainer></QuickMenuContainer>
+        <div className={midScreen ? "firstRow" : "firstRowcol"}>
+          <Box1>
+            <OpenRecruitContainer></OpenRecruitContainer>
+          </Box1>
+          <Column>
+            <Box2>
+              <RankingContainer></RankingContainer>
+            </Box2>
+            <Box3>
+              <QuickMenuContainer></QuickMenuContainer>
+            </Box3>
+          </Column>
         </div>
       </MainFirstItem>
       <MainSecondItem>
@@ -78,11 +95,35 @@ const MainBox = styled.div`
     justify-content: center;
     margin: 10px 0 0 0;
   }
-  & .secondRow {
+  & .firstRowcol {
     display: flex;
-    justify-content: space-between;
-    margin: 6px 0 0 0;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px 0 0 0;
   }
+`;
+
+const Box1 = styled.div`
+  background-color: tomato;
+  flex: 3;
+  width: 60%;
+`;
+
+const Column = styled.div`
+  display: flex;
+  width: 40%;
+`;
+
+const Box2 = styled.div`
+  background-color: pink;
+  flex: 1;
+  width: 20%;
+`;
+
+const Box3 = styled.div`
+  background-color: skyblue;
+  flex: 1;
+  width: 20%;
 `;
 
 const MainFirstItem = styled.div`

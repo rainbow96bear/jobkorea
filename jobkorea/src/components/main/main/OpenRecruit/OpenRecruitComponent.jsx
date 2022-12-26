@@ -22,6 +22,7 @@ const OpenRecruitComponent = () => {
   };
   const smallScreen = useMediaQuery({ minWidth: 920 });
   const XsmallScreen = useMediaQuery({ minWidth: 580 });
+  const XsmallScreen2 = useMediaQuery({ minWidth: 530 });
 
   return (
     <ItemBox>
@@ -41,9 +42,11 @@ const OpenRecruitComponent = () => {
             전문채용관
           </div>
 
-          <div className="boxTitle5" onClick={goError}>
-            합격스펙
-          </div>
+          {XsmallScreen2 && (
+            <div className="boxTitle5" onClick={goError}>
+              합격스펙
+            </div>
+          )}
           {smallScreen && (
             <>
               <div className="boxTitle6" onClick={goError}>
@@ -79,7 +82,7 @@ const OpenRecruitComponent = () => {
       <RecruitNewsBox>
         <div
           className="RecruitDiv1"
-          style={XsmallScreen ? { fontSize: "9px" } : { fontSize: "12px" }}
+          style={XsmallScreen ? { fontSize: "12px" } : { fontSize: "9px" }}
         >
           <div onClick={goError}>
             <img src={recruitLogo1} alt="" />각 부분 신입/경력 채용
@@ -133,9 +136,11 @@ const OpenRecruitComponent = () => {
           <div className="livenews" onClick={goError}>
             #Live공채소식{" "}
           </div>
-          <div className="expecteddays" onClick={goError}>
-            #공채예상일정{" "}
-          </div>
+          {XsmallScreen2 && (
+            <div className="expecteddays" onClick={goError}>
+              #공채예상일정{" "}
+            </div>
+          )}
           {XsmallScreen && (
             <div className="top100" onClick={goError}>
               #TOP100
@@ -269,7 +274,6 @@ const RecruitNewsBox = styled.div`
       border-top: 1px solid #dadada;
       border-right: 1px solid #dadada9e;
       border-bottom: 1px solid #dadada9e;
-      font-size: 12px;
       font-weight: 500;
       text-align: center;
       background-color: white;

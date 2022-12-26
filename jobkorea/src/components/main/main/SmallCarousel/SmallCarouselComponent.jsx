@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -27,27 +27,23 @@ const SmallCarouselComponent = () => {
   const goError = () => {
     navigate("/errorpage");
   };
-  const midScreen = useMediaQuery({ minWidth: 900 });
+  // const midScreen = useMediaQuery({ minWidth: 900 });
 
   return (
     <SmallCarouselBox>
-      {midScreen && (
-        <>
-          <div className="carousel">
-            <Slider {...settings}>
-              <img src={banner1} alt="" onClick={goError} />
+      <div className="carousel">
+        <Slider {...settings}>
+          <img src={banner1} alt="" onClick={goError} />
 
-              <img src={banner2} alt="" onClick={goError} />
+          <img src={banner2} alt="" onClick={goError} />
 
-              <img src={banner3} alt="" onClick={goError} />
+          <img src={banner3} alt="" onClick={goError} />
 
-              <img src={banner4} alt="" onClick={goError} />
+          <img src={banner4} alt="" onClick={goError} />
 
-              <img src={banner5} alt="" onClick={goError} />
-            </Slider>
-          </div>
-        </>
-      )}
+          <img src={banner5} alt="" onClick={goError} />
+        </Slider>
+      </div>
     </SmallCarouselBox>
   );
 };
@@ -55,7 +51,8 @@ const SmallCarouselComponent = () => {
 export default SmallCarouselComponent;
 
 const SmallCarouselBox = styled.div`
-  width: 20%;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
   background-color: #e8ecef;
 

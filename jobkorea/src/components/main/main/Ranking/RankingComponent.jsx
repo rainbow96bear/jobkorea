@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
 const RankingComponent = ({ inputData }) => {
+  const smallScreen = useMediaQuery({ minWidth: 542 });
+
   return (
     <RankingBox>
       <div className="rankingDiv1">
@@ -28,14 +31,11 @@ const RankingBox = styled.div`
   flex: 1;
   background-color: white;
   border: 1px solid #dadada;
-
-  & div {
-    padding: 5px 0;
-  }
   & .rankingDiv1 {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    padding: 3%;
     border-bottom: 1px solid #dadada;
   }
   & .rankingTitle {
@@ -49,7 +49,7 @@ const RankingBox = styled.div`
     padding: 1px 2px;
   }
   & .ranking1 {
-    padding-top: 1px;
+    padding-top: 15px;
     text-align: center;
     font-size: 0.7rem;
     cursor: pointer;

@@ -64,7 +64,7 @@ export default AfterLogInComponent;
 
 const AfterLogInBox = styled.div`
   width: 100%;
-  height: 120px;
+  height: 100%;
 
   text-align: center;
   background-color: #fafafa;
