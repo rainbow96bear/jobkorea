@@ -16,8 +16,8 @@ module.exports = class Companyuser_Info extends Sequelize.Model {
         companyHeader: {
           type: Sequelize.STRING(255),
         },
-        companyAdress: {
-          type: Sequelize.STRING(255),
+        companyAddress: {
+          type: Sequelize.TEXT,
         },
         companyId: {
           type: Sequelize.STRING(255),

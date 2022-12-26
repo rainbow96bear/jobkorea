@@ -2,10 +2,14 @@ import axios from "axios";
 import ApplyComponent from "./ApplyComponent";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 export default function ApplyContainer() {
   const [application, setApplication] = useState([]);
   const navigate = useNavigate();
+  const firstScreen = useMediaQuery({ minWidth: 1200 });
+  const midScreen = useMediaQuery({ minWidth: 500 });
+  const [reload, setReload] = useState(true);
   useEffect(() => {
     try {
       axios
@@ -32,10 +36,20 @@ export default function ApplyContainer() {
             // setApplication(data);
           }
         });
+
+      console.log(reload);
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [reload]);
 
-  return <ApplyComponent application={application}></ApplyComponent>;
+  return (
+    <ApplyComponent
+      application={application}
+      firstScreen={firstScreen}
+      midScreen={midScreen}
+      setReload={setReload}
+      reload={reload}
+    ></ApplyComponent>
+  );
 }

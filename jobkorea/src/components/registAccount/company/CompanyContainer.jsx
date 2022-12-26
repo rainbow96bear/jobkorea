@@ -3,17 +3,37 @@ import { useMediaQuery } from "react-responsive";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function CompanyContainer() {
   const navigate = useNavigate();
   const midScreen = useMediaQuery({ minWidth: 600 });
+  const [openPostcode, setOpenPostcode] = useState(false);
+  const [companyAddress, setCompanyAddress] = useState("");
+
+  const handle = {
+    // 버튼 클릭 이벤트
+    clickButton: () => {
+      setOpenPostcode((current) => !current);
+    },
+
+    // 주소 선택 이벤트
+    selectAddress: (data) => {
+      setCompanyAddress(data.address);
+      console.log(`
+                주소: ${data.address},
+                우편번호: ${data.zonecode}
+            `);
+      setOpenPostcode(false);
+    },
+  };
 
   const onClick = async (
     selectedOption,
     companyNumber,
     companyName,
     companyHeader,
-    companyAdress,
+    companyAddress,
     companyId,
     companyPw,
     companyIdname,
@@ -27,7 +47,7 @@ export default function CompanyContainer() {
     formData.append("companyNumber", companyNumber);
     formData.append("companyName", companyName);
     formData.append("companyHeader", companyHeader);
-    formData.append("companyAdress", companyAdress);
+    formData.append("companyAddress", companyAddress);
     formData.append("companyId", companyId);
     formData.append("companyPw", companyPw);
     formData.append("companyIdname", companyIdname);
@@ -50,5 +70,13 @@ export default function CompanyContainer() {
     }
   };
 
-  return <CompanyComponent onClick={onClick} midScreen={midScreen} />;
+  return (
+    <CompanyComponent
+      onClick={onClick}
+      midScreen={midScreen}
+      handle={handle}
+      companyAddress={companyAddress}
+      openPostcode={openPostcode}
+    />
+  );
 }

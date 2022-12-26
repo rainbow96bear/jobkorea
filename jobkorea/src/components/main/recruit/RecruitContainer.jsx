@@ -9,6 +9,9 @@ export default function RecruitContainer() {
   const navigate = useNavigate();
   const [recruitInfo, SetrecruitInfo] = useState([]);
   const params = useParams();
+  const firstScreen = useMediaQuery({ minWidth: 1200 });
+  // const secondScreen = useMediaQuery({ maxWidth: 1200 });
+
   const midScreen = useMediaQuery({ maxWidth: 800 });
   const bottomScreen = useMediaQuery({ maxWidth: 600 });
 
@@ -113,6 +116,7 @@ export default function RecruitContainer() {
       recruitInfo={recruitInfo}
       applybutton={applybutton}
       applycanclebutton={applycanclebutton}
+      firstScreen={firstScreen}
       midScreen={midScreen}
       bottomScreen={bottomScreen}
     ></RecruitComponent>
