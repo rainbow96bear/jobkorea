@@ -11,16 +11,16 @@ import FirstVVIPContainer from "./FirstVVIP/FirstVVIPContainer";
 import VVIPContainer from "./VVIP/VVIPContainer";
 import styled from "styled-components";
 import { useState } from "react";
+// import { useMediaQuery } from "react-responsive";
 
 export default function MainComponent({
-  smallScreen,
-  midScreen,
   test,
   setTest,
   individualId,
   setIndividualId,
 }) {
   const [individualPw, setIndividualPw] = useState("");
+  // const midScreen = useMediaQuery({ minWidth: 653 });
 
   return (
     <MainBox>
@@ -32,7 +32,6 @@ export default function MainComponent({
             <AfterLogInContainer
               setTest={setTest}
               individualId={individualId}
-              smallScreen={smallScreen}
             />
           ) : (
             <BeforeLogInContainer
@@ -41,12 +40,11 @@ export default function MainComponent({
               individualPw={individualPw}
               setIndividualId={setIndividualId}
               setIndividualPw={setIndividualPw}
-              smallScreen={smallScreen}
             />
           )}
         </div>
         <div className="secondRow">
-          <OpenRecruitContainer midScreen={midScreen}></OpenRecruitContainer>
+          <OpenRecruitContainer></OpenRecruitContainer>
 
           <RankingContainer></RankingContainer>
           <QuickMenuContainer></QuickMenuContainer>
@@ -103,10 +101,10 @@ const MainSecondItem = styled.div`
   flex-wrap: wrap;
   padding-bottom: 50px;
   & > h3 {
-    width: 60%;
+    width: 100%;
   }
   > div {
-    width: 60%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,10 +121,10 @@ const MainThirdItem = styled.div`
   flex-wrap: wrap;
   padding-bottom: 50px;
   & > h3 {
-    width: 60%;
+    width: 100%;
   }
   > div {
-    width: 60%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

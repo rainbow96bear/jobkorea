@@ -10,8 +10,6 @@ const RankingComponent = ({ inputData }) => {
         <span className="rankingTitle">최근 시작 공채</span>
         <span className="rankingIcon">
           <IoIosArrowBack style={{ cursor: "pointer" }} />
-          {/* </span>
-        <span className="rankingIconForward"> */}
           <IoIosArrowForward style={{ cursor: "pointer" }} />
         </span>
       </div>
@@ -51,9 +49,9 @@ const RankingBox = styled.div`
     padding: 1px 2px;
   }
   & .ranking1 {
-    padding-top: 0;
+    padding-top: 1px;
     text-align: center;
-    font-size: 13px;
+    font-size: 0.7rem;
     cursor: pointer;
   }
 `;

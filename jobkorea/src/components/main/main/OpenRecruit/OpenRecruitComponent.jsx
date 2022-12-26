@@ -21,6 +21,7 @@ const OpenRecruitComponent = () => {
     navigate("/errorpage");
   };
   const smallScreen = useMediaQuery({ minWidth: 920 });
+  const XsmallScreen = useMediaQuery({ minWidth: 580 });
 
   return (
     <ItemBox>
@@ -76,7 +77,10 @@ const OpenRecruitComponent = () => {
         </div>
       </OpenRecruitBox>
       <RecruitNewsBox>
-        <div className="RecruitDiv1">
+        <div
+          className="RecruitDiv1"
+          style={XsmallScreen ? { fontSize: "9px" } : { fontSize: "12px" }}
+        >
           <div onClick={goError}>
             <img src={recruitLogo1} alt="" />각 부분 신입/경력 채용
             <br />
@@ -115,9 +119,11 @@ const OpenRecruitComponent = () => {
         </div>
 
         <div className="RecruitDiv3">
-          <div className="bigtech" onClick={goError}>
-            #1000대기업 공채{" "}
-          </div>
+          {smallScreen && (
+            <div className="bigtech" onClick={goError}>
+              #1000대기업 공채{" "}
+            </div>
+          )}
           <div className="intern" onClick={goError}>
             #인턴채용{" "}
           </div>
@@ -130,9 +136,11 @@ const OpenRecruitComponent = () => {
           <div className="expecteddays" onClick={goError}>
             #공채예상일정{" "}
           </div>
-          <div className="top100" onClick={goError}>
-            #TOP100
-          </div>
+          {XsmallScreen && (
+            <div className="top100" onClick={goError}>
+              #TOP100
+            </div>
+          )}
         </div>
       </RecruitNewsBox>
     </ItemBox>

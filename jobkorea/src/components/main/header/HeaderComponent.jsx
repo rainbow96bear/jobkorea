@@ -27,7 +27,8 @@ export default function HeaderComponent({
           <HomeBtn
             onClick={() => {
               moveTo("");
-            }}>
+            }}
+          >
             JJOBKOREA
           </HomeBtn>
           <SearchItems>
@@ -36,17 +37,20 @@ export default function HeaderComponent({
                 onSubmit={(e) => {
                   e.preventDefault();
                   moveTo(`searchKeyWord/${keyWord}`);
-                }}>
+                }}
+              >
                 <input
                   type="text"
                   value={keyWord}
                   onChange={(e) => {
                     setKeyWord(e.target.value);
-                  }}></input>
+                  }}
+                ></input>
                 <div
                   onClick={() => {
                     moveTo(`searchKeyWord/${keyWord}`);
-                  }}>
+                  }}
+                >
                   <img src={searchImg} alt=""></img>
                 </div>
               </form>
@@ -54,7 +58,8 @@ export default function HeaderComponent({
             <DetailSearchBtn
               onClick={() => {
                 moveTo("searchdetail");
-              }}>
+              }}
+            >
               상세검색
             </DetailSearchBtn>
           </SearchItems>
@@ -86,8 +91,9 @@ export default function HeaderComponent({
               <div
                 className="colorText"
                 onClick={() => {
-                  moveTo("search");
-                }}>
+                  moveTo("searchdetail");
+                }}
+              >
                 채용정보
               </div>
               <div className="colorText">공채</div>
@@ -108,7 +114,8 @@ export default function HeaderComponent({
               className="border borderRight"
               onClick={() => {
                 moveTo("companymain");
-              }}>
+              }}
+            >
               기업 회원 홈
             </div>
           </RightFunc>

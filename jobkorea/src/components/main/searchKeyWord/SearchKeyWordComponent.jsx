@@ -20,7 +20,7 @@ const SearchBox = styled.div`
 const SearchFrame = styled.div`
   min-width: 360px;
   width: 100%;
-  max-width: 938px;
+  max-width: 1268px;
   margin: 20px 0;
   & > :nth-child(1) {
     border-top: 1px solid #dfdfdf;

@@ -34,10 +34,26 @@ const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
           <div className="modifiedDate">최종 수정일 (2022.07.18)</div>
         </div>
         <div className="afterLogInDiv3">
-          <button onClick={goApply}>지원현황</button>
-          <button onClick={goError}>열람기업</button>
-          <button onClick={goError}>스크랩</button>
-          <button onClick={goError}>스마트매치</button>
+          <button onClick={goApply}>
+            지원
+            <br />
+            현황
+          </button>
+          <button onClick={goError}>
+            열람
+            <br />
+            기업
+          </button>
+          <button onClick={goError}>
+            공고
+            <br />
+            스크랩
+          </button>
+          <button onClick={goError}>
+            스마트
+            <br />
+            매치
+          </button>
         </div>
       </AfterLogInBox>
     </>
@@ -48,7 +64,7 @@ export default AfterLogInComponent;
 
 const AfterLogInBox = styled.div`
   width: 100%;
-  height: 118px;
+  height: 120px;
 
   text-align: center;
   background-color: #fafafa;
@@ -82,12 +98,13 @@ const AfterLogInBox = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     width: 100%;
     button {
       border: 1px solid #dadada;
       background-color: #f2f2f2;
       color: #424242;
-      font-size: 0.7em;
+      font-size: 7px;
       cursor: pointer;
       padding: 8px 3px;
       display: flex;
@@ -99,7 +116,7 @@ const AfterLogInBox = styled.div`
   & .logOutBtn {
     background-color: #fafafa;
     border: 1px solid #dadada;
-    font-size: 12px;
+    font-size: 0.7rem;
     color: #424242;
     cursor: pointer;
   }
