@@ -28,112 +28,110 @@ const HeaderComponent = ({
   return (
     <>
       <HeaderBox>
-        <div className={miniScreen ? "" : "titleColumn"}>
-          <div
-            onClick={() => {
-              moveTo("");
-            }}
-            className="title"
-          >
-            JOBKOREA
-          </div>
+        <HeaderFrame>
+          <div className={miniScreen ? "" : "titleColumn"}>
+            <div
+              onClick={() => {
+                moveTo("");
+              }}
+              className="title">
+              JOBKOREA
+            </div>
 
-          <div className="topMenu">
-            {companyUser === 0 ? (
-              <div
-                onClick={() => {
-                  moveTo("registAccount/company");
-                }}
-              >
-                회원가입
-              </div>
-            ) : (
-              <div
-                onClick={() => {
-                  moveTo("companymain/mypage");
-                }}
-              >
-                마이페이지
-              </div>
-            )}
-
-            <div>고객센터</div>
-            <div>
+            <div className="topMenu">
               {companyUser === 0 ? (
-                <div onClick={loginOnClick}>로그인</div>
+                <div
+                  onClick={() => {
+                    moveTo("registAccount/company");
+                  }}>
+                  회원가입
+                </div>
               ) : (
                 <div
-                  onClick={async () => {
-                    dispatch(action.logoutCompany());
-                    // setLoginIsClick(false);
-                    const data = await axios.post(
-                      "http://localhost:8080/api/companyuser/logout",
-                      {}
-                    );
-                    console.log(data);
-                    navigate("/companymain");
-                  }}
-                >
-                  로그아웃
+                  onClick={() => {
+                    moveTo("companymain/mypage");
+                  }}>
+                  마이페이지
                 </div>
               )}
+
+              <div>고객센터</div>
+              <div>
+                {companyUser === 0 ? (
+                  <div onClick={loginOnClick}>로그인</div>
+                ) : (
+                  <div
+                    onClick={async () => {
+                      dispatch(action.logoutCompany());
+                      // setLoginIsClick(false);
+                      const data = await axios.post(
+                        "http://localhost:8080/api/companyuser/logout",
+                        {}
+                      );
+                      console.log(data);
+                      navigate("/companymain");
+                    }}>
+                    로그아웃
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        <div>
           <div>
-            {miniScreen && (
+            <div>
+              {miniScreen && (
+                <div>
+                  <img src="/img/3bar.svg" onClick={dropdownOnClick} />
+                </div>
+              )}
+              {(smallScreen ? menuList : menuList.slice(0, 3)).map(
+                (item, index) => {
+                  return (
+                    <div
+                      key={`item-${index}`}
+                      onMouseEnter={() => {
+                        setHeaderMenuIsOver(index);
+                      }}
+                      onMouseLeave={() => setHeaderMenuIsOver(-1)}
+                      onClick={async () => {
+                        if (item.data === "yes") {
+                          const data = await axios.post(
+                            "http://localhost:8080/api/recruit/isdata"
+                          );
+                          console.log(data.data.isdata);
+                          if (data.data.isdata === "false") {
+                            return alert(
+                              "등록한 공고가 없습니다. 먼저 공고를 등록해주세요."
+                            );
+                          }
+                        }
+
+                        if (item.login === "yes" && !document.cookie) {
+                          alert("로그인 해주세요");
+                          moveTo("companymain");
+                        } else if (item.routes)
+                          moveTo(`companymain/${item.routes}`);
+                        else moveTo("companymain");
+                      }}
+                      className={miniScreen ? "" : "smallerFont"}>
+                      {item.title}
+                      <div
+                        className={
+                          headerMenuIsOver === `${index}` ? "hover" : ""
+                        }></div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+            {midScreen && (
               <div>
-                <img src="/img/3bar.svg" onClick={dropdownOnClick} />
+                <div>기업라운지</div>
+                <div>서비스안내</div>
               </div>
             )}
-            {(smallScreen ? menuList : menuList.slice(0, 3)).map(
-              (item, index) => {
-                return (
-                  <div
-                    key={`item-${index}`}
-                    onMouseEnter={() => {
-                      setHeaderMenuIsOver(index);
-                    }}
-                    onMouseLeave={() => setHeaderMenuIsOver(-1)}
-                    onClick={async () => {
-                      if (item.data === "yes") {
-                        const data = await axios.post(
-                          "http://localhost:8080/api/recruit/isdata"
-                        );
-                        console.log(data.data.isdata);
-                        if (data.data.isdata === "false") {
-                          return alert(
-                            "등록한 공고가 없습니다. 먼저 공고를 등록해주세요."
-                          );
-                        }
-                      }
-
-                      if (item.login === "yes" && !document.cookie) {
-                        alert("로그인 해주세요");
-                        moveTo("companymain");
-                      } else if (item.routes)
-                        moveTo(`companymain/${item.routes}`);
-                      else moveTo("companymain");
-                    }}
-                    className={miniScreen ? "" : "smallerFont"}
-                  >
-                    {item.title}
-                    <div
-                      className={headerMenuIsOver === `${index}` ? "hover" : ""}
-                    ></div>
-                  </div>
-                );
-              }
-            )}
           </div>
-          {midScreen && (
-            <div>
-              <div>기업라운지</div>
-              <div>서비스안내</div>
-            </div>
-          )}
-        </div>
+        </HeaderFrame>
       </HeaderBox>
       {dropdownIsClick ? <DropdownContainer></DropdownContainer> : <></>}
       <LowHeaderBox>
@@ -142,15 +140,20 @@ const HeaderComponent = ({
     </>
   );
 };
-
 const HeaderBox = styled.div`
+  width: 100%;
   height: 25%;
   background-color: #323743;
-
+  display: flex;
+  justify-content: center;
+`;
+const HeaderFrame = styled.div`
+  width: 100%;
+  max-width: 1240px;
   & > div {
     color: white;
     margin: auto;
-    width: 65%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 12px;
@@ -237,6 +240,7 @@ const HeaderBox = styled.div`
 `;
 
 const LowHeaderBox = styled.div`
+  width: 100%;
   height: 52px;
   overflow: hidden;
   border-bottom: 1px solid gray;
