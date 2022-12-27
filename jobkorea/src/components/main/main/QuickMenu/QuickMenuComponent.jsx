@@ -75,7 +75,7 @@ const QuickMenuBox = styled.div`
   background-color: white;
   border: 1px solid #dadada;
   text-align: center;
-
+  // height: 272px;
   & .QuickMenuRow1 {
     display: flex;
     flex-direction: row;

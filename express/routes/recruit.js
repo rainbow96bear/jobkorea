@@ -337,6 +337,24 @@ router.post("/firstvvip", async (req, res) => {
   }
 });
 
+router.post("/random", async (req, res) => {
+  try {
+    const rowData = await Recruit.findAll({
+      order: Sequelize.fn("RAND"),
+      limit: 8,
+      include: [
+        {
+          model: db.Companyuser_Info,
+          attributes: ["companylogo", "companyName"],
+        },
+      ],
+    });
+    res.send(rowData);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 router.post("/ranking", async (req, res) => {
   try {
     const rowData = await Recruit.findAll({

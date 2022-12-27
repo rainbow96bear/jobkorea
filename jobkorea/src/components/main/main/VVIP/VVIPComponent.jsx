@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const VVIPComponent = ({ inputData }) => {
+const VVIPComponent = ({ inputData, moveTo }) => {
   return (
     <>
       {inputData.map((data) =>
         data.map((data2, index) => (
-          <GroupItemBox key={`groupItemBox-${index}`}>
+          <GroupItemBox
+            key={`groupItemBox-${index}`}
+            onClick={() => {
+              moveTo(`recruit/${data2.id}`);
+            }}>
             <div>
               <img
                 src={`http://localhost:8080/uploads/${data2.companylogo}`}

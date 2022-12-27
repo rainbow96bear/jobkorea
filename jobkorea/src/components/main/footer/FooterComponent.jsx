@@ -122,6 +122,7 @@ const SecondLine = styled.div`
   display: flex;
   justify-content: center;
   margin: 10px 0;
+  font-size: small;
   div {
     padding: 2px 15px;
   }

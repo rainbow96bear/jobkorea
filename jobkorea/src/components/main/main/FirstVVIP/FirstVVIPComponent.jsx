@@ -7,12 +7,16 @@ import styled from "styled-components";
 // useReducer : 컴포넌트의 state를 변경하고 싶으면 reducer 사용. 요구하는 행위가 dispatch. 요구하는 내용이 action.
 // action에 값을 담아 dispatch가 reducer에게 전달하고, 그 reducer가 상태(state) 변경.
 
-const FirstVVIPComponent = ({ inputData }) => {
+const FirstVVIPComponent = ({ inputData, moveTo }) => {
   return (
     <FirstVVIPComponentBox>
       {inputData.map((data) =>
         data.map((data2, index) => (
-          <GroupItemBox key={`groupItemBox-${index}`}>
+          <GroupItemBox
+            key={`groupItemBox-${index}`}
+            onClick={() => {
+              moveTo(`recruit/${data2.id}`);
+            }}>
             <div>
               <img
                 src={`http://localhost:8080/uploads/${data2.companylogo}`}

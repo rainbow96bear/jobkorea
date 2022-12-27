@@ -9,6 +9,9 @@ const RankingComponent = ({ inputData }) => {
   const goError = () => {
     navigate("/errorpage");
   };
+  const moveTo = (where) => {
+    navigate(`/${where}`);
+  };
 
   return (
     <RankingBox>
@@ -21,7 +24,13 @@ const RankingComponent = ({ inputData }) => {
       </div>
       {inputData.map((data, index) => (
         <div className="ranking1" key={`rankingBox-${index}`}>
-          <div onClick={goError}>{data.CompanyName}</div>
+          <div
+            className="textSimple"
+            onClick={() => {
+              moveTo(`recruit/${data.id}`);
+            }}>
+            {data.recruitName}
+          </div>
         </div>
       ))}
     </RankingBox>
@@ -42,7 +51,6 @@ const RankingBox = styled.div`
     border-bottom: 1px solid #dadada;
   }
   & .rankingTitle {
-    font-size: 0.7rem;
     font-weight: 600;
     text-align: center;
     padding: 6.5px 0;
@@ -55,7 +63,12 @@ const RankingBox = styled.div`
   & .ranking1 {
     padding-top: 15px;
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 13px;
     cursor: pointer;
+  }
+  & .textSimple {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 `;
