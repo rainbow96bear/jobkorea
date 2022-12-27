@@ -335,6 +335,6 @@ const MordalBox = styled.div`
 
   .changepw {
     width: 300px;
-    height: 6vh;
+    height: 3vh;
   }
 `;
