@@ -159,7 +159,7 @@ const HeaderFrame = styled.div`
   & > div {
     color: white;
     margin: auto;
-    width: 100%;
+    width: 100% - 12px;
     display: flex;
     justify-content: space-between;
     padding: 12px;

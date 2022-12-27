@@ -47,8 +47,13 @@ export default function RecruitModalComponent({
                   <div>모집 인원 : {item.recruitNum}명</div>
                 </>
               )}
-
-              <div>D-day : {day[index]}</div>
+              {day[index] == 0 ? (
+                <div>오늘 마감</div>
+              ) : day[index] > 0 ? (
+                <div>D-{day[index]}</div>
+              ) : (
+                <div>모집 마감된 공고</div>
+              )}
             </OneBox>
           ))}
         </InfoBox>
