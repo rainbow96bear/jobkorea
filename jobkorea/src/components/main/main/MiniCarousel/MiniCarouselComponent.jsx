@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -26,30 +27,34 @@ const MiniCarouselComponent = () => {
     loop: true,
     arrows: false,
   };
+  const navigate = useNavigate();
+  const goError = () => {
+    navigate("/errorpage");
+  };
 
   return (
     <MiniCarouselBox>
       <div className="carousel">
         <Slider {...settings}>
-          <img src={banner1} alt="" />
+          <img src={banner1} alt="" onClick={goError} />
 
-          <img src={banner2} alt="" />
+          <img src={banner2} alt="" onClick={goError} />
 
-          <img src={banner3} alt="" />
+          <img src={banner3} alt="" onClick={goError} />
 
-          <img src={banner4} alt="" />
+          <img src={banner4} alt="" onClick={goError} />
 
-          <img src={banner5} alt="" />
+          <img src={banner5} alt="" onClick={goError} />
 
-          <img src={banner6} alt="" />
+          <img src={banner6} alt="" onClick={goError} />
 
-          <img src={banner7} alt="" />
+          <img src={banner7} alt="" onClick={goError} />
 
-          <img src={banner8} alt="" />
+          <img src={banner8} alt="" onClick={goError} />
 
-          <img src={banner9} alt="" />
+          <img src={banner9} alt="" onClick={goError} />
 
-          <img src={banner10} alt="" />
+          <img src={banner10} alt="" onClick={goError} />
         </Slider>
       </div>
     </MiniCarouselBox>
@@ -59,9 +64,6 @@ const MiniCarouselComponent = () => {
 export default MiniCarouselComponent;
 
 const MiniCarouselBox = styled.div`
-  width: 100%;
-  height: 78px;
-  margin-top: 8px;
-  padding-right: 8px;
+  margin-top: 2px;
   cursor: pointer;
 `;

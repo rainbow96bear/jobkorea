@@ -2,8 +2,8 @@ import BeforeLogInContainer from "./BeforeLogIn/BeforeLogInContainer";
 import AfterLogInContainer from "./AfterLogIn/AfterLogInContainer";
 import BigCarouselContainer from "../main/BigCarousel/BigCarouselContainer";
 import SmallCarouselContainer from "./SmallCarousel/SmallCarouselContainer";
-// import MiniCarouselContainer from "./MiniCarousel/MiniCarouselContainer";
-// import NoticeCarouselContainer from "./NoticeCarousel/NoticeCarouselContainer";
+import MiniCarouselContainer from "./MiniCarousel/MiniCarouselContainer";
+import NoticeCarouselContainer from "./NoticeCarousel/NoticeCarouselContainer";
 import OpenRecruitContainer from "./OpenRecruit/OpenRecruitContainer";
 import RankingContainer from "./Ranking/RankingContainer";
 import QuickMenuContainer from "./QuickMenu/QuickMenuContainer";
@@ -27,14 +27,14 @@ export default function MainComponent({
     <MainBox>
       <MainFirstItem>
         <div className={midScreen ? "firstRow" : "firstRowcol"}>
-          <Box1>
+          <Box1 style={midScreen ? { width: "60%" } : { width: "100%" }}>
             <BigCarouselContainer></BigCarouselContainer>
           </Box1>
-          <Column>
-            <Box2>
+          <Column style={midScreen ? { width: "40%" } : { width: "50%" }}>
+            <Box2 style={midScreen ? { width: "20%" } : { width: "100%" }}>
               <SmallCarouselContainer></SmallCarouselContainer>
             </Box2>
-            <Box3>
+            <Box3 style={midScreen ? { width: "20%" } : { width: "100%" }}>
               {test ? (
                 <AfterLogInContainer
                   setTest={setTest}
@@ -54,15 +54,17 @@ export default function MainComponent({
         </div>
 
         <div className={midScreen ? "firstRow" : "firstRowcol"}>
-          <Box1>
+          <Box1 style={midScreen ? { width: "60%" } : { width: "100%" }}>
             <OpenRecruitContainer></OpenRecruitContainer>
           </Box1>
-          <Column>
-            <Box2>
+          <Column style={midScreen ? { width: "40%" } : { width: "100%" }}>
+            <Box2 style={midScreen ? { width: "20%" } : { width: "40%" }}>
               <RankingContainer></RankingContainer>
             </Box2>
-            <Box3>
+            <Box3 style={midScreen ? { width: "20%" } : { width: "40%" }}>
               <QuickMenuContainer></QuickMenuContainer>
+              <NoticeCarouselContainer></NoticeCarouselContainer>
+              <MiniCarouselContainer></MiniCarouselContainer>
             </Box3>
           </Column>
         </div>
@@ -93,20 +95,19 @@ const MainBox = styled.div`
   & .firstRow {
     display: flex;
     justify-content: center;
-    margin: 10px 0 0 0;
   }
   & .firstRowcol {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 10px 0 0 0;
   }
 `;
 
 const Box1 = styled.div`
-  background-color: tomato;
+  background-color: pink;
   flex: 3;
   width: 60%;
+  height: auto;
 `;
 
 const Column = styled.div`
@@ -121,7 +122,7 @@ const Box2 = styled.div`
 `;
 
 const Box3 = styled.div`
-  background-color: skyblue;
+  background-color: #e8ecef;
   flex: 1;
   width: 20%;
 `;
@@ -141,6 +142,7 @@ const MainSecondItem = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   padding-bottom: 50px;
+  margin-top: 10px;
   & > h3 {
     width: 100%;
   }

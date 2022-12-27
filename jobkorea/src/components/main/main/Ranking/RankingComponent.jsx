@@ -1,24 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
 const RankingComponent = ({ inputData }) => {
-  const smallScreen = useMediaQuery({ minWidth: 542 });
+  const navigate = useNavigate();
+  const goError = () => {
+    navigate("/errorpage");
+  };
 
   return (
     <RankingBox>
       <div className="rankingDiv1">
         <span className="rankingTitle">최근 시작 공채</span>
         <span className="rankingIcon">
-          <IoIosArrowBack style={{ cursor: "pointer" }} />
-          <IoIosArrowForward style={{ cursor: "pointer" }} />
+          <IoIosArrowBack style={{ cursor: "pointer" }} onClick={goError} />
+          <IoIosArrowForward style={{ cursor: "pointer" }} onClick={goError} />
         </span>
       </div>
       {inputData.map((data, index) => (
         <div className="ranking1" key={`rankingBox-${index}`}>
-          <div>{data.CompanyName}</div>
+          <div onClick={goError}>{data.CompanyName}</div>
         </div>
       ))}
     </RankingBox>
@@ -29,19 +32,20 @@ export default RankingComponent;
 
 const RankingBox = styled.div`
   flex: 1;
+  height: 99.5%;
   background-color: white;
   border: 1px solid #dadada;
   & .rankingDiv1 {
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
-    padding: 3%;
+    padding: 1%;
     border-bottom: 1px solid #dadada;
   }
   & .rankingTitle {
-    font-size: 13px;
+    font-size: 0.7rem;
     font-weight: 600;
-    text-align: left;
+    text-align: center;
+    padding: 6.5px 0;
   }
   & .rankingIcon {
     color: #c1c0c0;

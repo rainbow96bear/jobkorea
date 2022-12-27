@@ -159,12 +159,12 @@ const ItemBox = styled.div`
 `;
 
 const OpenRecruitBox = styled.div`
-  font-size: 14px;
+  font-size: 0.7rem;
   font-weight: 700;
   border: 1px solid #dadada;
   border-bottom: none;
   background-color: white;
-  padding-bottom: 4px;
+  padding: 2px 10px;
   & .boxTitle1 {
     color: ${COLOR};
     list-style: none;
@@ -216,20 +216,22 @@ const OpenRecruitBox = styled.div`
   }
   & .boxJrSrUl {
     display: flex;
-    flex: 1;
-    flex-direction: row;
+    /* flex-wrap: wrap; */
     width: 80px;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
   }
   & .boxJuniorTitle {
-    margin-left: 1px;
     list-style: none;
     float: right;
-    width: 40px;
-    padding: 6px 9px;
+    width: 100px;
+    height: 12px;
+    padding: 6px 3px;
+    margin-top: 5px;
+    text-align: center;
     border: 1px solid #dadada;
     color: #a1a0a0;
-    font-size: 11px;
+    font-size: 0.6rem;
     cursor: pointer;
     ${(props) =>
       props.juniorTitle
@@ -237,14 +239,16 @@ const OpenRecruitBox = styled.div`
         : ""}/* 삼항연산자로 CSS 상태 변경 */
   }
   & .boxSeniorTitle {
-    margin-right: -10px;
     list-style: none;
     float: right;
-    width: 40px;
-    padding: 6px 9px;
+    width: 100px;
+    height: 12px;
+    padding: 6px 3px;
+    margin-top: 5px;
+    text-align: center;
     border: 1px solid #dadada;
     color: #a1a0a0;
-    font-size: 11px;
+    font-size: 0.6rem;
     cursor: pointer;
     ${(props) =>
       props.juniorTitle ? "" : `background-color:${COLOR}; color: white`}
@@ -277,7 +281,7 @@ const RecruitNewsBox = styled.div`
       font-weight: 500;
       text-align: center;
       background-color: white;
-      padding: 15px 0;
+      padding: 21px 0;
       &:last-child {
         border-right: none;
       }
@@ -297,7 +301,7 @@ const RecruitNewsBox = styled.div`
       border-right: 1px solid #dadada9e;
       text-align: center;
       background-color: white;
-      padding: 15px 0;
+      padding: 21px 0;
       &:last-child {
         border-right: none;
       }

@@ -50,7 +50,8 @@ const IndividualComponent = ({
               className={smallScreen ? "" : "RegistSmall"}
               onClick={() => {
                 navigate("/registAccount/company");
-              }}>
+              }}
+            >
               기업회원
             </CompanyRegist>
           </WhoRegist>
@@ -229,7 +230,8 @@ const IndividualComponent = ({
             } else if (pwCheck) {
               alert("비밀번호를 확인하세요.");
             }
-          }}>
+          }}
+        >
           가입하기
         </MemberRegistBtn>
       </IndividualRegistFrame>
@@ -241,7 +243,7 @@ export default IndividualComponent;
 
 const IndividualRegistBox = styled.div`
   width: 100%;
-  height: 900px; // 모바일 때 1350px로
+  height: 900px;
   background-color: aliceblue;
   display: flex;
   flex-direction: column;

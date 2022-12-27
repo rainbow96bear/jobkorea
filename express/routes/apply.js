@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const crypto = require("crypto-js");
+const jwt = require("jsonwebtoken");
 
 const {
   Recruit,
@@ -6,8 +8,6 @@ const {
   Companyuser_Info,
   PersonalRecruit,
 } = require("../models/index.js");
-
-const jwt = require("jsonwebtoken");
 
 router.post("/jobApplication", async (req, res) => {
   // try {
