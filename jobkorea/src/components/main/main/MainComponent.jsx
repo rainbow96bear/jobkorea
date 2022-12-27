@@ -12,6 +12,7 @@ import VVIPContainer from "./VVIP/VVIPContainer";
 import styled from "styled-components";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import LoginMordalContainer from "./individualModal/Container";
 
 export default function MainComponent({
   test,
@@ -21,10 +22,18 @@ export default function MainComponent({
 }) {
   const [individualPw, setIndividualPw] = useState("");
   const midScreen = useMediaQuery({ minWidth: 820 });
+  const [isClick, setIsClick] = useState(false);
+
   // const smallScreen = useMediaQuery({ minWidth: 660 });
 
   return (
     <MainBox>
+      {isClick ? (
+        <LoginMordalContainer setIsClick={setIsClick}></LoginMordalContainer>
+      ) : (
+        <></>
+      )}
+      {/* 찾기 클릭 했냐 ? <찾기모달>:<></> */}
       <MainFirstItem>
         <div className={midScreen ? "firstRow" : "firstRowcol"}>
           <Box1>
@@ -47,6 +56,7 @@ export default function MainComponent({
                   individualPw={individualPw}
                   setIndividualId={setIndividualId}
                   setIndividualPw={setIndividualPw}
+                  setIsClick={setIsClick}
                 />
               )}
             </Box3>

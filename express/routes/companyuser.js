@@ -224,4 +224,10 @@ router.post("/addmoney", async (req, res) => {
     res.send("돈이 내려와");
   });
 });
+
+router.post("/idconfirm", async (req, res) => {
+  console.log(req.body);
+
+  res.end();
+});
 module.exports = router;
