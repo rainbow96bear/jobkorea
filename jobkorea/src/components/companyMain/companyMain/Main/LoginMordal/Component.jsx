@@ -15,7 +15,7 @@ const MordalComponent = ({ loginOnClick, moveTo, onClick }) => {
       </div>
       <div className="flex">
         <div>
-          <div>
+          <div className="inputBox">
             <input
               onInput={(e) => {
                 setIdconfirm(e.target.value);
@@ -24,7 +24,7 @@ const MordalComponent = ({ loginOnClick, moveTo, onClick }) => {
               placeholder={"아이디"}
             />
           </div>
-          <div>
+          <div className="inputBox">
             <input
               onInput={(e) => {
                 setPwconfirm(e.target.value);
@@ -74,6 +74,10 @@ const MordalBox = styled.div`
   border: 3px solid #565d79;
   background-color: white;
 
+  @media (max-width: 650px) {
+    width: 80%;
+  }
+
   img {
     width: 20px;
     cursor: pointer;
@@ -97,6 +101,11 @@ const MordalBox = styled.div`
     margin-left: 70px;
     text-align: center;
     cursor: pointer;
+
+    @media (max-width: 650px) {
+      width: 60%;
+      margin: auto;
+    }
   }
 
   .login {
@@ -111,6 +120,11 @@ const MordalBox = styled.div`
     height: 28px;
     border: solid 1px #e1e1e2;
     padding: 10px;
+
+    @media (max-width: 650px) {
+      width: 100%;
+      margin: auto;
+    }
   }
 
   & > div:first-child {
@@ -129,6 +143,17 @@ const MordalBox = styled.div`
 
   .flex {
     display: flex;
-    padding: 40px 0 0 70px;
+    justify-content: center;
+    padding-top: 50px;
+
+    @media (max-width: 650px) {
+      width: 80%;
+      padding: 0;
+      margin: 40px auto;
+    }
+  }
+
+  .inputBox {
+    width: 100%;
   }
 `;
