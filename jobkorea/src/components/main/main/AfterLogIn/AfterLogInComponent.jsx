@@ -24,8 +24,7 @@ const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
             onClick={() => {
               onClick();
               setTest(false);
-            }}
-          >
+            }}>
             로그아웃
           </button>
         </div>
@@ -75,6 +74,7 @@ const AfterLogInBox = styled.div`
     padding: 3%;
   }
   & .goInfo {
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
   }

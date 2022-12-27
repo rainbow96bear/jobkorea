@@ -2,8 +2,8 @@ import BeforeLogInContainer from "./BeforeLogIn/BeforeLogInContainer";
 import AfterLogInContainer from "./AfterLogIn/AfterLogInContainer";
 import BigCarouselContainer from "../main/BigCarousel/BigCarouselContainer";
 import SmallCarouselContainer from "./SmallCarousel/SmallCarouselContainer";
-// import MiniCarouselContainer from "./MiniCarousel/MiniCarouselContainer";
-// import NoticeCarouselContainer from "./NoticeCarousel/NoticeCarouselContainer";
+import MiniCarouselContainer from "./MiniCarousel/MiniCarouselContainer";
+import NoticeCarouselContainer from "./NoticeCarousel/NoticeCarouselContainer";
 import OpenRecruitContainer from "./OpenRecruit/OpenRecruitContainer";
 import RankingContainer from "./Ranking/RankingContainer";
 import QuickMenuContainer from "./QuickMenu/QuickMenuContainer";
@@ -36,14 +36,14 @@ export default function MainComponent({
       {/* 찾기 클릭 했냐 ? <찾기모달>:<></> */}
       <MainFirstItem>
         <div className={midScreen ? "firstRow" : "firstRowcol"}>
-          <Box1>
+          <Box1 style={midScreen ? { width: "60%" } : { width: "100%" }}>
             <BigCarouselContainer></BigCarouselContainer>
           </Box1>
-          <Column>
-            <Box2>
+          <Column style={midScreen ? { width: "40%" } : { width: "100%" }}>
+            <Box2 style={midScreen ? { width: "50%" } : { width: "50%" }}>
               <SmallCarouselContainer></SmallCarouselContainer>
             </Box2>
-            <Box3>
+            <Box3 style={midScreen ? { width: "50%" } : { width: "50%" }}>
               {test ? (
                 <AfterLogInContainer
                   setTest={setTest}
@@ -57,22 +57,25 @@ export default function MainComponent({
                   setIndividualId={setIndividualId}
                   setIndividualPw={setIndividualPw}
                   setIsClick={setIsClick}
+                  midScreen={midScreen}
                 />
               )}
             </Box3>
           </Column>
         </div>
 
-        <div className={midScreen ? "firstRow" : "firstRowcol"}>
-          <Box1>
+        <div className={midScreen ? "secondRow" : "secondRowRowcol"}>
+          <Box1 style={midScreen ? { width: "60%" } : { width: "100%" }}>
             <OpenRecruitContainer></OpenRecruitContainer>
           </Box1>
-          <Column>
-            <Box2>
+          <Column style={midScreen ? { width: "40%" } : { width: "100%" }}>
+            <Box2 style={midScreen ? { width: "20%" } : { width: "50%" }}>
               <RankingContainer></RankingContainer>
             </Box2>
-            <Box3>
+            <Box3 style={midScreen ? { width: "20%" } : { width: "50%" }}>
               <QuickMenuContainer></QuickMenuContainer>
+              <NoticeCarouselContainer></NoticeCarouselContainer>
+              <MiniCarouselContainer></MiniCarouselContainer>
             </Box3>
           </Column>
         </div>
@@ -103,37 +106,40 @@ const MainBox = styled.div`
   & .firstRow {
     display: flex;
     justify-content: center;
-    margin: 10px 0 0 0;
   }
   & .firstRowcol {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 10px 0 0 0;
+  }
+  & .secondRow {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+  }
+  & .secondRowcol {
+    display: flex;
+    height: 400px;
+    justify-content: center;
+    flex-direction: column;
   }
 `;
 
 const Box1 = styled.div`
-  background-color: tomato;
   flex: 3;
-  width: 60%;
 `;
 
 const Column = styled.div`
   display: flex;
-  width: 40%;
 `;
 
 const Box2 = styled.div`
-  background-color: pink;
   flex: 1;
-  width: 20%;
 `;
 
 const Box3 = styled.div`
-  background-color: skyblue;
+  background-color: #e8ecef;
   flex: 1;
-  width: 20%;
 `;
 
 const MainFirstItem = styled.div`
@@ -151,6 +157,7 @@ const MainSecondItem = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   padding-bottom: 50px;
+  margin-top: 10px;
   & > h3 {
     width: 100%;
   }

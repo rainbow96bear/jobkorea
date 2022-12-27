@@ -9,7 +9,8 @@ export default function RankingContainer() {
     try {
       axios.post("/api/recruit/ranking").then((data) => {
         const _inputData = data.data.map((rowData) => ({
-          CompanyName: rowData.Companyuser_Info.companyName,
+          recruitName: rowData.recruitName,
+          id: rowData.id,
         }));
         setInputData(_inputData);
         console.log(data.data);

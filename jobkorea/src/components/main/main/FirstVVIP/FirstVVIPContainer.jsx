@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import FirstVVIPComponent from "./FirstVVIPComponent";
 
 export default function FirstVVIPContainer({}) {
   const [inputData, setInputData] = useState([]);
-
+  const navigate = useNavigate();
+  const moveTo = (where) => {
+    navigate(`/${where}`);
+  };
   useEffect(() => {
     try {
       axios.post("/api/recruit/firstvvip").then((data) => {
@@ -12,6 +16,7 @@ export default function FirstVVIPContainer({}) {
           companylogo: rowData.Companyuser_Info.companylogo,
           CompanyName: rowData.Companyuser_Info.companyName,
           recruitName: rowData.recruitName,
+          id: rowData.id,
           adGrade: rowData.adGrade,
         }));
         setInputData([...inputData, _inputData]);
@@ -23,5 +28,9 @@ export default function FirstVVIPContainer({}) {
     }
   }, []);
 
-  return <FirstVVIPComponent inputData={inputData}></FirstVVIPComponent>;
+  return (
+    <FirstVVIPComponent
+      inputData={inputData}
+      moveTo={moveTo}></FirstVVIPComponent>
+  );
 }

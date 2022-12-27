@@ -71,10 +71,11 @@ export default QuickMenuComponent;
 
 const QuickMenuBox = styled.div`
   flex: 1;
+  height: auto;
   background-color: white;
   border: 1px solid #dadada;
   text-align: center;
-
+  // height: 272px;
   & .QuickMenuRow1 {
     display: flex;
     flex-direction: row;

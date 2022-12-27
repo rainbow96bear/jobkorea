@@ -13,7 +13,7 @@ import recruitLogo8 from "./images/logo8.gif";
 
 const COLOR = "#3399ff";
 
-const OpenRecruitComponent = () => {
+const OpenRecruitComponent = ({ inputData, moveTo }) => {
   const [juniorTitle, setJuniorTitle] = useState(true);
   // CSS를 주고 싶은 div 상태 변경하기
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ const OpenRecruitComponent = () => {
   return (
     <ItemBox>
       <OpenRecruitBox juniorTitle={juniorTitle}>
-        {/* div 상태 변경을 위해 styled component를 준 박스 div에 props 넣기  */}
         <div>
           <div className="boxTitle1" onClick={goError}>
             공채속보
@@ -63,8 +62,7 @@ const OpenRecruitComponent = () => {
               onClick={() => {
                 setJuniorTitle(true);
                 // 상태 변경 함수 사용
-              }}
-            >
+              }}>
               신입
             </div>
             <div
@@ -72,81 +70,79 @@ const OpenRecruitComponent = () => {
               onClick={() => {
                 setJuniorTitle(false);
                 // 상태 변경 함수 사용
-              }}
-            >
+              }}>
               경력
             </div>
           </div>
         </div>
       </OpenRecruitBox>
       <RecruitNewsBox>
-        <div
-          className="RecruitDiv1"
-          style={XsmallScreen ? { fontSize: "12px" } : { fontSize: "9px" }}
-        >
-          <div onClick={goError}>
-            <img src={recruitLogo1} alt="" />각 부분 신입/경력 채용
-            <br />
-            소노소노
-          </div>
-          <div onClick={goError}>
-            <img src={recruitLogo2} alt="" />각 부분 신입/경력 채용 <br />
-            소노소노
-          </div>
-          <div onClick={goError}>
-            <img src={recruitLogo3} alt="" />각 부분 신입/경력 채용 <br />
-            소노소노
-          </div>
-          <div onClick={goError}>
-            <img src={recruitLogo4} alt="" />각 부분 신입/경력 채용 <br />
-            소노소노
-          </div>
-        </div>
-        <div className="RecruitDiv2">
-          <div onClick={goError}>
-            <img src={recruitLogo5} alt="" />각 부분 신입/경력 채용 <br />
-            소노소노
-          </div>
-          <div onClick={goError}>
-            <img src={recruitLogo6} alt="" />각 부분 신입/경력 채용 <br />
-            소노소노
-          </div>
-          <div onClick={goError}>
-            <img src={recruitLogo7} alt="" />각 부분 신입/경력 채용 <br />
-            소노소노
-          </div>
-          <div onClick={goError}>
-            <img src={recruitLogo8} alt="" />각 부분 신입/경력 채용 <br />
-            소노소노
-          </div>
-        </div>
-
-        <div className="RecruitDiv3">
-          {smallScreen && (
-            <div className="bigtech" onClick={goError}>
-              #1000대기업 공채{" "}
+        {inputData ? (
+          inputData.map((data) =>
+            data.map((data2, index) => (
+              <GroupItemBox
+                key={`groupItemBox-${index}`}
+                onClick={() => {
+                  moveTo(`recruit/${data2.id}`);
+                }}>
+                <div>
+                  <img
+                    src={`http://localhost:8080/uploads/${data2.companylogo}`}
+                    alt=""
+                  />
+                </div>
+                <div className="companyName">
+                  <div className="textSimple">{data2.CompanyName}</div>
+                </div>
+                <div className="recruitTitle">
+                  <div className="textSimple">{data2.recruitName}</div>
+                </div>
+              </GroupItemBox>
+            ))
+          )
+        ) : (
+          <>
+            <div
+              className="RecruitDiv1"
+              style={XsmallScreen ? { fontSize: "12px" } : { fontSize: "9px" }}>
+              <div onClick={goError}>
+                <img src={recruitLogo1} alt="" />각 부분 신입/경력 채용
+                <br />
+                소노소노
+              </div>
+              <div onClick={goError}>
+                <img src={recruitLogo2} alt="" />각 부분 신입/경력 채용 <br />
+                소노소노
+              </div>
+              <div onClick={goError}>
+                <img src={recruitLogo3} alt="" />각 부분 신입/경력 채용 <br />
+                소노소노
+              </div>
+              <div onClick={goError}>
+                <img src={recruitLogo4} alt="" />각 부분 신입/경력 채용 <br />
+                소노소노
+              </div>
             </div>
-          )}
-          <div className="intern" onClick={goError}>
-            #인턴채용{" "}
-          </div>
-          <div className="openrecruit" onClick={goError}>
-            #공채달력{" "}
-          </div>
-          <div className="livenews" onClick={goError}>
-            #Live공채소식{" "}
-          </div>
-          {XsmallScreen2 && (
-            <div className="expecteddays" onClick={goError}>
-              #공채예상일정{" "}
+            <div className="RecruitDiv2">
+              <div onClick={goError}>
+                <img src={recruitLogo5} alt="" />각 부분 신입/경력 채용 <br />
+                소노소노
+              </div>
+              <div onClick={goError}>
+                <img src={recruitLogo6} alt="" />각 부분 신입/경력 채용 <br />
+                소노소노
+              </div>
+              <div onClick={goError}>
+                <img src={recruitLogo7} alt="" />각 부분 신입/경력 채용 <br />
+                소노소노
+              </div>
+              <div onClick={goError}>
+                <img src={recruitLogo8} alt="" />각 부분 신입/경력 채용 <br />
+                소노소노
+              </div>
             </div>
-          )}
-          {XsmallScreen && (
-            <div className="top100" onClick={goError}>
-              #TOP100
-            </div>
-          )}
-        </div>
+          </>
+        )}
       </RecruitNewsBox>
     </ItemBox>
   );
@@ -159,12 +155,12 @@ const ItemBox = styled.div`
 `;
 
 const OpenRecruitBox = styled.div`
-  font-size: 14px;
+  font-size: 0.7rem;
   font-weight: 700;
   border: 1px solid #dadada;
   border-bottom: none;
   background-color: white;
-  padding-bottom: 4px;
+  padding: 2px 10px;
   & .boxTitle1 {
     color: ${COLOR};
     list-style: none;
@@ -216,20 +212,22 @@ const OpenRecruitBox = styled.div`
   }
   & .boxJrSrUl {
     display: flex;
-    flex: 1;
-    flex-direction: row;
+    /* flex-wrap: wrap; */
     width: 80px;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
   }
   & .boxJuniorTitle {
-    margin-left: 1px;
     list-style: none;
     float: right;
-    width: 40px;
-    padding: 6px 9px;
+    width: 100px;
+    height: 12px;
+    padding: 6px 3px;
+    margin-top: 5px;
+    text-align: center;
     border: 1px solid #dadada;
     color: #a1a0a0;
-    font-size: 11px;
+    font-size: 0.6rem;
     cursor: pointer;
     ${(props) =>
       props.juniorTitle
@@ -237,14 +235,16 @@ const OpenRecruitBox = styled.div`
         : ""}/* 삼항연산자로 CSS 상태 변경 */
   }
   & .boxSeniorTitle {
-    margin-right: -10px;
     list-style: none;
     float: right;
-    width: 40px;
-    padding: 6px 9px;
+    width: 100px;
+    height: 12px;
+    padding: 6px 3px;
+    margin-top: 5px;
+    text-align: center;
     border: 1px solid #dadada;
     color: #a1a0a0;
-    font-size: 11px;
+    font-size: 0.6rem;
     cursor: pointer;
     ${(props) =>
       props.juniorTitle ? "" : `background-color:${COLOR}; color: white`}
@@ -253,111 +253,40 @@ const OpenRecruitBox = styled.div`
 
 const RecruitNewsBox = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  // justify-content: center;
+  // align-items: center;
   font-size: 14px;
   font-weight: 700;
   width: 100%;
   border: 1px solid #dadada;
   background-color: white;
-
-  & .RecruitDiv1 {
+  height: 362px;
+`;
+const GroupItemBox = styled.div`
+  width: 24%;
+  margin: auto;
+  border: 1px solid #dadada;
+  & > div {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    & div {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      border-top: 1px solid #dadada;
-      border-right: 1px solid #dadada9e;
-      border-bottom: 1px solid #dadada9e;
-      font-weight: 500;
-      text-align: center;
-      background-color: white;
-      padding: 15px 0;
-      &:last-child {
-        border-right: none;
-      }
-    }
   }
-  & .RecruitDiv2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    & div {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      font-size: 12px;
-      font-weight: 500;
-      border-right: 1px solid #dadada9e;
-      text-align: center;
-      background-color: white;
-      padding: 15px 0;
-      &:last-child {
-        border-right: none;
-      }
-    }
-  }
-  & .RecruitDiv3 {
-    display: flex;
-  }
-  & .bigtech {
-    padding: 4px;
-    margin: 15px 3px 15px -150px;
-    font-size: 12px;
+  & .companyName {
+    font-size: 17px;
     font-weight: 500;
-    padding: 6px;
-    color: #514f4f;
-    background-color: #dadada3f;
   }
-  & .intern {
-    padding: 4px;
-    margin: 15px 3px;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px;
-    color: #514f4f;
-    background-color: #dadada3f;
+  & .textSimple {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
-  & .openrecruit {
-    padding: 4px;
-    margin: 15px 3px;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px;
-    color: #514f4f;
-    background-color: #dadada3f;
+  & .recruitTitle {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 20px;
   }
-  & .livenews {
-    padding: 4px;
-    margin: 15px 3px;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px;
-    color: #514f4f;
-    background-color: #dadada3f;
-  }
-  & .expecteddays {
-    padding: 4px;
-    margin: 15px 3px;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px;
-    color: #514f4f;
-    background-color: #dadada3f;
-  }
-  & .top100 {
-    padding: 4px;
-    margin: 15px 3px;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px;
-    color: #514f4f;
-    background-color: #dadada3f;
+  img {
+    width: 90%;
+    height: 100px;
   }
 `;

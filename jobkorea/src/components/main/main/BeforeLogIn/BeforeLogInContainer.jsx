@@ -9,6 +9,7 @@ const BeforeLogInContainer = ({
   setIndividualPw,
   smallScreen,
   setIsClick,
+  midScreen,
 }) => {
   const onClick = async (individualId, individualPw) => {
     if (individualId === "") {
@@ -40,6 +41,7 @@ const BeforeLogInContainer = ({
       smallScreen={smallScreen}
       setIsClick={setIsClick}
     ></BeforeLogInComponent>
+      midScreen={midScreen}></BeforeLogInComponent>
   );
 };
 
