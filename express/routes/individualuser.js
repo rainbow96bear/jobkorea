@@ -104,4 +104,64 @@ router.post("/logout", (req, res) => {
   res.send();
 });
 
+router.post("/idconfirm", async (req, res) => {
+  console.log(req.body);
+  try {
+    const confirms = await Individualuser_Info.findOne({
+      where: {
+        individualName: req.body.nameConirm,
+        individualTel: req.body.phoneComfirm,
+      },
+    });
+    if (confirms.individualId) {
+      res.send(confirms.individualId);
+    }
+    console.log(confirms.individualId);
+  } catch (err) {
+    console.error(err);
+    res.send("이름과 번호를 다시 확인해주세요");
+  }
+});
+router.post("/pwconfirm", async (req, res) => {
+  console.log(req.body);
+  try {
+    const pwconfirms = await Individualuser_Info.findOne({
+      where: {
+        individualId: req.body.idConfirm,
+        individualTel: req.body.phoneComfirm,
+      },
+    });
+    console.log(pwconfirms.individualPw);
+    if (pwconfirms.individualPw) {
+      res.send(pwconfirms);
+    }
+  } catch (err) {
+    console.error(err);
+    res.send("아이디와 번호를 다시 확인해주세요");
+  }
+});
+
+router.post("/changepw", async (req, res) => {
+  console.log(req.body);
+  // const userPw = crypto.SHA256(req.body.pw).toString();
+  console.log(req.body.pwConfirm);
+  console.log("++++++++++++++++++");
+  console.log(req.body.lastconfirmid);
+  console.log("++++++++++++++++++");
+
+  console.log(req.body.lastconfirmphone);
+  Individualuser_Info.update(
+    {
+      individualPw: crypto.SHA256(req.body.pwConfirm).toString(),
+    },
+    {
+      where: {
+        individualId: req.body.lastconfirmid,
+        individualTel: req.body.lastconfirmphone,
+      },
+    }
+  );
+  res.send("비밀번호가 변경되었습니다");
+});
+
 module.exports = router;

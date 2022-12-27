@@ -33,7 +33,7 @@ export default function MainComponent({
       ) : (
         <></>
       )}
-      {/* 찾기 클릭 했냐 ? <찾기모달>:<></> */}
+
       <MainFirstItem>
         <div className={midScreen ? "firstRow" : "firstRowcol"}>
           <Box1 style={midScreen ? { width: "60%" } : { width: "100%" }}>

@@ -8,12 +8,21 @@ const MordalComponent = ({
   setIsClick,
   idConfirmClick,
   pwConfirmClick,
+  change,
+  setChangepw,
+  lastconfirmphone,
+  lastconfirmid,
+  setChange,
 }) => {
   const [idConfirm, setIdconfirm] = useState("");
   const [pwConfirm, setPwconfirm] = useState("");
   const [nameConirm, setNameConfirm] = useState("");
   const [phoneComfirm, setPhoneConfirm] = useState("");
+  // const [changepw, setChangepw] = useState("");
   const [confirm, setConfirm] = useState(true);
+  const [isPw, setIsPw] = useState(false);
+  const [message, setMessage] = useState("");
+  const [checkconfirm, setCheckconfirm] = useState("password");
 
   return (
     <MordalBox>
@@ -22,6 +31,8 @@ const MordalComponent = ({
         <Idsearch
           onClick={() => {
             setConfirm(true);
+            setChange(false);
+            setPhoneConfirm("");
           }}
         >
           ID찾기
@@ -29,6 +40,9 @@ const MordalComponent = ({
         <Pwsearch
           onClick={() => {
             setConfirm(false);
+            setNameConfirm("");
+            setPhoneConfirm("");
+            setIdconfirm("");
           }}
         >
           비밀번호 찾기
@@ -49,8 +63,9 @@ const MordalComponent = ({
                 onInput={(e) => {
                   setNameConfirm(e.target.value);
                 }}
+                value={nameConirm}
                 type={"text"}
-                placeholder={"이름"}
+                placeholder={"이름을 입력해주세요"}
               />
             </div>
             <div>
@@ -58,8 +73,9 @@ const MordalComponent = ({
                 onInput={(e) => {
                   setPhoneConfirm(e.target.value);
                 }}
+                value={phoneComfirm}
                 type={"text"}
-                placeholder={"핸드폰번호"}
+                placeholder={"-포함 핸드폰번호를 입력해주세요"}
               />
             </div>
           </div>
@@ -76,6 +92,78 @@ const MordalComponent = ({
             ID찾기
           </button>
         </div>
+      ) : change ? (
+        <div className="flex">
+          <div>
+            <div>
+              <Changeinput
+                className="changepw"
+                onInput={(e) => {
+                  setPwconfirm(e.target.value);
+                  const pwRegExp =
+                    /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+                  if (!pwRegExp.test(e.target.value)) {
+                    setIsPw(false);
+                    setMessage(
+                      "숫자+영문자+특수문자 조합으로 8자리이상 25자리 미만으로 입력해주세요"
+                    );
+                  } else {
+                    setMessage("안전한 비밀번호 입니다");
+                    setIsPw(true);
+                  }
+                }}
+                value={pwConfirm}
+                type={checkconfirm}
+                placeholder={"변경할 비밀번호를 입력해주세요"}
+              />
+            </div>
+            <Messagediv>{message}</Messagediv>
+            {message == "" ? (
+              <></>
+            ) : (
+              <Pwcheck
+                onClick={() => {
+                  setCheckconfirm("text");
+                  if (checkconfirm == "text") {
+                    setCheckconfirm("password");
+                  }
+                }}
+              >
+                {" "}
+                비밀번호 표시
+              </Pwcheck>
+            )}
+            {/* <div>
+              <input
+                onInput={(e) => {
+                  setPhoneConfirm(e.target.value);
+                }}
+                type={"text"}
+                placeholder={"-포함 핸드폰번호를 입력해주세요"}
+              />
+            </div> */}
+          </div>
+
+          <Buttonchange
+            onClick={() => {
+              if (pwConfirm == "") {
+                alert("변경할 비밀번호를 입력해주세요");
+              } else {
+                // onClick(idConfirm, pwConfirm);
+                if (isPw == true) {
+                  alert("비밀번호가 변경되었습니다");
+                  setChangepw(pwConfirm, lastconfirmid, lastconfirmphone);
+                  setIsClick(false);
+                } else if (isPw == false) {
+                  alert("비밀번호를 제대로 입력해주세요");
+                }
+              }
+            }}
+            // className="login"
+          >
+            비밀번호 변경
+          </Buttonchange>
+        </div>
       ) : (
         <div className="flex">
           <div>
@@ -84,8 +172,9 @@ const MordalComponent = ({
                 onInput={(e) => {
                   setIdconfirm(e.target.value);
                 }}
+                value={idConfirm}
                 type={"text"}
-                placeholder={"아이디"}
+                placeholder={"아이디를 입력해주세요"}
               />
             </div>
             <div>
@@ -93,8 +182,9 @@ const MordalComponent = ({
                 onInput={(e) => {
                   setPhoneConfirm(e.target.value);
                 }}
+                value={phoneComfirm}
                 type={"text"}
-                placeholder={"핸드폰번호"}
+                placeholder={"-포함 핸드폰번호를 입력해주세요"}
               />
             </div>
           </div>
@@ -113,48 +203,6 @@ const MordalComponent = ({
           </button>
         </div>
       )}
-      {/* <div className="flex">
-        <div>
-          <div>
-            <input
-              onInput={(e) => {
-                setIdconfirm(e.target.value);
-              }}
-              type={"text"}
-              placeholder={"이름"}
-            />
-          </div>
-          <div>
-            <input
-              onInput={(e) => {
-                setPwconfirm(e.target.value);
-              }}
-              type={"text"}
-              placeholder={"핸드폰번호"}
-            />
-          </div>
-        </div>
-        <button
-          onClick={() => {
-            if ((idConfirm && pwConfirm) == "") {
-              alert("이름과 핸드폰번호를 입력해주세요");
-            } else {
-              onClick(idConfirm, pwConfirm);
-            }
-          }}
-          className="login"
-        >
-          ID찾기
-        </button>
-      </div> */}
-      <div
-        className="regist"
-        onClick={() => {
-          moveTo("registAccount/company");
-        }}
-      >
-        <div></div>
-      </div>
     </MordalBox>
   );
 };
@@ -166,12 +214,50 @@ export default MordalComponent;
 //   padding-top: 2%;
 // `;
 
+const Buttonchange = styled.button`
+  /* background-color: red;
+  width: 1000px; */
+  width: 300px;
+  height: 50px;
+  background-color: #3399ff;
+  color: white;
+  border: none;
+`;
+
+const Changeinput = styled.input`
+  /* background-color: red; */
+`;
+
+const Pwcheck = styled.div`
+  width: 150px;
+  padding: 1px;
+  text-align: center;
+  /* border: 3px solid #3399ff; */
+  background-color: #3399ff;
+  color: white;
+  border-radius: 10px;
+`;
+
+const Messagediv = styled.div`
+  width: 100%;
+  color: red;
+`;
+
 const Pwsearch = styled.div`
-  border: 2px solid #3399ff;
+  /* border: 3px solid #3399ff; */
+  background-color: #3399ff;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
 `;
 
 const Idsearch = styled.div`
-  border: 2px solid #3399ff;
+  /* border: 3px solid #3399ff; */
+  background-color: #3399ff;
+  color: white;
+  border-radius: 10px;
+
+  padding: 10px;
 `;
 
 const MordalBox = styled.div`
@@ -182,7 +268,8 @@ const MordalBox = styled.div`
   right: 0;
   margin: auto;
   height: 400px;
-  width: 550px;
+  width: 100%;
+  max-width: 550px;
   border: 3px solid #565d79;
   background-color: white;
   z-index: 3;
@@ -213,7 +300,7 @@ const MordalBox = styled.div`
   }
 
   .login {
-    width: 100px;
+    width: 300px;
     height: 100px;
     background-color: #3399ff;
     color: white;
@@ -242,6 +329,12 @@ const MordalBox = styled.div`
 
   .flex {
     display: flex;
-    padding: 40px 0 0 70px;
+    padding: 40px;
+    padding-top: 60px;
+  }
+
+  .changepw {
+    width: 300px;
+    height: 6vh;
   }
 `;

@@ -225,9 +225,4 @@ router.post("/addmoney", async (req, res) => {
   });
 });
 
-router.post("/idconfirm", async (req, res) => {
-  console.log(req.body);
-
-  res.end();
-});
 module.exports = router;

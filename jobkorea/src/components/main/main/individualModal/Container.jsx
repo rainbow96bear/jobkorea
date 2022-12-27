@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 // import { action } from "../../../../../modules/userInfo.js";
 
 const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
   const dispatch = useDispatch();
+  const [change, setChange] = useState(false);
+  const [lastconfirmid, setLastconfirmid] = useState("");
+  const [lastconfirmphone, setLastconfirmphone] = useState("");
 
   const loginOnClick = () => {
     setLoginIsClick(false);
@@ -36,17 +40,49 @@ const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
     console.log(nameConirm);
     console.log(phoneComfirm);
     const data = await axios.post(
-      "http://localhost:8080/api/companyuser/idconfirm",
+      "http://localhost:8080/api/individualuser/idconfirm",
       { nameConirm, phoneComfirm }
     );
+    if (data.data == "이름과 번호를 다시 확인해주세요") {
+      alert("이름과 번호를 다시 확인해주세요");
+    } else {
+      alert(`아이디는 ${data.data} 입니다`);
+    }
   };
 
   const pwConfirmClick = async (idConfirm, phoneComfirm) => {
-    console.log(idConfirm);
-    console.log(phoneComfirm);
+    // console.log(idConfirm);
+    // console.log(phoneComfirm);
+    const data = await axios.post(
+      "http://localhost:8080/api/individualuser/pwconfirm",
+      {
+        idConfirm,
+        phoneComfirm,
+      }
+    );
+    if (data.data == "아이디와 번호를 다시 확인해주세요") {
+      alert("아이디와 번호를 다시 확인해주세요");
+    } else {
+      console.log(data.data);
+      setChange(true);
+      alert("아이디와 번호가 확인되었습니다 변경할 비밀번호를 입력해주세요");
+      setLastconfirmid(data.data.individualId);
+      setLastconfirmphone(data.data.individualTel);
+    }
   };
 
-  // const
+  const setChangepw = async (pwConfirm, lastconfirmid, lastconfirmphone) => {
+    const data = await axios.post(
+      "http://localhost:8080/api/individualuser/changepw",
+      {
+        pwConfirm,
+        lastconfirmid,
+        lastconfirmphone,
+      }
+    );
+
+    console.log(data.data);
+  };
 
   return (
     <MordalComponent
@@ -56,6 +92,11 @@ const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
       setIsClick={setIsClick}
       idConfirmClick={idConfirmClick}
       pwConfirmClick={pwConfirmClick}
+      change={change}
+      setChange={setChange}
+      setChangepw={setChangepw}
+      lastconfirmid={lastconfirmid}
+      lastconfirmphone={lastconfirmphone}
     ></MordalComponent>
   );
 };
