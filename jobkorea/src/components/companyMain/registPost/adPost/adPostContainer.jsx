@@ -8,7 +8,7 @@ import AdPostComponent from "./adPostComponent";
 export default function AdPostContainer({ adGrade, setAdGrade }) {
   const [companyMoney, setCompanyMoney] = useState(0);
   const [resultMoney, setResultMoney] = useState(0);
-  const [day, setDay] = useState(0);
+  const [day, setDay] = useState(-1);
   const [selPay, setSelPay] = useState(0);
   const [sumPay, setSumPay] = useState(0);
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function AdPostContainer({ adGrade, setAdGrade }) {
     } else if (adGrade == 0) {
       alert("광고 등급을 선택해주세요");
       return;
-    } else if (day == 0) {
+    } else if (day < 0) {
       alert("게시 일수를 선택해주세요");
       return;
     }

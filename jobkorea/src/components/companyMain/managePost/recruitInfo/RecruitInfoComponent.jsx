@@ -25,108 +25,113 @@ export default function RecruitInfoComponent({
             <Textfour>
               {myRecruit?.Companyuser_Info?.companyName}
               <h2 style={{ color: "black" }}>{myRecruit?.recruitName}</h2>
-              <div>
-                공고 마감 시한 : {day}일 {hour} : {min} : {sec}
-              </div>
+              {day == 0 ? (
+                <div>
+                  공고 마감 임박 {hour} : {min} : {sec}
+                </div>
+              ) : day <= 0 || hour <= 0 || min <= 0 || sec <= 0 ? (
+                <div>모집 마감된 공고입니다.</div>
+              ) : (
+                <div>
+                  공고 마감 시한 : {day}일 {hour} : {min} : {sec}
+                </div>
+              )}
             </Textfour>
           </Boxscontentone>
-          <Boxscontenttwo>
-            <Textone>
-              <div style={{ marginBottom: 10 }}>지원자격</div>
-              <div>
-                <Texttwo>
-                  <TitleBox className="gray">경력</TitleBox>{" "}
-                  <Textcolor>{myRecruit?.isExp}</Textcolor>
-                </Texttwo>
-                <Texttwo>
-                  <TitleBox className="gray">학력</TitleBox>
-                  <Textcolor>{myRecruit?.edu}</Textcolor>
-                </Texttwo>
-                <Texttwo>
-                  <TitleBox className="gray">우대</TitleBox>
-                  {myRecruit?.condition == "" ? (
-                    <div>우대 사항 없음</div>
-                  ) : (
-                    <ul>
-                      {myRecruit?.condition?.split(",").map((item, index) => (
-                        <li key={`li-${index}`}>{item}</li>
-                      ))}
-                    </ul>
-                  )}
-                </Texttwo>
-              </div>
-            </Textone>
-
-            <Textone>
-              <div style={{ marginBottom: 10 }}>근무조건</div>
-              <Texttwo>
-                <Textthree>고용형태</Textthree>
-                <Textcolor>{myRecruit?.shape}</Textcolor>
-              </Texttwo>
-              <Texttwo>
-                <Textthree>급여</Textthree>
-                <PayBox>
-                  {myRecruit?.isPay == "회사내규에 따름" ||
-                  myRecruit?.isPay == "회사내규에 따름, 면접 후 결정" ||
-                  myRecruit?.isPay == "면접 후 결정, 회사내규에 따름" ? (
-                    <>{myRecruit?.isPay}</>
-                  ) : (
-                    <>
-                      {myRecruit?.payKinds == "주급" ? (
-                        <span>주급 </span>
-                      ) : (
-                        <></>
-                      )}
-                      {myRecruit?.payKinds == "월급" ? (
-                        <span>월급 </span>
-                      ) : (
-                        <></>
-                      )}
-                      {myRecruit?.payKinds == "연봉" ? (
-                        <span>연봉 </span>
-                      ) : (
-                        <></>
-                      )}
-                      {myRecruit?.minPay}~{myRecruit?.maxPay}만원
-                      {myRecruit?.isPay ? (
-                        <span>- {myRecruit?.isPay}</span>
-                      ) : (
-                        <></>
-                      )}
-                    </>
-                  )}
-                </PayBox>
-              </Texttwo>
-              <Texttwo>
-                <Textthree>지역</Textthree>
+          {
+            <Boxscontenttwo>
+              <Textone>
+                <div style={{ marginBottom: 10 }}>지원자격</div>
                 <div>
-                  {myRecruit?.area} <button>지도</button>
+                  <Texttwo>
+                    <TitleBox className="gray">경력</TitleBox>{" "}
+                    <Textcolor>{myRecruit?.isExp}</Textcolor>
+                  </Texttwo>
+                  <Texttwo>
+                    <TitleBox className="gray">학력</TitleBox>
+                    <Textcolor>{myRecruit?.edu}</Textcolor>
+                  </Texttwo>
+                  <Texttwo>
+                    <TitleBox className="gray">우대</TitleBox>
+                    {myRecruit?.condition == "" ? (
+                      <div>우대 사항 없음</div>
+                    ) : (
+                      <ul>
+                        {myRecruit?.condition?.split(",").map((item, index) => (
+                          <li key={`li-${index}`}>{item}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </Texttwo>
                 </div>
-              </Texttwo>
-              <Texttwo>
-                <Textthree>시간</Textthree>
-                <div>주5일(월~금) | 09:00~18:00 탄력근무제</div>
-              </Texttwo>
-              <Texttwo>
-                <Textthree>직급</Textthree>
-                <div>{myRecruit?.workRank}</div>
-              </Texttwo>
-              <Texttwo>
-                <Textthree>담당업무</Textthree>
-                <div>{myRecruit?.myTask}</div>
-              </Texttwo>
+              </Textone>
 
-              {myRecruit?.workDepartment == "" ? (
-                <></>
-              ) : (
+              <Textone>
+                <div style={{ marginBottom: 10 }}>근무조건</div>
                 <Texttwo>
-                  <Textthree>근무부서</Textthree>
-
-                  <div>{myRecruit?.workDepartment}</div>
+                  <Textthree>고용형태</Textthree>
+                  <Textcolor>{myRecruit?.shape}</Textcolor>
                 </Texttwo>
-              )}
-            </Textone>
-          </Boxscontenttwo>
+                <Texttwo>
+                  <Textthree>급여</Textthree>
+                  <PayBox>
+                    {myRecruit?.isPay == "회사내규에 따름" ||
+                    myRecruit?.isPay == "회사내규에 따름, 면접 후 결정" ||
+                    myRecruit?.isPay == "면접 후 결정, 회사내규에 따름" ? (
+                      <>{myRecruit?.isPay}</>
+                    ) : (
+                      <>
+                        {myRecruit?.payKinds == "주급" ? (
+                          <span>주급 </span>
+                        ) : (
+                          <></>
+                        )}
+                        {myRecruit?.payKinds == "월급" ? (
+                          <span>월급 </span>
+                        ) : (
+                          <></>
+                        )}
+                        {myRecruit?.payKinds == "연봉" ? (
+                          <span>연봉 </span>
+                        ) : (
+                          <></>
+                        )}
+                        {myRecruit?.minPay}~{myRecruit?.maxPay}만원
+                        {myRecruit?.isPay ? (
+                          <span>- {myRecruit?.isPay}</span>
+                        ) : (
+                          <></>
+                        )}
+                      </>
+                    )}
+                  </PayBox>
+                </Texttwo>
+                <Texttwo>
+                  <Textthree>지역</Textthree>
+                  <div>{myRecruit?.area}</div>
+                </Texttwo>
+
+                <Texttwo>
+                  <Textthree>직급</Textthree>
+                  <div>{myRecruit?.workRank}</div>
+                </Texttwo>
+                <Texttwo>
+                  <Textthree>담당업무</Textthree>
+                  <div>{myRecruit?.myTask}</div>
+                </Texttwo>
+
+                {myRecruit?.workDepartment == "" ? (
+                  <></>
+                ) : (
+                  <Texttwo>
+                    <Textthree>근무부서</Textthree>
+
+                    <div>{myRecruit?.workDepartment}</div>
+                  </Texttwo>
+                )}
+              </Textone>
+            </Boxscontenttwo>
+          }
         </Informationboxscontent>
         <Informationboxscontenttwo>
           <Imgbox>
@@ -167,24 +172,28 @@ export default function RecruitInfoComponent({
               </Texttwo>
             </Textbox>
           </div>
-          <Buttonbox>
-            <button>기업정보</button>
-            <button>진행중인 채용보기</button>
-          </Buttonbox>
         </Informationboxscontenttwo>
       </Informationboxs>
-      <Footercontainer>
-        <FixBtn>
-          <div onClick={() => moveTo(`/companymain/fixpost/${myRecruit?.id}`)}>
-            <strong>공고 수정</strong>
-          </div>
-        </FixBtn>
-        <BackBtn>
-          <div onClick={() => moveTo("/companymain/managepost")}>
-            <strong>뒤로 가기</strong>
-          </div>
-        </BackBtn>
-      </Footercontainer>
+
+      {day <= 0 || hour <= 0 || min <= 0 || sec <= 0 ? (
+        <DelBtn>삭제하기</DelBtn>
+      ) : (
+        <Footercontainer>
+          <FixBtn>
+            <div
+              onClick={() => moveTo(`/companymain/fixpost/${myRecruit?.id}`)}
+            >
+              <strong>공고 수정</strong>
+            </div>
+          </FixBtn>
+          <BackBtn>
+            <div onClick={() => moveTo("/companymain/managepost")}>
+              <strong>뒤로 가기</strong>
+            </div>
+          </BackBtn>
+        </Footercontainer>
+      )}
+
       <ApplyUserBox>
         {applyUserInfo.map((item, index) => (
           <UserInfo key={`div-${index}`}>
@@ -272,7 +281,7 @@ const UserFlex = styled.div`
 
 const ApplyUserBox = styled.div`
   width: 60%;
-  margin: auto;
+  margin: 50px auto;
 `;
 
 const UserInfo = styled.div`
@@ -306,7 +315,6 @@ const Informationboxs = styled.div`
 
 const Boxscontentone = styled.div`
   padding: 1% 0;
-  height: 20%;
   width: 100%;
   background-color: white;
   color: gray;
@@ -361,6 +369,10 @@ const Textthree = styled.div`
 const Textfour = styled.div`
   width: 100%;
   margin-left: 3%;
+
+  h2 {
+    margin: 7.5px 0;
+  }
 `;
 
 const Informationboxscontent = styled.div`
@@ -419,6 +431,19 @@ const BackBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const DelBtn = styled.div`
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  width: 6%;
+  height: 45px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
 `;
 
 const FixBtn = styled.div`

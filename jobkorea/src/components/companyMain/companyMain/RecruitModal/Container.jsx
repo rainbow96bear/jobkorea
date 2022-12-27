@@ -16,12 +16,30 @@ export default function RecruitModalContainer({}) {
   const dispatch = useDispatch();
 
   const [recruitInfo, setRecruitInfo] = useState([]);
+  const [day, setDay] = useState([]);
 
   const navigate = useNavigate();
 
   const moveTo = (where) => {
     navigate(`${where}`);
   };
+
+  const setDate = (idx) => {
+    let date = new Date(
+      recruitInfo[idx]?.createdAt?.slice(0, 10) +
+        " " +
+        recruitInfo[idx]?.createdAt?.slice(11, 19)
+    );
+
+    date.setHours(date.getHours() + 9);
+    date.setDate(date.getDate() + +recruitInfo[idx].day);
+
+    let today = new Date();
+    let gap = date.getTime() - today.getTime();
+    setDay((state) => [...state, Math.ceil(gap / (1000 * 60 * 60 * 24)) - 1]);
+  };
+
+  let intervalId;
 
   useEffect(() => {
     console.log(companyUser);
@@ -30,8 +48,18 @@ export default function RecruitModalContainer({}) {
       .then((data) => {
         console.log(data.data);
         setRecruitInfo(data.data);
-      });
+        return data;
+      })
+      .then((data) => {});
   }, [companyUser]);
+
+  useEffect(() => {
+    if (recruitInfo.length != 0) {
+      recruitInfo.map((_, index) => {
+        setDate(index);
+      });
+    }
+  }, [recruitInfo]);
 
   return (
     <RecruitModalComponent
@@ -40,6 +68,8 @@ export default function RecruitModalContainer({}) {
       isCompanyMordal={isCompanyMordal}
       recruitInfo={recruitInfo}
       moveTo={moveTo}
+      day={day}
+      setDate={setDate}
     ></RecruitModalComponent>
   );
 }

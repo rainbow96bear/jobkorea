@@ -43,6 +43,8 @@ export default function AdPostComponent({
     { value: "28", label: "28일" },
     { value: "29", label: "29일" },
     { value: "30", label: "30일" },
+    { value: "1", label: "1일" },
+    { value: "0", label: "0일" },
   ];
   return (
     <BackgroundBox>
