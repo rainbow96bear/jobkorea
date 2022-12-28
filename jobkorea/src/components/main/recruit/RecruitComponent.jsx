@@ -20,11 +20,13 @@ export default function RecruitComponent({
               <Imgbox>
                 {recruitInfo[0]?.Companyuser_Info.companylogo && (
                   <img
-                    src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
+                    style={{ width: 100 }}
+                    src={`/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
                     alt=""
                   />
                 )}
               </Imgbox>
+
               <Textdiv>
                 <div>기업정보</div>
                 <Textbox1>
@@ -167,7 +169,8 @@ export default function RecruitComponent({
             <Imgbox>
               {recruitInfo[0]?.Companyuser_Info.companylogo && (
                 <img
-                  src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
+                  style={{ width: 70 }}
+                  src={`/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
                   alt=""
                 />
               )}

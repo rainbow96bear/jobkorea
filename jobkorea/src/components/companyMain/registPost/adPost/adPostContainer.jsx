@@ -20,7 +20,7 @@ export default function AdPostContainer({ adGrade, setAdGrade }) {
   };
 
   useEffect(() => {
-    axios.post("http://localhost:8080/api/companyuser/money").then((data) => {
+    axios.post("/api/companyuser/money").then((data) => {
       setCompanyMoney(data.data.companyMoney);
     });
   }, [adGrade, day]);
@@ -39,9 +39,7 @@ export default function AdPostContainer({ adGrade, setAdGrade }) {
       alert("게시 일수를 선택해주세요");
       return;
     }
-    axios
-      .post("http://localhost:8080/api/recruit/ad", body)
-      .then((res) => console.log(res));
+    axios.post("/api/recruit/ad", body).then((res) => console.log(res));
     dispatch(action.recruitDay({ day: day }));
     navigate("/companymain/registpost");
   };

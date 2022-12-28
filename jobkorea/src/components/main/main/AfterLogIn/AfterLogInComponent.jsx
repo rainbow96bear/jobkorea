@@ -26,7 +26,7 @@ const AfterLogInComponent = ({
           <div className="modifiedDate">최종 수정일 (2022.07.18)</div> */}
           {individualPhoto && (
             <img
-              src={`http://localhost:8080/uploads/${individualPhoto}`}
+              src={`/uploads/${individualPhoto}`}
               style={{ width: "70px", height: "70px" }}
               alt=""
             />

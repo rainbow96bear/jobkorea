@@ -17,10 +17,10 @@ const LoginMordalContainer = ({ setLoginIsClick }) => {
   };
 
   const onClick = async (idConfirm, pwConfirm) => {
-    const data = await axios.post(
-      "http://localhost:8080/api/companyuser/login",
-      { idConfirm, pwConfirm }
-    );
+    const data = await axios.post("/api/companyuser/login", {
+      idConfirm,
+      pwConfirm,
+    });
     console.log();
     if (data.data == "없는 아이디 입니다") {
       alert("없는 아이디 입니다");

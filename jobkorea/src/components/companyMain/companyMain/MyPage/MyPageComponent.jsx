@@ -11,135 +11,149 @@ export default function CompanyMyPageComponent({
   setNumPass,
   setEmailPass,
   setJobMoney,
-  setMoneyClick,
-  moneyClick,
   addMoney,
 }) {
+  console.log(inputData);
   return (
     <BackgroundBox>
       <TitleBox>마이페이지</TitleBox>
-      <MypageBox>
-        <MypageLeftBox>
-          <TitleBox>기업 정보</TitleBox>
-          <InfoBox>
-            <div>회사 로고</div>
-            <ImgBackground>
-              {inputData.CompanyLogo && (
-                <img
-                  src={`http://localhost:8080/uploads/${inputData.CompanyLogo}`}></img>
-              )}
-            </ImgBackground>
-          </InfoBox>
-          <InfoBox>
-            <div>사업자 번호</div>
-            <div>{inputData.CompanyBusinessNumber}</div>
-          </InfoBox>
-          <InfoBox>
-            <div>회사 이름</div>
-            <div>{inputData.CompanyName}</div>
-          </InfoBox>
-          <InfoBox>
-            <div>회사 대표 이름</div>
-            <div>{inputData.CompanyHeader}</div>
-          </InfoBox>
+      <MyPagewrap>
+        <MypageBox>
+          <MypageLeftBox>
+            <TitleBox>기업 정보</TitleBox>
+            <InfoBox>
+              <div>회사 로고</div>
+              <ImgBackground>
+                <img src={`/uploads/${inputData.CompanyLogo}`}></img>
+              </ImgBackground>
+            </InfoBox>
+            <InfoBox>
+              <div>사업자 번호</div>
+              <div>{inputData.CompanyBusinessNumber}</div>
+            </InfoBox>
+            <InfoBox>
+              <div>회사 이름</div>
+              <div>{inputData.CompanyName}</div>
+            </InfoBox>
+            <InfoBox>
+              <div>회사 대표 이름</div>
+              <div>{inputData.CompanyHeader}</div>
+            </InfoBox>
 
-          <InfoBox>
-            <div>회사 주소</div>
-            <div>{inputData.CompanyAdress}</div>
-          </InfoBox>
-        </MypageLeftBox>
-        <MypageLine></MypageLine>
-        <MypageRightBox>
-          <TitleBox>가입자 정보</TitleBox>
+            <InfoBox>
+              <div>회사 주소</div>
+              <div>{inputData.CompanyAddress}</div>
+            </InfoBox>
+          </MypageLeftBox>
+          <MypageLine></MypageLine>
+          <MypageRightBox>
+            <TitleBox>가입자 정보</TitleBox>
 
-          {ModionClick ? (
-            <>
-              <InfoBox>
-                <div>가입자 이름</div>
-                <input
-                  type="text"
-                  onInput={(e) => {
-                    setUserName(e.target.value);
-                  }}></input>
-              </InfoBox>
-              <InfoBox>
-                <div>가입자 번호</div>
-                <input
-                  type="text"
-                  onInput={(e) => {
-                    setUserNum(e.target.value);
-                    const phoneRegExp =
-                      /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-                    if (!phoneRegExp.test(e.target.value)) {
-                      setNumPass(false);
-                    } else {
-                      setNumPass(true);
-                    }
-                  }}></input>
-              </InfoBox>
-              <InfoBox>
-                <div>가입자 이메일</div>
-                <input
-                  type="text"
-                  onInput={(e) => {
-                    setUserEmail(e.target.value);
+            {ModionClick ? (
+              <>
+                <InfoBox>
+                  <div>가입자 이름</div>
+                  <input
+                    type="text"
+                    onInput={(e) => {
+                      setUserName(e.target.value);
+                    }}
+                  ></input>
+                </InfoBox>
+                <InfoBox>
+                  <div>가입자 번호</div>
+                  <input
+                    type="text"
+                    onInput={(e) => {
+                      setUserNum(e.target.value);
+                      const phoneRegExp =
+                        /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+                      if (!phoneRegExp.test(e.target.value)) {
+                        setNumPass(false);
+                      } else {
+                        setNumPass(true);
+                      }
+                    }}
+                    placeholder="'-' 를 제외한 숫자만 입력"
+                  ></input>
+                </InfoBox>
+                <InfoBox>
+                  <div>가입자 이메일</div>
+                  <input
+                    type="text"
+                    onInput={(e) => {
+                      setUserEmail(e.target.value);
 
-                    const emailRegExp =
-                      /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
-                    if (!emailRegExp.test(e.target.value)) {
-                      setEmailPass(false);
-                    } else {
-                      setEmailPass(true);
-                    }
-                  }}></input>
-              </InfoBox>
-              <BtnBox>
-                <div onClick={ModifyUserInfo}>수정하기</div>
-                <div onClick={isClick}>취소하기</div>
-              </BtnBox>
-            </>
-          ) : (
-            <>
-              <InfoBox>
-                <div>가입자 이름</div>
-                <div>{inputData.CompanyUsername}</div>
-              </InfoBox>
-              <InfoBox>
-                <div>가입자 번호</div>
-                <div>{inputData.CompanyNumber}</div>
-              </InfoBox>
-              <InfoBox>
-                <div>가입자 이메일</div>
-                <div>{inputData.CompanyEmail}</div>
-              </InfoBox>
+                      const emailRegExp =
+                        /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+                      if (!emailRegExp.test(e.target.value)) {
+                        setEmailPass(false);
+                      } else {
+                        setEmailPass(true);
+                      }
+                    }}
+                  ></input>
+                </InfoBox>
+                <BtnBox>
+                  <div onClick={ModifyUserInfo}>수정하기</div>
+                  <div onClick={isClick}>취소하기</div>
+                </BtnBox>
+              </>
+            ) : (
+              <>
+                <InfoBox>
+                  <div>가입자 이름</div>
+                  <div>{inputData.CompanyUsername}</div>
+                </InfoBox>
+                <InfoBox>
+                  <div>가입자 번호</div>
+                  <div>{inputData.CompanyNumber}</div>
+                </InfoBox>
+                <InfoBox>
+                  <div>가입자 이메일</div>
+                  <div>{inputData.CompanyEmail}</div>
+                </InfoBox>
 
-              <BtnBox>
-                <div onClick={isClick}>수정하기</div>
-              </BtnBox>
-            </>
-          )}
-          <LineBox></LineBox>
-          <InfoBox>
-            <div>보유 잡머니</div>
-            <div>{inputData.CompanyMoney}</div>
-          </InfoBox>
-          <InfoBox>
-            <div>충전 금액</div>
-            <input
-              type="number"
-              onInput={(e) => {
-                setJobMoney(e.target.value);
-              }}
-            />
-            <div
-              onClick={() => {
-                addMoney();
-              }}>
-              충전
-            </div>
-          </InfoBox>
-        </MypageRightBox>
-      </MypageBox>
+                <BtnBox>
+                  <div onClick={isClick}>수정하기</div>
+                </BtnBox>
+              </>
+            )}
+            <LineBox></LineBox>
+            <InfoBox>
+              <div>보유 잡머니</div>
+              <div>{(+inputData.CompanyMoney).toLocaleString()} 원</div>
+            </InfoBox>
+            <InfoBox>
+              <div>충전 금액</div>
+              <input
+                type="number"
+                min={1000}
+                onInput={(e) => {
+                  setJobMoney(e.target.value);
+                  if (e.target.value.length > e.target.maxLength)
+                    e.target.value = e.target.value.slice(
+                      0,
+                      e.target.maxLength
+                    );
+                  e.target.value = e.target.value
+                    .replace(/[^0-9.]/g, "")
+                    .replace(/(\..*)\./g, "$1");
+                }}
+                maxLength={9}
+              />
+
+              <div
+                onClick={() => {
+                  addMoney();
+                }}
+              >
+                충전
+              </div>
+            </InfoBox>
+          </MypageRightBox>
+        </MypageBox>
+      </MyPagewrap>
     </BackgroundBox>
   );
 }
@@ -200,6 +214,10 @@ const InfoBox = styled.div`
     background-color: yellow;
     border-radius: 10px;
   }
+
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
 `;
 
 const BackgroundBox = styled.div`
@@ -209,24 +227,53 @@ const BackgroundBox = styled.div`
 
 const MypageBox = styled.div`
   display: flex;
-  width: 70%;
+  width: 100%;
   background-color: white;
-  margin: auto;
   border-radius: 20px;
   padding: 50px 0;
+
+  @media (max-width: 1300px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const MyPagewrap = styled.div`
+  max-width: 1280px;
+  margin: auto;
 `;
 
 const MypageLeftBox = styled.div`
   width: 49.5%;
+  @media (max-width: 1300px) {
+    width: 80%;
+  }
+
+  @media (max-width: 600px) {
+    & > div:nth-child(2) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    & > div:nth-child(2) > div:first-child {
+      justify-content: center;
+    }
+  }
 `;
+
 const MypageLine = styled.div`
   width: 1%;
   background-color: #f2f4f7;
   border-radius: 20px;
   margin: 30px 0;
 `;
+
 const MypageRightBox = styled.div`
   width: 49.5%;
+
+  @media (max-width: 1300px) {
+    width: 80%;
+  }
 `;
 
 const TitleBox = styled.div`

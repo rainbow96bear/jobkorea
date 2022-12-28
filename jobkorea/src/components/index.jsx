@@ -39,8 +39,9 @@ export default function Components() {
 }
 
 const FoldBox = styled.div`
-  color: white;
+  color: red;
   text-align: center;
+  font-size: 100px;
   height: 100vh;
   display: flex;
   justify-content: center;

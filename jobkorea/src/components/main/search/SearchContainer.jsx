@@ -13,7 +13,7 @@ export default function SearchContainer() {
   useEffect(() => {
     try {
       axios
-        .post("http://localhost:8080/api/recruit/search/call", {
+        .post("/api/recruit/search/call", {
           check: categoryCheck,
           area: areaCheck,
         })
@@ -47,6 +47,7 @@ export default function SearchContainer() {
       midScreen={midScreen}
       smallScreen={smallScreen}
       setCategoryCheck={setCategoryCheck}
-      setAreaCheck={setAreaCheck}></SearchComponent>
+      setAreaCheck={setAreaCheck}
+    ></SearchComponent>
   );
 }

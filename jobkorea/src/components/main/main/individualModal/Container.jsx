@@ -24,10 +24,10 @@ const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
   };
 
   const onClick = async (idConfirm, pwConfirm) => {
-    const data = await axios.post(
-      "http://localhost:8080/api/companyuser/login",
-      { idConfirm, pwConfirm }
-    );
+    const data = await axios.post("/api/companyuser/login", {
+      idConfirm,
+      pwConfirm,
+    });
     console.log();
     if (data.data == "없는 아이디 입니다") {
       alert("없는 아이디 입니다");
@@ -42,10 +42,10 @@ const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
   const idConfirmClick = async (nameConirm, phoneComfirm) => {
     console.log(nameConirm);
     console.log(phoneComfirm);
-    const data = await axios.post(
-      "http://localhost:8080/api/individualuser/idconfirm",
-      { nameConirm, phoneComfirm }
-    );
+    const data = await axios.post("/api/individualuser/idconfirm", {
+      nameConirm,
+      phoneComfirm,
+    });
     if (data.data == "이름과 번호를 다시 확인해주세요") {
       alert("이름과 번호를 다시 확인해주세요");
     } else {
@@ -56,13 +56,10 @@ const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
   const pwConfirmClick = async (idConfirm, phoneComfirm) => {
     // console.log(idConfirm);
     // console.log(phoneComfirm);
-    const data = await axios.post(
-      "http://localhost:8080/api/individualuser/pwconfirm",
-      {
-        idConfirm,
-        phoneComfirm,
-      }
-    );
+    const data = await axios.post("/api/individualuser/pwconfirm", {
+      idConfirm,
+      phoneComfirm,
+    });
     if (data.data == "아이디와 번호를 다시 확인해주세요") {
       alert("아이디와 번호를 다시 확인해주세요");
     } else {
@@ -75,14 +72,11 @@ const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
   };
 
   const setChangepw = async (pwConfirm, lastconfirmid, lastconfirmphone) => {
-    const data = await axios.post(
-      "http://localhost:8080/api/individualuser/changepw",
-      {
-        pwConfirm,
-        lastconfirmid,
-        lastconfirmphone,
-      }
-    );
+    const data = await axios.post("/api/individualuser/changepw", {
+      pwConfirm,
+      lastconfirmid,
+      lastconfirmphone,
+    });
 
     console.log(data.data);
   };

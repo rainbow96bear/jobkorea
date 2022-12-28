@@ -9,11 +9,9 @@ export default function ManagePostContainer() {
   const removeRecruit = (idData) => {
     try {
       console.log(idData);
-      axios
-        .post("http://localhost:8080/api/recruit/remove", { id: idData })
-        .then((data) => {
-          console.log(data);
-        });
+      axios.post("/api/recruit/remove", { id: idData }).then((data) => {
+        console.log(data);
+      });
       window.location.reload();
 
       alert("삭제되었습니다");
@@ -24,7 +22,7 @@ export default function ManagePostContainer() {
 
   // useEffect(() => {
   //   axios
-  //     .post("http://localhost:8080/api/recruit/whoapply", { id: 2 })
+  //     .post("/api/recruit/whoapply", { id: 2 })
   //     .then((data) => {
   //       console.log(data);
   //     });
@@ -32,7 +30,7 @@ export default function ManagePostContainer() {
 
   useEffect(() => {
     try {
-      axios.post("http://localhost:8080/api/recruit/call").then((data) => {
+      axios.post("/api/recruit/call").then((data) => {
         console.log(data.data);
         const _inputData = data.data.map((rowData) => ({
           Id: rowData.id,

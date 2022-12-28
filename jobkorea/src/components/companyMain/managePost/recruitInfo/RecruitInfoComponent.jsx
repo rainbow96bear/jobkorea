@@ -136,7 +136,7 @@ export default function RecruitInfoComponent({
           <Imgbox>
             {myRecruit?.Companyuser_Info?.companylogo && (
               <img
-                src={`http://localhost:8080/uploads/${myRecruit?.Companyuser_Info?.companylogo}`}
+                src={`/uploads/${myRecruit?.Companyuser_Info?.companylogo}`}
               />
             )}
           </Imgbox>
@@ -169,7 +169,6 @@ export default function RecruitInfoComponent({
           </div>
         </Informationboxscontenttwo>
       </Informationboxs>
-
       {day <= 0 || hour <= 0 || min <= 0 || sec <= 0 ? (
         <DelBtn>삭제하기</DelBtn>
       ) : (

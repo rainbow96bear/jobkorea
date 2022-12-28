@@ -19,7 +19,7 @@ export default function CompanyMyPageContainer() {
 
   const addMoney = () => {
     axios
-      .post("http://localhost:8080/api/companyuser/addmoney", {
+      .post("/api/companyuser/addmoney", {
         Money: +jobMoney + +inputData.CompanyMoney,
       })
       .then((data) => {
@@ -31,7 +31,7 @@ export default function CompanyMyPageContainer() {
     if (numPass == false || emailPass == false || userName == "")
       return alert("정확한 값을 입력해 주세요");
     axios
-      .post("http://localhost:8080/api/companyuser/modify", {
+      .post("/api/companyuser/modify", {
         Name: userName,
         Num:
           userNum.slice(0, 3) +
@@ -50,22 +50,20 @@ export default function CompanyMyPageContainer() {
 
   useEffect(() => {
     try {
-      axios
-        .post("http://localhost:8080/api/companyuser/dbcall")
-        .then((data) => {
-          const _inputData = {
-            CompanyBusinessNumber: data.data.companyNumber,
-            CompanyName: data.data.companyName,
-            CompanyHeader: data.data.companyHeader,
-            CompanyAdress: data.data.companyAdress,
-            CompanyUsername: data.data.companyIdname,
-            CompanyNumber: data.data.companyIdnumber,
-            CompanyEmail: data.data.companyIdemail,
-            CompanyLogo: data.data.companylogo,
-            CompanyMoney: data.data.companyMoney,
-          };
-          setInputData(_inputData);
-        });
+      axios.post("/api/companyuser/dbcall").then((data) => {
+        const _inputData = {
+          CompanyBusinessNumber: data.data.companyNumber,
+          CompanyName: data.data.companyName,
+          CompanyHeader: data.data.companyHeader,
+          CompanyAddress: data.data.companyAddress,
+          CompanyUsername: data.data.companyIdname,
+          CompanyNumber: data.data.companyIdnumber,
+          CompanyEmail: data.data.companyIdemail,
+          CompanyLogo: data.data.companylogo,
+          CompanyMoney: data.data.companyMoney,
+        };
+        setInputData(_inputData);
+      });
     } catch (e) {
       console.error(e.message);
     }

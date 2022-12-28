@@ -68,7 +68,7 @@ const HeaderComponent = ({
                       dispatch(action.logoutCompany());
                       // setLoginIsClick(false);
                       const data = await axios.post(
-                        "http://localhost:8080/api/companyuser/logout",
+                        "/api/companyuser/logout",
                         {}
                       );
                       console.log(data);
@@ -99,9 +99,7 @@ const HeaderComponent = ({
                       onMouseLeave={() => setHeaderMenuIsOver(-1)}
                       onClick={async () => {
                         if (item.data === "yes") {
-                          const data = await axios.post(
-                            "http://localhost:8080/api/recruit/isdata"
-                          );
+                          const data = await axios.post("/api/recruit/isdata");
                           console.log(data.data.isdata);
                           if (data.data.isdata === "false") {
                             return alert(

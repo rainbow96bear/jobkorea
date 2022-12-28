@@ -45,10 +45,7 @@ const IndividualContainer = () => {
     formData.append("individualInfoValid", individualInfoValid);
     formData.append("individualAddress", individualAddress);
     console.log(individualPhotoUpload);
-    const data = await axios.post(
-      "http://localhost:8080/api/individualuser/regist",
-      formData
-    );
+    const data = await axios.post("/api/individualuser/regist", formData);
 
     console.log(data.data);
     if (data.data.status === 200) {

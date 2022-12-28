@@ -20,6 +20,8 @@ export default function RegistPostContainer({ adGrade }) {
   const [maxPay, setMaxPay] = useState("");
   const [isLimit, setisLimit] = useState("");
   const [payKinds, setPayKinds] = useState("");
+  const [minmin, setMinmin] = useState(0);
+  const [maxmax, setMaxmax] = useState(0);
   const day = useSelector((state) => state.recruit.value);
 
   const navigate = useNavigate();
@@ -104,9 +106,11 @@ export default function RegistPostContainer({ adGrade }) {
   };
   const minPayHandler = (e) => {
     setMinPay(e.target.value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
+    setMinmin(e.target.value);
   };
   const maxPayHandler = (e) => {
     setMaxPay(e.target.value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
+    setMaxmax(e.target.value);
   };
 
   const saveHandler = (e) => {
@@ -119,12 +123,12 @@ export default function RegistPostContainer({ adGrade }) {
       area == "" ||
       shape == "" ||
       workRank == "" ||
-      (payKinds !== "" && (minPay == "" || maxPay == "")) ||
+      (payKinds !== "" && (minmin == "" || maxmax == "")) ||
       (isPay == "" && (payKinds == "" || minPay == "" || maxPay == ""))
     ) {
       alert("필요한 값을 모두 입력해주세요");
       return;
-    } else if (+minPay >= +maxPay) {
+    } else if (minmin >= +maxmax) {
       alert("최소 급여는 최대 급여보다 작아야합니다");
       return;
     }
@@ -148,9 +152,8 @@ export default function RegistPostContainer({ adGrade }) {
       adGrade: adGrade,
       day: day,
     };
-    axios
-      .post("http://localhost:8080/api/recruit/add", body)
-      .then((res) => console.log(res));
+
+    axios.post("/api/recruit/add", body).then((res) => console.log(res));
     alert("등록되었습니다");
     navigate("/companymain/managepost");
   };

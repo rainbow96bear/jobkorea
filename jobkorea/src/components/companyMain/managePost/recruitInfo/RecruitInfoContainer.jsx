@@ -51,7 +51,7 @@ export default function RecruitInfoContainer() {
 
   const passOnclick = (individualId) => {
     axios
-      .post("http://localhost:8080/api/recruit/pass", {
+      .post("/api/recruit/pass", {
         recruitId: params.id,
         individualId: individualId,
       })
@@ -62,7 +62,7 @@ export default function RecruitInfoContainer() {
 
   const failOnclick = (individualId) => {
     axios
-      .post("http://localhost:8080/api/recruit/fail", {
+      .post("/api/recruit/fail", {
         recruitId: params.id,
         individualId: individualId,
       })
@@ -72,20 +72,17 @@ export default function RecruitInfoContainer() {
   };
 
   useEffect(() => {
-    axios
-      .post("http://localhost:8080/api/recruit/whoapply", { id: params.id })
-      .then((data) => {
-        setApplyUserInfo(data.data[0].RecruitInfo);
-      });
+    axios.post("/api/recruit/whoapply", { id: params.id }).then((data) => {
+      setApplyUserInfo(data.data[0].RecruitInfo);
+    });
   }, [btnRender]);
 
   useEffect(() => {
     const myRecruitFunc = async () => {
       try {
-        const data = await axios.post(
-          "http://localhost:8080/api/recruit/myrecruit",
-          { id: params.id }
-        );
+        const data = await axios.post("/api/recruit/myrecruit", {
+          id: params.id,
+        });
         const result = data.data;
         setMyRecruit(result);
       } catch (err) {

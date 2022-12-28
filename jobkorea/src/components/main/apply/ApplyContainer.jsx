@@ -13,7 +13,7 @@ export default function ApplyContainer() {
   useEffect(() => {
     try {
       axios
-        .post("http://localhost:8080/api/apply/jobApplication", { application })
+        .post("/api/apply/jobApplication", { application })
         .then(({ data }) => {
           if (data == "다시 로그인해주세요") {
             alert("다시로그인해주세요");

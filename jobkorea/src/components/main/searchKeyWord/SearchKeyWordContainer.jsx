@@ -11,7 +11,7 @@ export default function SearchKeyWordContainer() {
     console.log(params.keyWord);
     try {
       axios
-        .post("http://localhost:8080/api/recruit/keyWord", {
+        .post("/api/recruit/keyWord", {
           keyWord: params.keyWord,
         })
         .then((data) => {
