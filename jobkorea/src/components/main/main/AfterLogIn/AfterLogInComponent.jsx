@@ -19,57 +19,56 @@ const AfterLogInComponent = ({
 
   console.log(individualPhoto);
   return (
-    <>
-      <AfterLogInBox>
-        <ImgBox>
-          <div className="afterLogInDiv2">
-            {/* <div className="goResume">이력서 관리 &gt;</div>
+    <AfterLogInBox>
+      <ImgBox>
+        <div className="afterLogInDiv2">
+          {/* <div className="goResume">이력서 관리 &gt;</div>
           <div className="modifiedDate">최종 수정일 (2022.07.18)</div> */}
+          {individualPhoto && (
             <img
               src={`http://localhost:8080/uploads/${individualPhoto}`}
               style={{ width: "70px", height: "70px" }}
               alt=""
             />
-          </div>
-          <div className="afterLogInDiv1">
-            <button
-              className="logOutBtn"
-              onClick={() => {
-                onClick();
-                setTest(false);
-              }}
-            >
-              로그아웃
-            </button>
-            <div className="goInfo" onClick={onClick}>
-              {individualId}님
-            </div>
-          </div>
-        </ImgBox>
-        <div className="afterLogInDiv3">
-          <button onClick={goApply}>
-            지원
-            <br />
-            현황
-          </button>
-          <button onClick={goError}>
-            열람
-            <br />
-            기업
-          </button>
-          <button onClick={goError}>
-            공고
-            <br />
-            스크랩
-          </button>
-          <button onClick={goError}>
-            스마트
-            <br />
-            매치
-          </button>
+          )}
         </div>
-      </AfterLogInBox>
-    </>
+        <div className="afterLogInDiv1">
+          <button
+            className="logOutBtn"
+            onClick={() => {
+              onClick();
+              setTest(false);
+            }}>
+            로그아웃
+          </button>
+          <div className="goInfo" onClick={onClick}>
+            {individualId}님
+          </div>
+        </div>
+      </ImgBox>
+      <div className="afterLogInDiv3">
+        <button onClick={goApply}>
+          지원
+          <br />
+          현황
+        </button>
+        <button onClick={goError}>
+          열람
+          <br />
+          기업
+        </button>
+        <button onClick={goError}>
+          공고
+          <br />
+          스크랩
+        </button>
+        <button onClick={goError}>
+          스마트
+          <br />
+          매치
+        </button>
+      </div>
+    </AfterLogInBox>
   );
 };
 

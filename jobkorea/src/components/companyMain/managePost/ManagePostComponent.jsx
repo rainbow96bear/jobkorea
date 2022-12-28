@@ -12,8 +12,10 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
             <CompanyName>
               {data.CompanyName}
               <CompanyLogo>
-                <img
-                  src={`http://localhost:8080/uploads/${data.CompanyLogo}`}></img>
+                {data.CompanyLogo && (
+                  <img
+                    src={`http://localhost:8080/uploads/${data.CompanyLogo}`}></img>
+                )}
               </CompanyLogo>
             </CompanyName>
             <RecruitContentBox>

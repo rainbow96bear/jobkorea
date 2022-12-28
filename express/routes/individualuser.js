@@ -2,12 +2,8 @@ const router = require("express").Router();
 const crypto = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
-// const { default: Cookies } = require("universal-cookie");
-// const Cookies = require("universal-cookie");
 
 const { Individualuser_Info } = require("../models/index.js");
-
-// const cookies = new Cookies();
 
 router.post("/autologin", (req, res) => {
   if (req.cookies["individual_login"]) {
@@ -15,9 +11,6 @@ router.post("/autologin", (req, res) => {
       req.cookies.individual_login,
       process.env.COOKIE_SECRET
     );
-    console.log("#################");
-    console.log(userInfo);
-    console.log("#################");
 
     res.send(userInfo);
   } else {
@@ -39,15 +32,12 @@ router.post(
   "/regist",
   upload.single("individualPhotoUpload"),
   async (req, res) => {
-    // console.log(req.body.individualId);
-
     try {
       if (
         await Individualuser_Info.findOne({
           where: { individualId: req.body.individualId },
         })
       ) {
-        console.log("이미 있는 아이디");
         res.send("이미 있는 아이디");
       } else {
         console.log(req.file.originalname);
@@ -70,7 +60,6 @@ router.post(
           individualInfoValid: req.body.individualInfoValid,
           individualAddress: req.body.individualAddress,
         });
-        console.log("아이디 생성");
         res.send({ status: 200 });
       }
     } catch (err) {
@@ -81,16 +70,11 @@ router.post(
 );
 
 router.post("/login", async (req, res) => {
-  console.log("-------");
-  console.log(req.body);
-  console.log("-------");
   const logInData = await Individualuser_Info.findOne({
     where: { individualId: req.body.id },
   });
   const userPw = crypto.SHA256(req.body.pw).toString();
-
   console.log(logInData);
-  console.log(logInData.individualPhoto);
   try {
     if (logInData) {
       if (

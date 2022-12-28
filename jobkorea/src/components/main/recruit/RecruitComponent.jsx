@@ -1,74 +1,74 @@
 import styled from "styled-components";
 
-// import { useEffect, useState } from "react";
-
 export default function RecruitComponent({
   recruitInfo,
   applybutton,
   midScreen,
   bottomScreen,
-  firstScreen,
 }) {
   return (
     <Divcontainer>
       <Informationboxs>
         <Informationboxscontent>
           <Boxscontentone>
-            <Textfour>
-              {recruitInfo[0]?.Companyuser_Info.companyName}
+            {recruitInfo[0]?.Companyuser_Info.companyName}
 
-              <h2 style={{ color: "black" }}>{recruitInfo[0]?.recruitName}</h2>
-            </Textfour>
+            <h2 style={{ color: "black" }}>{recruitInfo[0]?.recruitName}</h2>
           </Boxscontentone>
           {midScreen && (
-            <Informationboxscontenttwoafter>
-              <Imgboxafter>
-                <img
-                  style={{ width: 100 }}
-                  src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
-                  alt=""
-                />
-              </Imgboxafter>
+            <Padding>
+              <Imgbox>
+                {recruitInfo[0]?.Companyuser_Info.companylogo && (
+                  <img
+                    src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
+                    alt=""
+                  />
+                )}
+              </Imgbox>
               <Textdiv>
-                <div style={{ marginBottom: 10, marginLeft: 10 }}>기업정보</div>
-                <Textbox>
-                  <Texttwo>
-                    <Textfive>대표 이름</Textfive>
-                    <Textsix>
-                      {recruitInfo[0]?.Companyuser_Info.companyHeader}
-                    </Textsix>
-                  </Texttwo>
-                  <Texttwo>
-                    <Textfive>담당자 명</Textfive>
-                    <Textsix style={{ marginLeft: 20 }}>
-                      {recruitInfo[0]?.Companyuser_Info.companyIdname}
-                    </Textsix>
-                  </Texttwo>
-                  <Texttwo>
-                    <Textfive>담당자 번호</Textfive>
-                    <Textsix style={{ marginLeft: 8 }}>
-                      {recruitInfo[0]?.Companyuser_Info.companyIdnumber}
-                    </Textsix>
-                  </Texttwo>
-                  <Texttwo>
-                    <Textfive>기업형태</Textfive>
-                    <Textsix style={{ marginLeft: 8 }}>
-                      {recruitInfo[0]?.Companyuser_Info.selectedOption}
-                    </Textsix>
-                  </Texttwo>
-                  <Texttwo>
-                    <Textfive style={{ width: 70 }}>E-mail</Textfive>
-                    <Textsix>
-                      {recruitInfo[0]?.Companyuser_Info.companyIdemail}
-                    </Textsix>
-                  </Texttwo>
-                </Textbox>
+                <div>기업정보</div>
+                <Textbox1>
+                  <div>
+                    <CompText>
+                      <Textfive>대표 이름</Textfive>
+                      <Textsix>
+                        {recruitInfo[0]?.Companyuser_Info.companyHeader}
+                      </Textsix>
+                    </CompText>
+                    <CompText>
+                      <Textfive>기업형태</Textfive>
+                      <Textsix>
+                        {recruitInfo[0]?.Companyuser_Info.selectedOption}
+                      </Textsix>
+                    </CompText>
+                  </div>
+                  <div>
+                    <CompText>
+                      <Textfive>담당자 명</Textfive>
+                      <Textsix>
+                        {recruitInfo[0]?.Companyuser_Info.companyIdname}
+                      </Textsix>
+                    </CompText>
+                    <CompText>
+                      <Textfive>담당자 번호</Textfive>
+                      <Textsix>
+                        {recruitInfo[0]?.Companyuser_Info.companyIdnumber}
+                      </Textsix>
+                    </CompText>
+                    <CompText>
+                      <Textfive>E-mail</Textfive>
+                      <Textsix>
+                        {recruitInfo[0]?.Companyuser_Info.companyIdemail}
+                      </Textsix>
+                    </CompText>
+                  </div>
+                </Textbox1>
               </Textdiv>
-            </Informationboxscontenttwoafter>
+            </Padding>
           )}
           <Boxscontenttwo className={bottomScreen ? "afterflex" : "beforeflex"}>
             <Textone>
-              <div style={{ marginBottom: 10 }}>지원자격</div>
+              <div>지원자격</div>
               <div>
                 <Texttwo>
                   <Texttwo>경력</Texttwo>{" "}
@@ -84,7 +84,7 @@ export default function RecruitComponent({
                     {recruitInfo[0]?.condition == "" ? (
                       <div>우대 사항 없음</div>
                     ) : (
-                      <div style={{ padding: 0 }}>
+                      <div>
                         {recruitInfo[0]?.condition
                           .split(",")
                           .map((item, index) => (
@@ -98,7 +98,7 @@ export default function RecruitComponent({
             </Textone>
 
             <Textone>
-              <div style={{ marginBottom: 10 }}>근무조건</div>
+              <div>근무조건</div>
               <Texttwo>
                 <Textthree>고용형태</Textthree>
                 <Textcolor>{recruitInfo[0]?.workRank}</Textcolor>
@@ -165,56 +165,55 @@ export default function RecruitComponent({
         {!midScreen && (
           <Informationboxscontenttwo>
             <Imgbox>
-              <img
-                style={{ width: 70 }}
-                src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
-                alt=""
-              />
+              {recruitInfo[0]?.Companyuser_Info.companylogo && (
+                <img
+                  src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
+                  alt=""
+                />
+              )}
             </Imgbox>
 
             <div>
-              <div style={{ marginBottom: 10, marginLeft: 10 }}>기업정보</div>
-              <Textbox>
-                <Texttwoname>
-                  <Textfive style={{ width: 100 }}>대표 이름</Textfive>
-                  <Textsix style={{ width: 100 }}>
+              <div>기업정보</div>
+              <Textbox2>
+                <CompText>
+                  <Textfive>대표 이름</Textfive>
+                  <Textsix>
                     {recruitInfo[0]?.Companyuser_Info.companyHeader}
                   </Textsix>
-                </Texttwoname>
-                <Texttwo>
+                </CompText>
+                <CompText>
                   <Textfive>담당자 명</Textfive>
-                  <Textsix style={{ marginLeft: 20 }}>
+                  <Textsix>
                     {recruitInfo[0]?.Companyuser_Info.companyIdname}
                   </Textsix>
-                </Texttwo>
-                <Texttwo>
+                </CompText>
+                <CompText>
                   <Textfive>담당자 번호</Textfive>
-                  <Textsix style={{ marginLeft: 20 }}>
+                  <Textsix>
                     {recruitInfo[0]?.Companyuser_Info.companyIdnumber}
                   </Textsix>
-                </Texttwo>
-                <Texttwostate>
-                  <Textfive style={{ width: 110 }}>기업형태</Textfive>
-                  <Textsix style={{ marginLeft: 45 }}>
+                </CompText>
+                <CompText>
+                  <Textfive>기업형태</Textfive>
+                  <Textsix>
                     {recruitInfo[0]?.Companyuser_Info.selectedOption}
                   </Textsix>
-                </Texttwostate>
-                <Texttwo>
-                  <Textfive style={{ width: 110 }}>E-mail</Textfive>
-                  <Textsix style={{ marginLeft: 35 }}>
+                </CompText>
+                <CompText>
+                  <Textfive>E-mail</Textfive>
+                  <Textsix>
                     {recruitInfo[0]?.Companyuser_Info.companyIdemail}
                   </Textsix>
-                </Texttwo>
-              </Textbox>
+                </CompText>
+              </Textbox2>
             </div>
           </Informationboxscontenttwo>
         )}
       </Informationboxs>
       <Footercontainer>
         <Home>
-          <div onClick={applybutton}>
-            <strong>즉시 지원</strong>
-          </div>
+          <div onClick={applybutton}>즉시 지원</div>
         </Home>
       </Footercontainer>
     </Divcontainer>
@@ -222,28 +221,15 @@ export default function RecruitComponent({
 }
 const Textdiv = styled.div`
   display: flex;
-  width: 300px;
   flex-direction: column;
 `;
 
-const Informationboxscontenttwoafter = styled.div`
+const CompText = styled.div`
+  // width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  width: 40%;
-  margin-left: 50px;
-  /* margin: auto; */
-  justify-content: center;
 `;
-
-const Texttwostate = styled.div`
-  display: flex;
-
-  & div:nth-child(1) {
-    width: 70px;
-  }
-`;
-
-const Imgboxafter = styled.div``;
 
 const Texttwobox = styled.div``;
 
@@ -261,7 +247,7 @@ const Divcontainer = styled.div`
   align-items: center;
   min-width: 360px;
   width: 100%;
-  height: 100vh;
+  padding-bottom: 20px;
 `;
 
 const Informationboxs = styled.div`
@@ -277,19 +263,14 @@ const Informationboxs = styled.div`
 `;
 
 const Boxscontentone = styled.div`
-  padding-top: 3%;
-
   color: gray;
-  border-bottom: solid 0.1px lightgray;
-  border-right: solid 0.1px lightgray;
+  padding: 15px;
+  border-bottom: solid 1px lightgray;
 `;
 
 const Boxscontenttwo = styled.div`
   width: 100%;
-  height: 65%;
-  background-color: white;
-
-  border-right: solid 0.1px lightgray;
+  padding: 15px;
   &.afterflex {
     text-align: center;
     width: 50%;
@@ -303,25 +284,11 @@ const Boxscontenttwo = styled.div`
   }
 `;
 const Textone = styled.div`
-  padding: 2.5%;
   flex: 1;
-`;
-
-const Texttwoname = styled.div`
-  display: flex;
-  & div:nth-child(1) {
-    width: 80px;
-  }
-  & div:nth-child(2) {
-  }
 `;
 
 const Texttwo = styled.div`
   display: flex;
-
-  div:first-child {
-    padding-right: 10px;
-  }
 `;
 
 const Textcolor = styled.span`
@@ -335,14 +302,13 @@ const Textthree = styled.div`
   color: gray;
 `;
 
-const Textfour = styled.div`
-  width: 90%;
-  margin-left: 3%;
+const Padding = styled.div`
+  padding: 15px;
 `;
 
 const Informationboxscontent = styled.div`
   flex-grow: 1;
-  height: fit-content;
+  border-right: solid 1px lightgray;
 `;
 
 const Informationboxscontenttwo = styled.div`
@@ -350,50 +316,47 @@ const Informationboxscontenttwo = styled.div`
 `;
 
 const Imgbox = styled.div`
-  padding-left: 20%;
-  padding-top: 8%;
-  padding-bottom: 28%;
+  height: 100px;
+  border: solid 1px black;
 `;
 
-const Textbox = styled.div`
-  /* display: flex; */
+const Textbox1 = styled.div`
+  display: flex;
+  & > div {
+    width: 100%;
+  }
+  & > div > div {
+    flex: 1;
+    padding: 15px 0;
+  }
 `;
+const Textbox2 = styled.div``;
 
 const Textfive = styled.div`
-  width: 150px;
-  padding-left: 5%;
   color: gray;
-  font-size: 12px;
+  font-size: 15px;
 `;
 
 const Textsix = styled.div`
-  width: 300px;
-  /* padding-left: 5%; */
   display: flex;
-  /* width: 100px; */
-  /* align-items: center; */
-  /* justify-content: center; */
 `;
 
 const Footercontainer = styled.div`
   display: flex;
-  padding-top: 1%;
+  padding-top: 20px;
   justify-content: center;
   align-items: center;
 `;
 
 const Home = styled.div`
+  display: flex;
+  align-items: center;
   color: white;
-  text-align: center;
   padding: 0px 20px;
-  width: 100%;
   height: 40px;
   background-color: #3399ff;
-  margin-right: 10px;
-  margin-bottom: 15px;
-
-  div:first-child {
-    padding-top: 10%;
+  div {
+    font-weight: 900;
     font-size: large;
   }
 `;
