@@ -40,16 +40,6 @@ router.post(
       ) {
         res.send("이미 있는 아이디");
       } else {
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
-        console.log(req.file.originalname);
         await Individualuser_Info.create({
           individualPhoto: req.file.filename,
           individualName: req.body.individualName,
@@ -74,8 +64,6 @@ router.post("/login", async (req, res) => {
     where: { individualId: req.body.id },
   });
   const userPw = crypto.SHA256(req.body.pw).toString();
-  console.log(logInData);
-  console.log(logInData.individualPhoto);
   try {
     if (logInData) {
       if (
@@ -110,21 +98,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// const logInData = await Individualuser_Info.findOne({
-//   where: { individualId: req.body.id },
-// });
-// // 비밀번호 확인~!
-// const userPw = crypto.SHA256(req.body.pw).toString();
-// if (logInData.individualPw != userPw) {
-//   res.end;
-// } else {
-//   // send로 누구인지 보내줌
-//   res.send(logInData.individualName);
-// }
-
 router.post("/logout", (req, res) => {
   res.clearCookie("individual_login");
-  res.send();
+  res.send({ state: 12341234 });
 });
 
 router.post("/idconfirm", async (req, res) => {
@@ -165,14 +141,6 @@ router.post("/pwconfirm", async (req, res) => {
 });
 
 router.post("/changepw", async (req, res) => {
-  console.log(req.body);
-  // const userPw = crypto.SHA256(req.body.pw).toString();
-  console.log(req.body.pwConfirm);
-  console.log("++++++++++++++++++");
-  console.log(req.body.lastconfirmid);
-  console.log("++++++++++++++++++");
-
-  console.log(req.body.lastconfirmphone);
   Individualuser_Info.update(
     {
       individualPw: crypto.SHA256(req.body.pwConfirm).toString(),

@@ -83,7 +83,7 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
 
   useEffect(() => {
     companyconfirm();
-  }, [companyUser]);
+  }, []);
 
   return (
     <HeaderComponent
@@ -91,8 +91,7 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
       dropdownOnClick={dropdownOnClick}
       dropdownIsClick={dropdownIsClick}
       menuList={menuList}
-      moveTo={moveTo}
-    ></HeaderComponent>
+      moveTo={moveTo}></HeaderComponent>
   );
 };
 

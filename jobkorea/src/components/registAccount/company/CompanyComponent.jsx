@@ -8,9 +8,6 @@ import "./Company.css";
 import { useNavigate } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
 
-// import circlecheck from "circle-check-regular.svg";
-// import magni from "./img/magnifying-glass-solid.svg";
-// import { VscSearch } from "react-icons/vsc";
 const COLOR = " #3399ff";
 
 export default function CompanyComponent({
@@ -27,12 +24,11 @@ export default function CompanyComponent({
     { value: "중견기업", label: "중견기업" },
   ];
   const navigate = useNavigate();
-
+  const [delectCheck, setDeleteCheck] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [companyNumber, setCompnayNumber] = useState("");
   const [companyName, setCompnayName] = useState("");
   const [companyHeader, setCompanyHeader] = useState("");
-  // const [companyAdress, setCompanyAdress] = useState("");
   const [companyId, setCompanyId] = useState("");
   const [companyPw, setCompanyPw] = useState("");
   const [companyIdname, setCompanyIdname] = useState("");
@@ -50,7 +46,6 @@ export default function CompanyComponent({
   const [isId, setIsId] = useState(false);
   const [isPw, setIsPw] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
-  // const [isNumber, setIsnumber] = useState(false);
   const [isIdNumber, setIsIdnumber] = useState(false);
 
   const onInputphone = (getNumber) => {
@@ -67,7 +62,6 @@ export default function CompanyComponent({
   };
 
   const imgChanage = (imgFile) => {
-    // console.log(itemFile.files);
     if (imgFile.files && imgFile.files[0]) {
       const readImg = new FileReader();
       readImg.onload = (e) => {
@@ -80,33 +74,6 @@ export default function CompanyComponent({
       setCompanyLogo("");
     }
   };
-
-  // useEffect(() => {
-  //   if (currentNumber.length === 10) {
-  //     setCompanyIdnumber(
-  //       currentNumber.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
-  //     );
-  //     if (currentNumber.length === 13) {
-  //       currentNumber.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
-  //     }
-  //   }
-  // }, [currentNumber]);
-
-  // useEffect(() => {
-  //   if (companyIdnumber.length === 10) {
-  //     setCompanyIdnumber(
-  //       companyIdnumber.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
-  //     );
-  //   }
-  //   if (companyIdnumber.length === 13) {
-  //     setCompanyIdnumber(
-  //       companyIdnumber
-  //         .replace(/-/g, "")
-  //         .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-  //     );
-  //   }
-  // }, [companyIdnumber]);
-
   return (
     <JoinBox>
       <Mainbanner>
@@ -117,8 +84,7 @@ export default function CompanyComponent({
             className="personal"
             onClick={() => {
               navigate("/registAccount/individual");
-            }}
-          >
+            }}>
             개인회원
           </div>
           <div className="company">기업회원</div>
@@ -135,7 +101,6 @@ export default function CompanyComponent({
         <Multercontainer>
           <MulterBox
             onChange={(e) => {
-              // const multervalue = e.target.value;
               imgChanage(e.target);
             }}
             type={"file"}
@@ -147,8 +112,6 @@ export default function CompanyComponent({
         </Multercontainer>
 
         <Select
-          // menuPlacement="auto"
-          // menuPosition="fixed"
           onChange={(e) => {
             setSelectedOption(e.value);
           }}
@@ -178,8 +141,7 @@ export default function CompanyComponent({
             }
           }}
           type={"number"}
-          placeholder="사업자등록번호 *"
-        ></Companynumber>
+          placeholder="사업자등록번호 *"></Companynumber>
         <div className="idmessage">{numberMessage}</div>
         <Companytitle>
           <Companyname
@@ -187,15 +149,13 @@ export default function CompanyComponent({
               setCompnayName(e.target.value);
             }}
             type={"text"}
-            placeholder="회사명 *"
-          ></Companyname>
+            placeholder="회사명 *"></Companyname>
           <Companyheader
             onInput={(e) => {
               setCompanyHeader(e.target.value);
             }}
             type={"text"}
-            placeholder="대표자명*"
-          ></Companyheader>
+            placeholder="대표자명*"></Companyheader>
         </Companytitle>
         <div className="check">
           회사명,대표자명 수정이 필요한 경우, 가입 후 고객센터(1588-9350)로 문의
@@ -209,8 +169,7 @@ export default function CompanyComponent({
             onClick={handle.clickButton}
             value={companyAddress}
             type="text"
-            placeholder="회사주소 * "
-          ></Companyadress>{" "}
+            placeholder="회사주소 * "></Companyadress>{" "}
           {openPostcode && (
             <DaumPostcode
               onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
@@ -221,10 +180,6 @@ export default function CompanyComponent({
         </div>
         <Companytitle>
           <Companyid
-            // onFocus={(e) => {
-            //   if (companyId == "") setIdMessage("필수정보입니다");
-            // }}
-            // onChange={onChangeId}
             onBlur={(e) => {
               setIdMessage(null);
             }}
@@ -241,8 +196,7 @@ export default function CompanyComponent({
               }
             }}
             type={"text"}
-            placeholder="아이디 *"
-          ></Companyid>
+            placeholder="아이디 *"></Companyid>
 
           <Companypw
             companyPw={companyPw}
@@ -264,8 +218,7 @@ export default function CompanyComponent({
               }
             }}
             type={"password"}
-            placeholder="비밀번호*"
-          ></Companypw>
+            placeholder="비밀번호*"></Companypw>
           <Companycheck>표시</Companycheck>
         </Companytitle>
 
@@ -279,8 +232,7 @@ export default function CompanyComponent({
             setCompanyIdname(e.target.value);
           }}
           type={"text"}
-          placeholder="가입자명 *"
-        ></Companyidname>
+          placeholder="가입자명 *"></Companyidname>
         <Companyidname
           onBlur={(e) => {
             setIdnumberMessage(null);
@@ -289,6 +241,7 @@ export default function CompanyComponent({
             setCompanyIdnumber(e.target.value);
 
             const phoneRegExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
             if (!phoneRegExp.test(e.target.value)) {
               setIdnumberMessage("올바른 형식이 아닙니다");
               setIsIdnumber(false);
@@ -299,25 +252,25 @@ export default function CompanyComponent({
             const currentNumber = e.target.value;
             setCompanyIdnumber(currentNumber);
             if (currentNumber.length == 3 || currentNumber.length == 8) {
-              setCompanyIdnumber(currentNumber + "-");
-              onInputphone(currentNumber + "-");
-            } else {
-              onInputphone(currentNumber);
+              setDeleteCheck(true);
+              console.log(delectCheck);
             }
-
-            // if (e.target.value.length == 3 || e.target.value.length == 7) {
-            //   setCompanyIdnumber(e.target.value + "-");
-            // }
-
-            // const regex = /^[0-9\b -]{0,13}$/;
-            // if (regex.test(e.target.value)) {
-            //   setCompanyIdnumber(e.target.value);
-            // }
+            if (delectCheck) {
+              if (currentNumber.length == 2 || currentNumber.length == 7) {
+                setDeleteCheck(false);
+              }
+            } else {
+              if (currentNumber.length == 3 || currentNumber.length == 8) {
+                setCompanyIdnumber(currentNumber + "-");
+                onInputphone(currentNumber + "-");
+              } else {
+                onInputphone(currentNumber);
+              }
+            }
           }}
           type={"text"}
           placeholder="전화번호 *"
-          value={companyIdnumber}
-        ></Companyidname>
+          value={companyIdnumber}></Companyidname>
         <div className="idmessage">{idNumberMessage}</div>
         <Companyidname
           onBlur={(e) => {
@@ -336,8 +289,7 @@ export default function CompanyComponent({
             }
           }}
           type={"email"}
-          placeholder="이메일 *"
-        ></Companyidname>
+          placeholder="이메일 *"></Companyidname>
         <div className="idmessage">{emailMessage}</div>
 
         <div
@@ -361,8 +313,6 @@ export default function CompanyComponent({
               isEmail === true &&
               isIdNumber === true
             )
-              //이거 다시 생각해보기 ! ""필요없음 ""은 false임
-
               onClick(
                 selectedOption,
                 companyNumber,
@@ -380,20 +330,13 @@ export default function CompanyComponent({
               alert("모든정보를 제대로 입력해주세요");
             }
           }}
-          className="companymember"
-        >
+          className="companymember">
           가입하기
         </div>
       </Joindetailbackground>
     </JoinBox>
   );
 }
-
-const CustomSelect = styled(Select)``;
-
-// const Selectdiv = styled.div`
-
-// `;
 
 const Multercontainer = styled.div`
   width: 100%;

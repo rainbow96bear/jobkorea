@@ -36,8 +36,8 @@ const AfterLogInComponent = ({
           <button
             className="logOutBtn"
             onClick={() => {
-              onClick();
               setTest(false);
+              onClick();
             }}>
             로그아웃
           </button>
