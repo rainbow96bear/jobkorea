@@ -44,15 +44,15 @@ export default function RecruitInfoComponent({
                 <div style={{ marginBottom: 10 }}>지원자격</div>
                 <div>
                   <Texttwo>
-                    <TitleBox className="gray">경력</TitleBox>{" "}
+                    <QTitleBox className="gray">경력</QTitleBox>{" "}
                     <Textcolor>{myRecruit?.isExp}</Textcolor>
                   </Texttwo>
                   <Texttwo>
-                    <TitleBox className="gray">학력</TitleBox>
+                    <QTitleBox className="gray">학력</QTitleBox>
                     <Textcolor>{myRecruit?.edu}</Textcolor>
                   </Texttwo>
                   <Texttwo>
-                    <TitleBox className="gray">우대</TitleBox>
+                    <QTitleBox className="gray">우대</QTitleBox>
                     {myRecruit?.condition == "" ? (
                       <div>우대 사항 없음</div>
                     ) : (
@@ -69,11 +69,11 @@ export default function RecruitInfoComponent({
               <Textone>
                 <div style={{ marginBottom: 10 }}>근무조건</div>
                 <Texttwo>
-                  <Textthree>고용형태</Textthree>
+                  <TitleBox>고용형태</TitleBox>
                   <Textcolor>{myRecruit?.shape}</Textcolor>
                 </Texttwo>
                 <Texttwo>
-                  <Textthree>급여</Textthree>
+                  <TitleBox>급여</TitleBox>
                   <PayBox>
                     {myRecruit?.isPay == "회사내규에 따름" ||
                     myRecruit?.isPay == "회사내규에 따름, 면접 후 결정" ||
@@ -107,16 +107,16 @@ export default function RecruitInfoComponent({
                   </PayBox>
                 </Texttwo>
                 <Texttwo>
-                  <Textthree>지역</Textthree>
+                  <TitleBox>지역</TitleBox>
                   <div>{myRecruit?.area}</div>
                 </Texttwo>
 
                 <Texttwo>
-                  <Textthree>직급</Textthree>
+                  <TitleBox>직급</TitleBox>
                   <div>{myRecruit?.workRank}</div>
                 </Texttwo>
                 <Texttwo>
-                  <Textthree>담당업무</Textthree>
+                  <TitleBox>담당업무</TitleBox>
                   <div>{myRecruit?.myTask}</div>
                 </Texttwo>
 
@@ -124,7 +124,7 @@ export default function RecruitInfoComponent({
                   <></>
                 ) : (
                   <Texttwo>
-                    <Textthree>근무부서</Textthree>
+                    <TitleBox>근무부서</TitleBox>
 
                     <div>{myRecruit?.workDepartment}</div>
                   </Texttwo>
@@ -150,24 +150,20 @@ export default function RecruitInfoComponent({
               </Texttwo>
               <Texttwo>
                 <Textfive>담당자 명</Textfive>
-                <Textsix style={{ marginLeft: 20 }}>
-                  {myRecruit?.Companyuser_Info?.companyIdname}
-                </Textsix>
+                <Textsix>{myRecruit?.Companyuser_Info?.companyIdname}</Textsix>
               </Texttwo>
               <Texttwo>
                 <Textfive>담당자 번호</Textfive>
-                <Textsix style={{ marginLeft: 8 }}>
+                <Textsix>
                   {myRecruit?.Companyuser_Info?.companyIdnumber}
                 </Textsix>
               </Texttwo>
               <Texttwo>
                 <Textfive>기업형태</Textfive>
-                <Textsix style={{ marginLeft: 8 }}>
-                  {myRecruit?.Companyuser_Info?.selectedOption}
-                </Textsix>
+                <Textsix>{myRecruit?.Companyuser_Info?.selectedOption}</Textsix>
               </Texttwo>
               <Texttwo>
-                <Textfive style={{ width: 70 }}>E-mail</Textfive>
+                <Textfive>E-mail</Textfive>
                 <Textsix>{myRecruit?.Companyuser_Info?.companyIdemail}</Textsix>
               </Texttwo>
             </Textbox>
@@ -204,34 +200,33 @@ export default function RecruitInfoComponent({
             <UserFlex>
               <UserTitle>지원자 E-mail</UserTitle>
               <UserContent>{item.individualEmail}</UserContent>
-              {/* <div>{item.personalRecruit.check}</div> */}
-              {!item.personalRecruit.check ? (
-                <UserBtn>
-                  <div
-                    onClick={() => {
-                      passOnclick(item.individualId);
-                    }}
-                  >
-                    합격
-                  </div>
-                  <div
-                    onClick={() => {
-                      failOnclick(item.individualId);
-                    }}
-                  >
-                    불합격
-                  </div>
-                </UserBtn>
-              ) : item.personalRecruit.check == "pass" ? (
-                <div>합격처리 완료</div>
-              ) : (
-                <div>불합격처리 완료</div>
-              )}
             </UserFlex>
             <UserFlex>
               <UserTitle>지원자 전화번호</UserTitle>
               <UserContent>{item.individualTel}</UserContent>
             </UserFlex>
+            {!item.personalRecruit.check ? (
+              <UserBtn>
+                <div
+                  onClick={() => {
+                    passOnclick(item.individualId);
+                  }}
+                >
+                  합격
+                </div>
+                <div
+                  onClick={() => {
+                    failOnclick(item.individualId);
+                  }}
+                >
+                  불합격
+                </div>
+              </UserBtn>
+            ) : item.personalRecruit.check == "pass" ? (
+              <div>합격처리 완료</div>
+            ) : (
+              <div>불합격처리 완료</div>
+            )}
           </UserInfo>
         ))}
       </ApplyUserBox>
@@ -242,9 +237,12 @@ export default function RecruitInfoComponent({
 const UserBtn = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 20px;
 
   div {
-    width: 100px;
+    width: 80px;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -252,7 +250,7 @@ const UserBtn = styled.div`
     background-color: #3399ff;
     border: 1px solid #d3d3d3;
     border-radius: 10px;
-    margin-right: 20px;
+    margin-right: 10px;
     cursor: pointer;
   }
 
@@ -265,6 +263,9 @@ const UserContent = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
+  @media (max-width: 450px) {
+    padding: 20px;
+  }
 `;
 
 const UserTitle = styled.div`
@@ -277,10 +278,19 @@ const UserTitle = styled.div`
 `;
 const UserFlex = styled.div`
   display: flex;
+  justify-content: space-around;
+  margin: auto;
+  white-space: nowrap;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const ApplyUserBox = styled.div`
-  width: 60%;
+  width: 100%;
+  max-width: 1260px;
   margin: 50px auto;
 `;
 
@@ -295,27 +305,27 @@ const PayBox = styled.div`
   }
 `;
 
-const InformationBox = styled.div`
-  margin: auto;
-  width: 50%;
-`;
-
 const Informationboxs = styled.div`
   display: flex;
   margin: auto;
   margin-top: 10px;
-  width: 70%;
-  height: 550px;
+  max-width: 1260px;
+  width: 100%;
+  height: fit-content;
   background-color: white;
   border-top: solid 2px black;
   border-left: solid 0.1px lightgray;
   border-bottom: solid 0.1px lightgray;
   border-right: solid 0.1px lightgray;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const Boxscontentone = styled.div`
-  padding: 1% 0;
   width: 100%;
+  padding: 10px 0;
   background-color: white;
   color: gray;
   border-bottom: solid 1px lightgray;
@@ -324,25 +334,27 @@ const Boxscontentone = styled.div`
 
 const Boxscontenttwo = styled.div`
   width: 100%;
-  height: 76.2%;
+  height: 420px;
   background-color: white;
   border-bottom: solid 1px lightgray;
   border-right: solid 1px lightgray;
   display: flex;
+
+  @media (max-width: 1100px) {
+    flex-direction: column;
+    height: fit-content;
+  }
 `;
 
 const Textone = styled.div`
-  padding: 2.5%;
   flex: 1;
+  padding: 40px;
 `;
 
 const Texttwo = styled.div`
   display: flex;
   margin-bottom: 10px;
 
-  div:first-child {
-    padding-right: 10px;
-  }
   ul {
     padding-left: 0;
     margin: 0 0 0 20px;
@@ -350,7 +362,13 @@ const Texttwo = styled.div`
 `;
 
 const TitleBox = styled.div`
-  min-width: 40px;
+  width: 100px;
+  color: gray;
+  margin-right: 10px;
+`;
+
+const QTitleBox = styled.div`
+  width: 70px;
   color: gray;
   margin-right: 10px;
 `;
@@ -367,9 +385,7 @@ const Textthree = styled.div`
 `;
 
 const Textfour = styled.div`
-  width: 100%;
-  margin-left: 3%;
-
+  margin-left: 40px;
   h2 {
     margin: 7.5px 0;
   }
@@ -394,11 +410,12 @@ const Imgbox = styled.div`
 const Textbox = styled.div``;
 
 const Textfive = styled.div`
-  padding-left: 5%;
+  padding-left: 10px;
   color: gray;
   font-size: 12px;
   display: flex;
   align-items: center;
+  width: 75px;
 `;
 
 const Textsix = styled.div`
@@ -423,7 +440,7 @@ const BackBtn = styled.div`
   color: white;
   text-align: center;
   cursor: pointer;
-  width: 6%;
+  width: 110px;
   height: 45px;
   background-color: #888888;
   margin-right: 10px;
@@ -437,7 +454,8 @@ const DelBtn = styled.div`
   color: white;
   text-align: center;
   cursor: pointer;
-  width: 6%;
+  width: 110px;
+
   height: 45px;
   background-color: red;
   display: flex;
@@ -450,7 +468,8 @@ const FixBtn = styled.div`
   color: white;
   text-align: center;
   cursor: pointer;
-  width: 6%;
+  width: 110px;
+
   height: 45px;
   background-color: #3399ff;
   margin-right: 10px;
