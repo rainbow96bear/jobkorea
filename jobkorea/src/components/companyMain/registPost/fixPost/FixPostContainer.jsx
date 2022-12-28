@@ -7,11 +7,9 @@ export default function FixPostContainer() {
   const params = useParams();
 
   useEffect(() => {
-    axios
-      .post("http://localhost:8080/api/recruit/dbcall", { id: params.id })
-      .then((data) => {
-        console.log(data);
-      });
+    axios.post("/api/recruit/dbcall", { id: params.id }).then((data) => {
+      console.log(data);
+    });
   }, []);
 
   const [recruitName, setRecruitName] = useState("");
@@ -152,9 +150,7 @@ export default function FixPostContainer() {
       isLimit: isLimit,
       payKinds: payKinds,
     };
-    axios
-      .post("http://localhost:8080/api/recruit/fix", body)
-      .then((res) => console.log(res));
+    axios.post("/api/recruit/fix", body).then((res) => console.log(res));
     alert("수정되었습니다");
     navigate("/companymain/managepost");
   };

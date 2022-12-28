@@ -173,7 +173,7 @@ router.post("/dbcall", async (req, res) => {
       process.env.COOKIE_SECRET
     );
   }
-  console.log(userInfo.companyId);
+
   try {
     const rowData = await Companyuser_Info.findOne({
       where: { companyId: userInfo.companyId },

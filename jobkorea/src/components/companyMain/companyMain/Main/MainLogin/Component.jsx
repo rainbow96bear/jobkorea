@@ -23,19 +23,15 @@ const MainLoginBoardComponent = ({
     if (companyUser != 0) {
       setTimeout(async () => {
         dispatch(action.logoutCompany());
-        const data = await axios.post(
-          "http://localhost:8080/api/companyuser/logout",
-          {}
-        );
+        const data = await axios.post("/api/companyuser/logout", {});
       }, 18000000);
     }
   }, [companyUser]);
 
   const companyconfirm = async () => {
-    const data = await axios.post(
-      "http://localhost:8080/api/companyuser/loginconfirm",
-      { companyUser }
-    );
+    const data = await axios.post("/api/companyuser/loginconfirm", {
+      companyUser,
+    });
 
     dispatch(action.loginConfirm({ confirmid: data.data }));
 
@@ -82,7 +78,7 @@ const MainLoginBoardComponent = ({
                     dispatch(action.logoutCompany());
                     setLoginIsClick(false);
                     const data = await axios.post(
-                      "http://localhost:8080/api/companyuser/logout",
+                      "/api/companyuser/logout",
                       {}
                     );
                     console.log(data);

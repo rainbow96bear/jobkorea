@@ -86,15 +86,16 @@ export default function AdPostComponent({
           <PayInfoBox>
             <ProductBox>
               <div>내가 보유한 금액</div>
-              <div>{companyMoney}원</div>
+              <div>{(+companyMoney).toLocaleString()}원</div>
             </ProductBox>
             <ProductBox>
               <div>상품 금액</div>
               {day == -1 ? (
-                <div>{selPay}원 x 0일 = 0원</div>
+                <div>{selPay.toLocaleString()}원 x 0일 = 0원</div>
               ) : (
                 <div>
-                  {selPay}원 x {day}일 = {sumPay}원
+                  {selPay.toLocaleString()}원 x {day}일 ={" "}
+                  {(+sumPay).toLocaleString()}원
                 </div>
               )}
             </ProductBox>
@@ -103,7 +104,11 @@ export default function AdPostComponent({
             </LineBox>
             <ProductBox>
               <div>결제 후 남은 금액</div>
-              <div>{resultMoney}원</div>
+              {day == -1 ? (
+                <div>{(+companyMoney).toLocaleString()}</div>
+              ) : (
+                <div>{resultMoney.toLocaleString()}원</div>
+              )}
             </ProductBox>
           </PayInfoBox>
         </AdInfoBox>
@@ -141,18 +146,27 @@ const WillPayBox = styled.div`
 `;
 const ProductBox = styled.div`
   display: flex;
-  width: 50%;
-
-  div {
-    width: 50%;
-  }
+  width: 80%;
 
   div:first-child {
     text-align: left;
+    width: 30%;
+    white-space: nowrap;
   }
 
   div:last-child {
     text-align: right;
+    width: 70%;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+  @media (max-width: 800px) {
+    flex-direction: column;
+
+    div:first-child {
+      width: 100%;
+    }
   }
 `;
 
@@ -161,10 +175,6 @@ const AdInfoBox = styled.div`
   margin-top: 20px;
 
   @media (max-width: 800px) {
-    font-size: 10px;
-
-    & > div {
-    }
   }
 `;
 const AdBtnBox = styled.div`

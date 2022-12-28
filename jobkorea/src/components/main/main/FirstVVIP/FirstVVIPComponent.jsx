@@ -16,12 +16,10 @@ const FirstVVIPComponent = ({ inputData, moveTo }) => {
             key={`groupItemBox-${index}`}
             onClick={() => {
               moveTo(`recruit/${data2.id}`);
-            }}>
+            }}
+          >
             <div>
-              <img
-                src={`http://localhost:8080/uploads/${data2.companylogo}`}
-                alt=""
-              />
+              <img src={`/uploads/${data2.companylogo}`} alt="" />
             </div>
             <div className="companyName">
               <div>{data2.CompanyName}</div>

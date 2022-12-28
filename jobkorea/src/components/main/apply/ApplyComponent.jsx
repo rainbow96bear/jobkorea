@@ -111,7 +111,7 @@ export default function ApplyComponent({
                         {application[`${index}`]?.Companyuser_Info
                           .companylogo && (
                           <Companylogo
-                            src={`http://localhost:8080/uploads/${
+                            src={`/uploads/${
                               application[`${index}`]?.Companyuser_Info
                                 .companylogo
                             }`}
@@ -148,7 +148,7 @@ export default function ApplyComponent({
                         console.log(item.personalRecruit.individualId);
                         try {
                           axios
-                            .post("http://localhost:8080/api/apply/remove", {
+                            .post("/api/apply/remove", {
                               recruitId: item.personalRecruit.recruitId,
                               individualId: item.personalRecruit.individualId,
                             })

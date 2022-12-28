@@ -10,7 +10,6 @@ module.exports = class Recruit extends Sequelize.Model {
         // },
         recruitName: {
           type: Sequelize.STRING(255),
-          unique: true,
         },
         recruitNum: {
           type: Sequelize.STRING(255),

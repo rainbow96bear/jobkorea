@@ -20,10 +20,9 @@ export default function RecruitContainer() {
     // console.log(params.id);
     const newfunction = async () => {
       try {
-        const data = await axios.post(
-          "http://localhost:8080/api/recruit/recruitInfo",
-          { id: params.id }
-        );
+        const data = await axios.post("/api/recruit/recruitInfo", {
+          id: params.id,
+        });
         const result = data.data;
         // const result = data.data.map((item, index) => ({
         //   Area: item.recruitArea,
@@ -58,7 +57,7 @@ export default function RecruitContainer() {
 
   const applycanclebutton = async () => {
     try {
-      const data = await axios.post("http://localhost:8080/api/apply/cancle", {
+      const data = await axios.post("/api/apply/cancle", {
         id: params.id,
       });
       if (data.data == "지원하지않은 공고입니다") {
@@ -77,7 +76,7 @@ export default function RecruitContainer() {
 
   const applybutton = async () => {
     try {
-      const data = await axios.post("http://localhost:8080/api/apply/now", {
+      const data = await axios.post("/api/apply/now", {
         id: params.id,
       });
 
@@ -95,13 +94,13 @@ export default function RecruitContainer() {
     }
   };
   // const data = await axios.post(
-  //   "http://localhost:8080/api/recruit/recruitInfo",
+  //   "/api/recruit/recruitInfo",
   //   {}
   // );
   // SetrecruitInfo([...recruitInfo, data.data]);
   // try {
   //   axios
-  //     .post("http://localhost:8080/api/recruit/recruitInfo")
+  //     .post("/api/recruit/recruitInfo")
   //     .then((data) => {
   //       const Inforecruit = data.data;
   //       // console.log(Inforecruit);

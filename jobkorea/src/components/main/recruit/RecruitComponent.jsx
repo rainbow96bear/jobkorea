@@ -25,7 +25,7 @@ export default function RecruitComponent({
               <Imgboxafter>
                 <img
                   style={{ width: 100 }}
-                  src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
+                  src={`/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
                   alt=""
                 />
               </Imgboxafter>
@@ -167,7 +167,7 @@ export default function RecruitComponent({
             <Imgbox>
               <img
                 style={{ width: 70 }}
-                src={`http://localhost:8080/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
+                src={`/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
                 alt=""
               />
             </Imgbox>

@@ -62,7 +62,8 @@ const OpenRecruitComponent = ({ inputData, moveTo }) => {
               onClick={() => {
                 setJuniorTitle(true);
                 // 상태 변경 함수 사용
-              }}>
+              }}
+            >
               신입
             </div>
             <div
@@ -70,7 +71,8 @@ const OpenRecruitComponent = ({ inputData, moveTo }) => {
               onClick={() => {
                 setJuniorTitle(false);
                 // 상태 변경 함수 사용
-              }}>
+              }}
+            >
               경력
             </div>
           </div>
@@ -84,12 +86,10 @@ const OpenRecruitComponent = ({ inputData, moveTo }) => {
                 key={`groupItemBox-${index}`}
                 onClick={() => {
                   moveTo(`recruit/${data2.id}`);
-                }}>
+                }}
+              >
                 <div>
-                  <img
-                    src={`http://localhost:8080/uploads/${data2.companylogo}`}
-                    alt=""
-                  />
+                  <img src={`/uploads/${data2.companylogo}`} alt="" />
                 </div>
                 <div className="companyName">
                   <div className="textSimple">{data2.CompanyName}</div>
@@ -104,7 +104,8 @@ const OpenRecruitComponent = ({ inputData, moveTo }) => {
           <>
             <div
               className="RecruitDiv1"
-              style={XsmallScreen ? { fontSize: "12px" } : { fontSize: "9px" }}>
+              style={XsmallScreen ? { fontSize: "12px" } : { fontSize: "9px" }}
+            >
               <div onClick={goError}>
                 <img src={recruitLogo1} alt="" />각 부분 신입/경력 채용
                 <br />

@@ -12,8 +12,7 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
             <CompanyName>
               {data.CompanyName}
               <CompanyLogo>
-                <img
-                  src={`http://localhost:8080/uploads/${data.CompanyLogo}`}></img>
+                <img src={`/uploads/${data.CompanyLogo}`}></img>
               </CompanyLogo>
             </CompanyName>
             <RecruitContentBox>
@@ -21,7 +20,8 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
                 <span
                   onClick={() => {
                     navigate("/companymain/myPost/" + data.Id);
-                  }}>
+                  }}
+                >
                   {data.Name}
                 </span>
                 <Qualification>
@@ -62,7 +62,8 @@ export default function ManagePostComponent({ inputData, removeRecruit }) {
               <RemoveBtn
                 onClick={() => {
                   removeRecruit(data.Id);
-                }}>
+                }}
+              >
                 삭제
               </RemoveBtn>
               <NumBox>
