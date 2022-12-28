@@ -5,9 +5,12 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 // import { action } from "../../../../../modules/userInfo.js";
+import { useMediaQuery } from "react-responsive";
 
 const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
   const dispatch = useDispatch();
+  const midScreen = useMediaQuery({ maxWidth: 410 });
+
   const [change, setChange] = useState(false);
   const [lastconfirmid, setLastconfirmid] = useState("");
   const [lastconfirmphone, setLastconfirmphone] = useState("");
@@ -97,6 +100,7 @@ const LoginMordalContainer = ({ setLoginIsClick, setIsClick }) => {
       setChangepw={setChangepw}
       lastconfirmid={lastconfirmid}
       lastconfirmphone={lastconfirmphone}
+      midScreen={midScreen}
     ></MordalComponent>
   );
 };
