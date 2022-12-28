@@ -2,9 +2,13 @@ import ManagePostComponent from "./ManagePostComponent";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { action } from "../../../modules/button";
 
 export default function ManagePostContainer() {
   const [inputData, setInputData] = useState([]);
+  const dispatch = useDispatch();
+  const sidebar = useSelector((state) => state.button.sidebar);
 
   const removeRecruit = (idData) => {
     try {
@@ -12,21 +16,12 @@ export default function ManagePostContainer() {
       axios.post("/api/recruit/remove", { id: idData }).then((data) => {
         console.log(data);
       });
-      window.location.reload();
-
+      dispatch(action.sidebar());
       alert("삭제되었습니다");
     } catch (e) {
       console.error(e.message);
     }
   };
-
-  // useEffect(() => {
-  //   axios
-  //     .post("/api/recruit/whoapply", { id: 2 })
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // });
 
   useEffect(() => {
     try {
@@ -57,7 +52,7 @@ export default function ManagePostContainer() {
     } catch (e) {
       console.error(e.message);
     }
-  }, []);
+  }, [sidebar]);
 
   return (
     <ManagePostComponent inputData={inputData} removeRecruit={removeRecruit} />

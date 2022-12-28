@@ -74,8 +74,7 @@ router.post("/login", async (req, res) => {
     where: { individualId: req.body.id },
   });
   const userPw = crypto.SHA256(req.body.pw).toString();
-  console.log(logInData);
-  console.log(logInData.individualPhoto);
+
   try {
     if (logInData) {
       if (

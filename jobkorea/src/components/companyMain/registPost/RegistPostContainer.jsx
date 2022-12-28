@@ -2,7 +2,8 @@ import { useState } from "react";
 import RegistPostComponent from "./RegistPostComponent";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { action } from "../../../modules/button";
 
 export default function RegistPostContainer({ adGrade }) {
   const [recruitName, setRecruitName] = useState("");
@@ -22,7 +23,9 @@ export default function RegistPostContainer({ adGrade }) {
   const [payKinds, setPayKinds] = useState("");
   const [minmin, setMinmin] = useState(0);
   const [maxmax, setMaxmax] = useState(0);
+
   const day = useSelector((state) => state.recruit.value);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -128,7 +131,7 @@ export default function RegistPostContainer({ adGrade }) {
     ) {
       alert("필요한 값을 모두 입력해주세요");
       return;
-    } else if (minmin >= +maxmax) {
+    } else if (minmin >= maxmax) {
       alert("최소 급여는 최대 급여보다 작아야합니다");
       return;
     }
@@ -154,6 +157,7 @@ export default function RegistPostContainer({ adGrade }) {
     };
 
     axios.post("/api/recruit/add", body).then((res) => console.log(res));
+    dispatch(action.sidebar());
     alert("등록되었습니다");
     navigate("/companymain/managepost");
   };

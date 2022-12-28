@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function RecruitModalContainer({}) {
   const isCompanyMordal = useSelector((state) => state.button.value);
   const companyUser = useSelector((state) => state.companyUser.value);
+  const render = useSelector((state) => state.button.sidebar);
   const onClick = () => {
     dispatch(action.companyMordal());
     console.log(isCompanyMordal);
@@ -39,8 +40,6 @@ export default function RecruitModalContainer({}) {
     setDay((state) => [...state, Math.ceil(gap / (1000 * 60 * 60 * 24)) - 1]);
   };
 
-  let intervalId;
-
   useEffect(() => {
     console.log(companyUser);
     axios
@@ -48,10 +47,8 @@ export default function RecruitModalContainer({}) {
       .then((data) => {
         console.log(data.data);
         setRecruitInfo(data.data);
-        return data;
-      })
-      .then((data) => {});
-  }, [companyUser]);
+      });
+  }, [render]);
 
   useEffect(() => {
     if (recruitInfo.length != 0) {

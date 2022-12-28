@@ -34,7 +34,7 @@ export default function RecruitModalComponent({
             >
               <div className="title">{item.recruitName}</div>
               <div>
-                급여 : {item.minPay}~{item.maxPay} ({item.payKinds})
+                급여 : {item.minPay}~{item.maxPay} ({item.payKinds.slice(0, 1)})
               </div>
               {item.recruitNum == -1 ? (
                 <>
@@ -48,11 +48,11 @@ export default function RecruitModalComponent({
                 </>
               )}
               {day[index] == 0 ? (
-                <div>오늘 마감</div>
+                <div className="hurry">오늘 마감</div>
               ) : day[index] > 0 ? (
-                <div>D-{day[index]}</div>
+                <div className="dday">D-{day[index]}</div>
               ) : (
-                <div>모집 마감된 공고</div>
+                <div className="end">모집 마감된 공고</div>
               )}
             </OneBox>
           ))}
@@ -76,6 +76,19 @@ const OneBox = styled.div`
 
   .title {
     font-weight: 900;
+  }
+
+  .dday {
+    font-weight: 800;
+  }
+
+  .hurry {
+    color: orange;
+    font-weight: 800;
+  }
+  .end {
+    color: red;
+    font-weight: 800;
   }
 `;
 

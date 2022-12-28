@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let initialState = { value: false };
+let initialState = { value: false, sidebar: false };
 
 const buttonSlice = createSlice({
   name: "button",
@@ -10,9 +10,9 @@ const buttonSlice = createSlice({
       state.value = !state.value;
     },
 
-    // loginConfirm(state, action) {
-    //   state.value = action.payload.confirmid;
-    // },
+    sidebar(state) {
+      state.sidebar = !state.sidebar;
+    },
   },
 });
 

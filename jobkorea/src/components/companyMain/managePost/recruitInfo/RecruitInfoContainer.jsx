@@ -90,7 +90,7 @@ export default function RecruitInfoContainer() {
       }
     };
     myRecruitFunc();
-  }, []);
+  }, [params]);
 
   return (
     <RecruitInfoComponent

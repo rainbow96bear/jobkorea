@@ -26,11 +26,11 @@ export default function RecruitInfoComponent({
               {myRecruit?.Companyuser_Info?.companyName}
               <h2 style={{ color: "black" }}>{myRecruit?.recruitName}</h2>
               {day == 0 ? (
-                <div>
+                <div className="hurry">
                   공고 마감 임박 {hour} : {min} : {sec}
                 </div>
               ) : day <= 0 || hour <= 0 || min <= 0 || sec <= 0 ? (
-                <div>모집 마감된 공고입니다.</div>
+                <div className="magam">모집 마감된 공고입니다.</div>
               ) : (
                 <div>
                   공고 마감 시한 : {day}일 {hour} : {min} : {sec}
@@ -170,12 +170,13 @@ export default function RecruitInfoComponent({
         </Informationboxscontenttwo>
       </Informationboxs>
       {day <= 0 || hour <= 0 || min <= 0 || sec <= 0 ? (
-        <DelBtn>삭제하기</DelBtn>
+        <DelBtn>마감</DelBtn>
       ) : (
         <Footercontainer>
           <FixBtn>
             <div
-              onClick={() => moveTo(`/companymain/fixpost/${myRecruit?.id}`)}>
+              onClick={() => moveTo(`/companymain/fixpost/${myRecruit?.id}`)}
+            >
               <strong>공고 수정</strong>
             </div>
           </FixBtn>
@@ -207,20 +208,28 @@ export default function RecruitInfoComponent({
                 <div
                   onClick={() => {
                     passOnclick(item.individualId);
-                  }}>
+                  }}
+                >
                   합격
                 </div>
                 <div
                   onClick={() => {
                     failOnclick(item.individualId);
-                  }}>
+                  }}
+                >
                   불합격
                 </div>
               </UserBtn>
             ) : item.personalRecruit.check == "pass" ? (
-              <div>합격처리 완료</div>
+              <UserFlex>
+                <UserTitle>합격처리 완료</UserTitle>
+                <UserContent></UserContent>
+              </UserFlex>
             ) : (
-              <div>불합격처리 완료</div>
+              <UserFlex>
+                <UserTitle>불합격처리 완료</UserTitle>
+                <UserContent></UserContent>
+              </UserFlex>
             )}
           </UserInfo>
         ))}
@@ -372,17 +381,17 @@ const Textcolor = styled.span`
   color: blue;
 `;
 
-const Textthree = styled.div`
-  width: 20%;
-  display: flex;
-  align-items: center;
-  color: gray;
-`;
-
 const Textfour = styled.div`
   margin-left: 40px;
   h2 {
     margin: 7.5px 0;
+  }
+
+  .hurry {
+    color: orange;
+  }
+  .magam {
+    color: red;
   }
 `;
 
@@ -415,13 +424,6 @@ const Textfive = styled.div`
 
 const Textsix = styled.div`
   padding-left: 5%;
-`;
-
-const Buttonbox = styled.div`
-  display: flex;
-  width: 100%;
-  padding-top: 3%;
-  justify-content: space-around;
 `;
 
 const Footercontainer = styled.div`
@@ -472,16 +474,4 @@ const FixBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Scrap = styled.div`
-  width: 6%;
-  height: 5vh;
-  border: solid 1px lightgray;
-
-  div:first-child {
-    padding-top: 10%;
-    padding-left: 10%;
-    font-size: large;
-  }
 `;
