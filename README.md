@@ -2,7 +2,7 @@
 
 ---
 
-![잡코리아 메인]<img src=“https://image.edaily.co.kr/images/Photo/files/NP/S/2020/11/PS20111000013.gif”></img>
+![잡코리아 메인](./jobkorealogo.gif)
 <br>
 <br>
 
@@ -126,5 +126,3 @@
 ---
 
 MIT JJOBKOREA
-
-
