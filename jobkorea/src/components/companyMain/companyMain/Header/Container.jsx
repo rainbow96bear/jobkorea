@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 
 import HeaderComponent from "./Componets";
+import { action } from "../../../../modules/userInfo";
 
 const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
   const navigate = useNavigate();
@@ -47,6 +51,39 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
   const moveTo = (where) => {
     navigate(`/${where}`);
   };
+
+  const dispatch = useDispatch();
+
+  const companyUser = useSelector((state) => state.companyUser.value);
+
+  const [autoLogout, setAutologout] = useState("");
+
+  useEffect(() => {
+    if (companyUser != 0) {
+      setTimeout(async () => {
+        dispatch(action.logoutCompany());
+        const data = await axios.post(
+          "http://localhost:8080/api/companyuser/logout",
+          {}
+        );
+      }, 18000000);
+    }
+  }, [companyUser]);
+
+  const companyconfirm = async () => {
+    const data = await axios.post(
+      "http://localhost:8080/api/companyuser/loginconfirm",
+      { companyUser }
+    );
+
+    dispatch(action.loginConfirm({ confirmid: data.data }));
+
+    setAutologout(data.data);
+  };
+
+  useEffect(() => {
+    companyconfirm();
+  }, [companyUser]);
 
   return (
     <HeaderComponent

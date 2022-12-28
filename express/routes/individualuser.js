@@ -91,6 +91,7 @@ router.post("/login", async (req, res) => {
 
   console.log(logInData);
   console.log(logInData.individualPhoto);
+
   try {
     if (logInData) {
       if (
