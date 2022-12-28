@@ -47,6 +47,7 @@ export default function MainComponent({
             <Box3 style={midScreen ? { width: "50%" } : { width: "50%" }}>
               {test ? (
                 <AfterLogInContainer
+                  test={test}
                   setTest={setTest}
                   individualId={individualId}
                   individualPhoto={individualPhoto}

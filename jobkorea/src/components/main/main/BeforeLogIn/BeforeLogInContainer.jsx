@@ -27,6 +27,10 @@ const BeforeLogInContainer = ({
       if (data.data === "로그인 완료") {
         alert("로그인 되었습니다.");
         setTest(true);
+      } else if (data.data === "비밀번호가 일치하지 않습니다.") {
+        alert("비밀번호가 일치하지 않습니다.");
+      } else if ((data.data = "없는 아이디 입니다.")) {
+        alert("없는 아이디 입니다.");
       }
     }
   };
@@ -40,8 +44,7 @@ const BeforeLogInContainer = ({
       setIndividualPw={setIndividualPw}
       smallScreen={smallScreen}
       setIsClick={setIsClick}
-      midScreen={midScreen}
-    ></BeforeLogInComponent>
+      midScreen={midScreen}></BeforeLogInComponent>
   );
 };
 

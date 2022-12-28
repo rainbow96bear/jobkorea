@@ -24,9 +24,10 @@ export default function CompanyMyPageComponent({
           <InfoBox>
             <div>회사 로고</div>
             <ImgBackground>
-              <img
-                src={`http://localhost:8080/uploads/${inputData.CompanyLogo}`}
-              ></img>
+              {inputData.CompanyLogo && (
+                <img
+                  src={`http://localhost:8080/uploads/${inputData.CompanyLogo}`}></img>
+              )}
             </ImgBackground>
           </InfoBox>
           <InfoBox>
@@ -59,8 +60,7 @@ export default function CompanyMyPageComponent({
                   type="text"
                   onInput={(e) => {
                     setUserName(e.target.value);
-                  }}
-                ></input>
+                  }}></input>
               </InfoBox>
               <InfoBox>
                 <div>가입자 번호</div>
@@ -75,8 +75,7 @@ export default function CompanyMyPageComponent({
                     } else {
                       setNumPass(true);
                     }
-                  }}
-                ></input>
+                  }}></input>
               </InfoBox>
               <InfoBox>
                 <div>가입자 이메일</div>
@@ -92,8 +91,7 @@ export default function CompanyMyPageComponent({
                     } else {
                       setEmailPass(true);
                     }
-                  }}
-                ></input>
+                  }}></input>
               </InfoBox>
               <BtnBox>
                 <div onClick={ModifyUserInfo}>수정하기</div>
@@ -136,8 +134,7 @@ export default function CompanyMyPageComponent({
             <div
               onClick={() => {
                 addMoney();
-              }}
-            >
+              }}>
               충전
             </div>
           </InfoBox>

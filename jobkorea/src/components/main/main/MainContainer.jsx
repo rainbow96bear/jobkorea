@@ -16,7 +16,7 @@ export default function MainContainer() {
         setTest(true);
       }
     });
-  }, []);
+  }, [test]);
 
   return (
     <MainComponent
@@ -24,7 +24,6 @@ export default function MainContainer() {
       setTest={setTest}
       individualId={individualId}
       setIndividualId={setIndividualId}
-      individualPhoto={individualPhoto}
-    ></MainComponent>
+      individualPhoto={individualPhoto}></MainComponent>
   );
 }

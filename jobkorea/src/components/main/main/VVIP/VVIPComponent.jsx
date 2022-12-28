@@ -12,10 +12,12 @@ const VVIPComponent = ({ inputData, moveTo }) => {
               moveTo(`recruit/${data2.id}`);
             }}>
             <div>
-              <img
-                src={`http://localhost:8080/uploads/${data2.companylogo}`}
-                alt=""
-              />
+              {data2.companylogo && (
+                <img
+                  src={`http://localhost:8080/uploads/${data2.companylogo}`}
+                  alt=""
+                />
+              )}
             </div>
             <div className="companyName">
               <div>{data2.CompanyName}</div>

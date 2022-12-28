@@ -38,100 +38,99 @@ export default function RecruitInfoComponent({
               )}
             </Textfour>
           </Boxscontentone>
-          {
-            <Boxscontenttwo>
-              <Textone>
-                <div style={{ marginBottom: 10 }}>지원자격</div>
-                <div>
-                  <Texttwo>
-                    <QTitleBox className="gray">경력</QTitleBox>{" "}
-                    <Textcolor>{myRecruit?.isExp}</Textcolor>
-                  </Texttwo>
-                  <Texttwo>
-                    <QTitleBox className="gray">학력</QTitleBox>
-                    <Textcolor>{myRecruit?.edu}</Textcolor>
-                  </Texttwo>
-                  <Texttwo>
-                    <QTitleBox className="gray">우대</QTitleBox>
-                    {myRecruit?.condition == "" ? (
-                      <div>우대 사항 없음</div>
-                    ) : (
-                      <ul>
-                        {myRecruit?.condition?.split(",").map((item, index) => (
-                          <li key={`li-${index}`}>{item}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </Texttwo>
-                </div>
-              </Textone>
 
-              <Textone>
-                <div style={{ marginBottom: 10 }}>근무조건</div>
+          <Boxscontenttwo>
+            <Textone>
+              <div style={{ marginBottom: 10 }}>지원자격</div>
+              <div>
                 <Texttwo>
-                  <TitleBox>고용형태</TitleBox>
-                  <Textcolor>{myRecruit?.shape}</Textcolor>
+                  <QTitleBox className="gray">경력</QTitleBox>{" "}
+                  <Textcolor>{myRecruit?.isExp}</Textcolor>
                 </Texttwo>
                 <Texttwo>
-                  <TitleBox>급여</TitleBox>
-                  <PayBox>
-                    {myRecruit?.isPay == "회사내규에 따름" ||
-                    myRecruit?.isPay == "회사내규에 따름, 면접 후 결정" ||
-                    myRecruit?.isPay == "면접 후 결정, 회사내규에 따름" ? (
-                      <>{myRecruit?.isPay}</>
-                    ) : (
-                      <>
-                        {myRecruit?.payKinds == "주급" ? (
-                          <span>주급 </span>
-                        ) : (
-                          <></>
-                        )}
-                        {myRecruit?.payKinds == "월급" ? (
-                          <span>월급 </span>
-                        ) : (
-                          <></>
-                        )}
-                        {myRecruit?.payKinds == "연봉" ? (
-                          <span>연봉 </span>
-                        ) : (
-                          <></>
-                        )}
-                        {myRecruit?.minPay}~{myRecruit?.maxPay}만원
-                        {myRecruit?.isPay ? (
-                          <span>- {myRecruit?.isPay}</span>
-                        ) : (
-                          <></>
-                        )}
-                      </>
-                    )}
-                  </PayBox>
+                  <QTitleBox className="gray">학력</QTitleBox>
+                  <Textcolor>{myRecruit?.edu}</Textcolor>
                 </Texttwo>
                 <Texttwo>
-                  <TitleBox>지역</TitleBox>
-                  <div>{myRecruit?.area}</div>
+                  <QTitleBox className="gray">우대</QTitleBox>
+                  {myRecruit?.condition == "" ? (
+                    <div>우대 사항 없음</div>
+                  ) : (
+                    <ul>
+                      {myRecruit?.condition?.split(",").map((item, index) => (
+                        <li key={`li-${index}`}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
                 </Texttwo>
+              </div>
+            </Textone>
 
-                <Texttwo>
-                  <TitleBox>직급</TitleBox>
-                  <div>{myRecruit?.workRank}</div>
-                </Texttwo>
-                <Texttwo>
-                  <TitleBox>담당업무</TitleBox>
-                  <div>{myRecruit?.myTask}</div>
-                </Texttwo>
+            <Textone>
+              <div style={{ marginBottom: 10 }}>근무조건</div>
+              <Texttwo>
+                <TitleBox>고용형태</TitleBox>
+                <Textcolor>{myRecruit?.shape}</Textcolor>
+              </Texttwo>
+              <Texttwo>
+                <TitleBox>급여</TitleBox>
+                <PayBox>
+                  {myRecruit?.isPay == "회사내규에 따름" ||
+                  myRecruit?.isPay == "회사내규에 따름, 면접 후 결정" ||
+                  myRecruit?.isPay == "면접 후 결정, 회사내규에 따름" ? (
+                    <>{myRecruit?.isPay}</>
+                  ) : (
+                    <>
+                      {myRecruit?.payKinds == "주급" ? (
+                        <span>주급 </span>
+                      ) : (
+                        <></>
+                      )}
+                      {myRecruit?.payKinds == "월급" ? (
+                        <span>월급 </span>
+                      ) : (
+                        <></>
+                      )}
+                      {myRecruit?.payKinds == "연봉" ? (
+                        <span>연봉 </span>
+                      ) : (
+                        <></>
+                      )}
+                      {myRecruit?.minPay}~{myRecruit?.maxPay}만원
+                      {myRecruit?.isPay ? (
+                        <span>- {myRecruit?.isPay}</span>
+                      ) : (
+                        <></>
+                      )}
+                    </>
+                  )}
+                </PayBox>
+              </Texttwo>
+              <Texttwo>
+                <TitleBox>지역</TitleBox>
+                <div>{myRecruit?.area}</div>
+              </Texttwo>
 
-                {myRecruit?.workDepartment == "" ? (
-                  <></>
-                ) : (
-                  <Texttwo>
-                    <TitleBox>근무부서</TitleBox>
+              <Texttwo>
+                <TitleBox>직급</TitleBox>
+                <div>{myRecruit?.workRank}</div>
+              </Texttwo>
+              <Texttwo>
+                <TitleBox>담당업무</TitleBox>
+                <div>{myRecruit?.myTask}</div>
+              </Texttwo>
 
-                    <div>{myRecruit?.workDepartment}</div>
-                  </Texttwo>
-                )}
-              </Textone>
-            </Boxscontenttwo>
-          }
+              {myRecruit?.workDepartment == "" ? (
+                <></>
+              ) : (
+                <Texttwo>
+                  <TitleBox>근무부서</TitleBox>
+
+                  <div>{myRecruit?.workDepartment}</div>
+                </Texttwo>
+              )}
+            </Textone>
+          </Boxscontenttwo>
         </Informationboxscontent>
         <Informationboxscontenttwo>
           <Imgbox>
@@ -177,8 +176,7 @@ export default function RecruitInfoComponent({
         <Footercontainer>
           <FixBtn>
             <div
-              onClick={() => moveTo(`/companymain/fixpost/${myRecruit?.id}`)}
-            >
+              onClick={() => moveTo(`/companymain/fixpost/${myRecruit?.id}`)}>
               <strong>공고 수정</strong>
             </div>
           </FixBtn>
@@ -210,15 +208,13 @@ export default function RecruitInfoComponent({
                 <div
                   onClick={() => {
                     passOnclick(item.individualId);
-                  }}
-                >
+                  }}>
                   합격
                 </div>
                 <div
                   onClick={() => {
                     failOnclick(item.individualId);
-                  }}
-                >
+                  }}>
                   불합격
                 </div>
               </UserBtn>

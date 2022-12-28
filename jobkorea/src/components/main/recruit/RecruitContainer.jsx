@@ -12,7 +12,7 @@ export default function RecruitContainer() {
   const firstScreen = useMediaQuery({ minWidth: 1200 });
   // const secondScreen = useMediaQuery({ maxWidth: 1200 });
 
-  const midScreen = useMediaQuery({ maxWidth: 800 });
+  const midScreen = useMediaQuery({ maxWidth: 900 });
   const bottomScreen = useMediaQuery({ maxWidth: 600 });
 
   console.log(params);
@@ -118,7 +118,6 @@ export default function RecruitContainer() {
       applycanclebutton={applycanclebutton}
       firstScreen={firstScreen}
       midScreen={midScreen}
-      bottomScreen={bottomScreen}
-    ></RecruitComponent>
+      bottomScreen={bottomScreen}></RecruitComponent>
   );
 }
