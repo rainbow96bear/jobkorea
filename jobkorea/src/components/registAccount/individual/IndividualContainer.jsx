@@ -26,6 +26,7 @@ const IndividualContainer = () => {
     },
   };
   const onClick = async (
+    individualPhotoUpload,
     individualName,
     individualId,
     individualPw,
@@ -34,18 +35,21 @@ const IndividualContainer = () => {
     individualInfoValid,
     individualAddress
   ) => {
+    let formData = new FormData();
+    formData.append("individualPhotoUpload", individualPhotoUpload);
+    formData.append("individualName", individualName);
+    formData.append("individualId", individualId);
+    formData.append("individualPw", individualPw);
+    formData.append("individualEmail", individualEmail);
+    formData.append("individualTel", individualTel);
+    formData.append("individualInfoValid", individualInfoValid);
+    formData.append("individualAddress", individualAddress);
+    console.log(individualPhotoUpload);
     const data = await axios.post(
       "http://localhost:8080/api/individualuser/regist",
-      {
-        individualName,
-        individualId,
-        individualPw,
-        individualEmail,
-        individualTel,
-        individualInfoValid,
-        individualAddress,
-      }
+      formData
     );
+
     console.log(data.data);
     if (data.data.status === 200) {
       alert("회원가입을 축하합니다.");

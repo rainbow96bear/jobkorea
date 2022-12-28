@@ -19,6 +19,7 @@ export default function MainComponent({
   setTest,
   individualId,
   setIndividualId,
+  individualPhoto,
 }) {
   const [individualPw, setIndividualPw] = useState("");
   const midScreen = useMediaQuery({ minWidth: 820 });
@@ -48,6 +49,7 @@ export default function MainComponent({
                 <AfterLogInContainer
                   setTest={setTest}
                   individualId={individualId}
+                  individualPhoto={individualPhoto}
                 />
               ) : (
                 <BeforeLogInContainer

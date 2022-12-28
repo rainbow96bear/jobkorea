@@ -4,6 +4,10 @@ module.exports = class Individual_Info extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
+        individualPhoto: {
+          type: Sequelize.STRING(255),
+          allowNull: true,
+        },
         individualName: {
           type: Sequelize.STRING(255),
         },
