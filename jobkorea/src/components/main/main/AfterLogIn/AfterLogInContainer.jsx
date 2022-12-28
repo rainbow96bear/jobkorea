@@ -4,15 +4,17 @@ import { useEffect } from "react";
 
 const AfterLogInContainer = ({ setTest, individualId, individualPhoto }) => {
   const onClick = async () => {
-    await axios.post("/api/individualuser/logout");
+    const data = await axios.post("/api/individualuser/logout");
+    if (data.status == 12341234) {
+      await setTest(false);
+    }
   };
   return (
     <AfterLogInComponent
       onClick={onClick}
       setTest={setTest}
       individualId={individualId}
-      individualPhoto={individualPhoto}
-    ></AfterLogInComponent>
+      individualPhoto={individualPhoto}></AfterLogInComponent>
   );
 };
 

@@ -10,7 +10,7 @@ import QuickMenuContainer from "./QuickMenu/QuickMenuContainer";
 import FirstVVIPContainer from "./FirstVVIP/FirstVVIPContainer";
 import VVIPContainer from "./VVIP/VVIPContainer";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import LoginMordalContainer from "./individualModal/Container";
 
@@ -24,7 +24,9 @@ export default function MainComponent({
   const [individualPw, setIndividualPw] = useState("");
   const midScreen = useMediaQuery({ minWidth: 820 });
   const [isClick, setIsClick] = useState(false);
-
+  useEffect(() => {
+    console.log(`mainComponent${test}`);
+  }, [test]);
   // const smallScreen = useMediaQuery({ minWidth: 660 });
 
   return (
@@ -55,6 +57,7 @@ export default function MainComponent({
               ) : (
                 <BeforeLogInContainer
                   setTest={setTest}
+                  test={test}
                   individualId={individualId}
                   individualPw={individualPw}
                   setIndividualId={setIndividualId}

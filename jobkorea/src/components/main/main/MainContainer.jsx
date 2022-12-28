@@ -16,7 +16,7 @@ export default function MainContainer() {
         setTest(true);
       }
     });
-  }, [test]);
+  }, []);
 
   return (
     <MainComponent

@@ -19,7 +19,7 @@ const IndividualComponent = ({
   const [individualPwCheck, setIndividualPwCheck] = useState("");
   const [individualEmail, setIndividualEmail] = useState("");
   const [individualTel, setIndividualTel] = useState("");
-  const [individualInfoValid, setIndividualInfoValid] = useState("withdraw");
+  const [individualInfoValid, setIndividualInfoValid] = useState("");
   const [pwCheck, setPwCheck] = useState(false);
   const [individualPhoto, setIndividualPhoto] = useState("");
   const [individualPhotoUpload, setIndividualPhotoUpload] = useState("");
@@ -202,7 +202,6 @@ const IndividualComponent = ({
             className="radio"
             value="withdraw"
             onChange={handlieClickRadio}
-            checked="checked"
           />
           회원탈퇴시
         </Radio>
@@ -230,7 +229,9 @@ const IndividualComponent = ({
               email &&
               tel &&
               individualAddress != "" &&
-              pwCheck
+              pwCheck &&
+              individualPhoto &&
+              individualInfoValid != ""
             ) {
               registClick(
                 individualPhotoUpload,
@@ -259,8 +260,12 @@ const IndividualComponent = ({
               alert("휴대폰번호 형식이 올바르지 않습니다.");
             } else if (!individualAddress) {
               alert("주소를 입력하세요.");
-            } else if (pwCheck) {
+            } else if (!pwCheck) {
               alert("비밀번호를 확인하세요.");
+            } else if (individualPhoto == "") {
+              alert("사진을 넣어주세요.");
+            } else if (individualInfoValid == "") {
+              alert("개인정보 유효기간을 선택해주세요.");
             }
           }}>
           가입하기

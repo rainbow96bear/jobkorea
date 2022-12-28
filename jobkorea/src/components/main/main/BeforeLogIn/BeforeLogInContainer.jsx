@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 import BeforeLogInComponent from "./BeforeLogInComponent";
 
 const BeforeLogInContainer = ({
@@ -9,8 +10,12 @@ const BeforeLogInContainer = ({
   setIndividualPw,
   smallScreen,
   setIsClick,
+  test,
   midScreen,
 }) => {
+  useEffect(() => {
+    console.log(`beforeLogin${test}`);
+  }, [test]);
   const onClick = async (individualId, individualPw) => {
     if (individualId === "") {
       console.log("아이디를 입력하세요.");

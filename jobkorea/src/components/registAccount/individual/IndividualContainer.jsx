@@ -6,16 +6,11 @@ const IndividualContainer = () => {
   const [openPostcode, setOpenPostcode] = useState(false);
   const [individualAddress, setIndividualAddress] = useState("");
 
-  /**
-   * handler
-   */
   const handle = {
-    // 버튼 클릭 이벤트
     clickButton: () => {
       setOpenPostcode((current) => !current);
     },
 
-    // 주소 선택 이벤트
     selectAddress: (data) => {
       setIndividualAddress(data.address);
       console.log(`
@@ -50,7 +45,7 @@ const IndividualContainer = () => {
     console.log(data.data);
     if (data.data.status === 200) {
       alert("회원가입을 축하합니다.");
-    } else if (data.data === "아이디가 존재합니다.") {
+    } else if (data.data === "이미 있는 아이디") {
       alert("이미 가입된 아이디입니다.");
     }
   };
