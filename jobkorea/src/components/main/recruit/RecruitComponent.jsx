@@ -84,13 +84,13 @@ export default function RecruitComponent({
                     {recruitInfo[0]?.condition == "" ? (
                       <div>우대 사항 없음</div>
                     ) : (
-                      <ul style={{ padding: 0 }}>
+                      <div style={{ padding: 0 }}>
                         {recruitInfo[0]?.condition
                           .split(",")
                           .map((item, index) => (
                             <li key={`li-${index}`}>{item}</li>
                           ))}
-                      </ul>
+                      </div>
                     )}
                   </Texttwobox>
                 </Texttwo>
@@ -248,7 +248,7 @@ const Imgboxafter = styled.div``;
 const Texttwobox = styled.div``;
 
 const PayBox = styled.div`
-  width: 150px;
+  width: fit-content;
   span {
     font-size: 11px;
     color: #888888;
@@ -259,10 +259,9 @@ const Divcontainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 400px;
+  min-width: 360px;
   width: 100%;
   height: 100vh;
-  /* min-height: 100vh; */
 `;
 
 const Informationboxs = styled.div`
@@ -279,9 +278,7 @@ const Informationboxs = styled.div`
 
 const Boxscontentone = styled.div`
   padding-top: 3%;
-  height: 29%;
-  width: 100%;
-  background-color: white;
+
   color: gray;
   border-bottom: solid 0.1px lightgray;
   border-right: solid 0.1px lightgray;
@@ -292,10 +289,7 @@ const Boxscontenttwo = styled.div`
   height: 65%;
   background-color: white;
 
-  /* border-bottom: solid 0.1px lightgray; */
   border-right: solid 0.1px lightgray;
-  /* display: flex; */
-  /* margin-left: 10%; */
   &.afterflex {
     text-align: center;
     width: 50%;
@@ -315,18 +309,15 @@ const Textone = styled.div`
 
 const Texttwoname = styled.div`
   display: flex;
-  /* justify-content: center; */
   & div:nth-child(1) {
     width: 80px;
   }
   & div:nth-child(2) {
-    /* width: 50px; */
   }
 `;
 
 const Texttwo = styled.div`
   display: flex;
-  /* justify-content: center; */
 
   div:first-child {
     padding-right: 10px;
@@ -339,7 +330,6 @@ const Textcolor = styled.span`
 
 const Textthree = styled.div`
   width: 30%;
-  width: 70px;
   display: flex;
   align-items: center;
   color: gray;

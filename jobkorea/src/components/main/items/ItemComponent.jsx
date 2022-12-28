@@ -66,9 +66,9 @@ const ApplyBtn = styled.button`
   flex: 1;
   color: white;
   font-weight: 900;
+  font-size: 17px;
   background-color: #3399ff;
   border: none;
-  padding: 10px 15px;
   border-radius: 10px;
 `;
 const Qualification = styled.div`
