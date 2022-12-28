@@ -20,7 +20,7 @@
 
 ---
 
-![stack]<img src=“https://postfiles.pstatic.net/MjAyMjEyMjhfMjA1/MDAxNjcyMjEyODQxNTc0.xdfbrJcD5_OucnZ9QAAJ7oHOaz7pHu2XBUQPM_W5FDcg.MuMc5otmrPoAnHTovD4zlt2IUjnlnKuz5w74bAB5T2Qg.PNG.je4337/mysql.png?type=w773” width=“300px" height=“300px"></img>
+![stack](./mysql.png)
 <br>
 <br>
 
