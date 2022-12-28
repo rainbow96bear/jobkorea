@@ -1,12 +1,15 @@
 import styled from "styled-components";
+import Select from "react-select";
 
 export default function SimpleSortComponent({
   classOn,
   setClassOn,
   category,
-  showNums,
+  area,
   setCategoryCheck,
+  setAreaCheck,
 }) {
+  const options = area.map((data) => ({ value: data, label: data }));
   return (
     <SimpleBox>
       <SimpleCategory>
@@ -16,21 +19,25 @@ export default function SimpleSortComponent({
             onClick={() => {
               setClassOn(index);
               setCategoryCheck(item);
+              console.log(item);
             }}
-            className={classOn === index ? "on" : ""}
-          >
+            className={classOn === index ? "on" : ""}>
             {item}
           </div>
         ))}
       </SimpleCategory>
       <DetailInfoBox>
-        <select>
-          {showNums.map((item, index) => (
-            <option key={`showNums-${index}`} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
+        <Select
+          className="area-select"
+          classNamePrefix="select"
+          isSearchable={false}
+          defaultValue={options[0]}
+          options={options}
+          onChange={(value) => {
+            setAreaCheck(value.value);
+            console.log(value.value);
+          }}
+        />
       </DetailInfoBox>
     </SimpleBox>
   );
@@ -45,7 +52,8 @@ const SimpleCategory = styled.div`
     background-color: #f6f6f6;
     border: 1px solid #dcdcdc;
     border-bottom: solid 1px black;
-    font-size: 14px;
+    font-size: 12.5px;
+    font-weight: 900;
     padding: 10px;
     cursor: pointer;
   }
@@ -62,7 +70,8 @@ const DetailInfoBox = styled.div`
   padding: 15px;
   border: 1px solid #dcdcdc;
   border-top: none;
-  select {
-    padding: 5px;
+  .area-select {
+    width: 150px;
+    font-size: 14px;
   }
 `;

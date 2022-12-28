@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import ItemComponent from "./items/ItemComponent";
+import ItemComponent from "../items/ItemComponent";
 
 export default function SearchKeyWordComponent({ data }) {
   return (

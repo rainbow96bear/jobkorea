@@ -8,12 +8,14 @@ export default function SearchContainer() {
   const midScreen = useMediaQuery({ minWidth: 1200 });
   const smallScreen = useMediaQuery({ minWidth: 1070 });
   const [categoryCheck, setCategoryCheck] = useState("전체");
+  const [areaCheck, setAreaCheck] = useState("전국");
 
   useEffect(() => {
     try {
       axios
         .post("http://localhost:8080/api/recruit/search/call", {
           check: categoryCheck,
+          area: areaCheck,
         })
         .then((data) => {
           const _inputData = data.data.map((rowData) => ({
@@ -38,12 +40,13 @@ export default function SearchContainer() {
     } catch (e) {
       console.error(e.message);
     }
-  }, [categoryCheck]);
+  }, [categoryCheck, areaCheck]);
   return (
     <SearchComponent
       data={inputData}
       midScreen={midScreen}
       smallScreen={smallScreen}
-      setCategoryCheck={setCategoryCheck}></SearchComponent>
+      setCategoryCheck={setCategoryCheck}
+      setAreaCheck={setAreaCheck}></SearchComponent>
   );
 }

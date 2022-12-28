@@ -245,7 +245,7 @@ router.post("/call", async (req, res) => {
 
 router.post("/search/call", async (req, res) => {
   try {
-    if (req.body.check == "전체") {
+    if (req.body.check == "전체" && req.body.area == "전국") {
       const rowData = await Recruit.findAll({
         include: [
           {
@@ -254,13 +254,44 @@ router.post("/search/call", async (req, res) => {
         ],
       });
       res.send(rowData);
-    } else {
+    } else if (req.body.check == "전체" && req.body.area != "전국") {
+      const rowData = await Recruit.findAll({
+        include: [
+          {
+            model: db.Companyuser_Info,
+            where: {
+              [Op.or]: {
+                companyAddress: {
+                  [Op.like]: `%${req.body.area}%`,
+                },
+              },
+            },
+          },
+        ],
+      });
+      res.send(rowData);
+    } else if (req.body.check != "전체" && req.body.area == "전국") {
       const rowData = await Recruit.findAll({
         include: [
           {
             model: db.Companyuser_Info,
             where: {
               selectedOption: req.body.check,
+            },
+          },
+        ],
+      });
+      res.send(rowData);
+    } else if (req.body.check != "전체" && req.body.area != "전국") {
+      const rowData = await Recruit.findAll({
+        include: [
+          {
+            model: db.Companyuser_Info,
+            where: {
+              selectedOption: req.body.check,
+              companyAddress: {
+                [Op.like]: `%${req.body.area}%`,
+              },
             },
           },
         ],
