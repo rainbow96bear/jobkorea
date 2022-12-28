@@ -43,8 +43,8 @@ export default function AdPostComponent({
     { value: "28", label: "28일" },
     { value: "29", label: "29일" },
     { value: "30", label: "30일" },
-    { value: "1", label: "1일" },
-    { value: "0", label: "0일" },
+    { value: "1", label: "test(1일)" },
+    { value: "0", label: "test(0일)" },
   ];
   return (
     <BackgroundBox>
@@ -90,9 +90,13 @@ export default function AdPostComponent({
             </ProductBox>
             <ProductBox>
               <div>상품 금액</div>
-              <div>
-                {selPay}원 x {day}일 = {sumPay}원
-              </div>
+              {day == -1 ? (
+                <div>{selPay}원 x 0일 = 0원</div>
+              ) : (
+                <div>
+                  {selPay}원 x {day}일 = {sumPay}원
+                </div>
+              )}
             </ProductBox>
             <LineBox>
               <hr />

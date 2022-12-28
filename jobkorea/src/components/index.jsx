@@ -39,10 +39,12 @@ export default function Components() {
 }
 
 const FoldBox = styled.div`
+  color: white;
   text-align: center;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: url("/img/warning.gif");
+  background-size: contain;
 `;
