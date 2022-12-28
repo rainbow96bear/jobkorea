@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -16,10 +17,14 @@ const SmallCarouselComponent = () => {
     loop: true,
     arrows: false,
   };
+  const navigate = useNavigate();
+  const goError = () => {
+    navigate("/errorpage");
+  };
 
   return (
     <NoticeCarouselBox>
-      <div className="carousel">
+      <div className="carousel" onClick={goError}>
         <Slider {...settings}>
           <div>[공지] 모바일 이력서 서비스 리뉴얼</div>
           <div>[이벤트]12월 전체회원 이벤트, ...</div>

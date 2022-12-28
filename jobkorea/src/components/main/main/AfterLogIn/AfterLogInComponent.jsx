@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
+const AfterLogInComponent = ({
+  onClick,
+  setTest,
+  individualId,
+  individualPhoto,
+}) => {
   console.log(individualId);
   const navigate = useNavigate();
   const goApply = () => {
@@ -12,26 +17,35 @@ const AfterLogInComponent = ({ onClick, setTest, individualId }) => {
     navigate("/errorpage");
   };
 
+  console.log(individualPhoto);
   return (
     <>
       <AfterLogInBox>
-        <div className="afterLogInDiv1">
-          <div className="goInfo" onClick={onClick}>
-            {individualId}님
+        <ImgBox>
+          <div className="afterLogInDiv2">
+            {/* <div className="goResume">이력서 관리 &gt;</div>
+          <div className="modifiedDate">최종 수정일 (2022.07.18)</div> */}
+            <img
+              src={`http://localhost:8080/uploads/${individualPhoto}`}
+              style={{ width: "70px", height: "70px" }}
+              alt=""
+            />
           </div>
-          <button
-            className="logOutBtn"
-            onClick={() => {
-              onClick();
-              setTest(false);
-            }}>
-            로그아웃
-          </button>
-        </div>
-        <div className="afterLogInDiv2">
-          <div className="goResume">이력서 관리 &gt;</div>
-          <div className="modifiedDate">최종 수정일 (2022.07.18)</div>
-        </div>
+          <div className="afterLogInDiv1">
+            <button
+              className="logOutBtn"
+              onClick={() => {
+                onClick();
+                setTest(false);
+              }}
+            >
+              로그아웃
+            </button>
+            <div className="goInfo" onClick={onClick}>
+              {individualId}님
+            </div>
+          </div>
+        </ImgBox>
         <div className="afterLogInDiv3">
           <button onClick={goApply}>
             지원
@@ -63,14 +77,13 @@ export default AfterLogInComponent;
 
 const AfterLogInBox = styled.div`
   width: 100%;
-  height: 100%;
-
   text-align: center;
   background-color: #fafafa;
   border: 1px solid #dadada;
   & .afterLogInDiv1 {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     padding: 3%;
   }
   & .goInfo {
@@ -81,8 +94,8 @@ const AfterLogInBox = styled.div`
   & .afterLogInDiv2 {
     display: flex;
     justify-content: space-between;
-    margin: 1% 0;
-    padding: 1%;
+    margin: 3px 0;
+    /* padding: 1%; */
   }
   & .goResume {
     cursor: pointer;
@@ -116,8 +129,14 @@ const AfterLogInBox = styled.div`
   & .logOutBtn {
     background-color: #fafafa;
     border: 1px solid #dadada;
+    width: 4rem;
     font-size: 0.7rem;
     color: #424242;
     cursor: pointer;
   }
+`;
+
+const ImgBox = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `;

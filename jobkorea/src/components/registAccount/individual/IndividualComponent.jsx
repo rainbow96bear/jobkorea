@@ -21,6 +21,22 @@ const IndividualComponent = ({
   const [individualTel, setIndividualTel] = useState("");
   const [individualInfoValid, setIndividualInfoValid] = useState("withdraw");
   const [pwCheck, setPwCheck] = useState(false);
+  const [individualPhoto, setIndividualPhoto] = useState("");
+  const [individualPhotoUpload, setIndividualPhotoUpload] = useState("");
+
+  const imgChanage = (imgFile) => {
+    if (imgFile.files && imgFile.files[0]) {
+      const readImg = new FileReader();
+      readImg.onload = (e) => {
+        setIndividualPhoto(e.target.result);
+      };
+      readImg.readAsDataURL(imgFile.files[0]);
+      setIndividualPhotoUpload(imgFile.files[0]);
+      console.log(imgFile.files[0]);
+    } else if (imgFile.files.length === 0) {
+      setIndividualPhoto("");
+    }
+  };
 
   const smallScreen = useMediaQuery({ minWidth: 300 });
   const navigate = useNavigate();
@@ -36,6 +52,7 @@ const IndividualComponent = ({
       setPwCheck(false);
     }
   }, [individualPw, individualPwCheck]);
+
   return (
     <IndividualRegistBox>
       <IndividualRegistFrame>
@@ -62,6 +79,21 @@ const IndividualComponent = ({
             회원가입하고 다양한 혜택을 누리세요!
           </RegistMessage>
         </MemberRegistDiv>
+
+        <Multername>사진을 등록해주세요</Multername>
+        <IndividualPhoto src={individualPhoto}></IndividualPhoto>
+        <Multercontainer>
+          <MulterBox
+            onChange={(e) => {
+              imgChanage(e.target);
+            }}
+            type={"file"}
+            name={"individualPhotoUpload"}
+            id={"individualPhotoUpload"}
+            placeholder={"개인 사진"}
+            autocomplete={"off"}
+          />
+        </Multercontainer>
 
         <InputDiv>
           <input
@@ -202,6 +234,7 @@ const IndividualComponent = ({
               pwCheck
             ) {
               registClick(
+                individualPhotoUpload,
                 individualName,
                 individualId,
                 individualPw,
@@ -330,6 +363,26 @@ const CompanyRegist = styled.div`
   border-bottom: 1px solid ${COLOR};
   cursor: pointer;
 `;
+
+const IndividualPhoto = styled.img`
+  width: 15%;
+  padding-left: 20%;
+`;
+
+const Multername = styled.span`
+  color: grey;
+
+  display: flex;
+  justify-content: end;
+`;
+
+const Multercontainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: end;
+`;
+
+const MulterBox = styled.input``;
 
 const InputDiv = styled.div`
   display: flex;

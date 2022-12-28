@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const crypto = require("crypto-js");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 // const { default: Cookies } = require("universal-cookie");
 // const Cookies = require("universal-cookie");
 
@@ -14,40 +15,70 @@ router.post("/autologin", (req, res) => {
       req.cookies.individual_login,
       process.env.COOKIE_SECRET
     );
+    console.log("#################");
+    console.log(userInfo);
+    console.log("#################");
+
     res.send(userInfo);
   } else {
     res.end;
   }
 });
 
-router.post("/regist", async (req, res) => {
-  console.log(req.body.individualId);
-  try {
-    if (
-      await Individualuser_Info.findOne({
-        where: { individualId: req.body.individualId },
-      })
-    ) {
-      console.log("이미 있는 아이디");
-      res.send("이미 있는 아이디");
-    } else {
-      await Individualuser_Info.create({
-        individualName: req.body.individualName,
-        individualId: req.body.individualId,
-        individualPw: crypto.SHA256(req.body.individualPw).toString(),
-        individualEmail: req.body.individualEmail,
-        individualTel: req.body.individualTel,
-        individualInfoValid: req.body.individualInfoValid,
-        individualAddress: req.body.individualAddress,
-      });
-      console.log("아이디 생성");
-      res.send({ status: 200 });
-    }
-  } catch (err) {
-    console.error(err);
-    res.send("failed!!");
-  }
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  },
 });
+const upload = multer({ storage: storage });
+
+router.post(
+  "/regist",
+  upload.single("individualPhotoUpload"),
+  async (req, res) => {
+    // console.log(req.body.individualId);
+
+    try {
+      if (
+        await Individualuser_Info.findOne({
+          where: { individualId: req.body.individualId },
+        })
+      ) {
+        console.log("이미 있는 아이디");
+        res.send("이미 있는 아이디");
+      } else {
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        console.log(req.file.originalname);
+        await Individualuser_Info.create({
+          individualPhoto: req.file.filename,
+          individualName: req.body.individualName,
+          individualId: req.body.individualId,
+          individualPw: crypto.SHA256(req.body.individualPw).toString(),
+          individualEmail: req.body.individualEmail,
+          individualTel: req.body.individualTel,
+          individualInfoValid: req.body.individualInfoValid,
+          individualAddress: req.body.individualAddress,
+        });
+        console.log("아이디 생성");
+        res.send({ status: 200 });
+      }
+    } catch (err) {
+      console.error(err);
+      res.send("failed!!");
+    }
+  }
+);
 
 router.post("/login", async (req, res) => {
   console.log("-------");
@@ -58,6 +89,8 @@ router.post("/login", async (req, res) => {
   });
   const userPw = crypto.SHA256(req.body.pw).toString();
 
+  console.log(logInData);
+  console.log(logInData.individualPhoto);
   try {
     if (logInData) {
       if (
@@ -70,8 +103,13 @@ router.post("/login", async (req, res) => {
       ) {
         res.cookie(
           "individual_login",
-          jwt.sign({ individualId: req.body.id }, process.env.COOKIE_SECRET),
-
+          jwt.sign(
+            {
+              individualId: req.body.id,
+              individualPhoto: logInData.individualPhoto,
+            },
+            process.env.COOKIE_SECRET
+          ),
           { expires: new Date(Date.now() + 6000 * 300) }
         );
         res.send("로그인 완료");

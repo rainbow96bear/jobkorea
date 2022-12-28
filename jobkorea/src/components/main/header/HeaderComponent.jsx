@@ -96,12 +96,20 @@ export default function HeaderComponent({
               >
                 채용정보
               </div>
-              <div className="colorText">공채</div>
-              {screen450 && <div className="colorText">헤드헌팅</div>}
+              <div className="colorText" onClick={goError}>
+                공채
+              </div>
+              {screen450 && (
+                <div className="colorText" onClick={goError}>
+                  헤드헌팅
+                </div>
+              )}
               {screen650 && (
                 <>
                   {" "}
-                  <div className="colorText">인재정보</div>
+                  <div className="colorText" onClick={goError}>
+                    인재정보
+                  </div>
                   <div onClick={goError}>퓨처랩</div>
                   <div onClick={goError}>취업톡톡</div>
                 </>
@@ -109,7 +117,7 @@ export default function HeaderComponent({
             </HoverBox>
           </LeftFunc>
           <RightFunc>
-            <VscBell className="border" />
+            <VscBell className="border" onClick={goError} />
             <div
               className="border borderRight"
               onClick={() => {
