@@ -5,6 +5,10 @@ export default function RecruitComponent({
   applybutton,
   midScreen,
   bottomScreen,
+  sec,
+  day,
+  hour,
+  min,
 }) {
   return (
     <Divcontainer>
@@ -12,8 +16,18 @@ export default function RecruitComponent({
         <Informationboxscontent>
           <Boxscontentone>
             {recruitInfo[0]?.Companyuser_Info.companyName}
-
             <h2 style={{ color: "black" }}>{recruitInfo[0]?.recruitName}</h2>
+            {day == 0 ? (
+              <div className="hurry">
+                공고 마감 임박 {hour} : {min} : {sec}
+              </div>
+            ) : day <= 0 && hour <= 0 && min <= 0 && sec <= 0 ? (
+              <div className="magam">모집 마감된 공고입니다.</div>
+            ) : (
+              <div>
+                공고 마감 시한 : {day}일 {hour} : {min} : {sec}
+              </div>
+            )}
           </Boxscontentone>
           {midScreen && (
             <Padding>
@@ -214,7 +228,13 @@ export default function RecruitComponent({
       </Informationboxs>
       <Footercontainer>
         <Home>
-          <div onClick={applybutton}>즉시 지원</div>
+          {day <= 0 && hour <= 0 && min <= 0 && sec <= 0 ? (
+            <DelBtn>마감</DelBtn>
+          ) : (
+            <div className="apply" onClick={applybutton}>
+              즉시 지원
+            </div>
+          )}
         </Home>
       </Footercontainer>
     </Divcontainer>
@@ -267,6 +287,13 @@ const Boxscontentone = styled.div`
   color: gray;
   padding: 15px;
   border-bottom: solid 1px lightgray;
+
+  .hurry {
+    color: orange;
+  }
+  .magam {
+    color: red;
+  }
 `;
 
 const Boxscontenttwo = styled.div`
@@ -356,9 +383,26 @@ const Home = styled.div`
   color: white;
   padding: 0px 20px;
   height: 40px;
-  background-color: #3399ff;
   div {
     font-weight: 900;
     font-size: large;
   }
+
+  .apply {
+    background-color: #3399ff;
+  }
+`;
+
+const DelBtn = styled.div`
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  width: 110px;
+
+  height: 45px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
 `;

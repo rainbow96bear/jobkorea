@@ -2,8 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import RecruitInfoComponent from "./RecruitInfoComponent";
-import { useDispatch } from "react-redux";
-import { action } from "../../../../modules/recruit";
 
 export default function RecruitInfoContainer() {
   const [myRecruit, setMyRecruit] = useState([]);
@@ -11,7 +9,6 @@ export default function RecruitInfoContainer() {
   const params = useParams();
   const [btnRender, setBtnRender] = useState(false);
   const [sec, setSec] = useState(0);
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -37,15 +34,8 @@ export default function RecruitInfoContainer() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setSec(Math.ceil((gap % (1000 * 60)) / 1000));
-      dispatch(
-        action.recruitAdDay({
-          AdDay: day,
-          AdHour: hour,
-          AdMin: min,
-          AdSec: sec,
-        })
-      );
     }, 1000);
+
     return () => clearTimeout(timer);
   }, [sec]);
 
@@ -99,7 +89,6 @@ export default function RecruitInfoContainer() {
       applyUserInfo={applyUserInfo}
       passOnclick={passOnclick}
       failOnclick={failOnclick}
-      setSec={setSec}
       sec={sec}
       day={day}
       hour={hour}
