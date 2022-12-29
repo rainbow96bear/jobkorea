@@ -62,19 +62,15 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
     if (companyUser != 0) {
       setTimeout(async () => {
         dispatch(action.logoutCompany());
-        const data = await axios.post(
-          "http://localhost:8080/api/companyuser/logout",
-          {}
-        );
+        const data = await axios.post("/api/companyuser/logout", {});
       }, 18000000);
     }
   }, [companyUser]);
 
   const companyconfirm = async () => {
-    const data = await axios.post(
-      "http://localhost:8080/api/companyuser/loginconfirm",
-      { companyUser }
-    );
+    const data = await axios.post("/api/companyuser/loginconfirm", {
+      companyUser,
+    });
 
     dispatch(action.loginConfirm({ confirmid: data.data }));
 
@@ -91,7 +87,8 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
       dropdownOnClick={dropdownOnClick}
       dropdownIsClick={dropdownIsClick}
       menuList={menuList}
-      moveTo={moveTo}></HeaderComponent>
+      moveTo={moveTo}
+    ></HeaderComponent>
   );
 };
 

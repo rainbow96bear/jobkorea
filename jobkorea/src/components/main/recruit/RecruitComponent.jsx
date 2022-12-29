@@ -86,15 +86,15 @@ export default function RecruitComponent({
               <div>지원자격</div>
               <div>
                 <Texttwo>
-                  <Texttwo>경력</Texttwo>{" "}
+                  <Textthree>경력</Textthree>{" "}
                   <Textcolor>{recruitInfo[0]?.isExp}</Textcolor>
                 </Texttwo>
                 <Texttwo>
-                  <Texttwo>학력</Texttwo>
+                  <Textthree>학력</Textthree>
                   <Textcolor>{recruitInfo[0]?.edu}</Textcolor>
                 </Texttwo>
                 <Texttwo>
-                  <Texttwo>우대</Texttwo>
+                  <Textthree>우대</Textthree>
                   <Texttwobox>
                     {recruitInfo[0]?.condition == "" ? (
                       <div>우대 사항 없음</div>
@@ -344,8 +344,11 @@ const Informationboxscontenttwo = styled.div`
 `;
 const Imgbox = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
   img {
-    width: 100%;
+    width: 200px;
   }
 `;
 
