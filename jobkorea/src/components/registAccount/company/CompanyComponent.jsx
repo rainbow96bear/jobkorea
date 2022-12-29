@@ -36,6 +36,8 @@ export default function CompanyComponent({
   const [companyIdemail, setCompanyIdemail] = useState("");
   const [companyLogo, setCompanyLogo] = useState("");
   const [companyLogoUpload, setCompanyLogoUpload] = useState("");
+  const [pwcheck, setPwcheck] = useState("password");
+  const [checktext, setChecktext] = useState("표시");
 
   const [idMessage, setIdMessage] = useState(null);
   const [pwMessage, setPwMessage] = useState(null);
@@ -84,7 +86,8 @@ export default function CompanyComponent({
             className="personal"
             onClick={() => {
               navigate("/registAccount/individual");
-            }}>
+            }}
+          >
             개인회원
           </div>
           <div className="company">기업회원</div>
@@ -141,7 +144,8 @@ export default function CompanyComponent({
             }
           }}
           type={"number"}
-          placeholder="사업자등록번호 *"></Companynumber>
+          placeholder="사업자등록번호 *"
+        ></Companynumber>
         <div className="idmessage">{numberMessage}</div>
         <Companytitle>
           <Companyname
@@ -149,13 +153,15 @@ export default function CompanyComponent({
               setCompnayName(e.target.value);
             }}
             type={"text"}
-            placeholder="회사명 *"></Companyname>
+            placeholder="회사명 *"
+          ></Companyname>
           <Companyheader
             onInput={(e) => {
               setCompanyHeader(e.target.value);
             }}
             type={"text"}
-            placeholder="대표자명*"></Companyheader>
+            placeholder="대표자명*"
+          ></Companyheader>
         </Companytitle>
         <div className="check">
           회사명,대표자명 수정이 필요한 경우, 가입 후 고객센터(1588-9350)로 문의
@@ -169,7 +175,8 @@ export default function CompanyComponent({
             onClick={handle.clickButton}
             value={companyAddress}
             type="text"
-            placeholder="회사주소 * "></Companyadress>{" "}
+            placeholder="회사주소 * "
+          ></Companyadress>{" "}
           {openPostcode && (
             <DaumPostcode
               onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
@@ -196,7 +203,8 @@ export default function CompanyComponent({
               }
             }}
             type={"text"}
-            placeholder="아이디 *"></Companyid>
+            placeholder="아이디 *"
+          ></Companyid>
 
           <Companypw
             companyPw={companyPw}
@@ -217,9 +225,22 @@ export default function CompanyComponent({
                 setIsPw(true);
               }
             }}
-            type={"password"}
-            placeholder="비밀번호*"></Companypw>
-          <Companycheck>표시</Companycheck>
+            type={pwcheck}
+            placeholder="비밀번호*"
+          ></Companypw>
+          <Companycheck
+            onClick={() => {
+              setPwcheck("text");
+
+              setChecktext("숨김");
+              if (pwcheck == "text") {
+                setPwcheck("password");
+                setChecktext("표시");
+              }
+            }}
+          >
+            {checktext}
+          </Companycheck>
         </Companytitle>
 
         <div className="idmessage">
@@ -232,7 +253,8 @@ export default function CompanyComponent({
             setCompanyIdname(e.target.value);
           }}
           type={"text"}
-          placeholder="가입자명 *"></Companyidname>
+          placeholder="가입자명 *"
+        ></Companyidname>
         <Companyidname
           onBlur={(e) => {
             setIdnumberMessage(null);
@@ -270,7 +292,8 @@ export default function CompanyComponent({
           }}
           type={"text"}
           placeholder="전화번호 *"
-          value={companyIdnumber}></Companyidname>
+          value={companyIdnumber}
+        ></Companyidname>
         <div className="idmessage">{idNumberMessage}</div>
         <Companyidname
           onBlur={(e) => {
@@ -289,7 +312,8 @@ export default function CompanyComponent({
             }
           }}
           type={"email"}
-          placeholder="이메일 *"></Companyidname>
+          placeholder="이메일 *"
+        ></Companyidname>
         <div className="idmessage">{emailMessage}</div>
 
         <div
@@ -330,7 +354,8 @@ export default function CompanyComponent({
               alert("모든정보를 제대로 입력해주세요");
             }
           }}
-          className="companymember">
+          className="companymember"
+        >
           가입하기
         </div>
       </Joindetailbackground>
@@ -527,7 +552,6 @@ const Companypw = styled.input`
   border-color: lightgrey;
   padding: 3%;
   margin-top: 2%;
-  ${(props) => (props.companyPw.length > 0 ? "background-color:red" : "")}
 `;
 
 const Companycheck = styled.div`
