@@ -108,7 +108,7 @@ const HeaderComponent = ({
                           }
                         }
 
-                        if (item.login === "yes" && !document.cookie) {
+                        if (item.login === "yes" && !companyUser) {
                           alert("로그인 해주세요");
                           moveTo("companymain");
                         } else if (item.routes)

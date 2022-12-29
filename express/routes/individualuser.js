@@ -14,7 +14,7 @@ router.post("/autologin", (req, res) => {
 
     res.send(userInfo);
   } else {
-    res.end;
+    res.end();
   }
 });
 
