@@ -12,7 +12,12 @@
 
 - 한국의 대표격 구인구지 서비스인 **JOB KOREA**를 클론 코딩하며 **React.js** 복습하기
 - **AWS**의 EC2를 이용하여 **mySQL** 연동 및 **Express Server** 구현하기
+---
+## [완성된 사이트 보러가기](#http://tomntoms.errorcode.help) 
 
+[여기를 누르면 이동합니다](http://tomntoms.errorcode.help)
+
+---
 [일반 회원 메인페이지](#일반-회원-메인페이지)
 
 [채용 공고 상세 페이지](#채용-공고-상세-페이지)
