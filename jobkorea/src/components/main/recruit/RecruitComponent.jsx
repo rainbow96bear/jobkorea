@@ -20,7 +20,6 @@ export default function RecruitComponent({
               <Imgbox>
                 {recruitInfo[0]?.Companyuser_Info.companylogo && (
                   <img
-                    style={{ width: 100 }}
                     src={`/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
                     alt=""
                   />
@@ -169,7 +168,6 @@ export default function RecruitComponent({
             <Imgbox>
               {recruitInfo[0]?.Companyuser_Info.companylogo && (
                 <img
-                  style={{ width: 70 }}
                   src={`/uploads/${recruitInfo[0]?.Companyuser_Info.companylogo}`}
                   alt=""
                 />
@@ -317,10 +315,11 @@ const Informationboxscontent = styled.div`
 const Informationboxscontenttwo = styled.div`
   width: 250px;
 `;
-
 const Imgbox = styled.div`
-  height: 100px;
-  border: solid 1px black;
+  width: 100%;
+  img {
+    width: 100%;
+  }
 `;
 
 const Textbox1 = styled.div`
