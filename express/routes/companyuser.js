@@ -20,7 +20,7 @@ router.post("/logout", async (req, res) => {
 
 router.post("/loginconfirm", (req, res) => {
   if (req.cookies["jobkorea_login"]) {
-    userInfo = jwt.verify(
+    companyId = jwt.verify(
       req.cookies.jobkorea_login,
       process.env.COOKIE_SECRET
     );
