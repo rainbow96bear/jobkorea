@@ -7,16 +7,12 @@ export default function RecruitInfoComponent({
   applyUserInfo,
   failOnclick,
   passOnclick,
-  btnRender,
+
   sec,
   day,
   hour,
   min,
 }) {
-  useEffect(() => {
-    console.log(btnRender);
-  }, [btnRender]);
-
   return (
     <div>
       <Informationboxs>
@@ -29,7 +25,7 @@ export default function RecruitInfoComponent({
                 <div className="hurry">
                   공고 마감 임박 {hour} : {min} : {sec}
                 </div>
-              ) : day <= 0 || hour <= 0 || min <= 0 || sec <= 0 ? (
+              ) : day <= 0 && hour <= 0 && min <= 0 && sec <= 0 ? (
                 <div className="magam">모집 마감된 공고입니다.</div>
               ) : (
                 <div>
@@ -169,7 +165,7 @@ export default function RecruitInfoComponent({
           </div>
         </Informationboxscontenttwo>
       </Informationboxs>
-      {day <= 0 || hour <= 0 || min <= 0 || sec <= 0 ? (
+      {day <= 0 && hour <= 0 && min <= 0 && sec <= 0 ? (
         <DelBtn>마감</DelBtn>
       ) : (
         <Footercontainer>
