@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import VerticalMode from "./Carousel/Carousel";
 import DropDown from "./Dropdown/Components";
@@ -25,6 +25,8 @@ const HeaderComponent = ({
   const smallScreen = useMediaQuery({ minWidth: 900 });
   const miniScreen = useMediaQuery({ minWidth: 530 });
 
+  useEffect(() => {}, [companyUser]);
+
   return (
     <>
       <HeaderBox>
@@ -40,7 +42,7 @@ const HeaderComponent = ({
             </div>
 
             <div className="topMenu">
-              {companyUser === 0 ? (
+              {companyUser == 0 ? (
                 <div
                   onClick={() => {
                     moveTo("registAccount/company");
@@ -60,7 +62,7 @@ const HeaderComponent = ({
 
               <div>고객센터</div>
               <div>
-                {companyUser === 0 ? (
+                {companyUser == 0 ? (
                   <div onClick={loginOnClick}>로그인</div>
                 ) : (
                   <div
