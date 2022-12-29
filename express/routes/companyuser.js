@@ -25,7 +25,7 @@ router.post("/loginconfirm", (req, res) => {
       process.env.COOKIE_SECRET
     );
 
-    res.send(companyId);
+    res.send(userInfo);
   } else {
     res.end();
   }
