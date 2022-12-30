@@ -17,6 +17,8 @@
 
 [여기를 누르면 이동합니다](http://tomntoms.errorcode.help)
 
+
+
 ---
 [일반 회원 메인페이지](#일반-회원-메인페이지)
 
@@ -115,7 +117,9 @@
 
 ## 프로젝트를 진행하며 작성한 노션
 ---
-[노션 보러가기] : https://yesla.notion.site/ab95407f03fc44f0aa3f8a3bec9cc8ba
+[노션 발표용 정리 보러가기] : https://yesla.notion.site/ab95407f03fc44f0aa3f8a3bec9cc8ba
+
+[노션 작업 진행 회의록 보러가기] : https://www.notion.so/yesla/JOBKOREA-30f4899cdaca4dbfa6da6ca9ed92194f
 ---
 
 
