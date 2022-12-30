@@ -4,6 +4,7 @@ import ListComponent from "./SolutionLIst/Component";
 
 const SolutionComponent = () => {
   const [resize, setResize] = useState(window.innerWidth);
+
   useEffect(() => {
     window.addEventListener("resize", () => {
       setResize(window.innerWidth);

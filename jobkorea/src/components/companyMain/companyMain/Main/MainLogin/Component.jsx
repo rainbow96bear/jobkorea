@@ -66,7 +66,8 @@ const MainLoginBoardComponent = ({
                 <div
                   onClick={() => {
                     moveTo("registAccount/company");
-                  }}>
+                  }}
+                >
                   회원가입
                 </div>
               </div>
@@ -81,7 +82,8 @@ const MainLoginBoardComponent = ({
                       {}
                     );
                     console.log(data);
-                  }}>
+                  }}
+                >
                   로그아웃
                 </div>
                 <WelcomeBox>

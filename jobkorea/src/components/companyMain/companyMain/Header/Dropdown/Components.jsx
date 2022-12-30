@@ -128,6 +128,7 @@ const DropdownBox = styled.div`
   .flex > div {
     width: 13%;
     margin-right: 20px;
+    /* background-color: red; */
   }
 
   .flex > div > div:first-child {

@@ -71,14 +71,16 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
   }, [companyUser]);
 
   const companyconfirm = async () => {
-    const data = await axios.post(
-      "http://localhost:8080/api/companyuser/loginconfirm",
-      { companyUser }
-    );
+    try {
+      const data = await axios.post(
+        "http://localhost:8080/api/companyuser/loginconfirm",
+        { companyUser }
+      );
 
-    dispatch(action.loginConfirm({ confirmid: data.data }));
+      dispatch(action.loginConfirm({ confirmid: data.data }));
 
-    setAutologout(data.data);
+      setAutologout(data.data);
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -91,7 +93,8 @@ const HeaderContainer = ({ setLoginIsClick, loginIsClick }) => {
       dropdownOnClick={dropdownOnClick}
       dropdownIsClick={dropdownIsClick}
       menuList={menuList}
-      moveTo={moveTo}></HeaderComponent>
+      moveTo={moveTo}
+    ></HeaderComponent>
   );
 };
 
