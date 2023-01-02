@@ -18,21 +18,16 @@ router.post("/logout", async (req, res) => {
   }
 });
 
-router.post("/loginconfirm", async (req, res) => {
-  console.log(req.body.companyUser);
-  try {
-    if (req.cookies["jobkorea_login"]) {
-      const temp = jwt.verify(
-        req.cookies["jobkorea_login"],
-        process.env.COOKIE_SECRET
-      );
+router.post("/loginconfirm", (req, res) => {
+  if (req.cookies["jobkorea_login"]) {
+    const temp = jwt.verify(
+      req.cookies.jobkorea_login,
+      process.env.COOKIE_SECRET
+    );
 
-      console.log(temp["companyId"]);
-      res.send(temp["companyId"]);
-    }
-  } catch (err) {
-    console.error(err);
-    res.send("실패");
+    res.send(temp["companyId"]);
+  } else {
+    res.end();
   }
 });
 

@@ -247,6 +247,7 @@ router.post("/search/call", async (req, res) => {
   try {
     if (req.body.check == "전체" && req.body.area == "전국") {
       const rowData = await Recruit.findAll({
+        order: [["createdAt", "DESC"]],
         include: [
           {
             model: db.Companyuser_Info,
@@ -256,6 +257,7 @@ router.post("/search/call", async (req, res) => {
       res.send(rowData);
     } else if (req.body.check == "전체" && req.body.area != "전국") {
       const rowData = await Recruit.findAll({
+        order: [["createdAt", "DESC"]],
         include: [
           {
             model: db.Companyuser_Info,
@@ -272,6 +274,7 @@ router.post("/search/call", async (req, res) => {
       res.send(rowData);
     } else if (req.body.check != "전체" && req.body.area == "전국") {
       const rowData = await Recruit.findAll({
+        order: [["createdAt", "DESC"]],
         include: [
           {
             model: db.Companyuser_Info,
@@ -284,6 +287,7 @@ router.post("/search/call", async (req, res) => {
       res.send(rowData);
     } else if (req.body.check != "전체" && req.body.area != "전국") {
       const rowData = await Recruit.findAll({
+        order: [["createdAt", "DESC"]],
         include: [
           {
             model: db.Companyuser_Info,
@@ -308,6 +312,7 @@ router.post("/keyWord", async (req, res) => {
       res.send({ status: 400 });
     } else {
       const rowData1 = await Recruit.findAll({
+        order: [["createdAt", "DESC"]],
         where: {
           [Op.or]: {
             recruitName: {
@@ -322,6 +327,7 @@ router.post("/keyWord", async (req, res) => {
         ],
       });
       const rowData2 = await Recruit.findAll({
+        order: [["createdAt", "DESC"]],
         include: [
           {
             model: db.Companyuser_Info,

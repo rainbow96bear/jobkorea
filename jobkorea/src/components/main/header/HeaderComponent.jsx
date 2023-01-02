@@ -27,8 +27,7 @@ export default function HeaderComponent({
           <HomeBtn
             onClick={() => {
               moveTo("");
-            }}
-          >
+            }}>
             JJOBKOREA
           </HomeBtn>
           <SearchItems>
@@ -36,21 +35,26 @@ export default function HeaderComponent({
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  moveTo(`searchKeyWord/${keyWord}`);
-                }}
-              >
+                  if (keyWord == "") {
+                    alert("검색어를 입력해주세요.");
+                  } else {
+                    moveTo(`searchKeyWord/${keyWord}`);
+                  }
+                }}>
                 <input
                   type="text"
                   value={keyWord}
                   onChange={(e) => {
                     setKeyWord(e.target.value);
-                  }}
-                ></input>
+                  }}></input>
                 <div
                   onClick={() => {
-                    moveTo(`searchKeyWord/${keyWord}`);
-                  }}
-                >
+                    if (keyWord == "") {
+                      alert("검색어를 입력해주세요.");
+                    } else {
+                      moveTo(`searchKeyWord/${keyWord}`);
+                    }
+                  }}>
                   <img src={searchImg} alt=""></img>
                 </div>
               </form>
@@ -58,8 +62,7 @@ export default function HeaderComponent({
             <DetailSearchBtn
               onClick={() => {
                 moveTo("searchdetail");
-              }}
-            >
+              }}>
               상세검색
             </DetailSearchBtn>
           </SearchItems>
@@ -92,8 +95,7 @@ export default function HeaderComponent({
                 className="colorText"
                 onClick={() => {
                   moveTo("searchdetail");
-                }}
-              >
+                }}>
                 채용정보
               </div>
               <div className="colorText" onClick={goError}>
@@ -122,8 +124,7 @@ export default function HeaderComponent({
               className="border borderRight"
               onClick={() => {
                 moveTo("companymain");
-              }}
-            >
+              }}>
               기업 회원 홈
             </div>
           </RightFunc>

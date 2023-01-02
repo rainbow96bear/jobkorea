@@ -8,6 +8,8 @@ import { useMediaQuery } from "react-responsive";
 export default function RecruitContainer() {
   const navigate = useNavigate();
   const [recruitInfo, SetrecruitInfo] = useState([]);
+  const [sec, setSec] = useState(0);
+
   const params = useParams();
   const firstScreen = useMediaQuery({ minWidth: 1200 });
   // const secondScreen = useMediaQuery({ maxWidth: 1200 });
@@ -110,6 +112,27 @@ export default function RecruitContainer() {
   //   console.error(err);
   // }
 
+  let date = new Date(
+    recruitInfo[0]?.createdAt?.slice(0, 10) +
+      " " +
+      recruitInfo[0]?.createdAt?.slice(11, 19)
+  );
+
+  date.setHours(date.getHours() + 9);
+  date.setDate(date.getDate() + +recruitInfo[0]?.day);
+
+  let today = new Date();
+  let gap = date.getTime() - today.getTime();
+  let day = Math.ceil(gap / (1000 * 60 * 60 * 24)) - 1;
+  let hour = Math.ceil((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60) - 1);
+  let min = Math.ceil((gap % (1000 * 60 * 60)) / (1000 * 60)) - 1;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSec(Math.ceil((gap % (1000 * 60)) / 1000));
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [sec]);
   return (
     <RecruitComponent
       recruitInfo={recruitInfo}
@@ -117,6 +140,11 @@ export default function RecruitContainer() {
       applycanclebutton={applycanclebutton}
       firstScreen={firstScreen}
       midScreen={midScreen}
-      bottomScreen={bottomScreen}></RecruitComponent>
+      bottomScreen={bottomScreen}
+      day={day}
+      sec={sec}
+      hour={hour}
+      min={min}
+    ></RecruitComponent>
   );
 }
