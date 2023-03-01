@@ -49,7 +49,8 @@ const BeforeLogInContainer = ({
       setIndividualPw={setIndividualPw}
       smallScreen={smallScreen}
       setIsClick={setIsClick}
-      midScreen={midScreen}></BeforeLogInComponent>
+      midScreen={midScreen}
+    ></BeforeLogInComponent>
   );
 };
 

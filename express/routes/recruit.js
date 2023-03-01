@@ -10,6 +10,7 @@ const {
   Sequelize,
 } = require("../models/index.js");
 const Op = Sequelize.Op;
+
 router.post("/pass", async (req, res) => {
   PersonalRecruit.update(
     {

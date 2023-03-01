@@ -122,6 +122,7 @@ router.post("/idconfirm", async (req, res) => {
     res.send("이름과 번호를 다시 확인해주세요");
   }
 });
+
 router.post("/pwconfirm", async (req, res) => {
   console.log(req.body);
   try {

@@ -39,14 +39,16 @@ const BeforeLogInComponent = ({
           className="findInfoBtn"
           onClick={() => {
             setIsClick(true);
-          }}>
-          ID/PW 찾기{" "}
+          }}
+        >
+          ID/PW 찾기
         </div>
       </div>
       <div
         className={
           screen1110 ? "logInDiv" : midScreen ? "logInDivCol" : "logInDiv"
-        }>
+        }
+      >
         <div className="logInInput">
           <input
             type="text"
@@ -74,7 +76,8 @@ const BeforeLogInComponent = ({
           onClick={() => {
             logInClick(individualId, individualPw);
             // setCookie("jobkorea_cookie", "jobcoding");
-          }}>
+          }}
+        >
           로그인
         </button>
       </div>

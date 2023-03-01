@@ -32,7 +32,6 @@ const IndividualComponent = ({
       };
       readImg.readAsDataURL(imgFile.files[0]);
       setIndividualPhotoUpload(imgFile.files[0]);
-      console.log(imgFile.files[0]);
     } else if (imgFile.files.length === 0) {
       setIndividualPhoto("");
     }
@@ -42,7 +41,6 @@ const IndividualComponent = ({
   const navigate = useNavigate();
 
   const handlieClickRadio = (e) => {
-    console.log(e.target.value);
     setIndividualInfoValid(e.target.value);
   };
   useEffect(() => {
@@ -67,7 +65,8 @@ const IndividualComponent = ({
               className={smallScreen ? "" : "RegistSmall"}
               onClick={() => {
                 navigate("/registAccount/company");
-              }}>
+              }}
+            >
               기업회원
             </CompanyRegist>
           </WhoRegist>
@@ -267,7 +266,8 @@ const IndividualComponent = ({
             } else if (individualInfoValid == "") {
               alert("개인정보 유효기간을 선택해주세요.");
             }
-          }}>
+          }}
+        >
           가입하기
         </MemberRegistBtn>
       </IndividualRegistFrame>
@@ -373,7 +373,6 @@ const IndividualPhoto = styled.img`
 
 const Multername = styled.span`
   color: grey;
-
   display: flex;
   justify-content: end;
 `;
